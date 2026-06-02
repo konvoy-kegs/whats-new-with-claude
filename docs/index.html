@@ -69,8 +69,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, and Claude Cowork. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.160</span>
-      <span class="pill neutral">Updated: Tue 02 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.161</span>
+      <span class="pill neutral">Updated: Wed 03 Jun 2026</span>
     </div>
   </div>
 
@@ -85,22 +85,48 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.160 on npm</span>
+      <span class="badge">CLI &middot; v2.1.161 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.160.</strong> npm newest, the <code>latest</code> dist-tag, and the top of the public changelog all match. v2.1.160 is a substantial release headlined by new write-path security prompts and the rename of the dynamic-workflow trigger from <code>workflow</code> to <code>ultracode</code>. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
+      <strong>All sources aligned on v2.1.161.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. v2.1.161 is a maintenance-and-hardening release headlined by a credential-leak fix in <code>claude mcp</code> and richer OpenTelemetry usage labels. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.160 at 2026-06-01 20:03 UTC &middot; dist-tag <code>latest</code> on v2.1.160</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.161 at 2026-06-02 17:38 UTC &middot; dist-tag <code>latest</code> on v2.1.161</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.160 &mdash; today's headline release</h3>
+      <h3>v2.1.161 &mdash; today's headline release</h3>
+      <p class="meta">Published 2 Jun 2026 at 17:38 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.161">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Credential leak fixed in <code>claude mcp</code>.</strong> <code>claude mcp list</code>/<code>get</code>/<code>add</code> no longer print secrets to the terminal: <code>${VAR}</code> references are no longer expanded, and credential headers and URL secrets are now redacted. Worth a glance if anyone has piped <code>claude mcp</code> output into logs, CI, or screenshots.</div>
+
+      <div class="headline-feature"><strong>Slice usage metrics by team or repo.</strong> <code>OTEL_RESOURCE_ATTRIBUTES</code> values are now attached as labels on metric datapoints, so you can break Claude Code usage down by custom dimensions like team or repository in your existing observability stack.</div>
+
+      <ul class="changelog">
+        <li><span class="tag sec">security</span> <code>claude mcp</code> list/get/add no longer print secrets &mdash; <code>${VAR}</code> references unexpanded; credential headers and URL secrets redacted.</li>
+        <li><span class="tag feat">feature</span> <code>OTEL_RESOURCE_ATTRIBUTES</code> values now exported as labels on metric datapoints &mdash; slice usage by team or repo.</li>
+        <li><span class="tag feat">feature</span> <code>/mcp</code> now collapses claude.ai connectors you've never signed in to behind a "Show unused connectors" row.</li>
+        <li><span class="tag feat">feature</span> <code>claude agents</code> rows show <code>done/total</code> when work is fanned out; peek surfaces the longest-running item.</li>
+        <li><span class="tag fix">fix</span> Parallel tool calls: a failed Bash command no longer cancels the other calls in the same batch &mdash; each tool returns its own result.</li>
+        <li><span class="tag fix">fix</span> <code>forceLoginOrgUUID</code>/<code>forceLoginMethod</code> managed-settings policies no longer block third-party provider sessions (Bedrock, Vertex, Foundry, Mantle) alongside the org pin (regression in 2.1.146).</li>
+        <li><span class="tag fix">fix</span> Workflow agents spawned with <code>isolation: "worktree"</code> in background sessions can now edit files inside their own worktree.</li>
+        <li><span class="tag fix">fix</span> Background subagent output no longer corrupts <code>claude -p</code> stdout under <code>--output-format text</code> or <code>json</code>.</li>
+        <li><span class="tag fix">fix</span> OpenTelemetry log events (<code>user_prompt</code>, <code>api_request</code>, <code>tool_result</code>, <code>tool_decision</code>) are no longer dropped when emitted before telemetry init completes.</li>
+        <li><span class="tag fix">fix</span> <code>/usage-credits</code> no longer starts a re-login for Team/Enterprise admins &mdash; it points to the org's usage settings page.</li>
+        <li><span class="tag fix">fix</span> <code>/autofix-pr</code> no longer reports "cannot run on the default branch" when the session is inside a git worktree or another repo.</li>
+        <li><span class="tag fix">fix</span> Windows hooks that invoke bash explicitly (e.g. <code>/usr/bin/bash script.sh</code>) no longer fail with "command not found".</li>
+        <li><span class="tag fix">fix</span> Linux fullscreen clipboard now uses <code>wl-copy</code>/<code>xclip</code>/<code>xsel</code> when available, copying to both the clipboard and PRIMARY selection.</li>
+        <li><span class="tag fix">fix</span> Improved rendering performance for large file writes and stabilized the layout engine's JIT profile.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.160 &mdash; previous user-facing release</h3>
       <p class="meta">Published 1 Jun 2026 at 20:03 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.160">GitHub release</a></p>
 
       <div class="headline-feature"><strong>New write-path security prompts.</strong> Claude now prompts before writing to shell startup files (<code>.zshenv</code>, <code>.zlogin</code>, <code>.bash_login</code>) and <code>~/.config/git/</code> &mdash; closing a quiet path to unintended command execution. <code>acceptEdits</code> mode now also prompts before touching build-tool config files that grant code execution (<code>.npmrc</code>, <code>.yarnrc*</code>, <code>bunfig.toml</code>, <code>.bazelrc</code>, <code>.pre-commit-config.yaml</code>, <code>.devcontainer/</code>).</div>
@@ -108,29 +134,20 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="headline-feature"><strong>Workflow trigger renamed to <code>ultracode</code>.</strong> Typing the word "workflow" no longer triggers a dynamic-workflow run &mdash; the trigger keyword is now <code>ultracode</code> (highlighted in violet in the prompt input). Asking for a workflow in your own words still works.</div>
 
       <ul class="changelog">
-        <li><span class="tag sec">security</span> Prompt before writing to shell startup files (<code>.zshenv</code>, <code>.zlogin</code>, <code>.bash_login</code>) and <code>~/.config/git/</code>.</li>
-        <li><span class="tag sec">security</span> <code>acceptEdits</code> now prompts before writing build-tool config files that grant code execution.</li>
-        <li><span class="tag feat">feature</span> Edit no longer requires a separate Read after viewing a file with <code>grep</code>: single-file <code>grep</code>/<code>egrep</code>/<code>fgrep</code> commands now satisfy the read-before-edit check.</li>
-        <li><span class="tag feat">feature</span> Renamed the dynamic-workflow trigger keyword from <code>workflow</code> to <code>ultracode</code>.</li>
+        <li><span class="tag sec">security</span> Prompt before writing to shell startup files and <code>~/.config/git/</code>; <code>acceptEdits</code> prompts before code-executing build-tool config files.</li>
+        <li><span class="tag feat">feature</span> Edit no longer requires a separate Read after viewing a file with <code>grep</code>: single-file <code>grep</code>/<code>egrep</code>/<code>fgrep</code> now satisfy the read-before-edit check.</li>
         <li><span class="tag fix">fix</span> Restoring a completed <code>claude agents</code> session no longer drops chat history and re-runs the original prompt.</li>
         <li><span class="tag fix">fix</span> Background sessions re-attached after overnight retire no longer lose conversation and re-run the original prompt.</li>
-        <li><span class="tag fix">fix</span> <code>claude --bg</code> no longer occasionally fails with "socket missing" during cold start.</li>
-        <li><span class="tag fix">fix</span> Copy-on-select now writes to the Windows clipboard on WSL (PowerShell interop replaces OSC 52 for terminals like MobaXterm).</li>
-        <li><span class="tag fix">fix</span> Background agents that resumed work are no longer shown under Completed in the agents list.</li>
-        <li><span class="tag fix">fix</span> Voice mode no longer fails to connect when the project directory or branch contains non-ASCII or special characters.</li>
-        <li><span class="tag fix">fix</span> Auto-mode unavailability message on Bedrock/Vertex/Foundry now points to the <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> opt-in instead of blaming the model.</li>
-        <li><span class="tag fix">fix</span> Many <code>claude agents</code> stability fixes on Windows under heavy CPU load: Esc, arrow keys, and typing no longer become unresponsive.</li>
-        <li><span class="tag fix">fix</span> Vim mode <code>p</code> now pastes at the cursor when the register was yanked with <code>v$</code>.</li>
-        <li><span class="tag fix">fix</span> Improved auto-mode classifier latency &mdash; fewer "could not evaluate this action" blocks on routine actions.</li>
-        <li><span class="tag fix">fix</span> Background-session teardown now sends SIGTERM before SIGKILL so cleanup handlers run.</li>
+        <li><span class="tag fix">fix</span> Copy-on-select now writes to the Windows clipboard on WSL (PowerShell interop replaces OSC 52).</li>
+        <li><span class="tag fix">fix</span> Many <code>claude agents</code> stability fixes on Windows under heavy CPU load.</li>
       </ul>
 
       <p class="meta" style="margin-top: 16px;"><strong>Removed:</strong> <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> is now a no-op. The JetBrains plugin install suggestion at startup has also been removed.</p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.158 &mdash; previous user-facing release</h3>
-      <p class="meta">Published 30 May 2026 at 02:42 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.158">GitHub release</a></p>
+      <h3>v2.1.158 &mdash; auto mode on managed clouds</h3>
+      <p class="meta">Published 30 May 2026 at 01:12 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.158">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Auto mode lands on Bedrock, Vertex, and Foundry.</strong> Now available for Opus 4.7 and Opus 4.8 on all three managed-cloud backends. Opt in by setting <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code>. Unblocks enterprise teams pinned to non-Anthropic-hosted inference for compliance reasons.</div>
 
@@ -141,7 +158,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>v2.1.154 &mdash; major release <span class="badge major">headline</span></h3>
-      <p class="meta">Published 28 May 2026 at 18:00 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.154">GitHub release</a></p>
+      <p class="meta">Published 28 May 2026 at 15:40 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.154">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Opus 4.8 is here.</strong> Defaults to high effort. Use <code>/effort xhigh</code> for your hardest tasks. Fast mode on Opus 4.8 is now 2&times; standard rate for 2.5&times; the speed.</div>
 
@@ -153,29 +170,28 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">feature</span> <code>/simplify</code> now runs a cleanup-only review (reuse, simplification, efficiency, altitude) and applies the fixes.</li>
         <li><span class="tag feat">feature</span> Claude in Chrome: pick which connected browser to use via <code>/chrome</code> &rarr; "Select browser&hellip;".</li>
         <li><span class="tag feat">feature</span> Streaming tool execution is now always enabled, including on Bedrock/Vertex/Foundry.</li>
-        <li><span class="tag feat">feature</span> Plugins can declare <code>defaultEnabled: false</code>. The <code>/plugin</code> Discover tab pins plugins matching the current directory.</li>
+        <li><span class="tag sec">security</span> Improved the auto-mode classifier's detection of data exfiltration, particularly bulk transfers of repository contents.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
       <h3>Previous releases</h3>
 
-      <h4>v2.1.159 <span class="date">&mdash; 31 May 19:42 UTC</span></h4>
+      <h4>v2.1.159 <span class="date">&mdash; 31 May 17:50 UTC</span></h4>
       <ul class="changelog">
         <li><span class="tag fix">fix</span> Internal infrastructure improvements (no user-facing changes).</li>
       </ul>
 
-      <h4>v2.1.157 <span class="date">&mdash; 29 May 20:20 UTC</span></h4>
+      <h4>v2.1.157 <span class="date">&mdash; 29 May 17:30 UTC</span></h4>
       <ul class="changelog">
         <li><span class="tag feat">feature</span> Plugins in <code>.claude/skills</code> directories now auto-load &mdash; no marketplace required.</li>
         <li><span class="tag feat">feature</span> New <code>claude plugin init &lt;name&gt;</code> to scaffold a plugin in <code>.claude/skills</code>.</li>
-        <li><span class="tag feat">feature</span> Autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and plugins from known marketplaces.</li>
-        <li><span class="tag feat">feature</span> <code>EnterWorktree</code> can now switch between Claude-managed worktrees mid-session.</li>
+        <li><span class="tag feat">feature</span> Autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and known-marketplace plugins.</li>
         <li><span class="tag sec">security</span> Fixed sandbox network permission prompts appearing in auto/bypass-permissions mode via desktop app, IDE extensions, or SDK.</li>
         <li><span class="tag fix">fix</span> Unprocessable images attached via paste/MCP/dialog no longer crash the request.</li>
       </ul>
 
-      <h4>v2.1.156 <span class="date">&mdash; 29 May 01:42 UTC</span></h4>
+      <h4>v2.1.156 <span class="date">&mdash; 28 May 20:12 UTC</span></h4>
       <ul class="changelog">
         <li><span class="tag fix">fix</span> Fixed an Opus 4.8 issue where thinking blocks were modified, leading to API errors.</li>
       </ul>
@@ -191,7 +207,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">docs.claude.com platform overview</a>, Anthropic news.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">docs.claude.com platform overview</a>, Anthropic news. No new Desktop-specific release in the last 7 days; items below remain current.</p>
 
       <div class="headline-feature"><strong>Customize panel.</strong> A unified <em>Customize</em> section in Claude Desktop groups Skills, Plugins, and Connectors in one place &mdash; the same screen used to install our engineering plugin and GitHub connector.</div>
 
@@ -217,7 +233,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://www.anthropic.com/product/claude-cowork">anthropic.com/product/claude-cowork</a>, <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">scheduled tasks docs</a>, <a href="https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork">Projects docs</a>.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">unified directory docs</a>, <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Financial Services plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. No new Cowork release in the last 7 days; items below remain current.</p>
 
       <div class="headline-feature"><strong>Scheduled tasks.</strong> Delegate work to Cowork on a recurring or on-demand basis &mdash; type <code>/schedule</code> in chat to create one. Available on all paid plans. This morning's digest is exactly this in action.</div>
 
@@ -225,12 +241,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
       <ul class="changelog">
         <li><span class="tag feat">feature</span> Plugins bundle skills, connectors, and sub-agents into one installable package. Knowledge Work marketplace is default; Financial Services and Legal are available as add-ons.</li>
+        <li><span class="tag feat">feature</span> Ten ready-to-run Financial Services agent templates (pitchbooks, KYC screening, month-end close) ship as plugins for Cowork and Claude Code.</li>
         <li><span class="tag feat">feature</span> Install custom plugin marketplaces from a GitHub repo.</li>
         <li><span class="tag feat">feature</span> Skills, Connectors, and Plugins all browseable from a unified directory in Settings.</li>
-        <li><span class="tag feat">feature</span> Computer use (Apr 24, 2026) &mdash; Claude can click, type, open apps, run dev tools in Cowork with no setup. Research preview on Pro and Max plans.</li>
+        <li><span class="tag feat">feature</span> Computer use &mdash; Claude can click, type, open apps, and run dev tools in Cowork with no setup. Research preview on Pro and Max plans.</li>
         <li><span class="tag feat">feature</span> Generally available on macOS and Windows via Claude Desktop.</li>
         <li><span class="tag feat">feature</span> Extend Cowork with third-party MCP platforms (Slack, Sentry, AWS, Atlassian, etc.).</li>
-        <li><span class="tag feat">feature</span> Assign tasks from anywhere in Cowork &mdash; right-click selection or use the task picker without breaking flow.</li>
       </ul>
     </div>
   </div>
@@ -246,10 +262,6 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <h3>Official posts</h3>
         <ul class="linklist">
           <li>
-            <a href="https://www.anthropic.com/engineering/claude-code-auto-mode">How we built Claude Code auto mode</a>
-            <span class="src">anthropic.com</span>
-          </li>
-          <li>
             <a href="https://www.anthropic.com/news/claude-opus-4-8">Introducing Claude Opus 4.8</a>
             <span class="src">anthropic.com</span>
           </li>
@@ -258,15 +270,19 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">anthropic.com</span>
           </li>
           <li>
+            <a href="https://www.anthropic.com/news/finance-agents">Agents for financial services</a>
+            <span class="src">anthropic.com</span>
+          </li>
+          <li>
             <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code release notes</a>
             <span class="src">docs.claude.com</span>
           </li>
           <li>
-            <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks in Cowork</a>
+            <a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes</a>
             <span class="src">support.claude.com</span>
           </li>
           <li>
-            <a href="https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork">Organize tasks with projects (Cowork)</a>
+            <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors &amp; plugins in one directory</a>
             <span class="src">support.claude.com</span>
           </li>
         </ul>
@@ -280,11 +296,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=5HVPeux24WU">Embrace long-running tasks with Opus 4.8 and Claude Code</a>
+            <a href="https://www.youtube.com/watch?v=Q0bsphUTLtw">The Only Claude Code Tutorial You Need (2026 Update)</a>
             <span class="src">YouTube</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=bqYj6OaTuVs">Claude Opus 4.8 Built an Agentic OS in 15 Minutes (ultracode)</a>
+            <a href="https://www.youtube.com/watch?v=j-oiGiIEcws">Claude Opus 4.8 actually blew my mind...</a>
             <span class="src">YouTube</span>
           </li>
           <li>
@@ -292,7 +308,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The ONLY Claude Cowork Tutorial You'll Ever Need in 2026</a>
+            <a href="https://www.youtube.com/watch?v=nmuc95h7qWA">Full Claude Cowork Tutorial for Normal People (May 2026)</a>
             <span class="src">YouTube</span>
           </li>
         </ul>
