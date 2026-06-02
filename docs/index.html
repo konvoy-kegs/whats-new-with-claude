@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's New with Claude?</title>
+<style>
+:root { color-scheme: light; --bg:#fafaf7; --surface:#ffffff; --ink:#1d1d1b; --muted:#5f5e5a; --line:rgba(0,0,0,0.10); --accent:#7f77dd; --accent-dark:#3c3489; --ok:#3b6d11; --ok-bg:#eaf3de; --warn:#854f0b; --warn-bg:#faeeda; --info-bg:#e6f1fb; --info:#0c447c; --link:#185fa5; }
+body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:var(--bg); color:var(--ink); margin:0; padding:0; line-height:1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 32px 28px 80px; }
+.eyebrow { font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-weight:500; }
+h1 { font-size: 32px; font-weight: 500; margin: 6px 0 4px; }
+.subtitle { color: var(--muted); margin: 0 0 24px; font-size: 15px; }
+.headerbar { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.headerbar .versions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.pill { display:inline-flex; align-items:center; gap:6px; background:var(--ok-bg); color:var(--ok); padding: 6px 12px; border-radius: 999px; font-size:13px; font-weight:500; }
+.pill.warn { background:var(--warn-bg); color:var(--warn); }
+.pill.neutral { background:#f1efe8; color:#444441; }
+.tabs { display:flex; gap:4px; border-bottom: 1px solid var(--line); margin-bottom: 20px; flex-wrap:wrap; }
+.tabs a { color: var(--muted); text-decoration: none; padding: 10px 14px; font-size: 14px; border-bottom: 2px solid transparent; margin-bottom:-1px; }
+.tabs a:hover { color: var(--ink); }
+.tabs a.active { color: var(--accent-dark); border-bottom-color: var(--accent-dark); font-weight: 500; }
+.product-header { display:flex; align-items:center; gap:12px; margin: 28px 0 8px; padding-top: 8px; }
+.product-header h2 { font-size: 22px; font-weight: 500; margin: 0; }
+.product-header .badge { font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:#eeedfe; color:var(--accent-dark); }
+.banner { background: var(--info-bg); color: var(--info); padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; }
+.banner strong { font-weight: 500; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; margin: 16px 0; }
+.card h3 { font-size: 17px; font-weight: 500; margin: 0 0 14px; display:flex; align-items:center; gap:10px; }
+.card h3 .badge { font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:#eeedfe; color:var(--accent-dark); }
+.card h3 .badge.major { background:#fac775; color:#633806; }
+.card .meta { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+.changelog { margin: 0; padding: 0; list-style: none; }
+.changelog li { padding: 7px 0 7px 18px; position: relative; font-size: 14px; line-height: 1.55; }
+.changelog li:before { content:""; position:absolute; left:2px; top:14px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.headline-feature { background:#fff8e7; padding: 12px 14px 12px 18px; border-radius: 8px; border-left: 3px solid #ef9f27; margin: 12px 0; font-size: 14px; line-height: 1.55; }
+.headline-feature strong { color:#633806; font-weight: 500; }
+.section-versions h4 { font-size:14px; font-weight:500; margin: 22px 0 6px; color:var(--ink); display:flex; align-items:center; gap:10px; }
+.section-versions h4:first-of-type { margin-top: 4px; }
+.section-versions h4 .date { font-size:12px; color:var(--muted); font-weight:400; }
+.linklist { margin:0; padding:0; list-style: none; }
+.linklist li { padding: 10px 0; border-bottom: 1px solid var(--line); display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+.linklist li:last-child { border-bottom: none; }
+.linklist a { color: var(--link); text-decoration: none; font-weight: 500; font-size: 14.5px; }
+.linklist a:hover { text-decoration: underline; }
+.linklist .src { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; margin-top: 22px; }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer; }
+.btn:hover { background:#f1efe8; }
+.btn.primary { background: var(--accent-dark); color: white; border-color: var(--accent-dark); }
+.btn.primary:hover { background: #26215c; }
+.footnote { color: var(--muted); font-size: 12.5px; margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); }
+code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; background:#f1efe8; padding: 1px 6px; border-radius: 4px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+.tag { display:inline-block; font-size:11px; font-weight:500; padding:2px 8px; border-radius:999px; margin-right: 2px; }
+.tag.feat { background:#eeedfe; color:var(--accent-dark); }
+.tag.sec { background:#fcebeb; color:#791f1f; }
+.tag.fix { background:#f1efe8; color:#444441; }
+.tag.major { background:#fac775; color:#633806; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="headerbar">
+    <div>
+      <div class="eyebrow">Cloud Engineers &middot; Daily digest</div>
+      <h1>What's New with Claude?</h1>
+      <p class="subtitle">The latest across Claude Code, Claude Desktop, and Claude Cowork. Refreshed weekday mornings at 8am.</p>
+    </div>
+    <div class="versions">
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.159</span>
+      <span class="pill neutral">Updated: Mon 01 Jun 2026</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <a href="#code" class="active">Claude Code</a>
+    <a href="#desktop">Claude Desktop</a>
+    <a href="#cowork">Claude Cowork</a>
+    <a href="#posts">Posts &amp; videos</a>
+  </div>
+
+  <!-- ============ CLAUDE CODE ============ -->
+  <div id="code">
+    <div class="product-header">
+      <h2>Claude Code</h2>
+      <span class="badge">CLI &middot; v2.1.159 on npm</span>
+    </div>
+
+    <div class="banner">
+      <strong>All sources aligned on v2.1.159.</strong> npm newest, the <code>latest</code> dist-tag, and the top of the public changelog all match. v2.1.159 itself is "internal infrastructure improvements (no user-facing changes)" &mdash; the most recent user-facing release is <strong>v2.1.158</strong>, and the last major release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
+    </div>
+
+    <div class="card">
+      <h3>Current release <span class="badge">npm</span></h3>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.159 at 2026-05-31 17:50 UTC &middot; dist-tag <code>latest</code> on v2.1.159</p>
+      <p style="margin:0 0 8px;">To upgrade locally:</p>
+      <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.158 &mdash; latest user-facing release</h3>
+      <p class="meta">Published 30 May 2026 at 02:42 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.158">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Auto mode lands on Bedrock, Vertex, and Foundry.</strong> Now available for Opus 4.7 and Opus 4.8 on all three managed-cloud backends. Opt in by setting <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code>. Unblocks enterprise teams pinned to non-Anthropic-hosted inference for compliance reasons.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> Auto mode now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.154 &mdash; major release <span class="badge major">headline</span></h3>
+      <p class="meta">Published 28 May 2026 at 18:00 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.154">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Opus 4.8 is here.</strong> Defaults to high effort. Use <code>/effort xhigh</code> for your hardest tasks. Fast mode on Opus 4.8 is now 2&times; standard rate for 2.5&times; the speed.</div>
+
+      <div class="headline-feature"><strong>Dynamic workflows.</strong> Ask Claude to create a workflow and it orchestrates work across tens to hundreds of agents in the background, so you can take on larger, more complex tasks. Run <code>/workflows</code> to view your runs.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> The lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier.</li>
+        <li><span class="tag feat">feature</span> <code>claude agents</code>: type <code>! &lt;command&gt;</code> to run a shell command as a background session. Also <code>claude --bg --exec '&lt;command&gt;'</code>.</li>
+        <li><span class="tag feat">feature</span> <code>/simplify</code> now runs a cleanup-only review (reuse, simplification, efficiency, altitude) and applies the fixes.</li>
+        <li><span class="tag feat">feature</span> Claude in Chrome: pick which connected browser to use via <code>/chrome</code> &rarr; "Select browser&hellip;".</li>
+        <li><span class="tag feat">feature</span> Streaming tool execution is now always enabled, including on Bedrock/Vertex/Foundry.</li>
+        <li><span class="tag feat">feature</span> Plugins can declare <code>defaultEnabled: false</code>. The <code>/plugin</code> Discover tab pins plugins matching the current directory.</li>
+        <li><span class="tag sec">security</span> Improved auto-mode classifier detection of data exfiltration, particularly bulk repo transfers.</li>
+        <li><span class="tag sec">security</span> Fixed <code>rm -rf $HOME</code> not being blocked as a dangerous path when <code>HOME</code> has a trailing slash.</li>
+        <li><span class="tag sec">security</span> Fixed subagents in background sessions bypassing the worktree-isolation guard and writing to the shared checkout.</li>
+        <li><span class="tag fix">fix</span> Fixed pinned background sessions respawning every minute after a Claude Code update.</li>
+        <li><span class="tag fix">fix</span> Fixed orphaned <code>claude --bg-pty-host</code> processes spinning at 100% CPU on macOS.</li>
+        <li><span class="tag fix">fix</span> Fixed a single invalid managed-settings MCP allow/deny entry discarding all managed-settings policy.</li>
+      </ul>
+
+      <p class="meta" style="margin-top: 16px;"><strong>Deprecation:</strong> <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> was removed on 06/01. To use fast mode on Opus 4.6: <code>/model claude-opus-4-6[1m]</code> then <code>/fast on</code>.</p>
+    </div>
+
+    <div class="card section-versions">
+      <h3>Previous releases</h3>
+
+      <h4>v2.1.157 <span class="date">&mdash; 29 May 20:20 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> Plugins in <code>.claude/skills</code> directories now auto-load &mdash; no marketplace required.</li>
+        <li><span class="tag feat">feature</span> New <code>claude plugin init &lt;name&gt;</code> to scaffold a plugin in <code>.claude/skills</code>.</li>
+        <li><span class="tag feat">feature</span> Autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and plugins from known marketplaces.</li>
+        <li><span class="tag feat">feature</span> <code>EnterWorktree</code> can now switch between Claude-managed worktrees mid-session.</li>
+        <li><span class="tag sec">security</span> Fixed sandbox network permission prompts appearing in auto/bypass-permissions mode via desktop app, IDE extensions, or SDK.</li>
+        <li><span class="tag fix">fix</span> Fixed unprocessable images attached via paste/MCP/dialog crashing the request.</li>
+        <li><span class="tag fix">fix</span> Added a "Workflow keyword trigger" setting in <code>/config</code> to stop the word "workflow" in a prompt from triggering a dynamic workflow.</li>
+      </ul>
+
+      <h4>v2.1.156 <span class="date">&mdash; 29 May 01:42 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> Fixed an Opus 4.8 issue where thinking blocks were modified, leading to API errors.</li>
+      </ul>
+
+      <h4>v2.1.159 <span class="date">&mdash; 31 May 17:50 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> Internal infrastructure improvements (no user-facing changes).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ CLAUDE DESKTOP ============ -->
+  <div id="desktop">
+    <div class="product-header">
+      <h2>Claude Desktop</h2>
+      <span class="badge">macOS &middot; Windows</span>
+    </div>
+
+    <div class="card">
+      <h3>What's new</h3>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">docs.claude.com platform overview</a>, Anthropic news.</p>
+
+      <div class="headline-feature"><strong>Customize panel.</strong> A unified <em>Customize</em> section in Claude Desktop groups Skills, Plugins, and Connectors in one place &mdash; the same screen you used to install our engineering plugin and GitHub connector.</div>
+
+      <div class="headline-feature"><strong>Browser handoff.</strong> Start a task in Claude Desktop and let it drive your browser via Claude in Chrome without switching windows. Includes workflow recording &mdash; teach Claude a multi-step browser workflow once, replay it on demand.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> Plugin marketplace and admin controls available on Team and Enterprise plans &mdash; pin or block plugins org-wide.</li>
+        <li><span class="tag feat">feature</span> Single Customize directory for skills, connectors, and plugins (Settings &rarr; Customize).</li>
+        <li><span class="tag feat">feature</span> Browser control from Claude Desktop: hand off web tasks to Claude in Chrome without context switching.</li>
+        <li><span class="tag feat">feature</span> Workflow recording in Claude in Chrome: capture a sequence of browser steps and replay them as a skill.</li>
+        <li><span class="tag feat">feature</span> Persistent agent thread &mdash; Pro and Max plans can manage Cowork tasks from a chat thread in Desktop.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ CLAUDE COWORK ============ -->
+  <div id="cowork">
+    <div class="product-header">
+      <h2>Claude Cowork</h2>
+      <span class="badge">Research preview</span>
+    </div>
+
+    <div class="card">
+      <h3>What's new</h3>
+      <p class="meta">Sources: <a href="https://www.anthropic.com/product/claude-cowork">anthropic.com/product/claude-cowork</a>, <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork">computer use docs</a>.</p>
+
+      <div class="headline-feature"><strong>Computer use (Apr 24, 2026).</strong> Claude can now drive your computer in Cowork &mdash; click, type, open apps, run dev tools &mdash; no setup required. Research preview on Pro and Max plans.</div>
+
+      <div class="headline-feature"><strong>Projects.</strong> Organise related Cowork tasks into persistent, self-contained workspaces with their own files, links, instructions, and memory. Better for recurring or long-running work like this morning's daily digest.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> Scheduled tasks &mdash; create recurring or on-demand Cowork runs (this digest is one of them).</li>
+        <li><span class="tag feat">feature</span> Plugins bundle skills, connectors, and sub-agents into one installable package. Knowledge Work marketplace is default; Financial Services and Legal are available as add-ons.</li>
+        <li><span class="tag feat">feature</span> Install custom plugin marketplaces from a GitHub repo.</li>
+        <li><span class="tag feat">feature</span> Skills, Connectors, and Plugins all browseable from a unified directory in Settings.</li>
+        <li><span class="tag feat">feature</span> Generally available on macOS and Windows via Claude Desktop.</li>
+        <li><span class="tag feat">feature</span> Extend Cowork with third-party MCP platforms (Slack, Sentry, AWS, Atlassian, etc.).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ POSTS & VIDEOS ============ -->
+  <div id="posts">
+    <div class="product-header">
+      <h2>Posts &amp; videos</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Official posts</h3>
+        <ul class="linklist">
+          <li>
+            <a href="https://www.anthropic.com/news/claude-opus-4-8">Introducing Claude Opus 4.8</a>
+            <span class="src">anthropic.com</span>
+          </li>
+          <li>
+            <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code release notes</a>
+            <span class="src">docs.claude.com</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/12138966-release-notes">Release notes &mdash; Help Center</a>
+            <span class="src">support.claude.com</span>
+          </li>
+          <li>
+            <a href="https://www.anthropic.com/product/claude-cowork">Claude Cowork product page</a>
+            <span class="src">anthropic.com</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>
+            <span class="src">support.claude.com</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork">Computer use in Cowork</a>
+            <span class="src">support.claude.com</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Community videos</h3>
+        <ul class="linklist">
+          <li>
+            <a href="https://www.youtube.com/watch?v=ReTx6ku4_dc">Opus 4.8 + Claude Code's NEW Dynamic Workflows (Full Walkthrough)</a>
+            <span class="src">YouTube</span>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=5HVPeux24WU">Embrace long-running tasks with Opus 4.8 and Claude Code</a>
+            <span class="src">YouTube</span>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=O_z9vDLgvoY">Claude Skills Tutorial (2026): Chat, Cowork, and Claude Code</a>
+            <span class="src">YouTube</span>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=SNo_recKZyY">How to Use Claude Cowork &mdash; Full Workflow Automation Guide 2026</a>
+            <span class="src">YouTube</span>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=MCMkmshUN8U">How to Use Claude Cowork Projects (Step-by-Step)</a>
+            <span class="src">YouTube</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn primary" href="https://konvoykegs.slack.com/archives/C0610SWKW86" target="_blank" rel="noopener">Open #cloud-engineers in Slack</a>
+    <a class="btn" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Claude Code changelog</a>
+    <a class="btn" href="https://github.com/konvoy-kegs/whats-new-with-claude" target="_blank" rel="noopener">This site's repo</a>
+  </div>
+
+  <p class="footnote">
+    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>.
+  </p>
+</div>
+
+<script>
+// Smooth-scroll tabs and active state on scroll
+(function() {
+  const tabs = document.querySelectorAll('.tabs a');
+  const sections = ['code','desktop','cowork','posts'].map(id => document.getElementById(id));
+  tabs.forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+  const setActive = () => {
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) { if (s && s.offsetTop <= y) active = s; }
+    tabs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + active.id));
+  };
+  window.addEventListener('scroll', setActive, { passive:true });
+})();
+</script>
+</body>
+</html>
