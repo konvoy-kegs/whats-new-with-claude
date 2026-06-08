@@ -69,8 +69,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, and Claude Cowork. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.168</span>
-      <span class="pill neutral">Updated: Mon 08 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.169</span>
+      <span class="pill neutral">Updated: Tue 09 Jun 2026</span>
     </div>
   </div>
 
@@ -85,22 +85,44 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.168 on npm</span>
+      <span class="badge">CLI &middot; v2.1.169 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.168.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. v2.1.168, v2.1.167, and v2.1.165 are maintenance-only ("Bug fixes and reliability improvements"); the most recent substantive release is <strong>v2.1.166</strong> &mdash; fallback models for overloaded primaries plus a round of permission and cross-session hardening. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
+      <strong>All sources aligned on v2.1.169.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. v2.1.169 is itself substantive &mdash; a <code>--safe-mode</code> troubleshooting flag, a <code>/cd</code> command, and a round of enterprise MCP-policy and trust-config hardening. v2.1.168, v2.1.167, and v2.1.165 are maintenance-only ("Bug fixes and reliability improvements"). The <code>stable</code> dist-tag trails at v2.1.153. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.168 at 2026-06-06 23:32 UTC &middot; dist-tag <code>latest</code> on v2.1.168</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.169 at 2026-06-08 18:11 UTC &middot; dist-tag <code>latest</code> on v2.1.169 &middot; <code>stable</code> on v2.1.153</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.166 &mdash; latest substantive release</h3>
+      <h3>v2.1.169 &mdash; safe mode, <code>/cd</code> &amp; enterprise MCP-policy hardening <span class="badge">newest</span></h3>
+      <p class="meta">Published 8 Jun 2026 at 18:11 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.169">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Safe mode for troubleshooting.</strong> New <code>--safe-mode</code> flag (and <code>CLAUDE_CODE_SAFE_MODE</code>) starts Claude Code with all customizations &mdash; CLAUDE.md, plugins, skills, hooks, MCP servers &mdash; disabled, so you can isolate whether a problem comes from your own config. Pairs with the new <code>disableBundledSkills</code> setting to hide bundled skills, workflows, and built-in slash commands from the model.</div>
+
+      <div class="headline-feature"><strong>Enterprise MCP policy &amp; trust hardening.</strong> Managed <code>allowedMcpServers</code>/<code>deniedMcpServers</code> policies are now enforced on reconnect, on IDE-typed configs, on <code>--mcp-config</code> servers during the first session after install, and before remote settings finish loading &mdash; closing gaps where a denied MCP server could still run. Untrusted project settings can no longer set OTEL client-certificate paths without trust confirmation.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> <code>--safe-mode</code> flag / <code>CLAUDE_CODE_SAFE_MODE</code> &mdash; launch with CLAUDE.md, plugins, skills, hooks, and MCP servers all disabled for troubleshooting.</li>
+        <li><span class="tag feat">feature</span> <code>/cd</code> command moves a session to a new working directory without breaking the prompt cache mid-session.</li>
+        <li><span class="tag feat">feature</span> <code>disableBundledSkills</code> setting / <code>CLAUDE_CODE_DISABLE_BUNDLED_SKILLS</code> env var to hide bundled skills, workflows, and built-in slash commands.</li>
+        <li><span class="tag sec">security</span> Managed MCP policies (<code>allowedMcpServers</code>/<code>deniedMcpServers</code>) now enforced on reconnect, IDE-typed configs, <code>--mcp-config</code> servers on first run, and before remote settings load.</li>
+        <li><span class="tag sec">security</span> Untrusted project settings can no longer set OTEL client-certificate paths without trust confirmation.</li>
+        <li><span class="tag feat">feature</span> <code>claude agents --json</code> no longer omits blocked and just-dispatched background sessions; added <code>--all</code> plus new <code>id</code> and <code>state</code> fields.</li>
+        <li><span class="tag fix">fix</span> <code>claude -p</code> no longer slow / hanging on Windows while waiting for the slash-command/skill scan (regression in 2.1.161).</li>
+        <li><span class="tag fix">fix</span> Remote Control no longer gets stuck on "reconnecting" after resuming a session when an OAuth token refresh happens at the same time.</li>
+        <li><span class="tag fix">fix</span> Background agents no longer ignore project-level <code>env</code> values (e.g. <code>ANTHROPIC_MODEL</code>) when dispatched onto a pre-warmed worker.</li>
+        <li><span class="tag fix">fix</span> Reduced CPU usage while responses stream and during spinner animations.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.166 &mdash; fallback models &amp; hardening</h3>
       <p class="meta">Published 5 Jun 2026 at 19:01 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.166">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Fallback models.</strong> New <code>fallbackModel</code> setting configures up to three fallback models tried in order when the primary model is overloaded or unavailable, and <code>--fallback-model</code> now applies to interactive sessions too. Claude Code also retries a turn once on the fallback model when the API rejects an unexpected non-retryable error. Useful resilience for CI and long-running agents during model brownouts.</div>
