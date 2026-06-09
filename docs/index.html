@@ -70,8 +70,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
     <div class="versions">
       <span class="pill warn"><span>&#9679;</span> New: Claude Fable 5 &middot; free on plan to 22 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.169</span>
-      <span class="pill neutral">Updated: Tue 09 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.170</span>
+      <span class="pill neutral">Updated: Wed 10 Jun 2026</span>
     </div>
   </div>
 
@@ -113,22 +113,34 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.169 on npm</span>
+      <span class="badge">CLI &middot; v2.1.170 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.169.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. v2.1.169 is itself substantive &mdash; a <code>--safe-mode</code> troubleshooting flag, a <code>/cd</code> command, and a round of enterprise MCP-policy and trust-config hardening. v2.1.168, v2.1.167, and v2.1.165 are maintenance-only ("Bug fixes and reliability improvements"). The <code>stable</code> dist-tag trails at v2.1.153. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
+      <strong>All sources aligned on v2.1.170.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. <strong>v2.1.170</strong> is the release that adds <strong>Claude Fable 5</strong> access from the CLI (plus a VS Code transcript fix) &mdash; update to v2.1.170 to use Fable 5. The prior substantive release, v2.1.169, brought a <code>--safe-mode</code> flag, <code>/cd</code>, and enterprise MCP-policy hardening; v2.1.168/167/165 are maintenance-only. The <code>stable</code> dist-tag trails at v2.1.153. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.169 at 2026-06-08 18:11 UTC &middot; dist-tag <code>latest</code> on v2.1.169 &middot; <code>stable</code> on v2.1.153</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.170 at 2026-06-09 16:15 UTC &middot; dist-tag <code>latest</code> on v2.1.170 &middot; <code>stable</code> on v2.1.153</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.169 &mdash; safe mode, <code>/cd</code> &amp; enterprise MCP-policy hardening <span class="badge">newest</span></h3>
+      <h3>v2.1.170 &mdash; Claude Fable 5 access <span class="badge">newest</span></h3>
+      <p class="meta">Published 9 Jun 2026 at 16:15 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.170">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Fable 5 lands in Claude Code.</strong> Update to <code>v2.1.170</code> to use Claude Fable 5 &mdash; Anthropic's new Mythos-class model &mdash; from the CLI. See the Fable 5 section above for pricing, plan availability (free through 22 Jun), and safeguards.</div>
+
+      <ul class="changelog">
+        <li><span class="tag major">model</span> Introducing Claude Fable 5, a Mythos-class model made safe for general use; update to v2.1.170 for access. <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Announcement</a>.</li>
+        <li><span class="tag fix">fix</span> Fixed sessions not saving transcripts (and not appearing in <code>--resume</code>) when launched from the VS Code integrated terminal, or any shell that inherited Claude Code environment variables.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.169 &mdash; safe mode, <code>/cd</code> &amp; enterprise MCP-policy hardening</h3>
       <p class="meta">Published 8 Jun 2026 at 18:11 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.169">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Safe mode for troubleshooting.</strong> New <code>--safe-mode</code> flag (and <code>CLAUDE_CODE_SAFE_MODE</code>) starts Claude Code with all customizations &mdash; CLAUDE.md, plugins, skills, hooks, MCP servers &mdash; disabled, so you can isolate whether a problem comes from your own config. Pairs with the new <code>disableBundledSkills</code> setting to hide bundled skills, workflows, and built-in slash commands from the model.</div>
