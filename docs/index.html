@@ -70,8 +70,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
     <div class="versions">
       <span class="pill warn"><span>&#9679;</span> New: Claude Fable 5 &middot; free on plan to 22 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.170</span>
-      <span class="pill neutral">Updated: Wed 10 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.172</span>
+      <span class="pill neutral">Updated: Thu 11 Jun 2026</span>
     </div>
   </div>
 
@@ -113,22 +113,43 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.170 on npm</span>
+      <span class="badge">CLI &middot; v2.1.172 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.170.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. <strong>v2.1.170</strong> is the release that adds <strong>Claude Fable 5</strong> access from the CLI (plus a VS Code transcript fix) &mdash; update to v2.1.170 to use Fable 5. The prior substantive release, v2.1.169, brought a <code>--safe-mode</code> flag, <code>/cd</code>, and enterprise MCP-policy hardening; v2.1.168/167/165 are maintenance-only. The <code>stable</code> dist-tag trails at v2.1.153. The last major feature release remains <strong>v2.1.154 (Opus 4.8 + dynamic workflows)</strong>.
+      <strong>All sources aligned on v2.1.172.</strong> npm newest, the <code>latest</code> dist-tag, the top of the public changelog, and the newest GitHub release all match. <strong>v2.1.172</strong> lets sub-agents spawn their own sub-agents (up to 5 levels deep), reads the Bedrock region from <code>~/.aws</code>, and fixes several permission-rule and <code>availableModels</code> enforcement gaps. v2.1.170 (Claude Fable 5 access) and v2.1.169 (<code>--safe-mode</code>, <code>/cd</code>) remain the other recent substantive releases. The <code>stable</code> dist-tag trails at v2.1.153.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.170 at 2026-06-09 16:15 UTC &middot; dist-tag <code>latest</code> on v2.1.170 &middot; <code>stable</code> on v2.1.153</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.172 at 2026-06-10 17:55 UTC &middot; dist-tag <code>latest</code> on v2.1.172 &middot; <code>stable</code> on v2.1.153</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.170 &mdash; Claude Fable 5 access <span class="badge">newest</span></h3>
+      <h3>v2.1.172 &mdash; nested sub-agents &amp; permission-rule fixes <span class="badge">newest</span></h3>
+      <p class="meta">Published 10 Jun 2026 at 17:55 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.172">GitHub release</a></p>
+
+      <div class="headline-feature"><strong>Sub-agents all the way down.</strong> Sub-agents can now spawn their own sub-agents, up to 5 levels deep &mdash; deeper delegation trees for orchestrating large multi-agent tasks.</div>
+
+      <div class="headline-feature"><strong>Bedrock region from <code>~/.aws</code>.</strong> Amazon Bedrock now reads the AWS region from <code>~/.aws</code> config files when <code>AWS_REGION</code> isn't set, matching AWS SDK precedence &mdash; and <code>/status</code> shows where the region came from. Worth knowing for our Bedrock sessions.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> Sub-agents can spawn their own sub-agents (up to 5 levels deep).</li>
+        <li><span class="tag sec">security</span> Fixed background agents potentially reading another directory's project settings (<code>.mcp.json</code> approvals, trust) when dispatched onto a pre-warmed worker.</li>
+        <li><span class="tag sec">security</span> Fixed <code>WebFetch(domain:*.example.com)</code> wildcard rules never matching subdomains in allow, deny, and ask position, and file permission rules with mid-pattern wildcards (e.g. <code>Read(secrets-*/config.json)</code>) being rejected at startup.</li>
+        <li><span class="tag sec">security</span> Fixed <code>availableModels</code> restrictions not applying to subagent model overrides, the agent dispatch model picker, and the advisor model; allowlists with version-specific IDs no longer hide <code>/model</code> rows.</li>
+        <li><span class="tag feat">feature</span> Search bar when browsing a marketplace's plugins in <code>/plugin</code>; <code>model</code> attribute added to the <code>claude_code.lines_of_code.count</code> OTEL metric.</li>
+        <li><span class="tag fix">fix</span> Sessions using 1M context without usage credits no longer get permanently stuck &mdash; they now auto-compact back under the standard context limit.</li>
+        <li><span class="tag fix">fix</span> Fixed a repeating "image could not be processed" error when the conversation contained multiple images.</li>
+        <li><span class="tag fix">fix</span> Performance: less redundant message processing in long conversations, lower idle CPU, and batched Claude in Chrome tool loading.</li>
+        <li><span class="tag fix">fix</span> [VSCode] PowerShell tool calls now render as a proper command display and permission dialog instead of raw JSON.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.170 &mdash; Claude Fable 5 access</h3>
       <p class="meta">Published 9 Jun 2026 at 16:15 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.170">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Fable 5 lands in Claude Code.</strong> Update to <code>v2.1.170</code> to use Claude Fable 5 &mdash; Anthropic's new Mythos-class model &mdash; from the CLI. See the Fable 5 section above for pricing, plan availability (free through 22 Jun), and safeguards.</div>
@@ -200,19 +221,6 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag sec">security</span> Fixed deny rules on home-directory paths (e.g. <code>Read(~/Desktop/**)</code>) not blocking Bash commands that reference the path via <code>$HOME</code>.</li>
         <li><span class="tag fix">fix</span> <code>claude -p</code> no longer hangs forever when a backgrounded command never exits, and no longer demands an Anthropic API key on Bedrock/Vertex/Foundry when <code>CI=true</code>.</li>
         <li><span class="tag fix">fix</span> Bash commands no longer fail under bazel and EDR-protected Go workflows (<code>$TMPDIR</code> regression in 2.1.154).</li>
-      </ul>
-    </div>
-
-    <div class="card section-versions">
-      <h3>v2.1.162 &mdash; agents view &amp; permission fixes</h3>
-      <p class="meta">Published 3 Jun 2026 at 18:09 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.162">GitHub release</a></p>
-
-      <ul class="changelog">
-        <li><span class="tag feat">feature</span> <code>claude agents --json</code> exposes <code>waitingFor</code> to surface what a waiting session is blocked on (e.g. a permission prompt).</li>
-        <li><span class="tag sec">security</span> Windows permission rules now match backslash paths and case-variant paths; Read deny rules now hide files from Glob/Grep results.</li>
-        <li><span class="tag sec">security</span> <code>WebFetch</code> permission rules now apply to built-in preapproved domains &mdash; explicit <code>WebFetch(domain:...)</code> rules take precedence over the preapproved-host auto-allow.</li>
-        <li><span class="tag fix">fix</span> Silent startup hang when the config directory is read-only/unwritable &mdash; now starts with in-memory config and surfaces errors.</li>
-        <li><span class="tag fix">fix</span> MCP per-server <code>timeout</code> values below 1000 ms no longer get floored to a 1-second watchdog that aborted every tool call.</li>
       </ul>
     </div>
 
