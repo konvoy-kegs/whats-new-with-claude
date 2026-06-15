@@ -69,9 +69,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access suspended &middot; US gov directive 12 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.177</span>
-      <span class="pill neutral">Updated: Mon 15 Jun 2026</span>
+      <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access still suspended &middot; US gov directive 12 Jun</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.178</span>
+      <span class="pill neutral">Updated: Tue 16 Jun 2026</span>
     </div>
   </div>
 
@@ -92,11 +92,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Access suspended by US government directive <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 16 Jun</p>
 
-      <div class="headline-feature"><strong>Fable 5 and Mythos 5 are offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic has abruptly disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
+      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning there is no restoration notice. <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
 
-      <div class="banner"><strong>What this means for us:</strong> any workflow pinned to <code>claude-fable-5</code> (CLI sessions, Bedrock calls, CI agents) will now fail. Point those back at <code>claude-opus-4-8</code> until access is restored. Claude Code v2.1.170+ still lists Fable 5 in the <code>/model</code> picker, but selecting it errors while the suspension is in effect.</div>
+      <div class="banner"><strong>What this means for us:</strong> any workflow pinned to <code>claude-fable-5</code> (CLI sessions, Bedrock calls, CI agents) will still fail. Point those back at <code>claude-opus-4-8</code> until access is restored. Claude Code lists Fable 5 in the <code>/model</code> picker but selecting it errors while the suspension is in effect.</div>
 
       <ul class="changelog">
         <li><span class="tag major">status</span> Anthropic says it is complying with the legal directive but disagrees with it &mdash; it believes the order stems from a narrow, non-universal &ldquo;jailbreak&rdquo; (asking the model to read a codebase and fix flaws) whose capability is widely available from other public models, and is &ldquo;working to restore access as soon as possible.&rdquo;</li>
@@ -111,29 +111,42 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.177 on npm</span>
+      <span class="badge">CLI &middot; v2.1.178 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>npm, the <code>latest</code> dist-tag, and the newest GitHub release all point to v2.1.177 &mdash; but the public changelog stops at v2.1.176.</strong> <code>claude update</code> installs <strong>v2.1.177</strong> (published 13 Jun 2026 at 01:04 UTC), and there is a GitHub release tagged <code>v2.1.177</code>, but Anthropic has <em>not</em> yet published a CHANGELOG entry for it &mdash; so its specific changes aren't documented yet. The newest <em>documented</em> release is <strong>v2.1.176</strong>. The <code>stable</code> dist-tag trails at v2.1.153. Cards below cover v2.1.176 down through v2.1.172.
+      <strong>All sources aligned on v2.1.178.</strong> npm's <code>latest</code> dist-tag, the newest published version, the newest GitHub release, and the top of the public CHANGELOG all point to <strong>v2.1.178</strong> (published 15 Jun 2026 at 19:03 UTC). <code>claude update</code> installs this. The <code>stable</code> dist-tag still trails at v2.1.153. Note: v2.1.177 was published to npm (and tagged on GitHub) but never got a CHANGELOG entry &mdash; it is now superseded by v2.1.178. Cards below cover v2.1.178 down through v2.1.172.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.177 at 13 Jun 2026 at 01:04 UTC &middot; dist-tag <code>latest</code> on v2.1.177 &middot; <code>stable</code> on v2.1.153 &middot; changelog documented through v2.1.176</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.178 at 15 Jun 2026 at 19:03 UTC &middot; dist-tag <code>latest</code> on v2.1.178 &middot; <code>stable</code> on v2.1.153 &middot; changelog documented through v2.1.178</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.177 &mdash; published, not yet documented <span class="badge">newest</span></h3>
-      <p class="meta">Published 13 Jun 2026 at 01:04 UTC (npm) &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.177">GitHub release</a> &middot; no CHANGELOG entry yet</p>
+      <h3>v2.1.178 &mdash; parameter-scoped permission rules &amp; tighter auto mode <span class="badge">newest</span></h3>
+      <p class="meta">Published 15 Jun 2026 at 19:03 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.178">GitHub release</a></p>
 
-      <div class="headline-feature"><strong>This is what <code>claude update</code> installs.</strong> v2.1.177 is the newest version on npm and carries the <code>latest</code> dist-tag, and there's a matching GitHub release &mdash; but Anthropic hasn't published changelog notes for it. Treat it as a patch on top of v2.1.176 until notes appear; specifics will land in a later digest once documented.</div>
+      <div class="headline-feature"><strong>Permission rules can now match a tool's input parameters.</strong> New <code>Tool(param:value)</code> syntax (with a <code>*</code> wildcard) lets a rule target specific arguments &mdash; e.g. <code>Agent(model:opus)</code> to block Opus subagents. A finer-grained governance lever than allow/deny by tool name alone.</div>
+
+      <div class="headline-feature"><strong>Auto mode now reviews subagents before they launch.</strong> Subagent spawns are evaluated by the classifier <em>before</em> launch, closing a gap where a subagent could request a blocked action without review. Worth noting if you run auto mode in CI or shared environments.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">feature</span> <code>Tool(param:value)</code> permission-rule syntax with <code>*</code> wildcard to match tool input parameters (e.g. <code>Agent(model:opus)</code>).</li>
+        <li><span class="tag sec">security</span> Auto mode evaluates subagent spawns with the classifier before launch &mdash; a subagent can no longer request a blocked action without review.</li>
+        <li><span class="tag feat">feature</span> Skills in nested <code>.claude/skills</code> directories now load when working on files there; on a name clash the nested skill appears as <code>&lt;dir&gt;:&lt;name&gt;</code> so both stay available. The agent/workflow/output-style closest to the working directory now wins on collision.</li>
+        <li><span class="tag sec">security</span> Fixed Claude in Chrome silently failing to connect when the OAuth token belongs to a different account than the Claude Code login.</li>
+        <li><span class="tag sec">security</span> Fixed MCP server-level specs (<code>mcp__server</code>, <code>mcp__server__*</code>, <code>mcp__*</code>) in subagent <code>disallowedTools</code> being silently ignored.</li>
+        <li><span class="tag fix">fix</span> Compaction now honors <code>--fallback-model</code>: it falls back to the configured model chain on overload or model-availability errors.</li>
+        <li><span class="tag fix">fix</span> Fixed model requests still failing with auth errors after credentials were refreshed outside the session (stale cached request config), and an out-of-memory crash from inheriting a stale websocket/OAuth file descriptor.</li>
+        <li><span class="tag fix">fix</span> Subagents: transcripts now show tool results and live progress, messages sent while a subagent finishes its turn are no longer dropped, and backgrounding a running subagent (ctrl+b) no longer restarts it.</li>
+      </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.176 &mdash; model-allowlist enforcement, Bedrock creds &amp; hook path fixes <span class="badge">newest documented</span></h3>
+      <h3>v2.1.176 &mdash; model-allowlist enforcement, Bedrock creds &amp; hook path fixes</h3>
       <p class="meta">Published 12 Jun 2026 at 19:45 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.176">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Model allowlists are harder to bypass.</strong> Alias model picks can no longer be redirected to a blocked model via <code>ANTHROPIC_DEFAULT_*_MODEL</code> env vars, and <code>/fast</code> now refuses to toggle when it would switch to a model outside the <code>availableModels</code> allowlist. Relevant if we govern which models the team is allowed to run.</div>
@@ -192,6 +205,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Previous releases</h3>
+
+      <h4>v2.1.177 <span class="date">&mdash; 13 Jun 2026 at 01:04 UTC &middot; published, no changelog entry</span></h4>
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> Published to npm and <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.177">tagged on GitHub</a> but never documented in the CHANGELOG. Superseded by v2.1.178; treat it as an undocumented patch between v2.1.176 and v2.1.178.</li>
+      </ul>
 
       <h4>v2.1.173 <span class="date">&mdash; 11 Jun 2026 at 02:09 UTC</span></h4>
       <ul class="changelog">
@@ -277,7 +295,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <ul class="linklist">
           <li>
             <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a>
-            <span class="src">anthropic.com &middot; new</span>
+            <span class="src">anthropic.com &middot; still in effect</span>
           </li>
           <li>
             <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5 and Claude Mythos 5</a>
