@@ -70,8 +70,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
     <div class="versions">
       <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access still suspended &middot; US gov directive 12 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.178</span>
-      <span class="pill neutral">Updated: Tue 16 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.179</span>
+      <span class="pill neutral">Updated: Wed 17 Jun 2026</span>
     </div>
   </div>
 
@@ -92,9 +92,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Access suspended by US government directive <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 16 Jun</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 17 Jun</p>
 
-      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning there is no restoration notice. <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
+      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning there is still no restoration notice. <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
 
       <div class="banner"><strong>What this means for us:</strong> any workflow pinned to <code>claude-fable-5</code> (CLI sessions, Bedrock calls, CI agents) will still fail. Point those back at <code>claude-opus-4-8</code> until access is restored. Claude Code lists Fable 5 in the <code>/model</code> picker but selecting it errors while the suspension is in effect.</div>
 
@@ -111,22 +111,40 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.178 on npm</span>
+      <span class="badge">CLI &middot; v2.1.179 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.178.</strong> npm's <code>latest</code> dist-tag, the newest published version, the newest GitHub release, and the top of the public CHANGELOG all point to <strong>v2.1.178</strong> (published 15 Jun 2026 at 19:03 UTC). <code>claude update</code> installs this. The <code>stable</code> dist-tag still trails at v2.1.153. Note: v2.1.177 was published to npm (and tagged on GitHub) but never got a CHANGELOG entry &mdash; it is now superseded by v2.1.178. Cards below cover v2.1.178 down through v2.1.172.
+      <strong>All sources aligned on v2.1.179.</strong> npm's <code>latest</code> dist-tag, the newest published version, the newest GitHub release, and the top of the public CHANGELOG all point to <strong>v2.1.179</strong> (published 16 Jun 2026 at 17:51 UTC). <code>claude update</code> installs this. The <code>stable</code> dist-tag trails at v2.1.169. Note: v2.1.177 was published to npm (and tagged on GitHub) but never got a CHANGELOG entry &mdash; it remains an undocumented patch between v2.1.176 and v2.1.178. Cards below cover v2.1.179 down through v2.1.172.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.178 at 15 Jun 2026 at 19:03 UTC &middot; dist-tag <code>latest</code> on v2.1.178 &middot; <code>stable</code> on v2.1.153 &middot; changelog documented through v2.1.178</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.179 at 16 Jun 2026 at 17:51 UTC &middot; dist-tag <code>latest</code> on v2.1.179 &middot; <code>next</code> on v2.1.179 &middot; <code>stable</code> on v2.1.169 &middot; changelog documented through v2.1.179</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.178 &mdash; parameter-scoped permission rules &amp; tighter auto mode <span class="badge">newest</span></h3>
+      <h3>v2.1.179 &mdash; resilient streaming &amp; a nasty Linux sandbox fix <span class="badge">newest</span></h3>
+      <p class="meta">Published 16 Jun 2026 at 17:51 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.179">GitHub release</a> &middot; all fixes this release</p>
+
+      <div class="headline-feature"><strong>Dropped connections no longer eat your output.</strong> Mid-stream connection drops now <em>preserve the partial response</em> instead of showing a raw error, and the spinner no longer gets stuck at &ldquo;running tool.&rdquo; Less rework after a flaky network blip mid-turn.</div>
+
+      <div class="headline-feature"><strong>Linux sandbox no longer chokes on large deny/allow globs.</strong> A <code>denyRead</code>/<code>allowRead</code> glob over a large directory tree could blow up the Bash tool description and make the whole session unusable on Linux &mdash; fixed. Worth a re-test if anyone hit hung sessions with broad sandbox path rules.</div>
+
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> Mid-stream connection drops preserve the partial response instead of showing a raw error; the spinner no longer hangs at &ldquo;running tool.&rdquo;</li>
+        <li><span class="tag fix">fix</span> Sandbox <code>denyRead</code>/<code>allowRead</code> glob over a large directory tree no longer bloats the Bash tool description and breaks the session on Linux.</li>
+        <li><span class="tag fix">fix</span> Mouse-wheel scrolling restored in WSL2 under Windows Terminal and VS Code (regression introduced in v2.1.172).</li>
+        <li><span class="tag fix">fix</span> Remote session background tasks no longer appear stuck as &ldquo;still running&rdquo; between turns; plugin loading performance improved in remote sessions.</li>
+        <li><span class="tag fix">fix</span> Ctrl+O now shows a subagent's transcript when viewing a subagent; clicking the prompt input returns focus from the subagent/footer panel.</li>
+        <li><span class="tag fix">fix</span> Welcome screen shows at most one promo banner per session; the feedback survey no longer captures a single-digit reply as a session rating right after a turn.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.178 &mdash; parameter-scoped permission rules &amp; tighter auto mode</h3>
       <p class="meta">Published 15 Jun 2026 at 19:03 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.178">GitHub release</a></p>
 
       <div class="headline-feature"><strong>Permission rules can now match a tool's input parameters.</strong> New <code>Tool(param:value)</code> syntax (with a <code>*</code> wildcard) lets a rule target specific arguments &mdash; e.g. <code>Agent(model:opus)</code> to block Opus subagents. A finer-grained governance lever than allow/deny by tool name alone.</div>
@@ -173,37 +191,6 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.174 &mdash; /model picker &amp; Bedrock GovCloud fixes</h3>
-      <p class="meta">Published 11 Jun 2026 at 22:27 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.174">GitHub release</a></p>
-
-      <div class="headline-feature"><strong>Per-skill/agent usage attribution in VSCode.</strong> The Account &amp; usage dialog (<code>/usage</code>) now breaks down cache misses, long context, subagents, and per-skill/agent/plugin/MCP usage over the last 24h or 7d.</div>
-
-      <ul class="changelog">
-        <li><span class="tag fix">fix</span> <code>/model</code> picker now shows the model family Default resolves to &mdash; Opus on Max/Team Premium/Enterprise, Sonnet on Pro/Team, Opus on PAYG API.</li>
-        <li><span class="tag sec">security</span> Bedrock GovCloud regions (<code>us-gov-*</code>) were deriving the wrong inference-profile prefix (<code>global</code> instead of <code>us-gov</code>), causing 400 errors &mdash; fixed.</li>
-        <li><span class="tag fix">fix</span> Background sessions no longer inherit another session's <code>ANTHROPIC_*</code> provider env (gateway URL, headers, model aliases).</li>
-        <li><span class="tag feat">feature</span> New <code>wheelScrollAccelerationEnabled</code> setting to disable mouse-wheel scroll acceleration in fullscreen mode.</li>
-      </ul>
-    </div>
-
-    <div class="card section-versions">
-      <h3>v2.1.172 &mdash; nested sub-agents &amp; Bedrock region from <code>~/.aws</code></h3>
-      <p class="meta">Published 10 Jun 2026 at 17:55 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.172">GitHub release</a></p>
-
-      <div class="headline-feature"><strong>Sub-agents all the way down.</strong> Sub-agents can now spawn their own sub-agents, up to 5 levels deep &mdash; deeper delegation trees for orchestrating large multi-agent tasks.</div>
-
-      <div class="headline-feature"><strong>Bedrock region from <code>~/.aws</code>.</strong> Amazon Bedrock now reads the AWS region from <code>~/.aws</code> config files when <code>AWS_REGION</code> isn't set, matching AWS SDK precedence &mdash; and <code>/status</code> shows where the region came from.</div>
-
-      <ul class="changelog">
-        <li><span class="tag feat">feature</span> Sub-agents can spawn their own sub-agents (up to 5 levels deep); search bar when browsing a marketplace's plugins in <code>/plugin</code>.</li>
-        <li><span class="tag sec">security</span> Fixed <code>availableModels</code> restrictions not applying to subagent model overrides, the dispatch model picker, and the advisor model; version-specific IDs no longer hide <code>/model</code> rows.</li>
-        <li><span class="tag sec">security</span> Fixed <code>WebFetch(domain:*.example.com)</code> wildcard rules never matching subdomains, and file rules with mid-pattern wildcards (e.g. <code>Read(secrets-*/config.json)</code>) being rejected at startup.</li>
-        <li><span class="tag fix">fix</span> Sessions using 1M context without usage credits no longer get permanently stuck &mdash; they auto-compact back under the standard limit.</li>
-        <li><span class="tag fix">fix</span> Performance: less redundant message processing in long conversations, lower idle CPU, batched Claude in Chrome tool loading.</li>
-      </ul>
-    </div>
-
-    <div class="card section-versions">
       <h3>Previous releases</h3>
 
       <h4>v2.1.177 <span class="date">&mdash; 13 Jun 2026 at 01:04 UTC &middot; published, no changelog entry</span></h4>
@@ -211,21 +198,23 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag fix">fix</span> Published to npm and <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.177">tagged on GitHub</a> but never documented in the CHANGELOG. Superseded by v2.1.178; treat it as an undocumented patch between v2.1.176 and v2.1.178.</li>
       </ul>
 
+      <h4>v2.1.174 <span class="date">&mdash; 11 Jun 2026 at 22:27 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> <code>/model</code> picker now shows the model family Default resolves to &mdash; Opus on Max/Team Premium/Enterprise, Sonnet on Pro/Team, Opus on PAYG API.</li>
+        <li><span class="tag sec">security</span> Bedrock GovCloud regions (<code>us-gov-*</code>) were deriving the wrong inference-profile prefix (<code>global</code> instead of <code>us-gov</code>), causing 400 errors &mdash; fixed.</li>
+        <li><span class="tag feat">feature</span> [VSCode] Account &amp; usage dialog (<code>/usage</code>) now breaks down cache misses, long context, subagents, and per-skill/agent/plugin/MCP usage over the last 24h or 7d.</li>
+        <li><span class="tag fix">fix</span> Background sessions no longer inherit another session's <code>ANTHROPIC_*</code> provider env (gateway URL, headers, model aliases).</li>
+      </ul>
+
       <h4>v2.1.173 <span class="date">&mdash; 11 Jun 2026 at 02:09 UTC</span></h4>
       <ul class="changelog">
         <li><span class="tag fix">fix</span> Fable 5 model names with a <code>[1m]</code> suffix are now normalized (Fable 5 includes 1M context by default); fixed a spurious &ldquo;sandbox dependencies missing&rdquo; warning on Windows.</li>
       </ul>
 
-      <h4>v2.1.170 <span class="date">&mdash; 9 Jun 2026 at 16:15 UTC</span></h4>
+      <h4>v2.1.172 <span class="date">&mdash; 10 Jun 2026 at 17:55 UTC</span></h4>
       <ul class="changelog">
-        <li><span class="tag major">model</span> Added Claude Fable 5 access from the CLI. <strong>Note:</strong> Fable 5 access is currently suspended (see the Fable 5 section) &mdash; selecting it will error.</li>
-        <li><span class="tag fix">fix</span> Fixed sessions not saving transcripts (missing from <code>--resume</code>) when launched from the VS Code integrated terminal.</li>
-      </ul>
-
-      <h4>v2.1.169 <span class="date">&mdash; 8 Jun 2026 at 18:11 UTC</span></h4>
-      <ul class="changelog">
-        <li><span class="tag feat">feature</span> <code>--safe-mode</code> flag / <code>CLAUDE_CODE_SAFE_MODE</code> launches with CLAUDE.md, plugins, skills, hooks and MCP servers disabled for troubleshooting; new <code>/cd</code> command and <code>disableBundledSkills</code> setting.</li>
-        <li><span class="tag sec">security</span> Managed MCP policies (<code>allowedMcpServers</code>/<code>deniedMcpServers</code>) now enforced on reconnect, IDE-typed configs and first-run; untrusted project settings can't set OTEL client-cert paths without trust confirmation.</li>
+        <li><span class="tag feat">feature</span> Sub-agents can spawn their own sub-agents (up to 5 levels deep); search bar when browsing a marketplace's plugins in <code>/plugin</code>; Bedrock reads the AWS region from <code>~/.aws</code> when <code>AWS_REGION</code> isn't set.</li>
+        <li><span class="tag sec">security</span> Fixed <code>availableModels</code> restrictions not applying to subagent model overrides, the dispatch model picker, and the advisor model; fixed <code>WebFetch(domain:*.example.com)</code> wildcard rules never matching subdomains.</li>
       </ul>
     </div>
   </div>
@@ -336,7 +325,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=Q0bsphUTLtw">The Only Claude Code Tutorial You Need (2026 Update)</a>
+            <a href="https://www.youtube.com/watch?v=RywmhLTFeFk">Ultimate Claude Code Guide: How to Use Claude Code for Beginners in 2026</a>
             <span class="src">YouTube</span>
           </li>
           <li>
@@ -344,7 +333,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube &middot; Cowork</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=0UFSZ_5OSIk">Claude Cowork Full Course (3 Hours) for Beginners (2026)</a>
+            <a href="https://www.youtube.com/watch?v=9-59mxtbqJk">Claude Cowork For Finance Tutorial 2026 (Step-By-Step)</a>
             <span class="src">YouTube &middot; Cowork</span>
           </li>
         </ul>
