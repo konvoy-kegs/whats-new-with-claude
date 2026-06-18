@@ -70,8 +70,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
     <div class="versions">
       <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access still suspended &middot; US gov directive 12 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.181</span>
-      <span class="pill neutral">Updated: Thu 18 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.182</span>
+      <span class="pill neutral">Updated: Fri 19 Jun 2026</span>
     </div>
   </div>
 
@@ -92,7 +92,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Access suspended by US government directive <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 18 Jun</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 19 Jun</p>
 
       <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning there is still no restoration notice. <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
 
@@ -111,22 +111,28 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.181 on npm</span>
+      <span class="badge">CLI &middot; v2.1.182 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.181.</strong> npm's <code>latest</code> dist-tag, the newest published version, the newest GitHub release, and the top of the public CHANGELOG all point to <strong>v2.1.181</strong> (published 17 Jun 2026 at 18:28 UTC). <code>claude update</code> installs this. The <code>next</code> dist-tag also points to v2.1.181; the <code>stable</code> dist-tag trails at v2.1.170. Note: v2.1.177 was published to npm (and tagged on GitHub) but never got a CHANGELOG entry &mdash; it remains an undocumented patch between v2.1.176 and v2.1.178, and there is no v2.1.180 on npm or in the changelog. Cards below cover v2.1.181 down through v2.1.172.
+      <strong>Sources diverge today &mdash; the newest version on npm is v2.1.182.</strong> The newest version <em>published to npm</em> is <strong>v2.1.182</strong> (18 Jun 2026 at 22:06 UTC), and that is what <code>claude update</code> installs. But the <code>latest</code> dist-tag still points to <strong>v2.1.181</strong>, the newest GitHub release is <strong>v2.1.181</strong>, and the public CHANGELOG is documented through <strong>v2.1.181</strong> &mdash; so <strong>v2.1.182 has no public changelog entry yet</strong>. Anthropic routinely publishes a patch to npm (and the <code>next</code> dist-tag, now on v2.1.182) a few hours before promoting <code>latest</code> and writing it up, so we are <em>not</em> guessing at what v2.1.182 contains. The <code>stable</code> dist-tag trails at v2.1.170. Also still outstanding: v2.1.177 was published and tagged but never documented, and there is no v2.1.180 on npm or in the changelog. Cards below cover the documented v2.1.181 down through v2.1.172.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.181 at 17 Jun 2026 at 18:28 UTC &middot; dist-tag <code>latest</code> on v2.1.181 &middot; <code>next</code> on v2.1.181 &middot; <code>stable</code> on v2.1.170 &middot; changelog documented through v2.1.181</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.182 at 18 Jun 2026 at 22:06 UTC &middot; dist-tag <code>latest</code> on v2.1.181 &middot; <code>next</code> on v2.1.182 &middot; <code>stable</code> on v2.1.170 &middot; changelog documented through v2.1.181</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.181 &mdash; <code>/config</code> from the prompt, Bun 1.4 &amp; a big fix sweep <span class="badge">newest</span></h3>
+      <h3>v2.1.182 &mdash; on npm now, changelog not out yet <span class="badge major">newest on npm</span></h3>
+      <p class="meta">Published 18 Jun 2026 at 22:06 UTC &middot; <code>next</code> dist-tag &middot; not yet a <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> &middot; no CHANGELOG entry yet</p>
+      <div class="headline-feature"><strong>This is what <code>claude update</code> pulls right now</strong>, even though the <code>latest</code> dist-tag and the changelog still sit on v2.1.181. Anthropic typically publishes a patch to npm and the <code>next</code> tag a few hours before promoting <code>latest</code> and writing it up, so the contents of v2.1.182 aren't public yet &mdash; we're not guessing at them here. A changelog entry should follow; this card will be filled in once it lands. If you want to stay on documented ground, pin <code>@anthropic-ai/claude-code@2.1.181</code>.</div>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.181 &mdash; <code>/config</code> from the prompt, Bun 1.4 &amp; a big fix sweep <span class="badge">newest documented</span></h3>
       <p class="meta">Published 17 Jun 2026 at 18:28 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.181">GitHub release</a> &middot; a few new settings, mostly fixes</p>
 
       <div class="headline-feature"><strong>Set any setting straight from the prompt.</strong> New <code>/config key=value</code> syntax (e.g. <code>/config thinking=false</code>) works in interactive mode, <code>-p</code>, and Remote Control &mdash; no more editing <code>settings.json</code> for a one-off toggle.</div>
