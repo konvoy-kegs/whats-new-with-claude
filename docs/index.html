@@ -70,8 +70,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
     <div class="versions">
       <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access still suspended &middot; US gov directive 12 Jun</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.191</span>
-      <span class="pill neutral">Updated: Thu 25 Jun 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.193</span>
+      <span class="pill neutral">Updated: Fri 26 Jun 2026</span>
     </div>
   </div>
 
@@ -92,9 +92,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Access suspended by US government directive <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 25 Jun</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 26 Jun</p>
 
-      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning (25 Jun) there is still no restoration notice and no confirmed restoration date, though Anthropic executives have said publicly they are &ldquo;confident&rdquo; access could return in the coming days. <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
+      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning (26 Jun) there is still no restoration notice and no confirmed restoration date &mdash; that is now two full weeks of suspension &mdash; though Anthropic has said it is &ldquo;working to restore access as soon as possible.&rdquo; <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet, Haiku &mdash; is unaffected.</strong></div>
 
       <div class="banner"><strong>What this means for us:</strong> any workflow pinned to <code>claude-fable-5</code> (CLI sessions, Bedrock calls, CI agents) will still fail. Point those back at <code>claude-opus-4-8</code> until access is restored. Claude Code lists Fable 5 in the <code>/model</code> picker but selecting it errors while the suspension is in effect.</div>
 
@@ -111,22 +111,39 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.191 on npm</span>
+      <span class="badge">CLI &middot; v2.1.193 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.191.</strong> The newest version <em>published to npm</em>, the <code>latest</code> dist-tag, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.191</strong> (published 24 Jun 2026 at 18:54 UTC) &mdash; that is exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>next</code> dist-tag is also on v2.1.191; the <code>stable</code> dist-tag advanced overnight from v2.1.178 to <strong>v2.1.179</strong>, so anyone pinned to <code>@stable</code> moved up one documented patch (latest is now twelve ahead). Housekeeping: <strong>v2.1.182</strong> was published to npm but never got a CHANGELOG entry (undocumented patch), <strong>v2.1.190</strong> is documented but lists only &ldquo;bug fixes and reliability improvements,&rdquo; and <strong>v2.1.184</strong>, <strong>v2.1.188</strong> and <strong>v2.1.189</strong> were skipped &mdash; never published to npm. Cards below cover v2.1.191 down through v2.1.183, with older documented releases summarised under &ldquo;previous releases.&rdquo;
+      <strong>All sources aligned on v2.1.193.</strong> The newest version <em>published to npm</em>, the <code>latest</code> dist-tag, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.193</strong> (published 25 Jun 2026 at 19:05 UTC) &mdash; that is exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>next</code> dist-tag is also on v2.1.193; the <code>stable</code> dist-tag advanced from v2.1.179 to <strong>v2.1.181</strong>, so anyone pinned to <code>@stable</code> moved up two documented patches (latest is now several patches ahead). Housekeeping: <strong>v2.1.182</strong> was published to npm but never got a CHANGELOG entry (undocumented patch), <strong>v2.1.190</strong> is documented but lists only &ldquo;bug fixes and reliability improvements,&rdquo; and <strong>v2.1.184</strong>, <strong>v2.1.188</strong>, <strong>v2.1.189</strong> and <strong>v2.1.192</strong> were skipped &mdash; never published to npm. Cards below cover v2.1.193 down through v2.1.183, with older documented releases summarised under &ldquo;previous releases.&rdquo;
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.191 at 24 Jun 2026 at 18:54 UTC &middot; dist-tag <code>latest</code> and <code>next</code> on v2.1.191 &middot; <code>stable</code> on v2.1.179 &middot; changelog documented through v2.1.191</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.193 at 25 Jun 2026 at 19:05 UTC &middot; dist-tag <code>latest</code> and <code>next</code> on v2.1.193 &middot; <code>stable</code> on v2.1.181 &middot; changelog documented through v2.1.193</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.191 &mdash; <code>/rewind</code> past a <code>/clear</code>, permanent agent stop &amp; a big perf pass <span class="badge major">newest</span></h3>
+      <h3>v2.1.193 &mdash; route <em>all</em> shell through the auto-mode classifier &amp; a new OTel response-text log event <span class="badge major">newest</span></h3>
+      <p class="meta">Published 25 Jun 2026 at 19:05 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.193">GitHub release</a> &middot; auto-mode hardening, an observability change with an upgrade gotcha, MCP auth resilience, and a background-agent fix sweep</p>
+
+      <div class="headline-feature"><strong>New <code>autoMode.classifyAllShell</code> routes every Bash/PowerShell command through the auto-mode classifier.</strong> Previously auto mode only classified commands matching arbitrary-code-execution patterns; set <code>autoMode.classifyAllShell</code> and <em>all</em> shell commands are run past the classifier first. Worth turning on anywhere we let Claude Code run unattended against infra, CI, or shared repos. Auto-mode denial reasons now also show up in the transcript, the denial toast, and <code>/permissions</code> recent denials, so it's clearer why a command was blocked.</div>
+
+      <div class="headline-feature"><strong>Heads-up for our OpenTelemetry setup: a new log event can start capturing Claude's response text on upgrade.</strong> v2.1.193 adds a <code>claude_code.assistant_response</code> OTel log event containing the model's response text. It's redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code> &mdash; but when that var is <em>unset</em> it follows <code>OTEL_LOG_USER_PROMPTS</code>. So any deployment that already logs prompt content will <strong>begin receiving response content automatically on upgrade</strong>. If we want to stay prompts-only, set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> before rolling this out.</div>
+
+      <ul class="changelog">
+        <li><span class="tag sec">auto mode</span> New <code>autoMode.classifyAllShell</code> setting routes all Bash/PowerShell commands through the auto-mode classifier instead of only arbitrary-code-execution patterns; denial reasons added to the transcript, denial toast, and <code>/permissions</code> recent denials.</li>
+        <li><span class="tag feat">telemetry</span> New <code>claude_code.assistant_response</code> OpenTelemetry log event carrying the model's response text &mdash; redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>, and when unset it follows <code>OTEL_LOG_USER_PROMPTS</code> (set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to keep prompts-only).</li>
+        <li><span class="tag feat">feature</span> Live file-path autocomplete in bash mode (<code>!</code>); a startup notice when MCP servers need authentication, pointing at <code>/mcp</code>; automatic memory-pressure reaping for idle background shell commands (disable with <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>).</li>
+        <li><span class="tag fix">fix</span> Background-agent sweep: backgrounding (&larr;&larr;) no longer spuriously cancels when all tasks carry over to the new session; pinned background agents are no longer re-prompted to &ldquo;Continue from where you left off&rdquo; after every auto-update; backgrounding the main turn no longer spawns a phantom &ldquo;general-purpose (resumed)&rdquo; subagent.</li>
+        <li><span class="tag fix">reliability</span> MCP <code>headersHelper</code> auth now re-runs and reconnects automatically when a tool call returns 401/403; plugin auto-rename now follows marketplace <code>renames</code> maps; <code>/model</code> and other client-data-gated UI no longer show stale/empty state right after <code>/login</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.191 &mdash; <code>/rewind</code> past a <code>/clear</code>, permanent agent stop &amp; a big perf pass</h3>
       <p class="meta">Published 24 Jun 2026 at 18:54 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.191">GitHub release</a> &middot; a new recovery workflow, agent-lifecycle fix, streaming perf, and a large fix sweep</p>
 
       <div class="headline-feature"><strong>New <code>/rewind</code> can resume a conversation from before <code>/clear</code> was run.</strong> Cleared a session you didn't mean to? <code>/rewind</code> now restores the conversation state from before the <code>/clear</code> &mdash; a genuine undo for the one command that used to be irreversible.</div>
@@ -177,12 +194,6 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.185 &mdash; gentler stream-stall messaging</h3>
-      <p class="meta">Published 20 Jun 2026 at 16:54 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.185">GitHub release</a> &middot; a one-line patch</p>
-      <div class="headline-feature"><strong>A small, single-change patch.</strong> The stream-stall hint now reads &ldquo;Waiting for API response &middot; will retry in &hellip;&rdquo; instead of &ldquo;No response from API &middot; Retrying in &hellip;,&rdquo; and only appears after 20s of silence rather than 10s &mdash; fewer false alarms when the API is momentarily slow. This is the <em>only</em> documented change in v2.1.185.</div>
-    </div>
-
-    <div class="card section-versions">
       <h3>v2.1.183 &mdash; auto mode won't run destructive git / IaC commands you didn't ask for <span class="badge major">still relevant</span></h3>
       <p class="meta">Published 19 Jun 2026 at 00:02 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.183">GitHub release</a> &middot; safety hardening + new settings + a fix sweep</p>
 
@@ -207,19 +218,24 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag fix">fix</span> Documented, but the CHANGELOG lists only &ldquo;bug fixes and reliability improvements&rdquo; &mdash; no user-facing detail. Superseded the same day by v2.1.191.</li>
       </ul>
 
+      <h4>v2.1.185 <span class="date">&mdash; 20 Jun 2026 at 16:54 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag fix">fix</span> One-line patch: the stream-stall hint now reads &ldquo;Waiting for API response &middot; will retry in &hellip;&rdquo; instead of &ldquo;No response from API &middot; Retrying in &hellip;,&rdquo; and only appears after 20s of silence rather than 10s &mdash; fewer false alarms when the API is momentarily slow.</li>
+      </ul>
+
       <h4>v2.1.182 <span class="date">&mdash; 18 Jun 2026 at 22:06 UTC &middot; published, no changelog entry</span></h4>
       <ul class="changelog">
         <li><span class="tag fix">fix</span> Published to npm but never documented in the CHANGELOG. Superseded by v2.1.183; treat it as an undocumented patch between v2.1.181 and v2.1.183.</li>
       </ul>
 
-      <h4>v2.1.181 <span class="date">&mdash; 17 Jun 2026 at 18:28 UTC</span></h4>
+      <h4>v2.1.181 <span class="date">&mdash; 17 Jun 2026 at 18:28 UTC &middot; now the <code>stable</code> dist-tag</span></h4>
       <ul class="changelog">
-        <li><span class="tag feat">feature</span> <code>/config key=value</code> to set any setting from the prompt; bundled Bun runtime upgraded to 1.4; long paragraphs stream line-by-line; mid-thinking connection drops auto-retry instead of erroring; Write/Edit no longer produce 0-byte files on network/cloud-synced drives.</li>
+        <li><span class="tag feat">feature</span> <code>/config key=value</code> to set any setting from the prompt; bundled Bun runtime upgraded to 1.4; long paragraphs stream line-by-line; mid-thinking connection drops auto-retry instead of erroring; Write/Edit no longer produce 0-byte files on network/cloud-synced drives. As of this morning the <code>stable</code> dist-tag points here (advanced from v2.1.179), so anyone pinned to <code>@stable</code> is now on this build.</li>
       </ul>
 
-      <h4>v2.1.179 <span class="date">&mdash; 16 Jun 2026 at 17:51 UTC &middot; now the <code>stable</code> dist-tag</span></h4>
+      <h4>v2.1.179 <span class="date">&mdash; 16 Jun 2026 at 17:51 UTC</span></h4>
       <ul class="changelog">
-        <li><span class="tag fix">fix</span> Mid-stream connection drops now preserve the partial response instead of showing a raw error, and the spinner no longer hangs at &ldquo;running tool.&rdquo; Mouse-wheel scrolling restored in WSL2 under Windows Terminal and VS Code. As of this morning the <code>stable</code> dist-tag points here (advanced overnight from v2.1.178), so anyone pinned to <code>@stable</code> is now on this build; <code>latest</code> is twelve patches ahead at v2.1.191.</li>
+        <li><span class="tag fix">fix</span> Mid-stream connection drops now preserve the partial response instead of showing a raw error, and the spinner no longer hangs at &ldquo;running tool.&rdquo; Mouse-wheel scrolling restored in WSL2 under Windows Terminal and VS Code. Was the <code>stable</code> dist-tag until this morning, when <code>stable</code> advanced to v2.1.181.</li>
       </ul>
 
       <h4>v2.1.178 <span class="date">&mdash; 15 Jun 2026 at 19:03 UTC</span></h4>
@@ -238,7 +254,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 25 Jun &mdash; no new Desktop-specific release in the last 7 days; items below remain current.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 26 Jun &mdash; no new Desktop-specific release in the last 7 days; items below remain current.</p>
 
       <div class="headline-feature"><strong>Customize panel.</strong> A unified <em>Customize</em> section in Claude Desktop groups Skills, Plugins, and Connectors in one place &mdash; the same screen used to install our engineering plugin and GitHub connector.</div>
 
@@ -248,6 +264,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">feature</span> Plugin marketplace and admin controls on Team and Enterprise plans &mdash; pin or block plugins org-wide, and enable/disable or upload desktop extensions.</li>
         <li><span class="tag feat">feature</span> Single Customize directory for skills, connectors, and plugins (Settings &rarr; Customize).</li>
         <li><span class="tag feat">feature</span> Browser control from Claude Desktop: hand off web tasks to Claude in Chrome without context switching.</li>
+        <li><span class="tag feat">feature</span> Claude add-ins for Microsoft 365 &mdash; Claude works across Excel, PowerPoint, Word, and Outlook, with context carrying automatically between the apps.</li>
         <li><span class="tag feat">feature</span> Claude in Chrome is in beta for all paid plans (Pro, Team, Enterprise).</li>
         <li><span class="tag feat">feature</span> Health &amp; fitness data reads and calendar/reminder drafting on iOS and Android.</li>
         <li><span class="tag feat">feature</span> Persistent agent thread &mdash; manage Cowork tasks from a chat thread in Desktop.</li>
@@ -264,7 +281,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-getting-started-with-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">unified directory docs</a>, <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Financial Services plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 25 Jun &mdash; no new Cowork release in the last 7 days; items below remain current.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">unified directory docs</a>, <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Financial Services plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 26 Jun &mdash; no new Cowork release in the last 7 days; items below remain current.</p>
 
       <div class="headline-feature"><strong>Projects.</strong> Organize related tasks into persistent, self-contained workspaces &mdash; each with its own files, links, instructions, and memory &mdash; making Cowork more powerful for recurring or long-running work.</div>
 
@@ -343,7 +360,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube &middot; Cowork</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The ONLY Claude Cowork Tutorial You'll Ever Need in 2026</a>
+            <a href="https://www.youtube.com/watch?v=UR0gac-ccjg">How to Use Claude Cowork: Full Beginners Tutorial 2026</a>
             <span class="src">YouTube &middot; Cowork</span>
           </li>
         </ul>
