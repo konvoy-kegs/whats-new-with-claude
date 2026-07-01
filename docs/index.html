@@ -69,10 +69,10 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill warn"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access still suspended &middot; US gov directive 12 Jun</span>
+      <span class="pill"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access restored &middot; 1 Jul</span>
       <span class="pill"><span>&#9679;</span> Claude Sonnet 5 now default in Claude Code</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.197</span>
-      <span class="pill neutral">Updated: Wed 01 Jul 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.198</span>
+      <span class="pill neutral">Updated: Thu 02 Jul 2026</span>
     </div>
   </div>
 
@@ -88,22 +88,23 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="fable">
     <div class="product-header">
       <h2>Claude Fable 5</h2>
-      <span class="badge">model &middot; access suspended</span>
+      <span class="badge">model &middot; access restored</span>
     </div>
 
     <div class="card section-versions">
-      <h3>Access suspended by US government directive <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a> &middot; anthropic.com &middot; 12 Jun 2026 &middot; still in effect as of 1 Jul</p>
+      <h3>Access restored after export controls lifted <span class="badge major">headline</span></h3>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5</a> &middot; anthropic.com &middot; posted 30 Jun, restored 1 Jul 2026</p>
 
-      <div class="headline-feature"><strong>Fable 5 and Mythos 5 remain offline for everyone.</strong> On 12 Jun the US government issued an export-control directive, citing national security, to suspend all access to Fable 5 and Mythos 5 by any foreign national &mdash; inside or outside the US. To comply, Anthropic disabled both models for <strong>all</strong> customers across every surface (Claude apps, API, Amazon Bedrock, Vertex AI, Microsoft Foundry, GitHub Copilot). As of this morning (1 Jul) there is still no restoration notice and no confirmed restoration date &mdash; that is now 19 days of suspension &mdash; though Anthropic has said it is &ldquo;working to restore access as soon as possible.&rdquo; <strong>Access to all other Anthropic models &mdash; Opus 4.8, Sonnet (now Sonnet 5), Haiku &mdash; is unaffected.</strong></div>
+      <div class="headline-feature"><strong>Fable 5 and Mythos 5 are back.</strong> On <strong>30 Jun</strong> the US government lifted the export controls that had suspended both models since 12 Jun. <strong>Fable 5 returned on 1 Jul</strong> to users globally on the Claude Platform, Claude.ai, Claude Code, and Claude Cowork. Anthropic is re-enabling access on <strong>AWS, Google Cloud, and Microsoft Foundry &ldquo;as quickly as possible&rdquo;</strong> &mdash; those cloud paths may not be live yet. Mythos 5 has been restored for a set of US organisations (government approval on 26 Jun), with Glasswing access expanding from there. <strong>Access to all other models &mdash; Opus 4.8, Sonnet 5, Haiku &mdash; was never affected.</strong></div>
 
-      <div class="banner"><strong>What this means for us:</strong> any workflow pinned to <code>claude-fable-5</code> (CLI sessions, Bedrock calls, CI agents) will still fail. Point those back at <code>claude-opus-4-8</code> until access is restored. Claude Code lists Fable 5 in the <code>/model</code> picker but selecting it errors while the suspension is in effect.</div>
+      <div class="banner"><strong>What this means for us:</strong> workflows pinned to <code>claude-fable-5</code> on Claude Code and the API should work again. <strong>But Bedrock/AWS access is still being re-enabled</strong> &mdash; keep CI agents and Bedrock calls on <code>claude-opus-4-8</code> until Fable 5 is confirmed live on AWS. Also note the new safety classifier (below) blocks more borderline requests during routine coding/debugging; any blocked request to Fable 5 is auto-routed to Opus 4.8, so callers should expect an occasional silent model switch on security-adjacent prompts.</div>
 
       <ul class="changelog">
-        <li><span class="tag major">status</span> Anthropic says it is complying with the legal directive but disagrees with it &mdash; it reviewed the government&rsquo;s demonstration and characterises it as a small number of previously known, minor vulnerabilities rather than a novel capability, and is &ldquo;working to restore access as soon as possible.&rdquo; It also intends to restore Fable 5 as a standard part of subscription plans once access returns.</li>
-        <li><span class="tag sec">background</span> Fable 5 launched 9 Jun as a Mythos-class model made safe for general use, with safeguards that auto-route cybersecurity, biology/chemistry, and distillation queries to Opus 4.8. Mythos 5 is the same model with those safeguards lifted, restricted to Project Glasswing partners.</li>
-        <li><span class="tag fix">pricing (while it was live)</span> $10 / M input and $50 / M output &mdash; about double Opus 4.8 &mdash; with a 30-day data-retention requirement on all Mythos-class traffic. These terms are moot until access returns.</li>
-        <li><span class="tag fix">note</span> The earlier &ldquo;free on plan through 22 Jun&rdquo; promotion is superseded by the suspension. We'll track restoration here as it develops.</li>
+        <li><span class="tag major">status</span> Export controls lifted 30 Jun; Fable 5 available again globally from 1 Jul across Claude Platform, Claude.ai, Claude Code, and Cowork. Cloud provider (AWS / Google Cloud / Microsoft Foundry) re-enablement is in progress, not confirmed complete.</li>
+        <li><span class="tag sec">safeguards</span> Anthropic shipped an improved cybersecurity classifier that blocks the specific Amazon-reported bypass in &gt;99% of cases; blocked requests are flagged and re-routed to Opus 4.8. It flags benign requests more often during routine coding/debugging &mdash; expect more false positives. US Commerce CAISI tested both the prior and new safeguards and rated them extraordinarily strong.</li>
+        <li><span class="tag feat">access &amp; pricing</span> For Pro, Max, Team, and select (premium) Enterprise plans, Fable 5 is included for up to 50% of weekly usage limits through <strong>7 Jul</strong>, then via <a href="https://support.claude.com/en/articles/12429409-manage-usage-credits-for-paid-claude-plans">usage credits</a>. Standard Enterprise seats have no included allowance &mdash; access is credits-only.</li>
+        <li><span class="tag fix">industry</span> Anthropic, with Amazon, Microsoft, Google and other Glasswing partners, is drafting a consensus framework for scoring AI jailbreak severity, and has opened a <a href="https://hackerone.com/anthropic-cyber-jailbreak/">HackerOne program</a> for cyber-jailbreak submissions against Fable 5.</li>
+        <li><span class="tag fix">background</span> Fable 5 launched 9 Jun as a Mythos-class model made safe for general use; Mythos 5 is the same model with fewer safeguards, restricted to Project Glasswing partners for defensive cybersecurity.</li>
       </ul>
     </div>
   </div>
@@ -112,25 +113,43 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.197 on npm</span>
+      <span class="badge">CLI &middot; v2.1.198 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.197.</strong> The newest version <em>published to npm</em>, the <code>latest</code> dist-tag, the <code>next</code> dist-tag, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.197</strong> (published 30 Jun 2026 at 13:31 UTC) &mdash; exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>stable</code> dist-tag remains on <strong>v2.1.185</strong>, so anyone pinned to <code>@stable</code> is still several documented patches behind latest. Cards below cover v2.1.197 down through v2.1.191, with older documented releases summarised under &ldquo;previous releases.&rdquo;
+      <strong>All sources aligned on v2.1.198.</strong> The newest version <em>published to npm</em>, the <code>latest</code> dist-tag, the <code>next</code> dist-tag, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.198</strong> (published 1 Jul 2026 at 16:50 UTC) &mdash; exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>stable</code> dist-tag sits on <strong>v2.1.187</strong>, so anyone pinned to <code>@stable</code> is still several documented patches behind latest. Cards below cover v2.1.198 down through v2.1.195, with older documented releases summarised under &ldquo;previous releases.&rdquo;
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.197 at 30 Jun 2026 at 13:31 UTC &middot; dist-tags <code>latest</code> and <code>next</code> on v2.1.197 &middot; <code>stable</code> on v2.1.185 &middot; changelog documented through v2.1.197</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.198 at 1 Jul 2026 at 16:50 UTC &middot; dist-tags <code>latest</code> and <code>next</code> on v2.1.198 &middot; <code>stable</code> on v2.1.187 &middot; changelog documented through v2.1.198</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.197 &mdash; Claude Sonnet 5 is now the default model in Claude Code <span class="badge major">newest</span></h3>
+      <h3>v2.1.198 &mdash; Claude in Chrome goes GA, plus a Claude Platform on AWS gateway provider <span class="badge major">newest</span></h3>
+      <p class="meta">Published 1 Jul 2026 at 16:50 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.198">GitHub release</a> &middot; a top-level workflow going GA, an AWS gateway addition, a GitHub-native agent change, and a large reliability sweep</p>
+
+      <div class="headline-feature"><strong>Claude in Chrome is now generally available.</strong> The browser agent that reads pages, drives web UIs, and hands work back to your terminal session moves out of beta &mdash; useful for our web-console and dashboard chores that don&rsquo;t have a clean CLI.</div>
+
+      <div class="headline-feature"><strong>Directly relevant to our AWS + GitHub stack.</strong> The gateway adds <strong>Claude Platform on AWS (<code>anthropicAws</code>) as an upstream provider</strong>, and model-not-found responses now advance the failover chain instead of dead-ending. Separately, background agents launched from <code>claude agents</code> now <strong>commit, push, and open a draft PR</strong> when they finish code work in a worktree &mdash; instead of stopping to ask &mdash; and <code>awsAuthRefresh</code> now runs automatically so Claude Platform on AWS / Mantle sessions no longer dead-end with &ldquo;Please run /login&rdquo; when the STS token expires.</div>
+
+      <ul class="changelog">
+        <li><span class="tag major">workflow</span> Claude in Chrome is now generally available.</li>
+        <li><span class="tag feat">gateway / AWS</span> Added Claude Platform on AWS (<code>anthropicAws</code>) as an upstream gateway provider; model-not-found responses now advance the failover chain. <code>awsAuthRefresh</code> runs automatically so AWS / Mantle sessions no longer dead-end on STS token expiry.</li>
+        <li><span class="tag feat">background agents</span> Background agents launched from <code>claude agents</code> now commit, push, and open a draft PR when they finish code work in a worktree; new background-agent notifications fire the <code>Notification</code> hook (<code>agent_needs_input</code> / <code>agent_completed</code>) when a session needs input or finishes.</li>
+        <li><span class="tag feat">feature</span> New <code>/dataviz</code> skill for chart and dashboard design guidance with a runnable colour-palette validator; the built-in Explore agent now inherits the main session&rsquo;s model (capped at opus) instead of running on haiku; subagents and context compaction now inherit the session&rsquo;s extended-thinking config.</li>
+        <li><span class="tag fix">reliability</span> Transient network drops mid-response (e.g. <code>ECONNRESET</code>) now retry with backoff instead of aborting the turn; background tasks in web, desktop, and VS Code panels no longer get stuck on &ldquo;Running&rdquo; after they finish; a teammate that dies on an API error now reports &ldquo;failed&rdquo; to the lead, and messaging a stuck teammate wakes it to retry; <code>/diff</code> now refreshes when you switch branches or commit outside the session.</li>
+        <li><span class="tag fix">fix</span> Plan mode again auto-allows read-only tool calls when a session starts in plan mode; markdown tables no longer overflow their right border in fullscreen; <code>/desktop</code> no longer fails with &ldquo;Cannot determine working directory&rdquo; after exiting a worktree; the <code>/agents</code> wizard was removed &mdash; ask Claude to manage subagents, or edit <code>.claude/agents/</code> directly.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.197 &mdash; Claude Sonnet 5 is now the default model in Claude Code</h3>
       <p class="meta">Published 30 Jun 2026 at 13:31 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.197">GitHub release</a> &middot; a major model release &mdash; update to v2.1.197 for access</p>
 
-      <div class="headline-feature"><strong>Claude Sonnet 5 ships as the new default model.</strong> v2.1.197 makes Claude Sonnet 5 the default in Claude Code, with a native <strong>1M-token context window</strong> and promotional pricing of <strong>$2 / M input and $10 / M output</strong> through <strong>31 Aug 2026</strong>. Anthropic positions it as its most agentic Sonnet yet &mdash; planning, tool use, and autonomous runs at a level that previously needed larger, pricier models, with performance close to Opus 4.8 at a fraction of the cost. Run <code>claude update</code> to v2.1.197 to pick it up. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a> and the <a href="https://www.anthropic.com/claude-sonnet-5-system-card">system card</a>.</div>
+      <div class="headline-feature"><strong>Claude Sonnet 5 ships as the new default model.</strong> v2.1.197 makes Claude Sonnet 5 the default in Claude Code, with a native <strong>1M-token context window</strong> and promotional pricing of <strong>$2 / M input and $10 / M output</strong> through <strong>31 Aug 2026</strong> (then $3 / $15). Anthropic positions it as its most agentic Sonnet yet &mdash; planning, tool use, and autonomous runs at a level that previously needed larger, pricier models, with performance close to Opus 4.8 at a fraction of the cost. Run <code>claude update</code> to pick it up. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a> and the <a href="https://www-cdn.anthropic.com/480e0bb54327b9622282e9c39a83a4f490ed377e/Claude%20Sonnet%205%20System%20Card.pdf">system card</a>.</div>
 
       <ul class="changelog">
         <li><span class="tag major">model</span> Claude Sonnet 5 is now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through 31 Aug 2026. Update to v2.1.197 for access.</li>
@@ -173,41 +192,18 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.193 &mdash; route <em>all</em> shell through the auto-mode classifier &amp; a new OTel response-text log event</h3>
-      <p class="meta">Published 25 Jun 2026 at 19:05 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.193">GitHub release</a> &middot; auto-mode hardening, an observability change with an upgrade gotcha, MCP auth resilience, and a background-agent fix sweep</p>
-
-      <div class="headline-feature"><strong>New <code>autoMode.classifyAllShell</code> routes every Bash/PowerShell command through the auto-mode classifier.</strong> Previously auto mode only classified commands matching arbitrary-code-execution patterns; set <code>autoMode.classifyAllShell</code> and <em>all</em> shell commands are run past the classifier first. Worth turning on anywhere we let Claude Code run unattended against infra, CI, or shared repos. Auto-mode denial reasons now also show up in the transcript, the denial toast, and <code>/permissions</code> recent denials, so it's clearer why a command was blocked.</div>
-
-      <div class="headline-feature"><strong>Heads-up for our OpenTelemetry setup: a new log event can start capturing Claude's response text on upgrade.</strong> v2.1.193 adds a <code>claude_code.assistant_response</code> OTel log event containing the model's response text. It's redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code> &mdash; but when that var is <em>unset</em> it follows <code>OTEL_LOG_USER_PROMPTS</code>. So any deployment that already logs prompt content will <strong>begin receiving response content automatically on upgrade</strong>. If we want to stay prompts-only, set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> before rolling this out.</div>
-
-      <ul class="changelog">
-        <li><span class="tag sec">auto mode</span> New <code>autoMode.classifyAllShell</code> setting routes all Bash/PowerShell commands through the auto-mode classifier instead of only arbitrary-code-execution patterns; denial reasons added to the transcript, denial toast, and <code>/permissions</code> recent denials.</li>
-        <li><span class="tag feat">telemetry</span> New <code>claude_code.assistant_response</code> OpenTelemetry log event carrying the model's response text &mdash; redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>, and when unset it follows <code>OTEL_LOG_USER_PROMPTS</code> (set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to keep prompts-only).</li>
-        <li><span class="tag feat">feature</span> Live file-path autocomplete in bash mode (<code>!</code>); a startup notice when MCP servers need authentication, pointing at <code>/mcp</code>; automatic memory-pressure reaping for idle background shell commands (disable with <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>).</li>
-        <li><span class="tag fix">fix</span> Background-agent sweep: backgrounding (&larr;&larr;) no longer spuriously cancels when all tasks carry over to the new session; pinned background agents are no longer re-prompted to &ldquo;Continue from where you left off&rdquo; after every auto-update; backgrounding the main turn no longer spawns a phantom &ldquo;general-purpose (resumed)&rdquo; subagent.</li>
-        <li><span class="tag fix">reliability</span> MCP <code>headersHelper</code> auth now re-runs and reconnects automatically when a tool call returns 401/403; plugin auto-rename now follows marketplace <code>renames</code> maps; <code>/model</code> and other client-data-gated UI no longer show stale/empty state right after <code>/login</code>.</li>
-      </ul>
-    </div>
-
-    <div class="card section-versions">
-      <h3>v2.1.191 &mdash; <code>/rewind</code> past a <code>/clear</code>, permanent agent stop &amp; a big perf pass</h3>
-      <p class="meta">Published 24 Jun 2026 at 18:54 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.191">GitHub release</a> &middot; a new recovery workflow, agent-lifecycle fix, streaming perf, and a large fix sweep</p>
-
-      <div class="headline-feature"><strong>New <code>/rewind</code> can resume a conversation from before <code>/clear</code> was run.</strong> Cleared a session you didn't mean to? <code>/rewind</code> now restores the conversation state from before the <code>/clear</code> &mdash; a genuine undo for the one command that used to be irreversible.</div>
-
-      <div class="headline-feature"><strong>Stopping a background agent is now permanent.</strong> Background agents no longer resurrect after being stopped &mdash; stopping one from the tasks panel sticks. Paired with a ~37% cut in CPU usage during streaming responses (text updates coalesced to 100ms) and reduced long-session memory growth, this is a solid reliability/perf release for anyone running long or concurrent agent sessions.</div>
-
-      <ul class="changelog">
-        <li><span class="tag major">feature</span> <code>/rewind</code> support for resuming a conversation from before <code>/clear</code> was run.</li>
-        <li><span class="tag feat">feature</span> Sandbox network permission dialog now remembers hosts you allow with &ldquo;Yes&rdquo; for the rest of the session instead of re-prompting on every connection.</li>
-        <li><span class="tag sec">governance</span> Managed settings: <code>forceRemoteSettingsRefresh</code> now takes effect when set via MDM or file policy, and the fetch sends <code>Cache-Control: no-cache</code> so proxies can't serve stale managed config &mdash; relevant for our MDM-pushed Claude Code policy.</li>
-        <li><span class="tag fix">reliability</span> MCP capability discovery (<code>tools/list</code>, <code>prompts/list</code>, <code>resources/list</code>) now retries transient network errors with backoff; MCP OAuth discovery/token requests retry once after transient errors, and headless environments skip the browser popup and go straight to the paste-the-URL prompt; HTTP 404 errors now show the URL and point at your MCP config.</li>
-        <li><span class="tag fix">fix</span> Background agents no longer resurrect after being stopped; hooks with comma-separated matchers (e.g. <code>"Bash,PowerShell"</code>) now fire; <code>/permissions</code> approving a recently-denied tool now persists on close; <code>/voice</code> now explains an org-policy restriction instead of a generic &ldquo;not available&rdquo; message; plus terminal/scroll/Windows Terminal fixes.</li>
-      </ul>
-    </div>
-
-    <div class="card section-versions">
       <h3>Previous releases</h3>
+
+      <h4>v2.1.193 <span class="date">&mdash; 25 Jun 2026 at 19:05 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag sec">auto mode</span> New <code>autoMode.classifyAllShell</code> routes every Bash/PowerShell command through the auto-mode classifier (not just arbitrary-code-execution patterns) &mdash; worth enabling where Claude Code runs unattended against infra or CI. Denial reasons now appear in the transcript, denial toast, and <code>/permissions</code>.</li>
+        <li><span class="tag feat">telemetry</span> New <code>claude_code.assistant_response</code> OTel log event carrying response text &mdash; redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>, but when unset it follows <code>OTEL_LOG_USER_PROMPTS</code>, so prompt-logging deployments start capturing response content on upgrade. Set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to stay prompts-only.</li>
+      </ul>
+
+      <h4>v2.1.191 <span class="date">&mdash; 24 Jun 2026 at 18:54 UTC</span></h4>
+      <ul class="changelog">
+        <li><span class="tag major">feature</span> <code>/rewind</code> can now resume a conversation from before a <code>/clear</code> &mdash; a genuine undo. Stopping a background agent is now permanent (no more resurrection), paired with a ~37% CPU cut during streaming and lower long-session memory growth.</li>
+      </ul>
 
       <h4>v2.1.190 <span class="date">&mdash; 24 Jun 2026 at 14:39 UTC</span></h4>
       <ul class="changelog">
@@ -216,7 +212,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
       <h4>v2.1.187 <span class="date">&mdash; 23 Jun 2026 at 17:55 UTC &middot; security</span></h4>
       <ul class="changelog">
-        <li><span class="tag sec">security</span> New <code>sandbox.credentials</code> setting blocks sandboxed commands from reading credential files and secret environment variables (e.g. <code>~/.aws/credentials</code>, <code>.env</code>, tokens) &mdash; worth enabling anywhere Claude Code touches our AWS or CI secrets. Org-configured model restrictions now reach the picker, <code>--model</code>, <code>/model</code>, and <code>ANTHROPIC_MODEL</code>.</li>
+        <li><span class="tag sec">security</span> New <code>sandbox.credentials</code> setting blocks sandboxed commands from reading credential files and secret environment variables (e.g. <code>~/.aws/credentials</code>, <code>.env</code>, tokens) &mdash; worth enabling anywhere Claude Code touches our AWS or CI secrets. Org-configured model restrictions now reach the picker, <code>--model</code>, <code>/model</code>, and <code>ANTHROPIC_MODEL</code>. This is the current <code>stable</code> dist-tag.</li>
       </ul>
 
       <h4>v2.1.186 <span class="date">&mdash; 22 Jun 2026 at 18:03 UTC</span></h4>
@@ -224,19 +220,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">feature</span> <code>claude mcp login &lt;name&gt;</code> / <code>logout &lt;name&gt;</code> authenticate MCP servers from the CLI (<code>--no-browser</code> for SSH); <code>Agent(type)</code> deny rules and <code>Agent(x,y)</code> allowed-types restrictions now enforced for named subagent spawns.</li>
       </ul>
 
-      <h4>v2.1.185 <span class="date">&mdash; 20 Jun 2026 at 16:54 UTC &middot; the <code>stable</code> dist-tag</span></h4>
+      <h4>v2.1.185 <span class="date">&mdash; 20 Jun 2026 at 16:54 UTC</span></h4>
       <ul class="changelog">
-        <li><span class="tag fix">fix</span> One-line patch: the stream-stall hint now reads &ldquo;Waiting for API response &middot; will retry in &hellip;&rdquo; and only appears after 20s of silence rather than 10s. The <code>stable</code> dist-tag still points here &mdash; anyone pinned to <code>@stable</code> is on this build, several patches behind <code>latest</code>.</li>
+        <li><span class="tag fix">fix</span> One-line patch: the stream-stall hint now reads &ldquo;Waiting for API response &middot; will retry in &hellip;&rdquo; and only appears after 20s of silence rather than 10s.</li>
       </ul>
 
       <h4>v2.1.183 <span class="date">&mdash; 19 Jun 2026 at 00:02 UTC &middot; security</span></h4>
       <ul class="changelog">
-        <li><span class="tag sec">security</span> Auto mode blocks destructive <code>git</code> commands you didn't ask for (<code>reset --hard</code>, <code>checkout -- .</code>, <code>clean -fd</code>, <code>stash drop</code>) and <code>terraform</code>/<code>pulumi</code>/<code>cdk destroy</code> unless you named the stack; scheduled-task / webhook trigger deliveries reclassified as task notifications so they can't approve actions in auto mode.</li>
-      </ul>
-
-      <h4>v2.1.181 <span class="date">&mdash; 17 Jun 2026 at 18:28 UTC</span></h4>
-      <ul class="changelog">
-        <li><span class="tag feat">feature</span> <code>/config key=value</code> to set any setting from the prompt; bundled Bun runtime upgraded to 1.4; long paragraphs stream line-by-line; mid-thinking connection drops auto-retry instead of erroring; Write/Edit no longer produce 0-byte files on network/cloud-synced drives.</li>
+        <li><span class="tag sec">security</span> Auto mode blocks destructive <code>git</code> commands you didn&rsquo;t ask for (<code>reset --hard</code>, <code>checkout -- .</code>, <code>clean -fd</code>, <code>stash drop</code>) and <code>terraform</code>/<code>pulumi</code>/<code>cdk destroy</code> unless you named the stack; scheduled-task / webhook trigger deliveries reclassified as task notifications so they can&rsquo;t approve actions in auto mode.</li>
       </ul>
     </div>
   </div>
@@ -250,19 +241,20 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 1 Jul &mdash; new in the last 7 days: Claude Sonnet 5 in the model picker (30 Jun) and Trusted Devices for Remote Control (25 Jun), shown first.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 2 Jul &mdash; new in the last 7 days: Claude in Chrome now generally available (1 Jul) and Fable 5 back in the model picker (1 Jul), shown first; Sonnet 5 in the picker (30 Jun) still recent.</p>
 
-      <div class="headline-feature"><strong>Claude Sonnet 5 is now in the Desktop model picker (30 Jun).</strong> The new model &mdash; already the default in Claude Code, with a 1M-token context window and promotional $2/$10 pricing through 31 Aug &mdash; is rolling out across the Claude apps; choose it from the model selector in Claude Desktop. Existing pinned selections are unchanged. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</div>
+      <div class="headline-feature"><strong>Claude in Chrome is now generally available (1 Jul).</strong> The browser agent moves out of beta &mdash; hand off web tasks from Claude Desktop without context-switching, and let Claude read browser console output to help debug front-end errors. See <a href="https://claude.com/chrome">Claude for Chrome</a>.</div>
 
-      <div class="headline-feature"><strong>Trusted Devices for Remote Control (25 Jun).</strong> Admins on Team and Enterprise plans can now require members to verify their device before viewing or steering local Claude Code sessions remotely. If anyone on the team uses Remote Control to drive a local Claude Code session from another device, this is the control to gate it behind device verification. See <a href="https://code.claude.com/docs/en/remote-control#trusted-devices">Trusted Devices</a>.</div>
+      <div class="headline-feature"><strong>Fable 5 is selectable again in the model picker (1 Jul).</strong> With the export controls lifted, Fable 5 is rolling back across the Claude apps; existing pinned selections are unchanged. Note cloud-backed access (AWS / Google Cloud / Microsoft Foundry) is still being re-enabled. See <a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5</a>.</div>
+
+      <div class="headline-feature"><strong>Claude Sonnet 5 is in the Desktop model picker (30 Jun).</strong> The new default in Claude Code &mdash; 1M-token context, promotional $2/$10 pricing through 31 Aug &mdash; is rolling out across the Claude apps; choose it from the model selector. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</div>
 
       <ul class="changelog">
-        <li><span class="tag feat">feature</span> Delegate work to Claude in Slack with Claude Tag (23 Jun) &mdash; Team and Enterprise plans can tag Claude directly in a Slack conversation and hand off a task while you focus on other work; useful for our <code>#cloud-engineers</code> threads. See <a href="https://www.anthropic.com/news/introducing-claude-tag">Introducing Claude Tag</a>.</li>
+        <li><span class="tag feat">feature</span> Trusted Devices for Remote Control (25 Jun) &mdash; Team/Enterprise admins can require members to verify their device before viewing or steering local Claude Code sessions remotely. See <a href="https://code.claude.com/docs/en/remote-control#trusted-devices">Trusted Devices</a>.</li>
+        <li><span class="tag feat">feature</span> Delegate work to Claude in Slack with Claude Tag (23 Jun) &mdash; tag Claude in a conversation and hand off a task; useful for our <code>#cloud-engineers</code> threads. See <a href="https://www.anthropic.com/news/introducing-claude-tag">Introducing Claude Tag</a>.</li>
         <li><span class="tag feat">feature</span> Plugin marketplace and admin controls on Team and Enterprise plans &mdash; pin or block plugins org-wide, and enable/disable or upload desktop extensions.</li>
         <li><span class="tag feat">feature</span> Single Customize directory for skills, connectors, and plugins (Settings &rarr; Customize).</li>
-        <li><span class="tag feat">feature</span> Browser control from Claude Desktop: hand off web tasks to Claude in Chrome without context switching; Claude can read browser console output to help debug front-end errors.</li>
         <li><span class="tag feat">feature</span> Claude add-ins for Microsoft 365 &mdash; Claude works across Excel, PowerPoint, Word, and Outlook, with context carrying automatically between the apps.</li>
-        <li><span class="tag feat">feature</span> Claude in Chrome is in beta for all paid plans (Pro, Team, Enterprise).</li>
         <li><span class="tag feat">feature</span> Health &amp; fitness data reads and calendar/reminder drafting on iOS and Android.</li>
         <li><span class="tag feat">feature</span> Persistent agent thread &mdash; manage Cowork tasks from a chat thread in Desktop.</li>
       </ul>
@@ -278,19 +270,19 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-getting-started-with-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors &amp; plugins</a>, <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Financial Services plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 1 Jul &mdash; new this week: Claude Sonnet 5 available in Cowork (30 Jun); other items below remain current.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors &amp; plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 2 Jul &mdash; new this week: Fable 5 available in Cowork again (1 Jul) and a new <code>/dataviz</code> skill (1 Jul, via Claude Code v2.1.198); Sonnet 5 in Cowork (30 Jun) still recent.</p>
 
-      <div class="headline-feature"><strong>Claude Sonnet 5 is now available in Cowork (30 Jun).</strong> The new model &mdash; default in Claude Code, with a 1M-token context window and promotional $2/$10 pricing through 31 Aug &mdash; is rolling out across the Claude apps including Cowork; pick it in the model selector for more agentic tool use on long-running and scheduled tasks. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</div>
+      <div class="headline-feature"><strong>Fable 5 is available in Cowork again (1 Jul).</strong> Following the lifting of export controls, Fable 5 is back for Cowork tasks; pick it in the model selector. Cloud-backed access is still re-enabling, so keep long-running or Bedrock-dependent tasks on Opus 4.8 until confirmed. See <a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5</a>.</div>
 
-      <div class="headline-feature"><strong>Projects.</strong> Organize related tasks into persistent, self-contained workspaces &mdash; each with its own files, links, instructions, and memory &mdash; making Cowork more powerful for recurring or long-running work.</div>
+      <div class="headline-feature"><strong>Claude Sonnet 5 is available in Cowork (30 Jun).</strong> 1M-token context and promotional $2/$10 pricing through 31 Aug &mdash; pick it in the model selector for more agentic tool use on long-running and scheduled tasks. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</div>
 
-      <div class="headline-feature"><strong>Scheduled tasks.</strong> Delegate work to Cowork on a recurring or on-demand basis &mdash; type <code>/schedule</code> in chat to create one. This morning's digest is exactly this in action.</div>
+      <div class="headline-feature"><strong>Projects &amp; scheduled tasks.</strong> Organise related work into persistent, self-contained workspaces &mdash; each with its own files, links, instructions, and memory &mdash; and delegate recurring or on-demand work with <code>/schedule</code>. This morning&rsquo;s digest is exactly that in action.</div>
 
       <ul class="changelog">
+        <li><span class="tag feat">feature</span> New <code>/dataviz</code> skill (shipped in Claude Code v2.1.198, 1 Jul) gives chart and dashboard design guidance plus a runnable colour-palette validator &mdash; handy for the reports we build in Cowork.</li>
         <li><span class="tag feat">feature</span> Plugins bundle skills, connectors, and sub-agents into one installable package. Knowledge Work marketplace is default; Financial Services and Legal are add-ons, and you can install custom marketplaces from a GitHub repo.</li>
         <li><span class="tag feat">feature</span> Ten ready-to-run Financial Services agent templates (pitchbooks, KYC screening, month-end close) ship as plugins for Cowork and Claude Code.</li>
         <li><span class="tag feat">feature</span> Usage analytics for Cowork via the Analytics API, plus OpenTelemetry support for monitoring activity.</li>
-        <li><span class="tag feat">feature</span> Skills, Connectors, and Plugins all browseable from a unified directory in Settings.</li>
         <li><span class="tag feat">feature</span> Computer use &mdash; Claude can click, type, open apps, and run dev tools in Cowork (research preview on Pro and Max).</li>
         <li><span class="tag feat">feature</span> Admins can group users (manually or via SCIM) and assign custom roles defining which Claude capabilities each group can use.</li>
         <li><span class="tag feat">feature</span> Extend Cowork with third-party MCP platforms (Slack, Sentry, AWS, Atlassian, etc.).</li>
@@ -309,24 +301,24 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <h3>Official posts</h3>
         <ul class="linklist">
           <li>
+            <a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5 &mdash; access restored</a>
+            <span class="src">anthropic.com &middot; 30 Jun / 1 Jul</span>
+          </li>
+          <li>
             <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>
             <span class="src">anthropic.com &middot; 30 Jun</span>
           </li>
           <li>
-            <a href="https://www.anthropic.com/claude-sonnet-5-system-card">Claude Sonnet 5 system card</a>
+            <a href="https://www-cdn.anthropic.com/480e0bb54327b9622282e9c39a83a4f490ed377e/Claude%20Sonnet%205%20System%20Card.pdf">Claude Sonnet 5 system card</a>
             <span class="src">anthropic.com &middot; 30 Jun</span>
           </li>
           <li>
-            <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US government directive to suspend access to Fable 5 and Mythos 5</a>
-            <span class="src">anthropic.com &middot; still in effect</span>
+            <a href="https://www.anthropic.com/news/fable-mythos-access">Statement on the US directive to suspend Fable 5 &amp; Mythos 5</a>
+            <span class="src">anthropic.com &middot; background &middot; 12 Jun</span>
           </li>
           <li>
             <a href="https://www.anthropic.com/news/introducing-claude-tag">Introducing Claude Tag &mdash; delegate to Claude in Slack</a>
             <span class="src">anthropic.com &middot; 23 Jun</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/claude-opus-4-8">Introducing Claude Opus 4.8</a>
-            <span class="src">anthropic.com</span>
           </li>
           <li>
             <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code release notes</a>
@@ -343,15 +335,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <h3>Community videos</h3>
         <ul class="linklist">
           <li>
-            <a href="https://www.youtube.com/watch?v=OH9cQo38EKw">Mastering Claude Code in 10 Minutes: Opus vs Sonnet &amp; Hidden Features</a>
+            <a href="https://www.youtube.com/watch?v=Q0bsphUTLtw">The Only Claude Code Tutorial You Need (2026 Update)</a>
             <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=rj7xi-s4Ssg">Anthropic Just Dropped the Feature That Makes Sonnet Feel Like Opus</a>
+            <a href="https://www.youtube.com/watch?v=ReTx6ku4_dc">Opus 4.8 + Claude Code&rsquo;s NEW Dynamic Workflows (Full Walkthrough)</a>
             <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/shorts/wu45CY6PaTM">Claude Code Opus vs Sonnet: Which Model to Use</a>
+            <a href="https://www.youtube.com/watch?v=-6D5pjeHULg">How I Plan New Projects with Claude Code Opus</a>
             <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
