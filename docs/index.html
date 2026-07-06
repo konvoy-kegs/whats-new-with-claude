@@ -71,8 +71,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="versions">
       <span class="pill"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access restored &middot; 1 Jul</span>
       <span class="pill"><span>&#9679;</span> Claude Sonnet 5 now default in Claude Code</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.201</span>
-      <span class="pill neutral">Updated: Mon 06 Jul 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.202</span>
+      <span class="pill neutral">Updated: Tue 07 Jul 2026</span>
     </div>
   </div>
 
@@ -113,22 +113,40 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.201 on npm</span>
+      <span class="badge">CLI &middot; v2.1.202 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.201.</strong> The newest version <em>published to npm</em>, the <code>latest</code> and <code>next</code> dist-tags, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.201</strong> (published 3 Jul 2026 at 20:52 UTC) &mdash; exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>stable</code> dist-tag moved up to <strong>v2.1.193</strong>, still several documented patches behind latest. Cards below cover v2.1.201 down through v2.1.198; older documented releases &mdash; including the <strong>Claude Sonnet 5 default in v2.1.197</strong> &mdash; are summarised under &ldquo;previous releases.&rdquo;
+      <strong>All sources aligned on v2.1.202.</strong> The newest version <em>published to npm</em>, the <code>latest</code> and <code>next</code> dist-tags, the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>, and the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> all agree on <strong>v2.1.202</strong> (published 6 Jul 2026 at 20:41 UTC) &mdash; exactly what <code>claude update</code> installs, so no divergence to watch today. The <code>stable</code> dist-tag moved up to <strong>v2.1.195</strong>, still several documented patches behind latest. Cards below cover v2.1.202 down through v2.1.198; older documented releases &mdash; including the <strong>Claude Sonnet 5 default in v2.1.197</strong> &mdash; are summarised under &ldquo;previous releases.&rdquo;
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.201 at 3 Jul 2026 at 20:52 UTC &middot; dist-tags <code>latest</code> and <code>next</code> on v2.1.201 &middot; <code>stable</code> on v2.1.193 &middot; changelog documented through v2.1.201</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.202 at 6 Jul 2026 at 20:41 UTC &middot; dist-tags <code>latest</code> and <code>next</code> on v2.1.202 &middot; <code>stable</code> on v2.1.195 &middot; changelog documented through v2.1.202</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.201 &mdash; small Sonnet 5 harness-reminder fix <span class="badge major">newest</span></h3>
+      <h3>v2.1.202 &mdash; dynamic workflow-size control, workflow telemetry, and a Remote Control fix sweep <span class="badge major">newest</span></h3>
+      <p class="meta">Published 6 Jul 2026 at 20:41 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.202">GitHub release</a> &middot; one new config setting, OpenTelemetry additions for workflows, a large fix sweep (Remote Control, mTLS, voice dictation, skills), and a <code>/review</code> behaviour change</p>
+
+      <div class="headline-feature"><strong>Dynamic workflow size is now tunable, and workflow runs are traceable in OTel.</strong> A new <strong>&ldquo;Dynamic workflow size&rdquo;</strong> setting in <code>/config</code> controls how large Claude generally makes dynamic workflows (small / medium / large agent counts) &mdash; an advisory guideline, not an enforced cap. Separately, workflow-spawned agents now emit <code>workflow.run_id</code> and <code>workflow.name</code> OpenTelemetry attributes, so a whole workflow run&rsquo;s activity can be reconstructed from OTel data &mdash; useful for the dashboards we wire into our observability stack.</div>
+
+      <div class="headline-feature"><strong><code>/review &lt;pr&gt;</code> is back to a fast single-pass review.</strong> For the multi-agent review at a chosen effort level, use <code>/code-review &lt;level&gt; &lt;pr#&gt;</code> instead &mdash; worth flagging to anyone who scripted <code>/review</code> expecting the heavier multi-pass behaviour.</div>
+
+      <ul class="changelog">
+        <li><span class="tag feat">workflows</span> New &ldquo;Dynamic workflow size&rdquo; setting in <code>/config</code> (small / medium / large agent counts) &mdash; advisory, not an enforced cap. Workflow-spawned agents now emit <code>workflow.run_id</code> and <code>workflow.name</code> OTel attributes so a run&rsquo;s activity can be reconstructed from telemetry.</li>
+        <li><span class="tag feat">behaviour change</span> <code>/review &lt;pr&gt;</code> reverted to a fast single-pass review; use <code>/code-review &lt;level&gt; &lt;pr#&gt;</code> for the multi-agent review at a chosen effort level.</li>
+        <li><span class="tag fix">remote control</span> Fixed commands sent from Remote Control (mobile / web) into an interactive session failing with &ldquo;Unknown command&rdquo;; images and files sent without a caption being silently dropped; and <code>/remote-control</code> sessions showing the wrong permission mode in the mobile and web apps.</li>
+        <li><span class="tag fix">reliability</span> Fixed transient mTLS handshake failures during in-place client-certificate rotation; installer / updater downloads failing with &ldquo;aborted&rdquo; when a proxy drops the connection mid-download (transient drops now retry); and resuming a session by name taking minutes and heavy memory in repos with many git worktrees.</li>
+        <li><span class="tag fix">fix</span> Fixed re-invoking an already-loaded skill appending a duplicate copy of its instructions to context; voice dictation retrying in an unbounded loop on mic / recorder failure; <code>/rename</code> on background sessions being reverted on job restart; and workflow scripts with unicode quote escapes being corrupted before parsing.</li>
+        <li><span class="tag fix">mcp</span> Clearer MCP error when a server config has <code>url</code> but no <code>type</code> (now suggests <code>&quot;type&quot;: &quot;http&quot;</code> instead of the misleading &ldquo;command: expected string&rdquo;). Improved <code>/workflows</code> agent-list layout &mdash; wider titles, a dedicated time column, and shorter model names.</li>
+      </ul>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.201 &mdash; small Sonnet 5 harness-reminder fix</h3>
       <p class="meta">Published 3 Jul 2026 at 20:52 UTC &middot; <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.201">GitHub release</a> &middot; a single behind-the-scenes prompt-handling fix &mdash; the substantive recent changes are in v2.1.200 below</p>
 
       <ul class="changelog">
@@ -201,15 +219,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">governance</span> Organization default models &mdash; admins set it in the org console; it shows as &ldquo;Org default&rdquo; / &ldquo;Role default&rdquo; in <code>/model</code> when you haven&rsquo;t picked one yourself. The streaming idle watchdog is now on by default for all providers (5-minute stall abort/retry; <code>CLAUDE_ENABLE_STREAM_WATCHDOG=0</code> to disable).</li>
       </ul>
 
-      <h4>v2.1.195 <span class="date">&mdash; 26 Jun 2026 at 18:16 UTC &middot; security</span></h4>
+      <h4>v2.1.195 <span class="date">&mdash; 26 Jun 2026 at 18:16 UTC &middot; security &middot; current <code>stable</code></span></h4>
       <ul class="changelog">
         <li><span class="tag sec">consent</span> External plugins enabled only by a project <code>.claude/settings.json</code> now require explicit install consent on every loader path; hook matchers with hyphenated identifiers (e.g. <code>mcp__brave-search</code>) now exact-match instead of substring-matching &mdash; use <code>mcp__brave-search__.*</code> to match a whole server. Audit hooks keyed to hyphenated names after upgrading.</li>
       </ul>
 
-      <h4>v2.1.193 <span class="date">&mdash; 25 Jun 2026 at 19:05 UTC &middot; current <code>stable</code></span></h4>
+      <h4>v2.1.193 <span class="date">&mdash; 25 Jun 2026 at 19:05 UTC</span></h4>
       <ul class="changelog">
         <li><span class="tag sec">auto mode</span> New <code>autoMode.classifyAllShell</code> routes every Bash/PowerShell command through the auto-mode classifier (not just arbitrary-code-execution patterns) &mdash; worth enabling where Claude Code runs unattended against infra or CI. Denial reasons now appear in the transcript, denial toast, and <code>/permissions</code>.</li>
-        <li><span class="tag feat">telemetry</span> New <code>claude_code.assistant_response</code> OTel log event carrying response text &mdash; redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>, but when unset it follows <code>OTEL_LOG_USER_PROMPTS</code>, so prompt-logging deployments start capturing response content on upgrade. Set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to stay prompts-only. This is now the <code>stable</code> dist-tag.</li>
+        <li><span class="tag feat">telemetry</span> New <code>claude_code.assistant_response</code> OTel log event carrying response text &mdash; redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>, but when unset it follows <code>OTEL_LOG_USER_PROMPTS</code>, so prompt-logging deployments start capturing response content on upgrade. Set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to stay prompts-only.</li>
       </ul>
 
       <h4>v2.1.191 <span class="date">&mdash; 24 Jun 2026 at 18:54 UTC</span></h4>
@@ -238,7 +256,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.anthropic.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 6 Jul &mdash; nothing new over the weekend. Most recent within the last 7 days: Claude in Chrome generally available (1 Jul) and Fable 5 back in the model picker (1 Jul), shown first; Sonnet 5 in the picker (30 Jun) still recent.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.anthropic.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 7 Jul &mdash; nothing new overnight. Most recent within the last 7 days: Claude in Chrome generally available (1 Jul) and Fable 5 back in the model picker (1 Jul), shown first; Sonnet 5 in the picker (30 Jun) still recent.</p>
 
       <div class="headline-feature"><strong>Claude in Chrome is now generally available (1 Jul).</strong> The browser agent moves out of beta &mdash; hand off web tasks from Claude Desktop without context-switching, and let Claude read browser console output to help debug front-end errors. See <a href="https://claude.com/chrome">Claude for Chrome</a>.</div>
 
@@ -268,7 +286,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors &amp; plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 6 Jul &mdash; nothing new over the weekend. Recent this week: Fable 5 available in Cowork again (1 Jul) and the <code>/dataviz</code> skill (1 Jul, via Claude Code v2.1.198); Sonnet 5 in Cowork (30 Jun) still recent.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors &amp; plugins</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 7 Jul &mdash; nothing new overnight. Recent this week: Fable 5 available in Cowork again (1 Jul) and the <code>/dataviz</code> skill (1 Jul, via Claude Code v2.1.198); Sonnet 5 in Cowork (30 Jun) still recent.</p>
 
       <div class="headline-feature"><strong>Fable 5 is available in Cowork again (1 Jul).</strong> Following the lifting of export controls, Fable 5 is back for Cowork tasks; pick it in the model selector. Cloud-backed access is still re-enabling, so keep long-running or Bedrock-dependent tasks on Opus 4.8 until confirmed. See <a href="https://www.anthropic.com/news/redeploying-fable-5">Redeploying Claude Fable 5</a>.</div>
 
@@ -341,7 +359,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=K4e7UBHOgig">How to Switch to the Opus Model in Claude Code CLI (2026)</a>
+            <a href="https://www.youtube.com/watch?v=VK4REvxU0JQ">NEW Claude Sonnet 5 vs Opus 4.8! (Full Review)</a>
             <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
