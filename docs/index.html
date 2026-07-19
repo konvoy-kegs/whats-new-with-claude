@@ -71,8 +71,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="versions">
       <span class="pill"><span>&#9679;</span> Fable 5 &amp; Mythos 5 access restored &middot; 1 Jul</span>
       <span class="pill"><span>&#9679;</span> Claude Sonnet 5 now default in Claude Code</span>
-      <span class="pill warn"><span>&#9679;</span> Claude Code: v2.1.212 (undocumented)</span>
-      <span class="pill neutral">Updated: Fri 17 Jul 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.215</span>
+      <span class="pill neutral">Updated: Mon 20 Jul 2026</span>
     </div>
   </div>
 
@@ -113,110 +113,100 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.212 on npm</span>
+      <span class="badge">CLI &middot; v2.1.215 on npm</span>
     </div>
 
     <div class="banner">
-      <strong>Sources diverge today.</strong> Newest published to npm is <strong>v2.1.212</strong> (16 Jul 2026 at 19:20 UTC), but the <code>latest</code> dist-tag, the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a>, and the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> are all still on <strong>v2.1.211</strong>. <strong>v2.1.212 has no public changelog entry yet</strong> &mdash; Anthropic publishes patch versions to npm before promoting the dist-tag, so <code>claude update</code> ships v2.1.212. The newest fully documented release remains v2.1.211 (featured below); expect v2.1.212 notes in a coming digest.
+      <strong>All sources aligned on v2.1.215.</strong> The newest version published to npm, the <code>latest</code> dist-tag, the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a>, and the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> all agree &mdash; <code>claude update</code> ships v2.1.215 and it is fully documented. Three releases landed since Friday&rsquo;s digest: v2.1.214 (a substantial permission-security sweep) and v2.1.215, plus v2.1.212&rsquo;s changelog entry has now been published.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.212 at 16 Jul 2026 at 19:20 UTC &middot; dist-tag <code>next</code> on v2.1.212 &middot; dist-tag <code>latest</code> on v2.1.211 &middot; dist-tag <code>stable</code> on v2.1.204 &middot; changelog documented through v2.1.211</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published v2.1.215 at 19 Jul 2026 at 00:53 UTC &middot; dist-tag <code>latest</code> on v2.1.215 &middot; changelog documented through v2.1.215</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.212 &mdash; published to npm, changelog pending <span class="badge major">newest on npm</span></h3>
-      <p class="meta">Published 16 Jul 2026 at 19:20 UTC &middot; <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">npm</a> &middot; no public CHANGELOG entry or GitHub release yet</p>
+      <h3>v2.1.215 &mdash; /verify and /code-review are now manual-only <span class="badge major">newest</span></h3>
+      <p class="meta">Published 19 Jul 2026 at 00:53 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; single behaviour change</p>
       <ul class="changelog">
-        <li><span class="tag fix">pending</span> v2.1.212 is live on npm (and on the <code>next</code> dist-tag) but is not yet documented in the public changelog. Based on recent patterns these gaps are usually small patch releases documented within a day or two &mdash; notes will appear here once published.</li>
+        <li><span class="tag feat">behaviour change</span> Claude no longer runs the <code>/verify</code> and <code>/code-review</code> skills on its own &mdash; invoke them explicitly with <code>/verify</code> or <code>/code-review</code> when you want them. If your review flow relied on Claude self-triggering these, add the explicit call to your prompts or CI instructions.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.211 &mdash; Bedrock/Vertex prompt-caching billing fix, permission-preview hardening, subagent text forwarding <span class="badge major">newest documented</span></h3>
-      <p class="meta">Published 15 Jul 2026 at 19:24 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; a billing-relevant caching fix for cloud providers, permission-UI security hardening, and a wide reliability sweep</p>
+      <h3>v2.1.214 &mdash; permission-security sweep, EndConversation tool, scheduled-task fix <span class="badge major">security</span></h3>
+      <p class="meta">Published 18 Jul 2026 at 00:13 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; the biggest release since Friday: seven distinct permission-check fixes, a new safety tool, and a wide reliability sweep</p>
 
-      <div class="headline-feature"><strong>Prompt-caching regression fixed on Bedrock, Vertex, Mantle, and Foundry.</strong> A regression was billing the trailing system context block as <em>fresh input tokens on every request</em> instead of reading it from cache. Directly relevant to our Bedrock agents&rsquo; token spend &mdash; worth updating CI/agent images promptly and watching whether input-token costs drop after the upgrade.</div>
+      <div class="headline-feature"><strong>Seven Bash/permission security fixes in one release &mdash; upgrade unattended and CI agents promptly.</strong> Fixed: a permission-check bypass in Windows PowerShell 5.1 sessions; single-segment <code>dir/**</code> allow rules like <code>Edit(src/**)</code> auto-approving writes to nested <code>dir/</code> directories anywhere in the tree (now only <code>&lt;cwd&gt;/dir</code>); Bash permission checks now fail closed on file-descriptor redirect forms the analyzer parsed differently than bash; commands over 10,000 characters always prompt instead of running automatically; zsh variable subscripts in <code>[[ ]]</code> comparisons now prompt; certain <code>help</code>/<code>man</code> invocations that could run unsafe options or command substitutions are no longer auto-approved; and remote-session permission prompts can no longer proceed before the local confirmation dialog.</div>
 
-      <div class="headline-feature"><strong>Permission previews hardened against Unicode spoofing.</strong> Tool-input previews relayed to chat channels now neutralize bidirectional-override, zero-width, and look-alike quote characters, so a crafted tool input can no longer visually alter the approval message you&rsquo;re being asked to approve. Related: in auto mode, a PreToolUse hook&rsquo;s <code>ask</code> decision now floors unsandboxed Bash at a prompt instead of being overridden.</div>
+      <div class="headline-feature"><strong>New EndConversation tool.</strong> Claude can now end sessions with highly abusive users or jailbreak attempts, as on claude.ai since 2025 &mdash; see <a href="https://www.anthropic.com/research/end-subset-conversations">Anthropic&rsquo;s research post</a>. Also new: permission prompts for <code>docker</code>/Podman commands carrying daemon-redirect flags (<code>--url</code>, <code>--connection</code>, <code>--identity</code>, remote mode) that previously ran without one.</div>
 
-      <div class="headline-feature"><strong>New <code>--forward-subagent-text</code> flag</strong> (and <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> env var) includes subagent text and thinking in stream-json output &mdash; useful for observability on headless/SDK pipelines.</div>
+      <div class="headline-feature"><strong>Scheduled-task fix relevant to this digest:</strong> scheduled tasks no longer refuse their own configured prompt as untrusted input &mdash; the fired prompt is now delivered as the session&rsquo;s assigned task. Plus a heartbeat for long-running tool calls that previously went silent.</div>
 
       <ul class="changelog">
-        <li><span class="tag sec">security</span> File-upload validation hardened: filenames ending in a DOS device suffix (<code>.prn</code>) or trailing dot are accepted, files with multiple hard links are refused; Claude in Chrome file-upload path validation hardened.</li>
-        <li><span class="tag feat">behaviour change</span> &ldquo;Always allow&rdquo; permission rules now save at the repository root, so approvals granted in a git worktree persist across sessions and worktrees; <code>/usage-credits</code> now asks for confirmation before sending a request to organization admins.</li>
-        <li><span class="tag fix">aws</span> Fixed Claude Code on Vertex and Bedrock attempting the default Opus model at startup and printing a spurious fallback notice when a model is explicitly configured.</li>
-        <li><span class="tag fix">auth</span> Fixed parallel Claude Code sessions all logging out simultaneously after wake-from-sleep when many sessions share one credential store; background jobs on LLM gateway auth (<code>ANTHROPIC_AUTH_TOKEN</code> + <code>ANTHROPIC_BASE_URL</code>) no longer come back &ldquo;Not logged in&rdquo; after the daemon respawns them.</li>
-        <li><span class="tag fix">reliability</span> Plugin MCP servers now reconnect after an idle web session wakes; subagents spawned with an explicit model override no longer revert to the parent&rsquo;s model on resume; <code>/clear</code> now resets the session cost counter; <code>/loop</code> no longer hides the session from <code>/resume</code>; background agents killed by the user no longer auto-respawn and re-run stale prompts.</li>
-        <li><span class="tag fix">quality</span> Improved background agent result reporting &mdash; Claude now waits for real completion instead of fabricating results for still-running agents; integer env vars (timeouts, token budgets) now accept <code>1e6</code> and <code>64_000</code> spellings; terminal layout and rendering performance improved.</li>
+        <li><span class="tag feat">observability</span> Added <code>message.uuid</code>, <code>client_request_id</code>, and <code>tool_source</code> attributes to OpenTelemetry log events; <code>CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH</code> configures the 60&nbsp;KB truncation limit; reasoning effort now included in the <code>subagentStatusLine</code> payload.</li>
+        <li><span class="tag sec">behaviour change</span> Single-segment <code>dir/**</code> hook <code>if:</code> conditions now match only <code>&lt;cwd&gt;/dir</code> &mdash; write <code>**/dir/**</code> for any-depth matching (<code>deny</code>/<code>ask</code> rules keep any-depth match); <code>file -m</code>/<code>-f</code> now requires permission instead of being auto-allowed as read-only.</li>
+        <li><span class="tag fix">reliability</span> Fixed streaming turns failing with &ldquo;Socket is closed&rdquo; behind corporate proxies on Windows; stream-json output no longer truncates at exit for slow-reading SDK consumers; unbounded memory growth from oversized <code>--settings</code> files fixed (&gt;2&nbsp;MiB now errors at startup); <code>pkill -f</code> patterns matching the CLI&rsquo;s own process no longer kill the session (Linux).</li>
+        <li><span class="tag fix">windows</span> PowerShell tool: commands no longer hang when a child process waits on stdin; Python UnicodeDecodeError/UnicodeEncodeError fixes; <code>&gt;</code>/<code>&gt;&gt;</code> redirects on PowerShell 5.1 no longer write UTF-16LE files other tools can&rsquo;t read.</li>
+        <li><span class="tag fix">background</span> Background daemon shutdown no longer deletes its successor&rsquo;s control socket; idle parked sessions no longer keep the daemon alive indefinitely; completed background sessions can be removed again via <code>claude rm</code>; sessions from non-git folders can be deleted from the agents view.</li>
+        <li><span class="tag fix">fix</span> Plugins enabled via <code>--settings</code> load again (regression since v2.1.181); feature flags no longer go stale after OAuth token rotation; hooks with exit code 2 now block as documented even when stdout JSON fails schema validation; session cost/token telemetry no longer double-counts on cumulative <code>message_delta</code> frames.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.210 &mdash; worktree isolation fix, prompt-injection hardening, auto-mode classifier on Sonnet 5 <span class="badge major">now documented</span></h3>
-      <p class="meta">Published 14 Jul 2026 at 19:39 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; yesterday&rsquo;s undocumented npm release now has notes: two security fixes and a background-agent reliability sweep</p>
+      <h3>v2.1.212 &mdash; /fork background sessions, runaway-loop caps, MCP auto-background <span class="badge">now documented</span></h3>
+      <p class="meta">Published 16 Jul 2026 at 19:20 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; Friday&rsquo;s &ldquo;undocumented&rdquo; npm release now has its notes: workflow features, two safety caps, and a plan-mode security fix</p>
 
-      <div class="headline-feature"><strong>Worktree isolation fix.</strong> <code>isolation: &#39;worktree&#39;</code> subagents could previously run git-mutating commands against the <em>main repo checkout</em> instead of their own isolated worktree. If you rely on worktree isolation for parallel agents, this is the reason to be on &ge;2.1.210.</div>
+      <div class="headline-feature"><strong><code>/fork</code> now copies your conversation into a new background session</strong> (its own row in <code>claude agents</code>) while you keep working; the in-session subagent it used to launch is now <code>/subtask</code>. Typing <code>/resume</code> in the agent view opens a picker of past sessions &mdash; including deleted ones &mdash; and resumes your pick as a background session.</div>
 
-      <div class="headline-feature"><strong>Agent tool hardened against indirect prompt injection</strong> via content a subagent read. Also: the <code>ultracode</code> keyword opt-in no longer fires on non-human-originated input such as webhook payloads and relayed PR comments, and late-appearing <code>.claude/*</code> symlinks are now reconciled into the sandbox deny-write list.</div>
+      <div class="headline-feature"><strong>Runaway-loop caps.</strong> Session-wide limits on WebSearch calls (default 200, <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>) and subagent spawns (default 200, <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>) stop runaway loops; <code>/clear</code> resets the budget. MCP tool calls running longer than 2 minutes now move to the background automatically (<code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code> to tune or disable).</div>
 
       <ul class="changelog">
-        <li><span class="tag feat">feat</span> Live elapsed-time counter on the collapsed tool summary line, so long-running tool calls visibly tick; startup warning for <code>Write(path)</code>, <code>NotebookEdit(path)</code>, and <code>Glob(path)</code> permission rules &mdash; use <code>Edit(path)</code> or <code>Read(path)</code> instead.</li>
-        <li><span class="tag feat">auto mode</span> The permission classifier now defaults to Sonnet 5 for external sessions, validated on the session&rsquo;s first request and pinned for the session.</li>
-        <li><span class="tag fix">unattended</span> A hook callback timeout is no longer misreported to the model as a user rejection, which made unattended sessions stop and wait &mdash; relevant to scheduled/CI runs.</li>
-        <li><span class="tag fix">fix</span> <code>claude attach</code> no longer fails with &ldquo;job not found&rdquo; during session transitions; plan approvals without edits are no longer labeled &ldquo;(edited by user)&rdquo; and no longer overwrite the plan file with a stale snapshot; unmatched <code>$1</code>/<code>$2</code> placeholders in skills and commands are preserved verbatim instead of silently stripped; killed background sessions no longer leave a permanent <code>git worktree lock</code> behind.</li>
-        <li><span class="tag fix">status</span> Fable temporarily shows as unavailable in the advisor picker while a server-side issue causing Fable advisor failures is fixed.</li>
+        <li><span class="tag sec">security</span> Fixed plan mode auto-running file-modifying Bash commands (e.g. <code>touch</code>, <code>rm</code>) without a permission prompt or SDK <code>canUseTool</code> callback; fixed worktree creation following a repository-committed symlink at <code>.claude/worktrees</code>, which could create files outside the repository.</li>
+        <li><span class="tag feat">feat</span> <code>claude auto-mode reset</code> restores the default auto-mode configuration (with confirmation, <code>--yes</code> to skip).</li>
+        <li><span class="tag fix">reliability</span> SIGTERM during a running Bash tool no longer orphans the command&rsquo;s process tree in print/SDK mode; web search/fetch retry 529s and rate limits with bounded backoff instead of returning &ldquo;API Error&rdquo; text as results; prompt caching&rsquo;s mid-conversation system block now works behind LLM gateways and custom base URLs (Bedrock, Vertex, 1P).</li>
+        <li><span class="tag fix">fix</span> Conversations with many images no longer fail incorrectly with &ldquo;Request too large&rdquo;; <code>/background</code> on Windows works when Group Policy blocks PowerShell 5.1 (daemon prefers PowerShell 7); OTLP HTTP exports no longer rejected by Azure Monitor endpoints that refuse chunked transfer encoding.</li>
+        <li><span class="tag feat">behaviour change</span> The Task tool&rsquo;s <code>mode</code> parameter is deprecated (now ignored) &mdash; subagents inherit the parent session&rsquo;s permission mode; Enterprise <code>forceLoginMethod</code> now enforced for VS Code, SDK, <code>setup-token</code>, and <code>install-github-app</code> logins, not just the terminal.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.209 &mdash; single fix for background-session dialogs</h3>
-      <p class="meta">Published 14 Jul 2026 at 04:45 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; one-line release</p>
+      <h3>v2.1.211 &mdash; Bedrock/Vertex prompt-caching billing fix, permission-preview hardening</h3>
+      <p class="meta">Published 15 Jul 2026 at 19:24 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; featured in Friday&rsquo;s digest</p>
+
+      <div class="headline-feature"><strong>Prompt-caching regression fixed on Bedrock, Vertex, Mantle, and Foundry.</strong> A regression was billing the trailing system context block as <em>fresh input tokens on every request</em>. Directly relevant to our Bedrock agents&rsquo; token spend &mdash; update CI/agent images and watch input-token costs drop.</div>
+
       <ul class="changelog">
-        <li><span class="tag fix">fix</span> <code>/model</code> and other dialogs are no longer blocked in <code>claude agents</code> background sessions &mdash; reverts an overly broad guard introduced earlier.</li>
+        <li><span class="tag sec">security</span> Permission previews relayed to chat channels now neutralize bidirectional-override, zero-width, and look-alike quote characters; in auto mode a PreToolUse hook&rsquo;s <code>ask</code> decision now floors unsandboxed Bash at a prompt; file-upload validation hardened.</li>
+        <li><span class="tag feat">feat</span> <code>--forward-subagent-text</code> flag / <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> env var includes subagent text and thinking in stream-json output; &ldquo;always allow&rdquo; rules now save at the repository root so worktree approvals persist.</li>
+        <li><span class="tag fix">aws</span> Fixed Claude Code on Vertex and Bedrock attempting the default Opus model at startup when a model is explicitly configured; parallel sessions no longer all log out after wake-from-sleep on a shared credential store.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.208 &mdash; screen reader mode, corporate process wrapper, big performance &amp; memory sweep</h3>
-      <p class="meta">Published 13 Jul 2026 at 21:31 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; accessibility and enterprise-launcher features, a permissions guardrail, and a ~40-item fix and performance sweep</p>
+<h3>Previous releases</h3>
 
-      <div class="headline-feature"><strong>Screen reader mode.</strong> Opt-in plain-text rendering for screen reader users: run <code>claude --ax-screen-reader</code>, set <code>CLAUDE_AX_SCREEN_READER=1</code>, or add <code>"axScreenReader": true</code> to settings. Also new: <code>vimInsertModeRemaps</code> (map two-key insert-mode sequences like <code>jj</code> to Escape in vim mode) and mouse-click support for multi-select menus in fullscreen mode.</div>
-
-      <div class="headline-feature"><strong><code>CLAUDE_CODE_PROCESS_WRAPPER</code> &mdash; corporate launcher support.</strong> Agent view and the background service now honor a required wrapper executable for every Claude Code self-spawn. Worth a look if we ever standardise a wrapped launcher on managed engineering machines.</div>
-
+      <h4>v2.1.210 <span class="date">&mdash; 14 Jul 2026 at 19:39 UTC &middot; worktree isolation + prompt-injection hardening</span></h4>
       <ul class="changelog">
-        <li><span class="tag sec">permissions</span> Catastrophic removals (e.g. <code>rm -rf ~</code>) in commands containing <code>$(&hellip;)</code>/backticks/<code>&lt;(&hellip;)</code> now prompt even in <code>--dangerously-skip-permissions</code> and auto mode, matching the plain form.</li>
-        <li><span class="tag fix">performance</span> Memory-leak sweep: MCP stdio stderr no longer accumulates up to 64&nbsp;MB per server, LSP documents now LRU-capped at 50, the file-edit read cache is bounded to 16&nbsp;MB; session transcripts up to <strong>79x smaller</strong> in edit-heavy sessions; up to <strong>7x faster tool rounds</strong> at high MCP tool counts; permission-rule matchers compiled once and cached (fixes multi-second per-turn slowdowns with many deny/ask rules).</li>
-        <li><span class="tag fix">aws</span> Fixed Bedrock auth failing with &ldquo;Session token not found or invalid&rdquo; for AWS SSO profiles whose <code>sso_region</code> differs from the Bedrock region (a 2.1.207 regression &mdash; relevant to our SSO setup); Bedrock streaming errors behind a transforming gateway now name the content-type and point at the proxy instead of a misleading &ldquo;Truncated event message received.&rdquo;</li>
-        <li><span class="tag fix">reliability</span> Context window (and auto-compact indicator) no longer falsely resets to 200k after the CLI auto-updates; background-session attach no longer fails permanently after an update replaced the running binary; fixed truncated stream-json/JSON output when piping large responses from <code>claude -p</code>; stream-json input no longer kills the session on blank CRLF lines from Windows-style SDK hosts.</li>
-        <li><span class="tag fix">fix</span> <code>/release-notes</code> no longer injects the entire changelog into the model&rsquo;s context; <code>apiKeyHelper</code> script failures are surfaced within 3 attempts instead of hidden behind a generic 401; env vars like <code>CLAUDE_CODE_MAX_OUTPUT_TOKENS</code> no longer parse <code>1e6</code> as <code>1</code>; the Edit tool no longer fails on files modified after reading when the target text still matches uniquely.</li>
-        <li><span class="tag fix">agents</span> Replies typed to a background agent are no longer lost when delivery fails; completed background agents stay listed in <code>/tasks</code> until cleanup; attaching to a stopped agent shows its transcript immediately; agent-view Ctrl+X never destroys unpushed commits; fast mode now restores automatically when switching back to a model that supports it.</li>
+        <li><span class="tag sec">security</span> <code>isolation: 'worktree'</code> subagents could run git-mutating commands against the main repo checkout &mdash; fixed; Agent tool hardened against indirect prompt injection via content a subagent read; auto-mode permission classifier now defaults to Sonnet 5 for external sessions.</li>
       </ul>
-    </div>
 
-    <div class="card section-versions">
-      <h3>v2.1.207 &mdash; auto mode default-on for Bedrock/Vertex/Foundry, Opus 4.8 cloud default, plugin shell-injection fix</h3>
-      <p class="meta">Published 10 Jul 2026 at 22:25 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; cloud-provider default changes, a security sweep, and a large streaming/terminal and AWS-credential fix sweep</p>
-
-      <div class="headline-feature"><strong>Auto mode is now available without the <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> opt-in on Bedrock, Vertex AI, and Foundry &mdash; and those providers now default to Claude Opus 4.8.</strong> Directly relevant to our Bedrock agents: sessions that haven&rsquo;t pinned a model move to Opus 4.8 on upgrade, and auto mode no longer needs the env flag (disable org-wide via <code>disableAutoMode</code> in settings). Also a behaviour change: auto mode no longer reads <code>autoMode</code> from repo-resident <code>.claude/settings.local.json</code> &mdash; use <code>~/.claude/settings.json</code> instead.</div>
-
-      <div class="headline-feature"><strong>Plugin shell-injection fix.</strong> <code>${user_config.*}</code> in shell-form plugin hook/monitor/headersHelper commands is now rejected. Hooks should use exec form (<code>args</code> array) or <code>$CLAUDE_PLUGIN_OPTION_&lt;KEY&gt;</code>; monitors and headersHelper should read the value inside the script. Plugin option values (<code>pluginConfigs</code>) are also no longer read from project-level <code>.claude/settings.json</code> &mdash; audit any plugins we maintain.</div>
-
+      <h4>v2.1.209 <span class="date">&mdash; 14 Jul 2026 at 04:45 UTC &middot; one-line release</span></h4>
       <ul class="changelog">
-        <li><span class="tag sec">consent</span> Fixed remote managed settings from a non-interactive run (<code>claude -p</code>, the SDK) being permanently recorded as consented without ever showing the security consent dialog; <code>/usage-credits</code> malformed amounts are now rejected with an error, and amounts over $1,000 require a typed confirmation.</li>
-        <li><span class="tag fix">performance</span> Fixed the terminal freezing and keystrokes lagging while streaming responses containing very long lists, tables, paragraphs, or code blocks; the transcript no longer jumps above the start of the answer when a response finishes streaming.</li>
-        <li><span class="tag fix">aws</span> Bedrock no longer repeatedly requests fresh AWS SSO credentials from IAM Identity Center on every API request; fixed an indefinite hang on Windows when AWS credential resolution stalls (e.g. a stuck <code>credential_process</code>) &mdash; the 60-second stall guard now fires. Both relevant to our AWS setup.</li>
-        <li><span class="tag fix">fix</span> The auto-updater no longer overwrites a custom launcher script or symlink at <code>~/.local/bin/claude</code> on every release (<code>/doctor</code> now reports an externally managed launcher); fixed spurious prompt-injection warnings from benign system-generated conversation updates; fixed <code>extensions.worktreeConfig</code> being left in <code>.git/config</code> (breaking go-git tools like <code>tea</code>) after the last sparse worktree was removed.</li>
-        <li><span class="tag fix">agents</span> Fixed a crash loop in agent teams from a malformed teammate mailbox message; Remote Control task status updates no longer lost when the connection recovers; desktop-hosted Remote Control sessions now show background agent and workflow progress on mobile and web; Deep research Fetch-phase chips now show the source hostname instead of &ldquo;unknown.&rdquo;</li>
+        <li><span class="tag fix">fix</span> <code>/model</code> and other dialogs no longer blocked in <code>claude agents</code> background sessions.</li>
       </ul>
-    </div>
 
-    <div class="card section-versions">
-      <h3>Previous releases</h3>
+      <h4>v2.1.208 <span class="date">&mdash; 13 Jul 2026 at 21:31 UTC &middot; accessibility + performance</span></h4>
+      <ul class="changelog">
+        <li><span class="tag feat">feat</span> Screen reader mode (<code>claude --ax-screen-reader</code>); <code>CLAUDE_CODE_PROCESS_WRAPPER</code> corporate launcher support; catastrophic removals inside <code>$(...)</code>/backticks now prompt even in <code>--dangerously-skip-permissions</code>; memory-leak sweep with up to 79x smaller transcripts and 7x faster tool rounds at high MCP tool counts.</li>
+      </ul>
+
+      <h4>v2.1.207 <span class="date">&mdash; 10 Jul 2026 at 22:25 UTC &middot; cloud defaults + plugin security</span></h4>
+      <ul class="changelog">
+        <li><span class="tag sec">security</span> Auto mode available without opt-in on Bedrock/Vertex/Foundry and those providers now default to Claude Opus 4.8; plugin shell-injection fix: <code>${user_config.*}</code> rejected in shell-form hook commands &mdash; audit any plugins we maintain.</li>
+      </ul>
 
       <h4>v2.1.206 <span class="date">&mdash; 9 Jul 2026 at 17:54 UTC &middot; workflow QoL + MCP fixes</span></h4>
       <ul class="changelog">
@@ -305,7 +295,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.anthropic.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 17 Jul &mdash; nothing new since yesterday. The two most recent dated entries remain <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>, both below. The &ldquo;Claude Browser&rdquo; pane rename heads-up, Claude in Chrome GA (1 Jul), and Fable 5 back in the picker (1 Jul) remain current.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.anthropic.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked 20 Jul &mdash; nothing new over the weekend. The two most recent dated entries remain <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>, both below. The &ldquo;Claude Browser&rdquo; pane rename heads-up, Claude in Chrome GA (1 Jul), and Fable 5 back in the picker (1 Jul) remain current.</p>
 
       <div class="headline-feature"><strong>Self-serve HIPAA configuration (14 Jul).</strong> Eligible admins can now review the Business Associate Agreement, download the implementation guide, and enable HIPAA readiness in a single flow &mdash; for both Claude Enterprise and the Claude Platform (API), no Sales conversation required. See <a href="https://support.claude.com/en/articles/13296973-hipaa-ready-enterprise-plans">HIPAA-ready Enterprise plans</a>.</div>
 
@@ -338,7 +328,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork">Organize tasks with projects</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 17 Jul &mdash; nothing new since yesterday. Newest dated items remain <strong>Cowork on web and mobile (7 Jul)</strong> and <strong>Microsoft 365 connector write tools (7 Jul)</strong>, both below. The Claude Code v2.1.205 local-session fix and Fable 5 back in Cowork (1 Jul) remain recent.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/14116274-organize-your-tasks-with-projects-in-claude-cowork">Organize tasks with projects</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked 20 Jul &mdash; nothing new over the weekend. Newest dated items remain <strong>Cowork on web and mobile (7 Jul)</strong> and <strong>Microsoft 365 connector write tools (7 Jul)</strong>, both below. The Claude Code v2.1.205 local-session fix and Fable 5 back in Cowork (1 Jul) remain recent.</p>
 
       <div class="headline-feature"><strong>Cowork is now on web and mobile (7 Jul).</strong> Rolling out over the next several weeks, starting with the Max plan. Sessions run remotely (in beta) and are saved to your Claude account, so work continues when you close your laptop and <strong>scheduled tasks run with no device online</strong>. Chat and Cowork now share one home, with one place for projects and artifacts across both. See <a href="https://support.claude.com/en/articles/15520349">Use Claude Cowork on web, desktop, and mobile</a>.</div>
 
