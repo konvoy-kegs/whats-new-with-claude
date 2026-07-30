@@ -72,8 +72,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <span class="pill"><span>&#9679;</span> Claude Opus 5 launched &middot; 24 Jul</span>
       <span class="pill"><span>&#9679;</span> Opus 5 is now the default Opus in Claude Code</span>
       <span class="pill"><span>&#9679;</span> Claude Code: v2.1.220</span>
-      <span class="pill warn">No new Code release in 5 days</span>
-      <span class="pill neutral">Updated: Thu 30 Jul 2026</span>
+      <span class="pill warn">No new Code release in 6 days</span>
+      <span class="pill neutral">Updated: Fri 31 Jul 2026</span>
     </div>
   </div>
 
@@ -121,12 +121,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.220.</strong> The newest version published to npm, the <code>latest</code> dist-tag, the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a>, and the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> all agree &mdash; <code>claude update</code> ships v2.1.220 and it is fully documented. <strong>Nothing new has shipped in 5 days</strong> (v2.1.220 landed 24 Jul at 23:11 UTC, ~123h ago). The preceding fortnight ran at roughly a release a day, so this is now the longest pause of the 2.1.2xx run &mdash; the post-Opus-5 release train is still stopped and there is nothing to chase this morning. Note the <code>stable</code> dist-tag still points at <strong>v2.1.212</strong>, so anyone installing <code>@anthropic-ai/claude-code@stable</code> is eight patches behind and does <em>not</em> get Opus 5 as default. v2.1.220 itself is a one-line release (&ldquo;bug fixes and reliability improvements&rdquo;) &mdash; <strong>the substance landed the same day in v2.1.219, which is the Opus 5 release</strong>: Opus 5 becomes the default Opus model, plus a strict network allowlist for sandboxed commands and nested subagents up to depth 3 by default.
+      <strong>All sources aligned on v2.1.220.</strong> The newest version published to npm, the <code>latest</code> dist-tag, the top of the public <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a>, and the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> all agree &mdash; <code>claude update</code> ships v2.1.220 and it is fully documented. <strong>Nothing new has shipped in 6 days</strong> (v2.1.220 landed 24 Jul at 23:11 UTC, ~144h ago). The preceding fortnight ran at roughly a release a day, so this is now the longest pause of the 2.1.2xx run &mdash; the post-Opus-5 release train is still stopped and there is nothing to chase this morning. Note the <code>stable</code> dist-tag still points at <strong>v2.1.212</strong>, so anyone installing <code>@anthropic-ai/claude-code@stable</code> is eight patches behind and does <em>not</em> get Opus 5 as default. v2.1.220 itself is a one-line release (&ldquo;bug fixes and reliability improvements&rdquo;) &mdash; <strong>the substance landed the same day in v2.1.219, which is the Opus 5 release</strong>: Opus 5 becomes the default Opus model, plus a strict network allowlist for sandboxed commands and nested subagents up to depth 3 by default.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
-      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published <strong>v2.1.220</strong> at 24 Jul 2026 at 23:11 UTC &middot; dist-tags: <code>latest</code> v2.1.220, <code>next</code> v2.1.220, <code>stable</code> v2.1.212 &middot; changelog documented through v2.1.220 &middot; re-checked Thu 30 Jul 2026 at 11:56 local, no newer publish</p>
+      <p class="meta">Source: <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code">@anthropic-ai/claude-code</a> &middot; Newest published <strong>v2.1.220</strong> at 24 Jul 2026 at 23:11 UTC &middot; dist-tags: <code>latest</code> v2.1.220, <code>next</code> v2.1.220, <code>stable</code> v2.1.212 &middot; changelog documented through v2.1.220 &middot; re-checked Fri 31 Jul 2026 at 09:38 local, no newer publish</p>
       <p style="margin:0 0 8px;">To upgrade locally:</p>
       <p style="margin: 0;"><code>claude update</code> &nbsp; or &nbsp; <code>npm install -g @anthropic-ai/claude-code@latest</code></p>
     </div>
@@ -153,10 +153,10 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>v2.1.220 &mdash; reliability patch <span class="badge">newest</span></h3>
-      <p class="meta">Published 24 Jul 2026 at 23:11 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; documented, but a one-liner &middot; still the newest after 5 days</p>
+      <p class="meta">Published 24 Jul 2026 at 23:11 UTC &middot; <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a> &middot; documented, but a one-liner &middot; still the newest after 6 days</p>
       <ul class="changelog">
         <li><span class="tag fix">fix</span> &ldquo;Bug fixes and reliability improvements&rdquo; &mdash; the changelog entry exists but lists no user-facing detail. Published ~7 hours after v2.1.219, which reads like a follow-up patch to the Opus 5 release. Nothing here should change behaviour, but it is the version <code>claude update</code> installs.</li>
-        <li><span class="tag fix">cadence</span> Five days on with no v2.1.221, against a near-daily cadence through mid-July. Every gap in the 2.1.212&ndash;2.1.220 run was one or two days; this one is longer than all of them. If you upgraded last week you are current &mdash; there is nothing outstanding to pull, and no reason to hold off either. Treat the pause as post-launch stabilisation rather than a problem.</li>
+        <li><span class="tag fix">cadence</span> Six days on with no v2.1.221, against a near-daily cadence through mid-July. Every gap in the 2.1.212&ndash;2.1.220 run was one or two days; this one is longer than all of them. If you upgraded last week you are current &mdash; there is nothing outstanding to pull, and no reason to hold off either. Treat the pause as post-launch stabilisation rather than a problem.</li>
       </ul>
     </div>
 
@@ -218,7 +218,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Thu 30 Jul 2026 &mdash; the newest dated entry is still <strong>the Opus 5 launch (24 Jul)</strong>, which changes the Desktop model picker. <strong>No new Desktop release note in the 6 days since.</strong> Before that, <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Fri 31 Jul 2026 &mdash; the newest dated entry is still <strong>the Opus 5 launch (24 Jul)</strong>, which changes the Desktop model picker. <strong>No new Desktop release note in the 7 days since.</strong> Before that, <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>.</p>
 
       <div class="headline-feature"><strong>Opus 5 in the model picker &mdash; and it is the new default on Max (24 Jul).</strong> If you are on Max, your Desktop conversations moved to Opus 5 automatically; on Pro it is the strongest model available. Same price as Opus 4.8. Note the classifier fallback: security-adjacent prompts that get flagged silently fall back to Opus 4.8, so if a Desktop answer looks like a different model wrote it, that is why. See <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a>.</div>
 
@@ -248,7 +248,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Skills, connectors and plugins directory</a>. Checked Thu 30 Jul 2026 &mdash; <strong>no Cowork-specific release note in over three weeks</strong> (nothing since 7 Jul). The Opus 5 launch (24 Jul) affects Cowork model selection; the newest Cowork-specific items remain <strong>Cowork on web and mobile (7 Jul)</strong> and <strong>Microsoft 365 connector write tools (7 Jul)</strong>.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Skills, connectors and plugins directory</a>. Checked Fri 31 Jul 2026 &mdash; <strong>no Cowork-specific release note in over three weeks</strong> (nothing since 7 Jul). The Opus 5 launch (24 Jul) affects Cowork model selection; the newest Cowork-specific items remain <strong>Cowork on web and mobile (7 Jul)</strong> and <strong>Microsoft 365 connector write tools (7 Jul)</strong>.</p>
 
       <div class="headline-feature"><strong>Opus 5 is selectable for Cowork tasks (24 Jul).</strong> The gains that matter most here are the agentic ones &mdash; <strong>OSWorld 2.0</strong> (computer use) beats Fable 5&rsquo;s best result at just over a third of the cost, and Zapier reported a 100% pass rate on AutomationBench where previous models failed outright. For long-running and scheduled tasks like this digest, the lower run-to-run variance is the more useful property. Flagged security-adjacent requests fall back to Opus 4.8. See <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a>.</div>
 
@@ -278,7 +278,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="grid-2">
       <div class="card">
         <h3>Official posts</h3>
-        <p class="meta">Newsroom checked Thu 30 Jul 2026 &mdash; <strong>nothing new since 27 Jul</strong>; the two posts below are still the most recent.</p>
+        <p class="meta">Newsroom checked Fri 31 Jul 2026 &mdash; <strong>nothing new since 27 Jul</strong>; the two posts below are still the most recent.</p>
         <ul class="linklist">
           <li>
             <a href="https://www.anthropic.com/news/position-open-weights-models">Our position on open-weights models</a>
@@ -362,7 +362,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   </div>
 
   <p class="footnote">
-    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Thu 30 Jul 2026 at 11:56 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
+    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Fri 31 Jul 2026 at 09:38 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
   </p>
 </div>
 </body>
