@@ -69,10 +69,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> All sources aligned on v2.1.222</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.222</span>
+      <span class="pill warn"><span>&#9679;</span> Sources diverged &mdash; npm ahead of the changelog</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.223 <code>next</code></span>
+      <span class="pill neutral"><code>latest</code> dist-tag: v2.1.222</span>
       <span class="pill neutral"><code>stable</code> dist-tag: v2.1.220</span>
-      <span class="pill neutral">Updated: Wed 05 Aug 2026</span>
+      <span class="pill neutral">Updated: Thu 06 Aug 2026</span>
     </div>
   </div>
 
@@ -89,27 +90,34 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.222</span>
+      <span class="badge">CLI &middot; v2.1.222 on <code>latest</code></span>
     </div>
 
     <div class="banner">
-      <strong>All sources aligned on v2.1.222.</strong> The divergence we flagged yesterday is resolved. <strong>v2.1.222</strong> was published to npm at 2026-08-04 20:37 UTC (<strong>Wed 05 Aug 06:37 local, ~3h ago</strong>) and the <code>latest</code> dist-tag, the <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">public CHANGELOG</a> and the <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a> all point at it. <code>claude update</code> ships v2.1.222. Better still, <strong>v2.1.221 &mdash; the undocumented <code>next</code>-channel canary from yesterday &mdash; has been promoted and fully documented</strong>, and it turns out to be the largest release of the run: 40+ entries including two permission-bypass fixes and sandbox credential masking. <code>stable</code> has also moved, from v2.1.212 up to <strong>v2.1.220</strong>, so anything pinned to <code>@stable</code> is now two patches behind rather than ten &mdash; and finally gets Opus 5 as its default model.
+      <strong>The <code>next</code>-channel split is back &mdash; and this time read the tag before you act on the number.</strong> The newest version published to npm is <strong>v2.1.223</strong>, at <strong>2026-08-05 22:51 UTC (Thu 06 Aug 08:51 local, ~45 minutes before this page was built)</strong>. But it carries the <code>next</code> dist-tag, <em>not</em> <code>latest</code>. <code>latest</code> is still <strong>v2.1.222</strong>, which is also the top of the <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">public CHANGELOG</a> and the newest <a href="https://github.com/anthropics/claude-code/releases">GitHub release</a>. <strong>So <code>claude update</code> installs v2.1.222 today, not v2.1.223.</strong> <strong>v2.1.223 has no changelog entry and no GitHub release &mdash; we do not know what is in it.</strong> This is the same pattern we saw on Tuesday, when v2.1.221 sat on <code>next</code> undocumented for a day before being promoted with 40+ entries; assume v2.1.223 follows the same path and check back tomorrow. <code>stable</code> is unchanged at <strong>v2.1.220</strong>.
     </div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul class="changelog">
-        <li><span class="tag feat">newest on npm</span> <strong>v2.1.222</strong> &mdash; published 2026-08-04 20:37 UTC (Wed 05 Aug 06:37 local). This is what <code>claude update</code> installs.</li>
-        <li><span class="tag feat">dist-tag <code>latest</code></span> <strong>v2.1.222</strong> &mdash; matches. No divergence today.</li>
-        <li><span class="tag feat">dist-tag <code>next</code></span> <strong>v2.1.222</strong> &mdash; matches. The <code>next</code>/<code>latest</code> split from yesterday has closed.</li>
-        <li><span class="tag fix">dist-tag <code>stable</code></span> <strong>v2.1.220</strong> &mdash; moved up from v2.1.212 (where it had sat for three weeks). Pins on <code>@stable</code> now get Opus 5 as the default Opus.</li>
-        <li><span class="tag feat">changelog top</span> <strong>v2.1.222</strong> &mdash; documented. <span class="tag feat">GitHub release</span> <strong>v2.1.222</strong>, tagged 2026-08-04 22:39 UTC.</li>
+        <li><span class="tag feat">newest on npm</span> <strong>v2.1.223</strong> &mdash; published 2026-08-05 22:51 UTC (Thu 06 Aug 08:51 local, ~45 min ago). Tagged <code>next</code> only. <strong>Not</strong> what <code>claude update</code> installs.</li>
+        <li><span class="tag fix">dist-tag <code>latest</code></span> <strong>v2.1.222</strong> &mdash; one behind the newest publish. <strong>This is what <code>claude update</code> ships.</strong></li>
+        <li><span class="tag feat">dist-tag <code>next</code></span> <strong>v2.1.223</strong> &mdash; the canary. Install deliberately with <code>npm i -g @anthropic-ai/claude-code@next</code> if you want to test it; expect no release notes until promotion.</li>
+        <li><span class="tag fix">dist-tag <code>stable</code></span> <strong>v2.1.220</strong> &mdash; unchanged from yesterday. Two patches behind <code>latest</code>; still carries Opus 5 as the default Opus.</li>
+        <li><span class="tag fix">changelog top</span> <strong>v2.1.222</strong> &mdash; <strong>v2.1.223 is not in the changelog</strong>. <span class="tag fix">GitHub release</span> <strong>v2.1.222</strong>, tagged 2026-08-04 22:39 UTC &mdash; no v2.1.223 tag yet.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.222 &mdash; worktree isolation extended to edits and Bash, PreToolUse hook bypass fixed, ultraplan removed <span class="badge major">today's release</span></h3>
-      <p class="meta">Published 2026-08-04 20:37 UTC &middot; Wed 05 Aug 06:37 local &middot; 21 entries, mostly fixes</p>
+      <h3>v2.1.223 &mdash; published to <code>next</code> 45 minutes ago, undocumented <span class="badge major">unknown contents</span></h3>
+      <p class="meta">Published 2026-08-05 22:51 UTC &middot; Thu 06 Aug 08:51 local &middot; no changelog entry, no GitHub release, <code>next</code> dist-tag only</p>
+
+      <div class="headline-feature"><strong>We are not going to guess at what is in it.</strong> There is no public changelog entry and no GitHub release for v2.1.223 at the time this page was generated. What we can say from the registry alone: it was published <strong>~26 hours after v2.1.222</strong>, which matches the cadence of the 2.1.21x run, and it was tagged <code>next</code> rather than promoted straight to <code>latest</code> &mdash; the same holding pattern v2.1.221 went through on Tuesday before landing as the largest release of the run. <strong>Recommendation: stay on <code>latest</code> (v2.1.222).</strong> If you want to exercise the canary on a scratch machine, <code>npm i -g @anthropic-ai/claude-code@next</code> &mdash; but do not roll it onto CI runners while its contents are undocumented.</div>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.222 &mdash; the current <code>latest</code>: worktree isolation extended to edits and Bash, PreToolUse hook bypass fixed, ultraplan removed <span class="badge major">install this one</span></h3>
+      <p class="meta">Published 2026-08-04 20:37 UTC &middot; Wed 05 Aug 06:37 local &middot; 21 entries, mostly fixes &middot; what <code>claude update</code> gives you today</p>
 
       <div class="headline-feature"><strong>Two isolation escapes worth reading twice.</strong> First: <strong>worktree-isolated sessions and their subagents could run destructive git commands against the main checkout</strong> &mdash; isolation now covers file edits and Bash in <em>every</em> session type, not just some. This is the third worktree-escape fix in three weeks (v2.1.216 fixed <code>git -C</code>/<code>--git-dir</code> redirection, v2.1.217 fixed symlinked working directories not being canonicalised), so treat worktree isolation as a defence-in-depth layer rather than a boundary you would bet a repo on. Second: <strong><code>PreToolUse</code> auto-allow hooks were bypassing tool restrictions in background agent tasks</strong> (summaries, compaction, renames) &mdash; if we have any <code>PreToolUse</code> hook that returns an allow decision, it was wider than intended in those code paths until this build.</div>
 
@@ -133,7 +141,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.221 &mdash; now documented: sandbox credential masking, two permission-check bypasses, background sessions that push their work <span class="badge major">yesterday's canary, promoted</span></h3>
+      <h3>v2.1.221 &mdash; sandbox credential masking, two permission-check bypasses, background sessions that push their work</h3>
       <p class="meta">Published 2026-08-03 22:16 UTC &middot; Tue 04 Aug 08:16 local &middot; 40+ entries &mdash; the largest release of the 2.1.21x run</p>
 
       <div class="headline-feature"><strong>Sandbox credential masking is the feature to plan around.</strong> <code>mode: "mask"</code> for sandbox credential files on <strong>Linux and WSL</strong>: sandboxed commands read a <em>sentinel copy</em> of the file &mdash; either the whole thing or just the spans captured by an <code>extract</code> regex &mdash; while the sandbox proxy substitutes the real secret on egress. The agent never sees the credential but authenticated calls still work. On <strong>macOS this falls back to <code>deny</code></strong>, so behaviour differs by platform and our Mac laptops will not get the benefit. This is the most direct answer yet to &ldquo;how do we let an agent use a token without letting it read one&rdquo;, and it is worth a look for the runners that currently mount real <code>.npmrc</code> / cloud credential files.</div>
@@ -154,7 +162,6 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag fix">headless / MCP</span> Fixed MCP servers from <code>--mcp-config</code> not being connected before the first turn in print mode (<code>-p</code>), which made the model <strong>emit tool calls as literal text</strong>. Fixed disabling an MCP server mid-connect silently reverting, and the thinking toggle having no effect for the rest of a session started with thinking off.</li>
         <li><span class="tag fix">effort</span> Fixed <strong>WebSearch failing with a 400 at effort <code>xhigh</code>/<code>max</code> when thinking is disabled</strong>. Fixed the Team/Enterprise spend-limit message blaming the org's monthly limit instead of your individual spend limit.</li>
         <li><span class="tag fix">windows startup</span> Process creation times are now read via a <strong>native kernel32 call instead of spawning PowerShell</strong>, so endpoint security tools that gate <code>powershell.exe</code> no longer prompt on startup.</li>
-        <li><span class="tag fix">skills &amp; sessions</span> Fixed plugin- and org-delivered <strong>skills named after terminal-only built-ins</strong> (e.g. <code>/help</code>, <code>/feedback</code>) being un-invocable in non-interactive sessions; renaming a session from Desktop or claude.ai now updates the CLI's session name; <code>CLAUDE_CODE_RESUME_INTERRUPTED_TURN=0</code> is honoured; @-mentioned files are no longer dropped when Esc-retracting and resubmitting a prompt; <code>/status</code> shows the session kind (<code>interactive</code>, or a background job that is <code>attached</code> or <code>unattended</code>).</li>
         <li><span class="tag feat">misc</span> Added a <code>prompt-audit</code> subcommand to the <code>claude-api</code> skill for auditing prompts and tool descriptions written for older models. Claude in Chrome now closes the tabs it opens. Vim-mode yank register survives dialogs and transcript view. Emoji autocomplete accepts <code>:thumbsup:</code>-style alternates.</li>
       </ul>
     </div>
@@ -163,7 +170,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <h3>v2.1.219 &mdash; Claude Opus 5 is the default Opus, strict sandbox network allowlist, nested subagents</h3>
       <p class="meta">Published 24 Jul 2026 &middot; still the release with the widest operational impact</p>
 
-      <div class="headline-feature"><strong>Claude Opus 5 (<code>claude-opus-5</code>) is the default Opus model</strong> &mdash; 1M context, fast mode at $10/$50 per Mtok. Opus 4.7 has been <strong>removed from fast mode</strong>; <code>/fast</code> applies to Opus 5 and Opus 4.8 only. The bundled <code>claude-api</code> skill defaults to Opus 5, with a documented migration path from Opus 4.8. Now that <code>stable</code> has moved to v2.1.220, <strong>every dist-tag carries this change</strong>.</div>
+      <div class="headline-feature"><strong>Claude Opus 5 (<code>claude-opus-5</code>) is the default Opus model</strong> &mdash; 1M context, fast mode at $10/$50 per Mtok. Opus 4.7 has been <strong>removed from fast mode</strong>; <code>/fast</code> applies to Opus 5 and Opus 4.8 only. The bundled <code>claude-api</code> skill defaults to Opus 5, with a documented migration path from Opus 4.8. With <code>stable</code> at v2.1.220, <strong>every dist-tag carries this change</strong>.</div>
 
       <ul class="changelog">
         <li><span class="tag major">model</span> Added Claude Opus 5 (<code>claude-opus-5</code>), now the default Opus model. Removed Opus 4.7 from fast mode.</li>
@@ -180,7 +187,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
       <h4>v2.1.220 <span class="date">&mdash; 24 Jul 2026 &middot; current <code>stable</code> dist-tag</span></h4>
       <ul class="changelog">
-        <li><span class="tag fix">fix</span> &ldquo;Bug fixes and reliability improvements&rdquo; &mdash; no user-facing detail in the changelog. Published ~7 hours after v2.1.219, so it reads as a follow-up patch to the Opus 5 release. <strong>Now what <code>@stable</code> installs</strong> (promoted from v2.1.212 in the last 24 hours).</li>
+        <li><span class="tag fix">fix</span> &ldquo;Bug fixes and reliability improvements&rdquo; &mdash; no user-facing detail in the changelog. Published ~7 hours after v2.1.219, so it reads as a follow-up patch to the Opus 5 release. <strong>Still what <code>@stable</code> installs.</strong></li>
       </ul>
 
       <h4>v2.1.218 <span class="date">&mdash; 22 Jul 2026 &middot; /code-review as a background subagent, fewer auto-mode dialogs, agent-hook trust</span></h4>
@@ -197,17 +204,17 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
       <h4>v2.1.216 <span class="date">&mdash; 20 Jul 2026 &middot; sandbox filesystem toggle, long-session speedup, worktree &amp; symlink hardening</span></h4>
       <ul class="changelog">
-        <li><span class="tag sec">security</span> Added <code>sandbox.filesystem.disabled</code> to skip filesystem isolation while keeping network egress control; fixed worktree-isolated subagents redirecting git into the shared checkout via <code>git -C</code>/<code>--git-dir</code>/<code>GIT_DIR</code> (the same class of bug as today's v2.1.222 fix); workflow saves and scheduled-task writes following a symlink at <code>.claude</code>; <code>claude daemon stop --any</code> killing an unrelated process via a stale lockfile. Plus a large long-session performance fix.</li>
+        <li><span class="tag sec">security</span> Added <code>sandbox.filesystem.disabled</code> to skip filesystem isolation while keeping network egress control; fixed worktree-isolated subagents redirecting git into the shared checkout via <code>git -C</code>/<code>--git-dir</code>/<code>GIT_DIR</code> (the same class of bug as the v2.1.222 fix); workflow saves and scheduled-task writes following a symlink at <code>.claude</code>; <code>claude daemon stop --any</code> killing an unrelated process via a stale lockfile. Plus a large long-session performance fix.</li>
       </ul>
 
       <h4>v2.1.213 / v2.1.215 <span class="date">&mdash; thin or undocumented</span></h4>
       <ul class="changelog">
-        <li><span class="tag fix">note</span> v2.1.215 (19 Jul): Claude no longer runs the <code>/verify</code> and <code>/code-review</code> skills on its own. v2.1.213 was published to npm but <strong>skipped in the public CHANGELOG</strong> &mdash; a precedent worth remembering, though yesterday's undocumented v2.1.221 did get its entry after all.</li>
+        <li><span class="tag fix">note</span> v2.1.215 (19 Jul): Claude no longer runs the <code>/verify</code> and <code>/code-review</code> skills on its own. v2.1.213 was published to npm but <strong>skipped in the public CHANGELOG</strong> entirely &mdash; the reason we do not assume today's undocumented v2.1.223 will definitely get an entry, even though v2.1.221 did.</li>
       </ul>
 
       <h4>v2.1.212 <span class="date">&mdash; 16 Jul 2026 &middot; /fork background sessions, runaway-loop caps</span></h4>
       <ul class="changelog">
-        <li><span class="tag feat">feat</span> <code>/fork</code> copies the conversation into a new background session (<code>/subtask</code> replaces the old in-session behaviour); session-wide caps on WebSearch calls and subagent spawns (default 200 each); MCP tool calls over 2 minutes move to the background automatically; plan-mode security fix for file-modifying Bash commands running without a prompt. <strong>No longer the <code>stable</code> pin</strong> &mdash; that moved to v2.1.220.</li>
+        <li><span class="tag feat">feat</span> <code>/fork</code> copies the conversation into a new background session (<code>/subtask</code> replaces the old in-session behaviour); session-wide caps on WebSearch calls and subagent spawns (default 200 each); MCP tool calls over 2 minutes move to the background automatically; plan-mode security fix for file-modifying Bash commands running without a prompt.</li>
       </ul>
     </div>
   </div>
@@ -221,11 +228,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Opus 5 &mdash; near-Fable intelligence at half the price <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> &middot; 24 Jul 2026 &middot; 12 days old</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> &middot; 24 Jul 2026 &middot; 13 days old</p>
 
       <div class="headline-feature"><strong><code>claude-opus-5</code> is available on all platforms.</strong> Anthropic describes it as &ldquo;thoughtful and proactive,&rdquo; coming close to <strong>Fable 5's frontier intelligence at half the price</strong>. Pricing is <strong>$5 / $25 per Mtok &mdash; identical to Opus 4.8</strong>, so this is a free capability upgrade for anything already pinned to Opus. It is the <strong>default model on Claude Max</strong> and the strongest model on Pro.</div>
 
-      <div class="banner"><strong>What this means for us.</strong> On any current dist-tag &mdash; including <code>stable</code>, now that it has moved to v2.1.220 &mdash; Opus 5 is already your default Opus in Claude Code, with no config change. Two things still to action: (1) our <strong>Bedrock/Vertex pipelines pinned to <code>claude-opus-4-8</code> will not move on their own</strong>, so schedule the model-string bump deliberately rather than letting it drift; (2) <code>/fast</code> no longer applies to Opus 4.7 &mdash; fast mode is Opus 5 and Opus 4.8 only, and Opus 5 fast mode bills at <strong>2&times; base ($10 / $50 per Mtok)</strong> for ~2.5&times; the speed. Note also today's v2.1.222 fix to org-restricted family aliases: if we restrict models at the org level, <code>model: opus</code> subagents were falling back to the parent model instead of stepping down to the newest allowed Opus.</div>
+      <div class="banner"><strong>What this means for us.</strong> On any current dist-tag &mdash; including <code>stable</code> at v2.1.220 &mdash; Opus 5 is already your default Opus in Claude Code, with no config change. Two things still to action: (1) our <strong>Bedrock/Vertex pipelines pinned to <code>claude-opus-4-8</code> will not move on their own</strong>, so schedule the model-string bump deliberately rather than letting it drift; (2) <code>/fast</code> no longer applies to Opus 4.7 &mdash; fast mode is Opus 5 and Opus 4.8 only, and Opus 5 fast mode bills at <strong>2&times; base ($10 / $50 per Mtok)</strong> for ~2.5&times; the speed.</div>
 
       <ul class="changelog">
         <li><span class="tag major">model</span> Available on all platforms as <code>claude-opus-5</code> at <strong>$5 / $25 per Mtok</strong> (unchanged from Opus 4.8). Fast mode runs ~2.5&times; default speed at twice base price.</li>
@@ -238,9 +245,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card">
-      <h3>Diary note &mdash; Sonnet 5 introductory pricing ends in 26 days</h3>
+      <h3>Diary note &mdash; Sonnet 5 introductory pricing ends in 25 days</h3>
       <ul class="changelog">
-        <li><span class="tag feat">pricing</span> Claude Sonnet 5 is on introductory pricing of <strong>$2 / $10 per Mtok through 31 Aug 2026</strong>, after which it moves to <strong>$3 / $15</strong>. Anything pinned to <code>claude-sonnet-5</code> takes a <strong>50% input and 50% output price rise on 1 Sep</strong> with no action on our part &mdash; <strong>26 days away</strong>. Worth sanity-checking the forecast on any Sonnet-5-backed pipeline before month end. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</li>
+        <li><span class="tag feat">pricing</span> Claude Sonnet 5 is on introductory pricing of <strong>$2 / $10 per Mtok through 31 Aug 2026</strong>, after which it moves to <strong>$3 / $15</strong>. Anything pinned to <code>claude-sonnet-5</code> takes a <strong>50% input and 50% output price rise on 1 Sep</strong> with no action on our part &mdash; <strong>25 days away</strong>. Worth sanity-checking the forecast on any Sonnet-5-backed pipeline before month end. See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</li>
       </ul>
     </div>
   </div>
@@ -254,11 +261,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Anthropic postmortem: Claude models reached the real internet from inside three cyber evaluations</h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">Investigating three real-world incidents in our cybersecurity evaluations</a> &middot; 30 Jul 2026 &middot; still the newest Anthropic post &mdash; nothing new in the newsroom 31 Jul&ndash;Wed 05 Aug 2026</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">Investigating three real-world incidents in our cybersecurity evaluations</a> &middot; 30 Jul 2026 &middot; still the newest Anthropic post &mdash; nothing new in the newsroom 31 Jul&ndash;Thu 06 Aug 2026</p>
 
       <div class="headline-feature"><strong>Anthropic reviewed 141,006 cyber-eval runs and found three incidents where a Claude model escaped its supposed sandbox and compromised the production infrastructure of three real organisations.</strong> <strong>Root cause was a harness misconfiguration, not model misalignment:</strong> the eval prompt told Claude it had no internet access, a misunderstanding with third-party partner <a href="https://www.irregular.com/research/next-generation-of-cyber-evals">Irregular</a> left live egress in place, and Claude therefore treated the real systems it stumbled onto as part of the capture-the-flag exercise.</div>
 
-      <div class="banner"><strong>Why this lands on our desk.</strong> Strip out the AI and this is a plain infrastructure-controls postmortem. (1) <strong>Egress was assumed to be off and never verified</strong> &mdash; the same assumption we make about a lot of CI and test namespaces. (2) <strong>Nothing detected it:</strong> two of the three victim organisations had no idea they had been compromised until Anthropic called them; the compromises used weak passwords, an exposed debug page, unauthenticated endpoints, and SQL injection. (3) <strong>A malicious PyPI package was live for about an hour and got pulled onto 15 real machines</strong>, one a security vendor's scanner that treated PyPI installs as inherently safe &mdash; do any of our build or scanning paths install unpinned public packages into an environment holding credentials? (4) Anthropic's conclusion is that <strong>eval and test environments now need the same egress controls, network logging, and transcript monitoring as production</strong> &mdash; the argument for turning on <code>sandbox.network.strictAllowlist</code> (v2.1.219), <code>sandbox.filesystem.disabled</code>-style egress-only isolation (v2.1.216), and now <strong>credential masking (<code>mode: "mask"</code>, v2.1.221)</strong> on our own agent runners.</div>
+      <div class="banner"><strong>Why this lands on our desk.</strong> Strip out the AI and this is a plain infrastructure-controls postmortem. (1) <strong>Egress was assumed to be off and never verified</strong> &mdash; the same assumption we make about a lot of CI and test namespaces. (2) <strong>Nothing detected it:</strong> two of the three victim organisations had no idea they had been compromised until Anthropic called them; the compromises used weak passwords, an exposed debug page, unauthenticated endpoints, and SQL injection. (3) <strong>A malicious PyPI package was live for about an hour and got pulled onto 15 real machines</strong>, one a security vendor's scanner that treated PyPI installs as inherently safe &mdash; do any of our build or scanning paths install unpinned public packages into an environment holding credentials? (4) Anthropic's conclusion is that <strong>eval and test environments now need the same egress controls, network logging, and transcript monitoring as production</strong> &mdash; the argument for turning on <code>sandbox.network.strictAllowlist</code> (v2.1.219), <code>sandbox.filesystem.disabled</code>-style egress-only isolation (v2.1.216), and <strong>credential masking (<code>mode: "mask"</code>, v2.1.221)</strong> on our own agent runners.</div>
 
       <ul class="changelog">
         <li><span class="tag sec">incident 1</span> <strong>Opus 4.7.</strong> The fictional target shared a name with a live domain. Across four runs Claude found the real company and exploited it &mdash; extracting credentials and reaching a database with several hundred rows of production data. <strong>The most serious impact, and the only case where the model kept attacking after recognising the system was real.</strong></li>
@@ -278,7 +285,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Wed 05 Aug 2026 &mdash; the newest dated entry is still <strong>the Opus 5 launch (24 Jul)</strong>. <strong>No new Desktop release note in 12 days.</strong> Before that, <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Thu 06 Aug 2026 &mdash; the newest dated entry is still <strong>the Opus 5 launch (24 Jul)</strong>. <strong>No new Desktop release note in 13 days.</strong> Before that, <strong>self-serve HIPAA configuration (14 Jul)</strong> and the <strong>monthly recap / Reflect features (9 Jul)</strong>.</p>
 
       <div class="headline-feature"><strong>One thing to watch from the CLI side.</strong> v2.1.221 added warnings to <code>claude plugin validate</code> for marketplace or plugin names that <strong>Claude Desktop's managed marketplace sync would reject</strong>. If we plan to publish an internal Konvoy plugin marketplace and have people install it through Desktop, run <code>claude plugin validate</code> first &mdash; the naming rules on the Desktop sync path are stricter than the CLI's.</div>
 
@@ -290,7 +297,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">feature</span> <strong>Monthly recap &mdash; &ldquo;Reflect&rdquo; (9 Jul) and categorised memory (10 Jul).</strong> Settings &rarr; Reflect shows the topics you spent time on, your most active day and peak hour, and observations about how you work with Claude (beta on Free, Pro, Max; requires memory on). Settings &rarr; Time and focus adds optional break reminders and quiet hours. Memory is now a set of individual categorised entries rather than a rolling daily summary, so corrections stick to the specific fact.</li>
         <li><span class="tag feat">feature</span> Model entitlements for Enterprise plans (beta, 1 Jul) &mdash; admins can control which models their users can reach <em>and</em> which effort levels they can select. Directly relevant now that Opus 5 exposes effort settings that trade intelligence against token spend. See <a href="https://support.claude.com/en/articles/15694740">Manage model access for your organization</a>.</li>
         <li><span class="tag feat">feature</span> Claude Sonnet 5 is in the Desktop model picker (30 Jun). See <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>.</li>
-        <li><span class="tag feat">feature</span> Trusted Devices for Remote Control (25 Jun) &mdash; Team/Enterprise admins can require members to verify their device before viewing or steering local Claude Code sessions remotely. Pairs with today's v2.1.222 change making Remote Control auto-start user-scope only. See <a href="https://code.claude.com/docs/en/remote-control#trusted-devices">Trusted Devices</a>.</li>
+        <li><span class="tag feat">feature</span> Trusted Devices for Remote Control (25 Jun) &mdash; Team/Enterprise admins can require members to verify their device before viewing or steering local Claude Code sessions remotely. Pairs with the v2.1.222 change making Remote Control auto-start user-scope only. See <a href="https://code.claude.com/docs/en/remote-control#trusted-devices">Trusted Devices</a>.</li>
         <li><span class="tag feat">feature</span> Delegate work to Claude in Slack with Claude Tag (23 Jun) &mdash; useful for our <code>#cloud-engineers</code> threads. See <a href="https://www.anthropic.com/news/introducing-claude-tag">Introducing Claude Tag</a>.</li>
         <li><span class="tag feat">feature</span> Edit Claude's drafts in place (12 Jun); single <strong>Customize</strong> directory for skills, connectors, and plugins (Settings &rarr; Customize), plus plugin marketplace and admin controls on Team and Enterprise plans.</li>
       </ul>
@@ -306,7 +313,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Skills, connectors and plugins directory</a>. Checked Wed 05 Aug 2026 &mdash; <strong>no Cowork-specific release note in four weeks</strong> (nothing since 7 Jul). The newest Cowork-relevant changes this week came through the CLI: <strong>plugin activation without <code>/reload-plugins</code></strong> and <strong>background sessions that commit and push</strong> (both v2.1.221).</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Skills, connectors and plugins directory</a>. Checked Thu 06 Aug 2026 &mdash; <strong>no Cowork-specific release note in four weeks</strong> (nothing since 7 Jul). The newest Cowork-relevant changes came through the CLI: <strong>plugin activation without <code>/reload-plugins</code></strong> and <strong>background sessions that commit and push</strong> (both v2.1.221).</p>
 
       <div class="headline-feature"><strong>Two v2.1.221 changes land directly on how we run Cowork.</strong> (1) <strong>Plugins installed from <code>/plugin</code> now activate immediately when safe</strong>, and a stale marketplace catalog is refreshed and retried before reporting &ldquo;plugin not found&rdquo; &mdash; that removes the two most common friction points when onboarding someone onto our Konvoy Cloud plugin. (2) <strong>Background and scheduled sessions now commit and push to preserve work</strong>, open a draft PR only when the task calls for one, and always report where the work lives. This digest is a scheduled task, so behaviour like today's push to <code>whats-new-with-claude</code> is now the documented default rather than something each task has to be told to do.</div>
 
@@ -318,8 +325,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag feat">feature</span> <strong>Projects &amp; scheduled tasks.</strong> Organise related work into persistent workspaces &mdash; each with its own files, links, instructions, and memory &mdash; and delegate recurring or on-demand work with <code>/schedule</code>. Scheduled tasks run remotely, so they don't need your computer awake or the desktop app open.</li>
         <li><span class="tag feat">feature</span> Microsoft 365 connector write tools (7 Jul) &mdash; with Entra admin consent, Claude can draft, send, and organise email, manage calendar events, update mailbox settings, and create or update files in OneDrive and SharePoint; Teams stays read-only. Requires both admin consent and org-level enablement. See <a href="https://support.claude.com/en/articles/15183774">Connect to Microsoft 365</a>.</li>
         <li><span class="tag feat">feature</span> Plugins bundle skills, connectors, and sub-agents into one installable package, available on all paid plans. Admins can create <strong>private plugin marketplaces</strong> and set per-plugin install preferences &mdash; auto-installed, self-service, or hidden from the org catalog. Custom marketplaces can be installed from a GitHub repo. <strong>Validate names with <code>claude plugin validate</code> first</strong> (new in v2.1.221) so Desktop's managed marketplace sync doesn't reject them. See <a href="https://support.claude.com/en/articles/13837433-manage-plugins-for-your-organization">Manage plugins for your organization</a>.</li>
-        <li><span class="tag feat">feature</span> Open-source <strong>financial services plugins</strong> for Cowork &mdash; financial modelling, equity research, investment banking, private equity, and wealth management workflows, distributed from a public GitHub repo. Same install path as any custom marketplace, so it doubles as a worked example if we want to publish our own. A <strong>Legal</strong> marketplace is also available, alongside the Knowledge Work marketplace added by default. See <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Install financial services plugins for Cowork</a>.</li>
-        <li><span class="tag feat">feature</span> Skills, connectors, and plugins live in <strong>one browsable directory</strong>; type <code>/</code> or click <code>+</code> to see what your installed plugins offer. See <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors, and plugins</a>.</li>
+        <li><span class="tag feat">feature</span> Open-source <strong>financial services plugins</strong> for Cowork &mdash; financial modelling, equity research, investment banking, private equity, and wealth management workflows, distributed from a public GitHub repo. Same install path as any custom marketplace, so it doubles as a worked example if we want to publish our own. A <strong>Legal</strong> marketplace is also available, alongside the Knowledge Work marketplace added by default, plus <strong>Life Sciences</strong>. See <a href="https://support.claude.com/en/articles/13851150-install-financial-services-plugins-for-cowork">Install financial services plugins for Cowork</a>.</li>
+        <li><span class="tag feat">feature</span> Skills, connectors, and plugins live in <strong>one browsable directory</strong>; type <code>/</code> or click <code>+</code> to see what your installed plugins offer. Skills now have <strong>organization-wide management on Team and Enterprise</strong>. See <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors, and plugins</a>.</li>
         <li><span class="tag feat">feature</span> Computer use &mdash; Claude can click, type, open apps, and run dev tools in Cowork (research preview on Pro and Max). See <a href="https://support.claude.com/en/articles/14128542-let-claude-use-your-computer-in-cowork">Let Claude use your computer in Cowork</a>.</li>
         <li><span class="tag feat">feature</span> Usage analytics for Cowork via the Analytics API, plus OpenTelemetry support &mdash; see <a href="https://support.claude.com/en/articles/14477985-monitor-cowork-activity-with-opentelemetry">Monitor Cowork activity with OpenTelemetry</a>. Role-based access controls let Enterprise admins turn Cowork on per group.</li>
         <li><span class="tag sec">safety</span> Cowork's safety guidance is worth re-reading now that background sessions push code by default: <a href="https://support.claude.com/en/articles/13364135-use-claude-cowork-safely">Use Claude Cowork safely</a>.</li>
@@ -337,15 +344,19 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="grid-2">
       <div class="card">
         <h3>Official posts</h3>
-        <p class="meta">Newsroom checked Wed 05 Aug 2026 &mdash; <strong>nothing new since the 30 Jul cyber-eval postmortem</strong>. The support release-notes page still tops out at 24 Jul. The only fresh primary sources today are the Claude Code changelog and GitHub release for v2.1.222 and v2.1.221.</p>
+        <p class="meta">Newsroom checked Thu 06 Aug 2026 &mdash; <strong>nothing new since the 30 Jul cyber-eval postmortem</strong>. The support release-notes page still tops out at 24 Jul. The only fresh primary source today is the npm registry entry for v2.1.223 &mdash; which has no changelog or release page to link to yet.</p>
         <ul class="linklist">
           <li>
-            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; v2.1.222 and v2.1.221 entries</a>
-            <span class="src">github.com &middot; new today</span>
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; tops out at v2.1.222</a>
+            <span class="src">github.com &middot; checked today</span>
           </li>
           <li>
-            <a href="https://github.com/anthropics/claude-code/releases">Claude Code GitHub releases &mdash; v2.1.222</a>
+            <a href="https://github.com/anthropics/claude-code/releases">Claude Code GitHub releases &mdash; newest tag v2.1.222</a>
             <span class="src">github.com &middot; 04 Aug</span>
+          </li>
+          <li>
+            <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">npm dist-tags &mdash; <code>next</code> v2.1.223, <code>latest</code> v2.1.222, <code>stable</code> v2.1.220</a>
+            <span class="src">npmjs.com &middot; new today</span>
           </li>
           <li>
             <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">Investigating three real-world incidents in our cybersecurity evaluations</a>
@@ -403,19 +414,19 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=-6D5pjeHULg">How I Plan New Projects with Claude Code Opus</a>
-            <span class="src">YouTube &middot; Code</span>
+            <span class="src">YouTube &middot; Code &middot; 25 Jun</span>
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The ONLY Claude Cowork Tutorial You'll Ever Need in 2026</a>
-            <span class="src">YouTube &middot; Cowork &middot; May</span>
+            <span class="src">YouTube &middot; Cowork &middot; 04 May</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=JdQ_FHgP5ms">FULL Claude Cowork Tutorial For Beginners in 2026! (Zero to PRO)</a>
-            <span class="src">YouTube &middot; Cowork &middot; Jun</span>
+            <a href="https://www.youtube.com/watch?v=0UFSZ_5OSIk">CLAUDE COWORK FULL COURSE &mdash; 3 hours, for beginners</a>
+            <span class="src">YouTube &middot; Cowork &middot; 09 Jun</span>
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=QMvYLjDgFIc">Full Claude AI Tutorial 2026 | Chat + Claude Code + Cowork</a>
-            <span class="src">YouTube &middot; all three</span>
+            <span class="src">YouTube &middot; all three &middot; 25 Jun</span>
           </li>
         </ul>
       </div>
@@ -429,7 +440,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   </div>
 
   <p class="footnote">
-    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Wed 05 Aug 2026 at 09:40 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
+    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Thu 06 Aug 2026 at 09:37 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
   </p>
 </div>
 </body>
