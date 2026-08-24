@@ -58,8 +58,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 .tag.sec { background:#fcebeb; color:#791f1f; }
 .tag.fix { background:#f1efe8; color:#444441; }
 .tag.major { background:#fac775; color:#633806; }
-</style></head>
-<body>
+</style></head><body>
 <div class="wrap">
   <div class="headerbar">
     <div>
@@ -68,10 +67,10 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> All sources aligned on v2.1.241</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.241</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.231 &mdash; 10 behind</span>
-      <span class="pill neutral">Updated: Mon 24 Aug 2026</span>
+      <span class="pill warn"><span>&#9679;</span> Sources diverged &mdash; npm v2.1.243, changelog v2.1.241</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.243</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.231 &mdash; 12 behind</span>
+      <span class="pill neutral">Updated: Tue 25 Aug 2026</span>
     </div>
   </div>
 
@@ -88,29 +87,29 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.241 on <code>latest</code></span>
+      <span class="badge">CLI &middot; v2.1.243 newest on npm &middot; v2.1.241 on <code>latest</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.241.</strong> npm's newest publish, the <code>latest</code> dist-tag, the <code>next</code> dist-tag, the changelog top entry and the newest GitHub release tag all agree. No divergence to reconcile this morning.</div>
+    <div class="banner"><strong>Sources diverged overnight. Read this before quoting a version number today.</strong> Two new versions hit npm in the last few hours &mdash; <strong>v2.1.242</strong> (05:16 local) and <strong>v2.1.243</strong> (09:10 local, minutes before this page was built). Neither has a changelog entry, and neither has a GitHub release tag. Meanwhile the <code>latest</code> dist-tag, the changelog top entry and the newest GitHub release all still say <strong>v2.1.241</strong>. So: <strong>npm newest = v2.1.243, <code>latest</code> = v2.1.241, changelog top = v2.1.241, newest GitHub tag = v2.1.241.</strong></div>
 
-    <div class="banner"><strong>Three releases landed over the weekend &mdash; v2.1.239, v2.1.240 and v2.1.241 &mdash; but only one of them is documented.</strong> v2.1.239 is the substantive release at <strong>59 entries, the largest since v2.1.234</strong>. v2.1.240 and v2.1.241 each carry a single changelog line reading &ldquo;Bug fixes and reliability improvements&rdquo;, so <strong>what actually changed in the two newest versions is not public</strong>. That is worth stating plainly rather than papering over: <code>claude update</code> installs v2.1.241, and the newest behaviour you can read about is v2.1.239's.</div>
+    <div class="banner"><strong>The nuance that matters for what you actually install: v2.1.243 is sitting on the <code>next</code> dist-tag, not <code>latest</code>.</strong> Yesterday <code>next</code> and <code>latest</code> had converged on v2.1.241; this morning <code>next</code> has moved ahead to v2.1.243 while <code>latest</code> stayed put. <strong>A plain <code>claude update</code> follows <code>latest</code>, so today it gives you v2.1.241, not v2.1.243.</strong> v2.1.243 is on the canary channel and you would have to ask for it explicitly. This page reports v2.1.243 as the newest published build because it is &mdash; but it is not, today, the build you get by default, and <strong>it carries no public description of what changed.</strong></div>
 
-    <div class="banner"><strong>The one entry to read before Monday standup is an AWS billing bug.</strong> v2.1.239 fixed <strong>Bedrock streaming behind proxies that strip the response <code>Content-Type</code> header, which silently doubled billed API calls by re-running every turn non-streaming</strong>. If we route Bedrock through an egress proxy &mdash; and we do &mdash; this is a cost-correctness fix, not a nicety, and it fails silently by design. <strong>Worth a look at the Bedrock line on the AWS bill for the period before the upgrade.</strong></div>
+    <div class="banner"><strong>What this means practically: nothing new is documented since Saturday.</strong> v2.1.239 remains the newest version with a readable changelog, and it is still the release worth acting on &mdash; the Bedrock double-billing fix below. v2.1.240 through v2.1.243 are four consecutive releases with either a one-line &ldquo;bug fixes and reliability improvements&rdquo; entry or no entry at all. <strong>If behaviour changes this week and it is not in the v2.1.239 list, those four are where it came from and we cannot tell you more than that.</strong></div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul class="changelog">
-        <li><span class="tag feat">newest on npm</span> <strong>v2.1.241</strong> &mdash; published 2026-08-22 23:58 UTC (Sun 23 Aug 09:58 local). <strong>This is what <code>claude update</code> installs.</strong></li>
-        <li><span class="tag fix">dist-tag <code>latest</code></span> <strong>v2.1.241</strong> &mdash; matches newest publish. No divergence today.</li>
-        <li><span class="tag fix">dist-tag <code>next</code></span> <strong>v2.1.241</strong> &mdash; canary and release channel converged; nothing newer being trialled.</li>
-        <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.231</strong> &mdash; published 13 Aug, eleven days ago. It moved up from v2.1.228 since Friday, which is progress, but <strong>ten releases have shipped since</strong> (v2.1.232 through v2.1.241). Everything from the NT-namespace fixes onward is still missing from <code>stable</code>, including v2.1.236's sandbox read-deny precedence fix, v2.1.238's MCP <code>headersHelper</code> trust gate and credential-inheritance fix, and v2.1.239's Bedrock billing fix. <strong>Anything pinned to <code>stable</code> carries all ten.</strong></li>
-        <li><span class="tag fix">changelog top</span> <strong>v2.1.241</strong> (1 entry: &ldquo;Bug fixes and reliability improvements&rdquo;) &middot; <span class="tag fix">GitHub release</span> <strong>v2.1.241</strong>, tagged 2026-08-23 00:52 UTC. All sources agree on the number; only v2.1.239 has readable content.</li>
+        <li><span class="tag feat">newest on npm</span> <strong>v2.1.243</strong> &mdash; published 2026-08-24 23:10 UTC (Tue 25 Aug 09:10 local). <strong>Carries the <code>next</code> dist-tag. No changelog entry, no GitHub release tag.</strong></li>
+        <li><span class="tag fix">also new</span> <strong>v2.1.242</strong> &mdash; published 2026-08-24 19:16 UTC (Tue 25 Aug 05:16 local). No dist-tag at all, no changelog entry, no release tag. It exists on npm and that is the whole of what is public about it.</li>
+        <li><span class="tag feat">dist-tag <code>latest</code></span> <strong>v2.1.241</strong> &mdash; published Sun 23 Aug 09:58 local. <strong>This is what a plain <code>claude update</code> installs today</strong>, two publishes behind the newest build.</li>
+        <li><span class="tag fix">changelog top</span> <strong>v2.1.241</strong> (1 entry: &ldquo;Bug fixes and reliability improvements&rdquo;) &middot; <span class="tag fix">GitHub release</span> <strong>v2.1.241</strong>, tagged 2026-08-23 00:52 UTC. <strong>Both trail npm by two versions.</strong></li>
+        <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.231</strong> &mdash; published 13 Aug, twelve days ago, and <strong>unmoved since Friday</strong>. Twelve releases have shipped since (v2.1.232 through v2.1.243). Everything from the NT-namespace fixes onward is still missing from <code>stable</code>, including v2.1.236's sandbox read-deny precedence fix, v2.1.238's MCP <code>headersHelper</code> trust gate, and v2.1.239's Bedrock billing fix. <strong>Anything pinned to <code>stable</code> carries all twelve.</strong></li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.239 &mdash; a silent Bedrock double-billing fix, Windows cross-session messaging, data-residency cost accuracy <span class="badge major">weekend headline</span></h3>
-      <p class="meta">59 entries &middot; published Sat 22 Aug 03:18 local &middot; the largest release since v2.1.234 &middot; the newest version with a public changelog</p>
+      <h3>v2.1.239 &mdash; still the newest documented release: silent Bedrock double-billing, Windows cross-session messaging, data-residency cost accuracy <span class="badge major">act on this</span></h3>
+      <p class="meta">59 entries &middot; published Sat 22 Aug 03:18 local &middot; the largest release since v2.1.234 &middot; <strong>four versions have shipped since with no readable detail</strong></p>
 
       <div class="headline-feature"><strong>Billing &mdash; Bedrock behind a header-stripping proxy was being billed twice for every turn, silently.</strong> &ldquo;Fixed Bedrock streaming behind proxies that strip the response <code>Content-Type</code> header, which silently doubled billed API calls by re-running every turn non-streaming.&rdquo; Read the mechanism: Claude Code starts a streaming request, the proxy strips the header that identifies the response as a stream, Claude Code concludes streaming is unsupported, and <strong>re-runs the same turn non-streaming</strong>. Both calls bill. There is no error, no warning, and no visible symptom other than the invoice. <strong>Any Bedrock traffic that traverses a proxy we control is a candidate</strong> &mdash; corporate egress proxies, service meshes, and anything doing TLS termination and response rewriting are all plausible strippers. Upgrade, then reconcile the Bedrock spend line against turn counts for the affected window.</div>
 
@@ -181,9 +180,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.241 and v2.1.240 &mdash; shipped, undocumented <span class="badge">no public detail</span></h3>
-      <p class="meta">1 entry each &middot; v2.1.241 published Sun 23 Aug 09:58 local &middot; v2.1.240 published Sat 22 Aug 23:03 local</p>
-      <div class="headline-feature"><strong>Both versions carry a single changelog line: &ldquo;Bug fixes and reliability improvements&rdquo;.</strong> There is no public detail on what changed. They are real releases &mdash; both are on npm, both have GitHub release tags, and v2.1.241 is what <code>claude update</code> installs &mdash; but <strong>we cannot tell you what is in them, and this page will not guess.</strong> If something behaves differently this week and it is not in the v2.1.239 list above, these two are the likely home for it.</div>
+      <h3>v2.1.243, v2.1.242, v2.1.241 and v2.1.240 &mdash; four releases, no usable detail <span class="badge">undocumented</span></h3>
+      <p class="meta">v2.1.243 published Tue 25 Aug 09:10 local &middot; v2.1.242 Tue 25 Aug 05:16 &middot; v2.1.241 Sun 23 Aug 09:58 &middot; v2.1.240 Sat 22 Aug 23:03</p>
+      <div class="headline-feature"><strong>v2.1.243 and v2.1.242 have no changelog entry at all.</strong> v2.1.243 carries the <code>next</code> dist-tag; v2.1.242 carries no tag. Neither has a GitHub release. They are real, published, installable builds about which <strong>nothing is publicly stated</strong>.</div>
+      <div class="headline-feature"><strong>v2.1.241 and v2.1.240 each carry a single line: &ldquo;Bug fixes and reliability improvements&rdquo;.</strong> v2.1.241 is what <code>claude update</code> installs today. That is the extent of the public record.</div>
+      <div class="headline-feature"><strong>Four consecutive releases without readable detail is itself the notable fact this morning.</strong> This page will not guess at contents. If something in our tooling changes behaviour this week and it is not in the v2.1.239 list above, one of these four is where it came from &mdash; and diagnosing it will mean bisecting versions rather than reading notes. <strong>Worth pinning to a known version in CI rather than tracking <code>latest</code> while this holds.</strong></div>
     </div>
 
     <div class="card section-versions">
@@ -211,14 +212,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card section-versions">
       <h3>Opus 5 &mdash; near-Fable intelligence at half the price <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> &middot; 24 Jul 2026 &middot; no change in the last 24 hours</p>
+      <p class="meta">Source: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> &middot; 24 Jul 2026 &middot; no model news in the last 24 hours; the support release notes still stop at 6 Aug</p>
 
       <div class="headline-feature"><strong><code>claude-opus-5</code> is available on all platforms.</strong> Anthropic describes it as &ldquo;thoughtful and proactive,&rdquo; coming close to <strong>Fable 5's frontier intelligence at half the price</strong>. Pricing is <strong>$5 / $25 per Mtok &mdash; identical to Opus 4.8</strong>, so this is a free capability upgrade for anything already pinned to Opus. It is the <strong>default model on Claude Max</strong>.</div>
 
-      <div class="headline-feature"><strong>Two model-adjacent items from the weekend release worth pairing with this.</strong> (1) <code>ANTHROPIC_DEFAULT_MODEL</code> (v2.1.236) is the correct way to set an org default without pinning people out of <code>/model</code>. (2) The <code>/model</code> picker now highlights only the newest model's name, so the highlight marks the actual new release rather than an arbitrary subset &mdash; a small thing that stops people picking the wrong model because the UI implied it was new.</div>
+      <div class="headline-feature"><strong>Two model-adjacent items worth pairing with this.</strong> (1) <code>ANTHROPIC_DEFAULT_MODEL</code> (v2.1.236) is the correct way to set an org default without pinning people out of <code>/model</code>. (2) The <code>/model</code> picker now highlights only the newest model's name, so the highlight marks the actual new release rather than an arbitrary subset &mdash; a small thing that stops people picking the wrong model because the UI implied it was new.</div>
 
       <ul class="changelog">
         <li><span class="tag major">model</span> <strong>Current lineup:</strong> <code>claude-fable-5</code>, <code>claude-opus-5</code>, <code>claude-sonnet-5</code>, <code>claude-haiku-4-5-20251001</code>.</li>
+        <li><span class="tag feat">feat</span> <strong>Enterprise model entitlements (1 Jul)</strong> let admins control which models their users can reach and what effort levels they can set &mdash; the governance lever if we want Opus 5 restricted to specific groups.</li>
         <li><span class="tag feat">feat</span> Cost estimates on data-residency workspaces now include the <strong>1.1&times; US-only-inference premium</strong> (v2.1.239) &mdash; if we compare model costs across workspaces, the numbers only became comparable this weekend.</li>
       </ul>
     </div>
@@ -228,25 +230,27 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge">newest change 22 Aug</span>
+      <span class="badge">newest documented change 22 Aug</span>
     </div>
 
     <div class="card">
       <h3>This week's actionable items</h3>
 
-      <div class="headline-feature"><strong>1. Cost integrity &mdash; upgrade any Bedrock host that sits behind a proxy. v2.1.239.</strong> Streaming behind a proxy that strips the response <code>Content-Type</code> header caused <strong>every turn to be re-run non-streaming, doubling billed API calls, with no error surfaced</strong>. Not a confidentiality issue, but a silent-doubling billing bug is a security-adjacent control failure: our spend telemetry was wrong and nothing told us. <strong>Action: upgrade, then reconcile Bedrock spend against turn volume for the pre-upgrade window.</strong></div>
+      <div class="headline-feature"><strong>1. New this morning &mdash; four undocumented releases is a supply-chain hygiene question, not just an annoyance.</strong> v2.1.240 through v2.1.243 ship with either one boilerplate line or nothing. <strong>We cannot review what we cannot read</strong>, and two of the four (v2.1.242, v2.1.243) have no GitHub release tag either, so there is no signed artefact to diff against. This is not an allegation of anything &mdash; Anthropic publishes patch builds ahead of promoting them routinely &mdash; but if our change-management process requires a documented rationale before a version moves in CI, <strong>v2.1.239 is currently the newest version that clears that bar.</strong> Pin explicitly; do not track <code>latest</code> or <code>next</code> unattended.</div>
 
-      <div class="headline-feature"><strong>2. Allowed-domain policy was bypassable from Bash on Claude Code on the web. v2.1.239.</strong> &ldquo;Requests from Bash and other tools to non-API anthropic.com hosts (e.g. www, docs) now go through the session's network proxy, so your environment's allowed domains apply.&rdquo; The prior behaviour is the finding: <strong>a class of egress skipped the proxy, and therefore skipped the allow-list we configured.</strong> Narrow in scope &mdash; anthropic.com hosts only &mdash; but any documented enforcement point with a hole in it deserves the upgrade.</div>
+      <div class="headline-feature"><strong>2. Cost integrity &mdash; upgrade any Bedrock host that sits behind a proxy. v2.1.239.</strong> Streaming behind a proxy that strips the response <code>Content-Type</code> header caused <strong>every turn to be re-run non-streaming, doubling billed API calls, with no error surfaced</strong>. Not a confidentiality issue, but a silent-doubling billing bug is a security-adjacent control failure: our spend telemetry was wrong and nothing told us. <strong>Action: upgrade, then reconcile Bedrock spend against turn volume for the pre-upgrade window.</strong></div>
 
-      <div class="headline-feature"><strong>3. Credential hygiene &mdash; masked input fields were recoverable in plaintext. v2.1.239.</strong> Password-style inputs such as the login code field <strong>let their text be pasted back with Ctrl+Y elsewhere, or written to prompt history when cleared with a double Esc</strong>. Low blast radius, trivially exploitable by anyone at the keyboard or reading a history file. <strong>If anyone has typed a code into a shared or recorded terminal recently, prompt history is worth clearing.</strong></div>
+      <div class="headline-feature"><strong>3. Allowed-domain policy was bypassable from Bash on Claude Code on the web. v2.1.239.</strong> &ldquo;Requests from Bash and other tools to non-API anthropic.com hosts (e.g. www, docs) now go through the session's network proxy, so your environment's allowed domains apply.&rdquo; The prior behaviour is the finding: <strong>a class of egress skipped the proxy, and therefore skipped the allow-list we configured.</strong> Narrow in scope &mdash; anthropic.com hosts only &mdash; but any documented enforcement point with a hole in it deserves the upgrade.</div>
 
-      <div class="headline-feature"><strong>4. Policy-check ordering &mdash; a blocked request went out again before the block was shown. v2.1.239.</strong> &ldquo;Fixed a request rejected by an organization policy check being re-sent before the rejection was shown.&rdquo; The policy decision itself held; the retry path did not respect it in ordering. Worth noting for anyone reading policy-enforcement logs and wondering about duplicate rejected requests.</div>
+      <div class="headline-feature"><strong>4. Credential hygiene &mdash; masked input fields were recoverable in plaintext. v2.1.239.</strong> Password-style inputs such as the login code field <strong>let their text be pasted back with Ctrl+Y elsewhere, or written to prompt history when cleared with a double Esc</strong>. Low blast radius, trivially exploitable by anyone at the keyboard or reading a history file. <strong>If anyone has typed a code into a shared or recorded terminal recently, prompt history is worth clearing.</strong></div>
 
-      <div class="headline-feature"><strong>5. Data retention &mdash; WebFetch held expired content for the session, not 15 minutes. v2.1.239.</strong> The intended window was 15 minutes; actual behaviour was the full session lifetime. If we have made any retention statement that leans on that window, it was not accurate before this release.</div>
+      <div class="headline-feature"><strong>5. Policy-check ordering &mdash; a blocked request went out again before the block was shown. v2.1.239.</strong> &ldquo;Fixed a request rejected by an organization policy check being re-sent before the rejection was shown.&rdquo; The policy decision itself held; the retry path did not respect it in ordering. Worth noting for anyone reading policy-enforcement logs and wondering about duplicate rejected requests.</div>
 
-      <div class="headline-feature"><strong>6. Still outstanding &mdash; the <code>stable</code> dist-tag is ten releases behind.</strong> It moved to v2.1.231 (13 Aug) since Friday, which is movement, but v2.1.232 through v2.1.241 are still missing. <strong>Anything we pin to <code>stable</code> lacks:</strong> both NT-namespace fixes, v2.1.234's credential-disclosure fixes, v2.1.235's permission-grant bypass fix, v2.1.236's sandbox read-deny precedence fix, v2.1.238's MCP <code>headersHelper</code> trust gate and credential-inheritance fix, and all five items above. <strong>Recommendation unchanged: pin to an explicit version we have reviewed, not to <code>stable</code>.</strong></div>
+      <div class="headline-feature"><strong>6. Data retention &mdash; WebFetch held expired content for the session, not 15 minutes. v2.1.239.</strong> The intended window was 15 minutes; actual behaviour was the full session lifetime. If we have made any retention statement that leans on that window, it was not accurate before this release.</div>
 
-      <div class="headline-feature"><strong>7. Carried forward &mdash; MCP <code>headersHelper</code> under <code>claude -p</code>. v2.1.238.</strong> A <code>headersHelper</code> is a command specified <em>by the repository</em> that Claude Code executes to mint auth headers. Until v2.1.238 a project-scoped one <strong>inherited whatever credentials were in the environment</strong> and could run <strong>before the trust dialog was answered</strong> &mdash; and under <code>claude -p</code> there is no dialog, so the gate was effectively absent. <strong>Anywhere we run <code>claude -p</code> over code we do not fully control &mdash; CI, automated review, scheduled tasks &mdash; must be on v2.1.238 or later.</strong></div>
+      <div class="headline-feature"><strong>7. Worsening &mdash; the <code>stable</code> dist-tag is now twelve releases behind and has not moved since Friday.</strong> It sits at v2.1.231 (13 Aug) while npm's newest is v2.1.243. <strong>Anything we pin to <code>stable</code> lacks:</strong> both NT-namespace fixes, v2.1.234's credential-disclosure fixes, v2.1.235's permission-grant bypass fix, v2.1.236's sandbox read-deny precedence fix, v2.1.238's MCP <code>headersHelper</code> trust gate and credential-inheritance fix, and all of items 2&ndash;6 above. <strong>Recommendation unchanged and now more urgent: pin to an explicit version we have reviewed, not to <code>stable</code>.</strong></div>
+
+      <div class="headline-feature"><strong>8. Carried forward &mdash; MCP <code>headersHelper</code> under <code>claude -p</code>. v2.1.238.</strong> A <code>headersHelper</code> is a command specified <em>by the repository</em> that Claude Code executes to mint auth headers. Until v2.1.238 a project-scoped one <strong>inherited whatever credentials were in the environment</strong> and could run <strong>before the trust dialog was answered</strong> &mdash; and under <code>claude -p</code> there is no dialog, so the gate was effectively absent. <strong>Anywhere we run <code>claude -p</code> over code we do not fully control &mdash; CI, automated review, scheduled tasks &mdash; must be on v2.1.238 or later.</strong></div>
     </div>
 
     <div class="card">
@@ -256,7 +260,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag sec">sec</span> <strong>macOS sandbox read-deny precedence (v2.1.236):</strong> wildcard deny rules such as <code>**/.env</code> now take precedence inside allowed read regions, cover matched directories' contents, and cannot be bypassed by renaming the denied file. All three clauses describe prior gaps.</li>
         <li><span class="tag sec">sec</span> <strong>Auto mode classification parity (v2.1.236):</strong> severity-scored classification now applies on Bedrock, Vertex AI and Foundry and when telemetry is disabled. Our Bedrock hosts were previously on weaker defaults than the Claude API path.</li>
         <li><span class="tag sec">sec</span> <strong>Auto mode git status check (v2.1.236):</strong> can no longer be fooled by a repo's <code>status.showUntrackedFiles=no</code> setting into reporting a clean tree.</li>
-        <li><span class="tag feat">feat</span> <strong>Enterprise skill and plugin security scanning</strong> is available to turn on &mdash; third-party skills and plugins are automatically checked for malicious content on upload or edit. Worth enabling before we widen who can publish to an internal marketplace.</li>
+        <li><span class="tag feat">feat</span> <strong>Enterprise skill and plugin security scanning</strong> (6 Aug, still the newest dated support release note) automatically checks third-party skills and plugins for malicious content on upload or edit. Worth enabling before we widen who can publish to an internal marketplace.</li>
       </ul>
     </div>
   </div>
@@ -270,15 +274,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Mon 24 Aug 2026 &mdash; <strong>no new Desktop-specific release note over the weekend</strong>. The newest dated support entry is still skill and plugin security scanning (6 Aug, 18 days old). All fresh movement is in v2.1.239, which carries the Desktop-hosted and Remote Control fixes.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a>, <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Tue 25 Aug 2026 &mdash; <strong>no new Desktop-specific release note.</strong> The newest dated support entry is still skill and plugin security scanning (6 Aug, 19 days old). All recent movement is in v2.1.239, which carries the Desktop-hosted and Remote Control fixes.</p>
 
-      <div class="headline-feature"><strong>New &mdash; the plan-mode fix is the one to know about.</strong> v2.1.239 fixed <strong>cloud sessions (web, Desktop and mobile) resuming out of plan mode after an idle worker restart</strong>. Plan mode is a safety boundary you set deliberately; a session that silently returns able to act is the wrong default in every direction. If anyone parks Desktop-hosted sessions in plan mode and comes back to them later, this is your upgrade reason.</div>
+      <div class="headline-feature"><strong>The plan-mode fix is still the one to know about.</strong> v2.1.239 fixed <strong>cloud sessions (web, Desktop and mobile) resuming out of plan mode after an idle worker restart</strong>. Plan mode is a safety boundary you set deliberately; a session that silently returns able to act is the wrong default in every direction. If anyone parks Desktop-hosted sessions in plan mode and comes back to them later, this is your upgrade reason.</div>
 
-      <div class="headline-feature"><strong>New &mdash; Remote Control got a runaway-sync fix that had been burning cycles since v2.1.232.</strong> &ldquo;Fixed runaway session-title syncing to Remote Control when two Claude Code processes shared one background job's state (2.1.232 regression); title updates are now deduplicated and rate-limited.&rdquo; Two processes sharing background-job state and racing on title updates is a regression that shipped nine releases ago and has been generating traffic ever since.</div>
+      <div class="headline-feature"><strong>Remote Control's runaway-sync fix had been burning cycles since v2.1.232.</strong> &ldquo;Fixed runaway session-title syncing to Remote Control when two Claude Code processes shared one background job's state (2.1.232 regression); title updates are now deduplicated and rate-limited.&rdquo; Two processes sharing background-job state and racing on title updates is a regression that shipped nine releases before its fix and generated traffic the whole time.</div>
 
-      <div class="headline-feature"><strong>New &mdash; two smaller Desktop-visible fixes.</strong> (1) <strong>Custom session titles disappeared from <code>/resume</code></strong> after more than ~64&nbsp;KB of conversation was written following the rename &mdash; you named a session and, after enough work, the name was gone. (2) <strong>Images uploaded from mobile now include their saved file path</strong>, so Claude can copy them into files it creates. Also: clearer messaging and <code>claude doctor</code> wording when Remote Control is not enabled for an account.</div>
+      <div class="headline-feature"><strong>Two smaller Desktop-visible fixes.</strong> (1) <strong>Custom session titles disappeared from <code>/resume</code></strong> after more than ~64&nbsp;KB of conversation was written following the rename &mdash; you named a session and, after enough work, the name was gone. (2) <strong>Images uploaded from mobile now include their saved file path</strong>, so Claude can copy them into files it creates. Also: clearer messaging and <code>claude doctor</code> wording when Remote Control is not enabled for an account.</div>
 
-      <div class="headline-feature"><strong>Standing context &mdash; the Customize panel and Cowork GA.</strong> Claude Cowork is <strong>generally available on macOS and Windows through the Claude Desktop app, with Linux in beta</strong>, on all paid plans. A <strong>Customize section groups skills, plugins and connectors in one place</strong>, and Cowork supports creating and scheduling both recurring and on-demand tasks. Also live: a monthly recap (beta, requires memory on) and <strong>Settings &gt; Time and focus</strong> for break reminders and quiet hours.</div>
+      <div class="headline-feature"><strong>Standing context &mdash; the Customize panel and Cowork GA.</strong> Claude Cowork is <strong>generally available on macOS and Windows through the Claude Desktop app, with Linux in beta</strong>, on all paid plans. A <strong>Customize section groups skills, plugins and connectors in one place</strong>, and Cowork supports creating and scheduling both recurring and on-demand tasks. Also live: a monthly recap at Settings &gt; Reflect (beta, requires memory on) and <strong>Settings &gt; Time and focus</strong> for break reminders and quiet hours.</div>
     </div>
   </div>
 
@@ -286,20 +290,22 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="cowork">
     <div class="product-header">
       <h2>Claude Cowork</h2>
-      <span class="badge">Generally available</span>
+      <span class="badge">Generally available &middot; cloud sessions in beta</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>, <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Skills, connectors and plugins directory</a>. Checked Mon 24 Aug 2026 &mdash; <strong>no new Cowork-specific release note over the weekend</strong>. The live items are v2.1.239's scheduled-task-relevant fixes plus the standing plugin governance features.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a> (<strong>marked updated this week</strong>), <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>. Checked Tue 25 Aug 2026.</p>
 
-      <div class="headline-feature"><strong>New &mdash; two v2.1.239 fixes land directly on scheduled tasks.</strong> (1) <strong>Remote sessions now keep sending keep-alives while a long <code>SessionStart</code> or <code>Setup</code> hook runs, so the container is not idle-reaped mid-hook.</strong> A scheduled task with a slow setup step was racing the idle reaper. (2) <strong><code>/goal</code> check-ins on long-running background work now back off &mdash; 30 minutes, then 1 hour, then every 2 hours</strong> &mdash; instead of hammering every 30 minutes, and resuming from the <code>claude --resume</code> picker restores the active goal.</div>
+      <div class="headline-feature"><strong>Genuinely new &mdash; the cross-surface support article was revised this week, and it now spells out what does and does not work off-desktop.</strong> Cowork runs on desktop, web, mobile <strong>and the Claude in Chrome side panel</strong> (side panel: Max and Team, rolling out to Pro, Enterprise where an admin has enabled it). The revised per-surface matrix is the useful part: <strong>scheduled tasks, projects, connectors, skills and plugins now work on all three surfaces</strong>, while <strong>live artifacts remain desktop-only</strong>, and local file access, browser use and computer use work from web and mobile <em>only while the desktop app is open on that machine</em>. Cloud sessions on web and mobile are still labelled beta.</div>
 
-      <div class="headline-feature"><strong>New &mdash; plugin identity in cloud sessions is now unambiguous.</strong> Plugins synced from claude.ai appear as <code>name@synced</code>, respond to <code>claude plugin enable/disable &lt;name&gt;@synced</code>, and <strong>never override a same-named plugin you installed</strong>. For anyone running Cowork with both org-pushed and locally installed plugins, the shadowing ambiguity is gone.</div>
+      <div class="headline-feature"><strong>The operational consequence worth internalising: scheduled tasks now run with no device online.</strong> They execute on Anthropic's servers rather than your laptop, so a scheduled task no longer needs the machine awake or the app open. <strong>That also means a scheduled task cannot reach local files unless the desktop app happens to be open</strong> &mdash; a task that reads a connected folder will silently have nothing to read when the machine is off. Worth checking any scheduled task we have that assumes local file access.</div>
+
+      <div class="headline-feature"><strong>Two v2.1.239 fixes land directly on scheduled tasks.</strong> (1) <strong>Remote sessions now keep sending keep-alives while a long <code>SessionStart</code> or <code>Setup</code> hook runs, so the container is not idle-reaped mid-hook.</strong> A scheduled task with a slow setup step was racing the idle reaper. (2) <strong><code>/goal</code> check-ins on long-running background work now back off &mdash; 30 minutes, then 1 hour, then every 2 hours</strong> &mdash; instead of hammering every 30 minutes.</div>
 
       <div class="headline-feature"><strong>Worth re-reading in light of scheduled tasks &mdash; the v2.1.238 <code>headersHelper</code> change.</strong> A scheduled Cowork task runs <strong>unattended, non-interactively, in a working directory it did not choose, with credentials in scope</strong>. That is precisely the shape the v2.1.238 fix addresses. Anyone running scheduled Cowork tasks over repos we do not fully control should be on v2.1.238 or later.</div>
 
-      <div class="headline-feature"><strong>Standing context &mdash; plugin and skill governance for Team and Enterprise.</strong> Three things worth knowing: (1) <strong>org-wide skill management</strong> &mdash; a skill uploaded through organization settings appears for everyone in Customize &gt; Skills, so nobody re-uploads it; (2) <strong>admins can create private plugin marketplaces</strong>, with a Knowledge Work marketplace added by default and built-in legal and finance marketplaces available; (3) <strong>Enterprise skill and plugin security scanning</strong> automatically checks third-party skills and plugins for malicious content on upload or edit. Also shipped: <strong>ten financial-services agent templates</strong> (pitchbooks, KYC screening, month-end close) as Cowork and Claude Code plugins.</div>
+      <div class="headline-feature"><strong>Standing context &mdash; plugin and skill governance for Team and Enterprise.</strong> (1) <strong>Org-wide skill management</strong> &mdash; a skill uploaded through organization settings appears for everyone in Customize &gt; Skills, so nobody re-uploads it. (2) <strong>Admins can create private plugin marketplaces</strong>, with a Knowledge Work marketplace added by default and built-in legal and finance marketplaces available. (3) <strong>Enterprise skill and plugin security scanning</strong> automatically checks third-party skills and plugins for malicious content on upload or edit. Also shipped: <strong>ten financial-services agent templates</strong> (pitchbooks, KYC screening, month-end close) as Cowork and Claude Code plugins.</div>
     </div>
   </div>
 
@@ -312,26 +318,34 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="grid-2">
       <div class="card">
         <h3>Official posts</h3>
-        <p class="meta">Newsroom and support release notes checked Mon 24 Aug 2026 &mdash; <strong>nothing new published on the newsroom since the 7 Aug Fable 5 biology safeguards post</strong>, and nothing new in the support release notes since 6 Aug. The weekend's only fresh primary sources are the v2.1.239&ndash;v2.1.241 changelog entries, GitHub release tags and npm publishes.</p>
+        <p class="meta">Newsroom and support release notes checked Tue 25 Aug 2026 &mdash; <strong>nothing new on the newsroom since the 7 Aug Fable 5 biology safeguards post</strong>, and the support release notes still stop at 6 Aug. Today's only fresh primary sources are the two npm publishes and the revised Cowork cross-surface support article.</p>
         <ul class="linklist">
           <li>
-            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; v2.1.239 documented (59 entries); v2.1.240 and v2.1.241 undocumented</a>
-            <span class="src">github.com &middot; 22&ndash;23 Aug &middot; new</span>
+            <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">npm &mdash; v2.1.243 (<code>next</code>) and v2.1.242 published overnight; <code>latest</code> still v2.1.241, <code>stable</code> v2.1.231</a>
+            <span class="src">npmjs.com &middot; today &middot; new</span>
           </li>
           <li>
-            <a href="https://github.com/anthropics/claude-code/releases">Claude Code GitHub releases &mdash; newest tag v2.1.241</a>
-            <span class="src">github.com &middot; 23 Aug &middot; new</span>
+            <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile &mdash; revised per-surface feature matrix</a>
+            <span class="src">support.claude.com &middot; updated this week &middot; new</span>
           </li>
           <li>
-            <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">npm dist-tags &mdash; <code>latest</code> and <code>next</code> v2.1.241, <code>stable</code> v2.1.231</a>
-            <span class="src">npmjs.com &middot; checked today</span>
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; still tops out at v2.1.241; v2.1.242 and v2.1.243 absent</a>
+            <span class="src">github.com &middot; checked today</span>
+          </li>
+          <li>
+            <a href="https://github.com/anthropics/claude-code/releases">Claude Code GitHub releases &mdash; newest tag still v2.1.241</a>
+            <span class="src">github.com &middot; 23 Aug</span>
           </li>
           <li>
             <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code release notes</a>
             <span class="src">docs.claude.com</span>
           </li>
           <li>
-            <a href="https://support.claude.com/en/articles/14328846-browse-skills-connectors-and-plugins-in-one-directory">Browse skills, connectors and plugins in one directory</a>
+            <a href="https://support.claude.com/en/articles/14479288-claude-cowork-architecture-overview">Claude Cowork architecture overview &mdash; cloud vs local session isolation</a>
+            <span class="src">support.claude.com</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks in Claude Cowork</a>
             <span class="src">support.claude.com</span>
           </li>
           <li>
@@ -343,8 +357,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">support.claude.com &middot; private marketplaces</span>
           </li>
           <li>
-            <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks in Claude Cowork</a>
-            <span class="src">support.claude.com</span>
+            <a href="https://support.claude.com/en/articles/15694740">Manage model access for your organization &mdash; Enterprise model entitlements</a>
+            <span class="src">support.claude.com &middot; 01 Jul</span>
           </li>
           <li>
             <a href="https://www.anthropic.com/news/finance-agents">Agents for financial services &mdash; ten Cowork plugin templates</a>
@@ -386,7 +400,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <ul class="linklist">
           <li>
             <a href="https://www.youtube.com/watch?v=wBO6XzMIklA">How To Use Claude Opus 5 In Claude Code: Agentic AI Coding &amp; Workflow Guide</a>
-            <span class="src">YouTube &middot; Code &middot; ~2 weeks</span>
+            <span class="src">YouTube &middot; Code &middot; ~3 weeks</span>
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=UV-FzKmxe68">Introducing Claude Opus 5: Anthropic's Newest 2026 Model for Coding &amp; Reasoning</a>
@@ -397,8 +411,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube &middot; Code &middot; ~3 weeks</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=X_zVY3-mbM8">FULL Claude Code Tutorial For Beginners in 2026 (Become a PRO)</a>
-            <span class="src">YouTube &middot; Code &middot; 30 Jun</span>
+            <a href="https://www.youtube.com/watch?v=Q0bsphUTLtw">The Only Claude Code Tutorial You Need (2026 Update)</a>
+            <span class="src">YouTube &middot; Code &middot; 01 Apr</span>
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=UR0gac-ccjg">How to Use Claude Cowork: Full Beginners Tutorial 2026</a>
@@ -420,7 +434,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   </div>
 
   <p class="footnote">
-    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Mon 24 Aug 2026 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
+    This page is regenerated each weekday morning at 8am local time by a scheduled Cowork task. It pulls the newest Claude Code version from npm (not just the <code>latest</code> dist-tag), recent changelog entries, and current Anthropic blog posts / community videos for Claude Code, Desktop, and Cowork. Source: <a href="https://github.com/konvoy-kegs/whats-new-with-claude">konvoy-kegs/whats-new-with-claude</a>. Last regenerated Tue 25 Aug 2026 (Australia/Sydney). If a number looks off, ping #cloud-engineers.
   </p>
 </div>
 </body>
