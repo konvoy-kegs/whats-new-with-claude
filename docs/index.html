@@ -66,16 +66,16 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> All sources aligned on v2.1.246</span>
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.246</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.231 &mdash; 14 behind</span>
-      <span class="pill neutral">Updated: Wed 26 Aug 2026</span>
+      <span class="pill warn"><span>&#9679;</span> Sources diverge &mdash; newest is v2.1.247, <code>latest</code> is v2.1.246</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.247</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.231 &mdash; 15 behind</span>
+      <span class="pill neutral">Updated: Thu 27 Aug 2026</span>
     </div>
   </div>
 
   <div class="tabs">
     <a href="#code" class="active">Claude Code</a>
-    <a href="#opus5">Opus 5</a>
+    <a href="#opus5">Models</a>
     <a href="#security">Security &amp; evals</a>
     <a href="#desktop">Claude Desktop</a>
     <a href="#cowork">Claude Cowork</a>
@@ -86,155 +86,94 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.246 on <code>latest</code></span>
+      <span class="badge">CLI &middot; v2.1.247 on <code>next</code>, v2.1.246 on <code>latest</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.246.</strong> npm's newest publish, the <code>latest</code> dist-tag, the <code>next</code> dist-tag, the changelog top entry and the newest GitHub release tag all agree. Unlike yesterday, there was no promotion lag to catch: v2.1.246 was published to npm at <strong>05:17 local this morning</strong> and the changelog and release tag were already in place by the time this page was built.</div>
+    <div class="banner"><strong>Sources do not agree this morning, and the difference is a release channel rather than a lag.</strong> The newest package on npm is <strong>v2.1.247</strong>, published <strong>04:02 local today</strong>, and it already has a changelog entry (33 items) and a GitHub release tag (09:06 local). But it sits on the <code>next</code> dist-tag, not <code>latest</code> &mdash; <code>latest</code> is still <strong>v2.1.246</strong>. <strong>That means a plain <code>claude update</code> installs v2.1.246 right now; v2.1.247 is being trialled on the canary channel.</strong> This is the opposite of the usual pattern, where npm runs ahead of the changelog. Here the documentation landed first and the promotion has not happened yet.</div>
 
-    <div class="banner"><strong>v2.1.246 is the largest release in weeks &mdash; 61 entries &mdash; and it is unusually security-heavy.</strong> A credential-disclosure fix affecting anyone running Claude Code through an LLM gateway, two Bash permission-matching fixes, a sandbox configuration fix, and a data-loss fix where the background retention sweep deleted git worktrees you created yourself. There is also a new Auto mode tab in <code>/permissions</code>. <strong>Three of these warrant an audit rather than just an upgrade.</strong> Details below.</div>
-
-    <div class="banner"><strong>Version-sequence housekeeping.</strong> <strong>v2.1.245</strong> was a single-entry hotfix (glibc 2.44 startup crash) published Tue 14:45 local. <strong>v2.1.244 was never published to npm at all</strong> &mdash; no package, no tag, no changelog. <strong>v2.1.242</strong> reached npm on Tue but never received a dist-tag, changelog entry or release tag. Noted only so the gaps in the sequence are not mistaken for missing entries here.</div>
+    <div class="banner"><strong>v2.1.247 is a hardening release &mdash; the security items are about content Claude Code renders, not commands it runs.</strong> Two of them close terminal-injection paths: marketplace-supplied text in <code>/plugin</code> output is now escape-safe, and markdown hyperlinks pointing at network or automounter paths now render as plain text instead of clickable links. There is also a sandbox-cleanup bug that <strong>deleted dotfile-managed <code>~/.claude/settings.json</code> symlinks</strong> (nix/home-manager, stow), and an availability fix for hooks that flood the conversation. For anyone on Bedrock, the notable line is that <strong>Claude is finally told when an MCP server fails to connect</strong> instead of silently concluding the tools do not exist.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul class="changelog">
-        <li><span class="tag feat">newest on npm</span> <strong>v2.1.246</strong> &mdash; published 2026-08-25 19:17 UTC (<strong>Wed 26 Aug 05:17 local</strong>). <strong>This is what <code>claude update</code> installs.</strong></li>
-        <li><span class="tag fix">dist-tag <code>latest</code></span> <strong>v2.1.246</strong> &middot; <span class="tag fix">dist-tag <code>next</code></span> <strong>v2.1.246</strong> &mdash; release channel and canary converged; nothing newer being trialled.</li>
-        <li><span class="tag fix">changelog top</span> <strong>v2.1.246</strong> (61 entries) &middot; <span class="tag fix">GitHub release</span> <strong>v2.1.246</strong>, tagged 2026-08-25 22:31 UTC. <strong>Full agreement across all five sources.</strong></li>
-        <li><span class="tag fix">previous</span> <strong>v2.1.245</strong> &mdash; published Tue 14:45 local, one entry only: a startup crash on Linux distributions shipping <strong>glibc 2.44</strong> (Arch, CachyOS, Fedora Rawhide). <strong>If any of our images are built on a rolling-release base, that is the one that bit.</strong></li>
-        <li><span class="tag fix">skipped</span> <strong>v2.1.244</strong> &mdash; never published to npm. <strong>v2.1.242</strong> &mdash; on npm Tue 05:16 local, no dist-tag, no changelog, no release tag.</li>
-        <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.231</strong> &mdash; published 13 Aug, <strong>thirteen days ago, and unmoved for a week</strong>. Fourteen releases have shipped since (v2.1.232 through v2.1.246). <strong>Anything pinned to <code>stable</code> is missing every item on this page</strong>, including today's credential-disclosure and Bash permission fixes, v2.1.243's <code>modelPricing</code> and container fixes, v2.1.239's Bedrock double-billing fix, and v2.1.236's sandbox read-deny precedence fix.</li>
+        <li><span class="tag feat">newest on npm</span> <strong>v2.1.247</strong> &mdash; published 2026-08-26 18:02 UTC (<strong>Thu 27 Aug 04:02 local</strong>), 33 changelog entries.</li>
+        <li><span class="tag sec">dist-tag <code>latest</code></span> <strong>v2.1.246</strong> &mdash; <strong>this is what <code>claude update</code> installs today.</strong> v2.1.247 has not been promoted.</li>
+        <li><span class="tag fix">dist-tag <code>next</code></span> <strong>v2.1.247</strong> &mdash; the canary channel is one ahead. To take it deliberately: <code>npm i -g @anthropic-ai/claude-code@next</code>. <strong>Worth doing only if one of today's hardening items applies to you</strong>; otherwise wait for promotion.</li>
+        <li><span class="tag fix">changelog top</span> <strong>v2.1.247</strong> &middot; <span class="tag fix">GitHub release</span> <strong>v2.1.247</strong>, tagged Thu 27 Aug 09:06 local. <strong>Documentation and release tag are both ahead of the <code>latest</code> dist-tag.</strong></li>
+        <li><span class="tag fix">previous</span> <strong>v2.1.246</strong> &mdash; 61 entries, published Wed 26 Aug 05:17 local. Yesterday's headline: the <code>ANTHROPIC_BASE_URL</code> gateway credential fix, two Bash permission-matching fixes, and the worktree data-loss bug. <strong>Still the release to be on if you are not tracking <code>next</code>.</strong></li>
+        <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.231</strong> &mdash; published 13 Aug, <strong>fourteen days ago and unmoved for over a week</strong>. <strong>Fifteen releases have shipped since.</strong> Anything pinned to <code>stable</code> is missing every item on this page plus yesterday's gateway credential-disclosure fix &mdash; that pin is now a liability, not a safety measure.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.246 &mdash; a gateway credential leak, two Bash permission-matching fixes, and a worktree data-loss bug <span class="badge major">today's headline</span></h3>
-      <p class="meta">61 entries &middot; published Wed 26 Aug 05:17 local &middot; source: <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG.md</a></p>
+      <h3>v2.1.247 &mdash; terminal-injection hardening, a dotfile-eating sandbox cleanup, and MCP failures finally surfaced <span class="badge major">today's headline</span></h3>
+      <p class="meta">33 entries &middot; published Thu 27 Aug 04:02 local &middot; currently on <code>next</code> only &middot; source: <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG.md</a></p>
 
-      <div class="headline-feature"><strong>Credentials &mdash; telemetry to Anthropic was carrying the API key configured for a third-party gateway.</strong> &ldquo;Fixed telemetry and metrics requests to Anthropic carrying the API key configured for a third-party gateway (<code>ANTHROPIC_BASE_URL</code>); a credential is now only sent to its own host.&rdquo; <strong>This is a credential-disclosure bug and it is the most important line in the release.</strong> If we point Claude Code at a gateway or proxy via <code>ANTHROPIC_BASE_URL</code>, the key minted for <em>that</em> host was being attached to telemetry and metrics requests going to <em>Anthropic's</em> host. The fix scopes credentials to their own origin. <strong>Action: upgrade, then treat any gateway key used with an affected version as exposed and rotate it.</strong> Pairs with v2.1.243's related fix for <code>ANTHROPIC_AUTH_TOKEN</code> telemetry attribution &mdash; this area has now been corrected twice in four days, which is itself worth noting.</div>
+      <div class="headline-feature"><strong>Supply chain &mdash; marketplace-supplied text can no longer inject terminal escapes.</strong> &ldquo;Improved plugin marketplace hardening: names containing control or invisible characters are rejected, and marketplace-supplied text in <code>/plugin</code> and <code>claude plugin</code> output is escape-safe.&rdquo; <strong>A plugin marketplace is third-party content that Claude Code prints straight into your terminal</strong>, and a terminal will act on control sequences embedded in text it is asked to display. Names carrying control or invisible characters could also be used to make one plugin visually impersonate another. <strong>This matters directly to us: admins can point Cowork at a private marketplace backed by a GitHub repository, so the trust boundary is whoever can push to that repo.</strong> Action: take <code>next</code> if we run any marketplace we do not exclusively control, and review who has write access to the ones we do.</div>
 
-      <div class="headline-feature"><strong>Permissions &mdash; Bash allow rules with a wildcard before the subcommand match more than you think.</strong> &ldquo;Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. <code>Bash(git * main)</code>), since they also match options inserted before the subcommand.&rdquo; <strong>A rule like <code>Bash(git * main)</code> was intended to allow a subcommand against <code>main</code>; in practice the wildcard also swallows <em>options</em> placed before the subcommand</strong> &mdash; things like <code>git -c core.pager=... </code> or <code>git --exec-path=...</code>, which change what <code>git</code> actually does. This is a warning rather than a behaviour change, so <strong>upgrading tells you where the problem is but does not fix it for you</strong>. Action: upgrade, read the startup warnings, and rewrite any flagged rule to put the wildcard after the subcommand.</div>
+      <div class="headline-feature"><strong>Rendered links &mdash; markdown hyperlinks pointing at network paths are now inert.</strong> &ldquo;Changed terminal hyperlinks in rendered markdown: link targets that point at a network or automounter path, contain a control character, or lead with an invisible character now render as plain text.&rdquo; <strong>Claude renders model output and file contents as markdown, and a terminal hyperlink is a clickable target the user does not see before clicking.</strong> A UNC or automounter path in that position means one click reaches out to a host of the author's choosing &mdash; the classic credential-leak shape on Windows, and an unwanted mount elsewhere. These now degrade to plain text. <strong>Read this together with the marketplace item: both are the same class of defect &mdash; untrusted content reaching the terminal with more authority than text should have.</strong></div>
 
-      <div class="headline-feature"><strong>Permissions &mdash; malformed commands with a dangling <code>&amp;&amp;</code> or <code>||</code> now always require approval.</strong> &ldquo;Fixed Bash permission checks to always require approval for malformed commands with a dangling <code>&amp;&amp;</code> or <code>||</code> operator.&rdquo; A command the parser cannot fully decompose is a command whose permission decision cannot be trusted; previously such input could take a path that did not require approval. <strong>Fail-closed is the right default here, and this closes a parser-edge-case gap in the permission gate.</strong> Second permission-matching fix in the same release, alongside v2.1.243's hook <code>if</code>-condition bug &mdash; the Bash rule matcher has had three corrections in a week.</div>
+      <div class="headline-feature"><strong>Config integrity &mdash; the Bash sandbox cleanup was deleting dotfile-managed <code>settings.json</code> symlinks.</strong> &ldquo;Fixed the Bash sandbox's after-command cleanup deleting a dotfile-managed <code>~/.claude/settings.json</code> symlink (nix/home-manager, stow) when it is repointed outside the sandbox's writable area.&rdquo; <strong>If anyone here manages dotfiles with home-manager, stow or chezmoi &mdash; and on this team that is likely &mdash; the sandbox could remove the symlink that supplies their Claude Code settings.</strong> The practical consequence is a developer silently dropping to default settings, including permission defaults, without an error to explain it. Worth asking the team directly whether anyone has had settings &ldquo;reset themselves&rdquo; this week.</div>
 
-      <div class="headline-feature"><strong>Data loss &mdash; the background retention sweep was deleting git worktrees you created yourself.</strong> &ldquo;Fixed the background retention sweep removing git worktrees under <code>.claude/worktrees/</code> that you created yourself when an old background-session record pointed at them.&rdquo; A stale background-session record pointing at a path was enough for the cleaner to remove <strong>a worktree it did not create</strong>. <strong>If anyone has lost uncommitted work under <code>.claude/worktrees/</code> and could not explain it, this is the explanation.</strong> Upgrade, and treat that directory as unsafe for anything not pushed until everyone has.</div>
+      <div class="headline-feature"><strong>AWS &mdash; Claude is now told when an MCP server fails to connect on Bedrock, Vertex and Foundry.</strong> &ldquo;Improved Bedrock, Vertex, and Foundry sessions (and any with telemetry disabled): Claude is now told when a configured MCP server failed to connect, instead of concluding its tools don't exist.&rdquo; <strong>This is the most consequential non-security line in the release for us.</strong> Previously a connection failure was indistinguishable from a tool that was never configured, so the model would quietly route around the missing capability and produce a plausible answer built without it. <strong>A silent capability gap is worse than an error, because the output still looks correct.</strong> Anywhere we run Claude Code against Bedrock with MCP servers attached, prior results that depended on a flaky server are suspect.</div>
 
-      <div class="headline-feature"><strong>Sandbox &mdash; the command sandbox's filesystem configuration was ignoring <code>--setting-sources</code>.</strong> The last line of the changelog and easy to miss: the sandbox filesystem config did not respect <code>--setting-sources</code>. <strong>Where we use <code>--setting-sources</code> to control which settings files are authoritative &mdash; CI, managed environments, anything that deliberately excludes user or project settings &mdash; the sandbox's filesystem rules were not being derived from the same set.</strong> Related: the <code>Notification</code> hook was not firing while the sandbox's &ldquo;Network request outside of sandbox&rdquo; permission prompt was waiting, so an unattended run could sit at a prompt with no notification sent.</div>
+      <div class="headline-feature"><strong>Availability &mdash; a noisy hook could wedge the session permanently.</strong> &ldquo;Fixed a hook or background agent that printed megabytes of error output being able to overflow the conversation and wedge the session on &lsquo;Prompt is too long&rsquo;.&rdquo; <strong>A misbehaving hook is normally a local annoyance; here it could render a session unrecoverable.</strong> Paired with a second fix for unbounded memory growth when a hook's or background task's output file could not be written &mdash; the file now records where the output was lost rather than accumulating it. Both matter for CI runners and long-lived automation, where nobody is watching the output.</div>
 
-      <div class="headline-feature"><strong>New &mdash; an Auto mode tab in <code>/permissions</code> for viewing and editing the auto mode classifier rules.</strong> Auto mode decides for itself which tool calls are safe to run without asking; until now the rules driving that decision were not directly inspectable. <strong>A permissions surface you cannot read is a permissions surface you cannot review</strong> &mdash; this makes auto mode's behaviour auditable and adjustable in the same place as everything else. Worth a look before widening auto mode use.</div>
+      <div class="headline-feature"><strong>Policy &mdash; organization sign-in enforcement now fails closed.</strong> &ldquo;Changed organization sign-in enforcement to exit at start when the administrator's managed settings cannot be read, even if host-supplied or per-user Windows registry settings exist.&rdquo; <strong>Previously an unreadable managed-settings file could let a session start under host or per-user settings instead &mdash; which is precisely the fallback an enforcement mechanism must not have.</strong> Related in the same release: analytics now stay off from startup rather than only after login when managed settings force gateway sign-in or a custom OAuth deployment, closing a window where telemetry left the machine before policy applied.</div>
 
-      <h4>Security and permissions <span class="date">v2.1.246</span></h4>
+      <div class="headline-feature"><strong>Context &mdash; Sonnet 5 now auto-compacts against its full 1M window.</strong> &ldquo;Changed Sonnet 5's default auto-compact window to its full 1M context, so sessions on the 1M window now auto-compact at about 967K tokens instead of about 934K.&rdquo; <strong>A free ~33K tokens of headroom before compaction on every long Sonnet 5 session</strong>, and one fewer compaction on work that was previously landing just over the old threshold.</div>
+
+      <div class="headline-feature"><strong>Cost &mdash; <code>/claude-api cost-optimize</code>, plus Admin API coverage in the bundled skill.</strong> A new workflow that profiles an existing project's Claude API spend and works through cost levers &mdash; caching, token hygiene, batch, effort, model choice &mdash; <strong>one measured change at a time</strong>, which is the right shape for this: cost work fails when several levers move at once and nothing is attributable. The <code>/claude-api</code> skill also gained Admin API coverage: organization members, invites, workspaces, API keys, rate limit reports, workload identity federation and CMEK. <strong>Between this and v2.1.243's <code>modelPricing</code>, the tooling for answering &ldquo;what is this costing us and why&rdquo; is now actually present.</strong></div>
+
+      <div class="headline-feature"><strong>Reliability &mdash; sub-agents no longer die on a first-call model 404.</strong> They now fall back through the session's model chain, and the error returned to the parent includes the error type, status, request id and model. <strong>A subagent dying on an unavailable model was previously an opaque failure mid-workflow</strong>; now it degrades and reports something you can act on. Relevant anywhere we pin subagents to a specific model id, especially Bedrock and Vertex spellings.</div>
+
       <ul class="changelog">
-        <li><span class="tag sec">sec</span> <strong>Gateway API key no longer sent to Anthropic hosts</strong> in telemetry and metrics requests &mdash; a credential is now only sent to its own host. <strong>Rotate any <code>ANTHROPIC_BASE_URL</code> gateway key used with an earlier version.</strong></li>
-        <li><span class="tag sec">sec</span> <strong>Startup warning for Bash allow rules with a wildcard before the subcommand</strong> (<code>Bash(git * main)</code>), which also match options inserted before the subcommand. Diagnostic only &mdash; the rules still need rewriting by hand.</li>
-        <li><span class="tag sec">sec</span> <strong>Bash permission checks always require approval for malformed commands</strong> with a dangling <code>&amp;&amp;</code> or <code>||</code>.</li>
-        <li><span class="tag sec">sec</span> <strong>The command sandbox's filesystem configuration now respects <code>--setting-sources</code></strong>.</li>
-        <li><span class="tag sec">sec</span> <strong>The <code>Notification</code> hook now fires while the sandbox &ldquo;Network request outside of sandbox&rdquo; prompt is waiting</strong> &mdash; previously an unattended run stalled silently at that prompt.</li>
-        <li><span class="tag sec">sec</span> <strong>MCP tools marked <code>requiresUserInteraction</code> no longer offer &ldquo;Yes, and don't ask again&rdquo;</strong> in their permission prompt. The option wrote an allow rule the tool then ignored &mdash; a prompt that appeared to grant something it did not.</li>
-        <li><span class="tag feat">feat</span> <strong>Auto mode tab in <code>/permissions</code></strong> for viewing and editing auto mode classifier rules.</li>
-        <li><span class="tag fix">fix</span> <strong><code>--strict-mcp-config</code> sessions no longer prompt to approve <code>.mcp.json</code> servers they would never load</strong> &mdash; which previously left background sessions waiting at startup.</li>
-        <li><span class="tag fix">fix</span> <strong>Auto mode tool calls denied as &ldquo;temporarily unavailable&rdquo; on very large sessions</strong>; the safety-check deadline now scales with prompt size.</li>
-      </ul>
-
-      <h4>Background sessions, worktrees and agents <span class="date">v2.1.246</span></h4>
-      <ul class="changelog">
-        <li><span class="tag fix">fix</span> <strong>The background retention sweep removed git worktrees under <code>.claude/worktrees/</code> that you created yourself</strong> when an old background-session record pointed at them. <strong>Data loss.</strong></li>
-        <li><span class="tag fix">fix</span> <strong>Background sessions failed to open after 45 seconds</strong> when the starting directory had been deleted, the machine had slept, or the host is slow to start processes. All three are ordinary laptop and CI conditions.</li>
-        <li><span class="tag fix">fix</span> <strong>Background sessions failed with &ldquo;Couldn't start the background service &hellip; EACCES&rdquo;</strong> when another Claude Code process was re-installing the npm package at that moment &mdash; an auto-update race.</li>
-        <li><span class="tag fix">fix</span> <strong>Opening a just-started session in <code>claude agents</code> while its worker was still booting</strong> (common on Windows) stopped it with &ldquo;was stopped while the respawn was in flight&rdquo;.</li>
-        <li><span class="tag fix">fix</span> <strong><code>claude agents</code> listed a backgrounded named session twice</strong>; backgrounding the same conversation again now numbers the new row (<code>my-session (2)</code>).</li>
-        <li><span class="tag fix">fix</span> <strong>Pressing &larr; or running <code>/background</code> during a dynamic workflow restarted its finished subagents</strong>; it now asks first and says how many would restart.</li>
-        <li><span class="tag feat">feat</span> <strong>A subagent that stops at its <code>maxTurns</code> limit now returns its output marked as partial</strong>, with a hint to continue it via <code>SendMessage</code>, instead of appearing finished. <strong>A truncated subagent that looked complete was a silent correctness problem.</strong></li>
-        <li><span class="tag feat">feat</span> <strong><code>/goal</code>: idle sessions now start at most three check-ins</strong> on long-running background work per goal; your next message allows three more.</li>
-        <li><span class="tag fix">fix</span> <strong><code>/fork</code> from an already-forked or backgrounded session started the new session with an empty conversation.</strong></li>
-      </ul>
-
-      <h4>Reliability, proxies and long sessions <span class="date">v2.1.246</span></h4>
-      <ul class="changelog">
-        <li><span class="tag feat">feat</span> <strong>Non-interactive sessions (<code>-p</code>, SDK, cloud) now automatically continue a response cut off mid-stream</strong> by a server error, connection loss or stall, instead of ending with an error. <strong>Directly relevant to scheduled and CI runs.</strong></li>
-        <li><span class="tag fix">fix</span> <strong>Memory grew with session length in the fullscreen and Ctrl+O transcript views</strong> &mdash; each rendered row retained a full copy of the transcript-wide tool lookups. Follows v2.1.243's on-demand code loading and earlier GC; long-lived sessions have had three memory fixes this week.</li>
-        <li><span class="tag fix">fix</span> <strong>A visible API error on the first prompt after idle when <code>apiKeyHelper</code> returns short-lived JWTs</strong>: an expired cached token is now refreshed before sending, and 401/403 auth errors retry quietly.</li>
-        <li><span class="tag fix">fix</span> <strong>Resumed sessions failed every turn with a 400 when the saved history contained tool blocks the Anthropic API does not accept</strong> &mdash; typically written by a third-party API proxy. A poisoned transcript that could not be recovered from.</li>
-        <li><span class="tag fix">fix</span> <strong>The UI stopped with a render error on the first tool call when a third-party Anthropic-compatible endpoint streams a <code>tool_use</code> block without an <code>id</code>.</strong></li>
-        <li><span class="tag fix">fix</span> <strong>The Write tool reported &ldquo;Out of memory&rdquo; or froze for a long time after overwriting a very large existing file</strong>, even though the file had been written.</li>
-        <li><span class="tag fix">fix</span> <strong>MCP tool calls interrupted by an incoming message in headless/remote sessions were reported to the model as &ldquo;completed with no output&rdquo;</strong> instead of an explicit interrupted error &mdash; the model was told a thing succeeded emptily when it had been cut off.</li>
-        <li><span class="tag fix">fix</span> <strong>MCP tool arguments were sent as JSON strings when the parameter's schema is empty (<code>{}</code>)</strong>, instead of their real type.</li>
-        <li><span class="tag fix">fix</span> <strong>A command interrupted mid-run showed as &ldquo;Ran 1 shell command&rdquo; with no sign it was cut.</strong></li>
-        <li><span class="tag fix">fix</span> <strong><code>curl -fsSL https://claude.ai/install.sh | bash</code> failed with &ldquo;Raw mode is not supported&rdquo;</strong> for some Team/Enterprise users with server-managed settings. An install path that fails only for managed users is a bad onboarding shape.</li>
-        <li><span class="tag fix">fix</span> <strong>Sessions that ended in plan mode resumed outside plan mode</strong> in the VS Code extension and in <code>claude -p --continue</code>/<code>--resume</code> with a permission prompt tool, when no permission mode was set. Third plan-mode-persistence fix in recent releases.</li>
-        <li><span class="tag fix">fix</span> <strong>Windows/macOS: headless sessions did not clean up stale entries in <code>~/.claude/sessions</code></strong> left by sessions that exited uncleanly.</li>
-        <li><span class="tag fix">fix</span> <strong>The self-hosted runner ended its live sessions or exited when a work-poll response was malformed</strong> (an intercepting proxy's HTML page, for instance); it now retries the poll.</li>
-        <li><span class="tag fix">fix</span> <strong><code>/ultrareview</code> runs and cloud sessions launched at the same time from one repository</strong> (several worktrees, say) sometimes started with another launch's uncommitted changes.</li>
-        <li><span class="tag feat">feat</span> <strong>Bash tool latency improved</strong> &mdash; snapshot functions are replayed without a base64 subshell per function.</li>
-      </ul>
-
-      <h4>Plugins, hooks and configuration <span class="date">v2.1.246</span></h4>
-      <ul class="changelog">
-        <li><span class="tag feat">feat</span> <strong><code>/cd</code> now applies the new directory's project settings, hooks, <code>.mcp.json</code> servers (behind the usual approval prompt), skills and agents immediately</strong>, instead of on <code>--resume</code>. <strong>Previously a <code>/cd</code> into another repo left you running the old repo's hooks and settings</strong> &mdash; a real footgun in a monorepo or multi-service checkout.</li>
-        <li><span class="tag fix">fix</span> <strong>Hook error messages showed a literal <code>${CLAUDE_PLUGIN_ROOT}</code></strong> instead of the resolved plugin path.</li>
-        <li><span class="tag fix">fix</span> <strong>The plugin cache created duplicate SHA-named directories for the same plugin.</strong></li>
-        <li><span class="tag fix">fix</span> <strong>Plugin installation failed when <code>plugin.json</code> was saved with a UTF-8 byte-order mark (BOM)</strong> &mdash; a Windows-authored plugin failing for an invisible reason.</li>
-        <li><span class="tag fix">fix</span> <strong><code>/reload-plugins</code> reported 0 skills for plugins that define skills under <code>skills/*/SKILL.md</code></strong> &mdash; the standard layout.</li>
-        <li><span class="tag fix">fix</span> <strong><code>claude plugin update</code> failed for an installed plugin given its bare name</strong> (only the fully-qualified name worked).</li>
-        <li><span class="tag fix">fix</span> <strong>Plugin skills whose frontmatter <code>name</code> already includes the <code>&lt;plugin&gt;:</code> prefix showed it doubled</strong> in the slash menu (<code>/plugin:plugin:skill</code>).</li>
-        <li><span class="tag fix">fix</span> <strong><code>claude plugin install &lt;name&gt;</code> exited silently or hung</strong> instead of reporting an error when <code>~/.claude/plugins/known_marketplaces.json</code> was empty or corrupted.</li>
-        <li><span class="tag feat">feat</span> <strong>OpenTelemetry plugin events for plugins synced from claude.ai</strong>: <code>plugin_id_hash</code> now reflects the plugin's real marketplace, and <code>enabled_via</code> is <code>admin-install</code> for admin-installed plugins. <strong>Makes plugin telemetry usable for answering &ldquo;what did we push versus what did people add themselves&rdquo;.</strong></li>
-        <li><span class="tag fix">fix</span> <strong>A <code>keybindings.json</code> binding with an unknown action name silently deadened that key</strong>; it is now skipped so the default binding keeps working, with a warning under <code>--debug</code>.</li>
-        <li><span class="tag feat">feat</span> <strong><code>claude install</code> and <code>claude update</code> now defer a pending managed-settings consent prompt</strong> to the next interactive session instead of prompting mid-command &mdash; which previously could wedge a scripted update.</li>
-        <li><span class="tag feat">feat</span> <strong><code>/code-review</code> can now be started by Claude on its own on Bedrock, Vertex AI and Foundry</strong>, through the Claude apps gateway, and when telemetry or non-essential traffic is disabled.</li>
-      </ul>
-
-      <h4>Interface and terminal <span class="date">v2.1.246</span></h4>
-      <ul class="changelog">
-        <li><span class="tag fix">fix</span> <strong><code>/stats</code> activity heatmap showed each day's activity one cell off</strong> (Sunday's count under Monday) <strong>in timezones east of UTC</strong> &mdash; which is us. Every heatmap anyone here has read was shifted by a day.</li>
-        <li><span class="tag fix">fix</span> <strong>A severe transcript slowdown when a diff contained a very long single line</strong> (a base64 string, for example); such lines now render truncated with a marker.</li>
-        <li><span class="tag fix">fix</span> <strong>Fullscreen mode showed a blank transcript after resizing the terminal</strong> and jumped to the bottom until the next keypress; erratic fullscreen scrolling when positioned at an earlier message was also fixed.</li>
-        <li><span class="tag fix">fix</span> <strong>Markdown rendering was disabled for a whole message when its first 500 characters contained no markdown</strong>, and for <code>+</code>/<code>N)</code> lists and setext headings.</li>
-        <li><span class="tag feat">feat</span> <strong>The turn's completion time is now shown on the end-of-turn duration line</strong>, e.g. <code>&#10043; Saut&eacute;ed for 23s &middot; done 6:05 PM</code>.</li>
-        <li><span class="tag fix">fix</span> <strong><code>/rename</code> replaced the theme's prompt border colour</strong> (including a custom theme's <code>promptBorder</code>) with the default cyan; <strong>custom theme diff colours</strong> (<code>diffAdded</code>/<code>diffRemoved</code>) were ignored in diffs and the <code>/theme</code> preview.</li>
-        <li><span class="tag fix">fix</span> <strong>Prompts beginning with <code>/--</code> were rejected as an unknown slash command</strong> instead of being sent to Claude.</li>
-        <li><span class="tag fix">fix</span> Also: the <code>@</code> file picker staying open after the typed text stopped matching a real path; the status line's cost and duration resetting to zero after visiting the agents view; fullscreen mode stealing keyboard focus to the control under the pointer when you clicked the window to refocus it; path completion failing when the token or working directory contained a null byte; and Remote Control sessions keeping their placeholder name in claude.ai until the second prompt.</li>
+        <li><span class="tag feat">feat</span> <strong><code>SendFeedback</code> tool</strong> &mdash; when something goes wrong in a session, Claude can draft a feedback report for you to review and send from <code>/feedback</code>. Turn off with the <code>feedbackDrafts</code> setting.</li>
+        <li><span class="tag feat">feat</span> <strong><code>spinnerTipsOverride</code> gains structure</strong> &mdash; <code>{id, text, cooldownSessions, priority}</code> entries, a <code>tipsFile</code>, and a <code>label</code>, so an organization can rotate its own tips alongside the built-in ones. A low-effort channel for internal conventions.</li>
+        <li><span class="tag feat">feat</span> <strong>Bash permission prompts now point at auto mode</strong> with a one-keystroke &ldquo;Yes, and switch to auto mode&rdquo; option.</li>
+        <li><span class="tag fix">fix</span> <strong>Cloud sessions no longer go silent when the container restarts mid-turn</strong> while a background agent, shell or monitor is running &mdash; the resumed session now reports the lost work.</li>
+        <li><span class="tag fix">fix</span> <strong><code>/compact</code> and &ldquo;Summarize from here&rdquo; in <code>--agent</code> sessions</strong> were summarizing under the default system prompt instead of the conversation's own.</li>
+        <li><span class="tag fix">fix</span> <strong>A version-less marketplace plugin's live cache directory</strong> was deleted and recreated on a second-scope install, which could disrupt a session already using it.</li>
+        <li><span class="tag fix">fix</span> <strong><code>/terminal-setup</code> was overwriting an entire Zed <code>keymap.json</code></strong> instead of merging in its keybinding.</li>
+        <li><span class="tag fix">fix</span> <strong>First-run setup exited with &ldquo;Unable to connect to Anthropic services&rdquo;</strong> when managed settings configure gateway sign-in and Anthropic's own endpoints are unreachable &mdash; a misleading error in exactly the network posture an enterprise deployment has.</li>
+        <li><span class="tag fix">fix</span> <strong>Ctrl shortcuts under non-Latin keyboard layouts</strong> (e.g. Cyrillic) in kitty-protocol terminals, and stray <code>&lt;35;150;7M</code> mouse-report text appearing in the prompt.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.245 &mdash; one line, and it is a startup crash <span class="badge">hotfix</span></h3>
-      <p class="meta">1 entry &middot; published Tue 25 Aug 14:45 local</p>
-      <div class="headline-feature"><strong>&ldquo;Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide).&rdquo;</strong> A single-entry release published four hours after v2.1.243 got its dist-tag, which is the shape of a hotfix for something that broke on contact with a rolling-release base. <strong>Not a concern for Ubuntu/Debian/Amazon Linux hosts, but worth knowing if any developer image or CI runner is built on a rolling distribution.</strong></div>
-    </div>
-
-    <div class="card section-versions">
-      <h3>Still worth actioning from earlier this week <span class="badge">carry forward</span></h3>
-      <div class="headline-feature"><strong>v2.1.243 &mdash; <code>modelPricing</code> makes cost figures reflect our contracted rates.</strong> A managed setting so an organization's contracted per-model rates and discount multiplier are used for <code>/cost</code>, the status line and telemetry instead of list price. <strong>On negotiated pricing, every cost number Claude Code has reported has been systematically high by our discount.</strong> Configure centrally, once.</div>
-      <div class="headline-feature"><strong>v2.1.243 &mdash; hook <code>if</code> conditions fired on the wrong commands when command substitution was involved.</strong> <code>Bash(cat *)</code>-style conditions matched unrelated commands containing <code>$()</code> or backticks followed by more arguments. <strong>A matching bug in a gating mechanism.</strong> Read alongside today's two Bash permission fixes &mdash; if we gate on Bash command shapes anywhere, the whole rule set deserves one careful pass this week rather than three separate ones.</div>
-      <div class="headline-feature"><strong>v2.1.243 &mdash; a 4.5&times; smaller Linux binary and 40&ndash;70 MB less memory per session.</strong> zstd compression takes the Linux x64 binary from about 340 MB to about 75 MB, and code is now loaded on demand rather than kept resident. <strong>Changes the economics of baking Claude Code into container images and CI runners.</strong></div>
-      <div class="headline-feature"><strong>v2.1.239 &mdash; Bedrock behind a header-stripping proxy was being billed twice per turn, silently.</strong> The proxy strips the response <code>Content-Type</code>, Claude Code concludes streaming is unsupported and re-runs the turn non-streaming. Both calls bill, with no error surfaced. <strong>Any Bedrock traffic traversing a proxy we control is a candidate</strong> &mdash; upgrade, then reconcile Bedrock spend against turn counts for the affected window.</div>
-      <div class="headline-feature"><strong>v2.1.243 &mdash; cross-session messaging was silently off in rootless containers and user namespaces</strong> since the v2.1.232 socket-directory hardening. If anyone tried multi-session orchestration in a rootless container recently and concluded it did not work, it did not &mdash; and now does.</div>
+      <h3>Still worth actioning from yesterday <span class="badge">carry forward</span></h3>
+      <div class="headline-feature"><strong>v2.1.246 &mdash; rotate any LLM gateway API key.</strong> Telemetry and metrics requests to Anthropic were carrying the API key configured for a third-party gateway via <code>ANTHROPIC_BASE_URL</code>. <strong>A credential minted for our gateway was being sent to a host that is not our gateway</strong> &mdash; that is a disclosure, and the response to a disclosed credential is rotation, not just an upgrade. <strong>This is on <code>latest</code> today, so there is no reason to still be exposed.</strong></div>
+      <div class="headline-feature"><strong>v2.1.246 &mdash; audit Bash allow rules with a wildcard before the subcommand.</strong> A rule like <code>Bash(git * main)</code> also matches options inserted before the subcommand (<code>git -c ...</code>, <code>git --exec-path=...</code>), which changes what the command does. v2.1.246 adds a startup warning but <strong>does not narrow the rules for you</strong>. Same release also made malformed commands with a dangling <code>&amp;&amp;</code> or <code>||</code> fail closed.</div>
+      <div class="headline-feature"><strong>v2.1.246 &mdash; the background retention sweep was deleting git worktrees you created yourself</strong> under <code>.claude/worktrees/</code> when a stale background-session record pointed at them. Treat that directory as unsafe for anything unpushed until everyone has upgraded.</div>
+      <div class="headline-feature"><strong>v2.1.245 &mdash; startup crash on glibc 2.44</strong> (Arch, CachyOS, Fedora Rawhide). Only relevant if a developer image or CI runner is built on a rolling-release base.</div>
+      <div class="headline-feature"><strong>v2.1.243 &mdash; <code>modelPricing</code>, and a 4.5&times; smaller Linux binary.</strong> Contracted per-model rates now drive <code>/cost</code>, the status line and telemetry instead of list price. Separately, zstd compression takes the Linux x64 binary from ~340 MB to ~75 MB with 40&ndash;70 MB less memory per session &mdash; <strong>which changes the economics of baking Claude Code into container images and CI runners.</strong></div>
     </div>
   </div>
 
-  <!-- ============ OPUS 5 ============ -->
+  <!-- ============ MODELS ============ -->
   <div id="opus5">
     <div class="product-header">
-      <h2>Claude Opus 5</h2>
-      <span class="badge">model &middot; launched 24 Jul</span>
+      <h2>Models</h2>
+      <span class="badge">no new model announcement</span>
     </div>
 
     <div class="card section-versions">
-      <h3>Opus 5 &mdash; near-Fable intelligence at half the price <span class="badge major">headline</span></h3>
-      <p class="meta">Source: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> &middot; 24 Jul 2026 &middot; <strong>no new model announcement</strong>; the newest support release note is now 25 Aug (Cowork memory), and the newest model-related newsroom item is the 10 Aug Sonnet 5 pricing confirmation</p>
+      <h3>Current lineup and what moved <span class="badge">steady</span></h3>
+      <p class="meta">Sources: <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a> (24 Jul) &middot; <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a> (30 Jun) &middot; <strong>No new model release since Opus 5 on 24 Jul.</strong> The newest support release note remains 25 Aug (Cowork memory). Checked Thu 27 Aug 2026.</p>
 
-      <div class="headline-feature"><strong><code>claude-opus-5</code> is available on all platforms.</strong> Anthropic describes it as &ldquo;thoughtful and proactive,&rdquo; coming close to <strong>Fable 5's frontier intelligence at half the price</strong>. Pricing is <strong>$5 / $25 per Mtok &mdash; identical to Opus 4.8</strong>, so this is a free capability upgrade for anything already pinned to an Opus tier.</div>
+      <div class="headline-feature"><strong>New today &mdash; Sonnet 5's auto-compact threshold moves to the full 1M window.</strong> v2.1.247 changes the default from about 934K to <strong>about 967K tokens</strong>. <strong>The only model-behaviour change in today's release</strong>, and a straightforward win for long-context agentic work: roughly 33K more tokens before the conversation is summarized, and one fewer compaction on sessions that were previously landing just over the line.</div>
 
-      <div class="headline-feature"><strong>Sonnet 5 at $2/$10 per Mtok is now permanent, confirmed twice.</strong> Anthropic's 10 Aug newsroom post made the introductory rate permanent (standard $3/$15 no longer applies), and v2.1.243 updated the <code>/model</code> picker and the bundled <code>claude-api</code> skill to present it as standard list price rather than a promo. <strong>The number never changed; what changed is that it is no longer time-limited</strong>, which makes it safe to build cost models on.</div>
+      <div class="headline-feature"><strong><code>claude-opus-5</code> remains the top coding model on all platforms.</strong> Anthropic describes it as &ldquo;thoughtful and proactive,&rdquo; approaching Fable 5's frontier intelligence at half the price, at <strong>$5 / $25 per Mtok &mdash; identical to Opus 4.8</strong>. Still a free capability upgrade for anything pinned to an Opus tier.</div>
 
-      <div class="headline-feature"><strong>Three model-governance levers now exist.</strong> (1) <code>ANTHROPIC_DEFAULT_MODEL</code> (v2.1.236) sets the model new sessions start on without pinning people out of <code>/model</code>. (2) <code>modelPicker</code> (v2.1.243) curates the picker itself &mdash; an ordered, labeled list accepting Vertex and Bedrock id spellings, either appended to or replacing the built-in lineup. (3) <strong>Enterprise model entitlements</strong> (1 Jul, beta) let admins control which models and effort levels users can access at the account level. <strong>Local default, local menu, account-level entitlement &mdash; use the third for policy and the first two for ergonomics.</strong></div>
+      <div class="headline-feature"><strong>Sonnet 5 at $2/$10 per Mtok is permanent.</strong> The introductory rate was made permanent in the 10 Aug newsroom post, and v2.1.243 updated the <code>/model</code> picker and the bundled <code>claude-api</code> skill to present it as standard list price rather than a promo. <strong>Safe to build cost models on.</strong> 1M context window, 128K max output.</div>
+
+      <div class="headline-feature"><strong>Three model-governance levers, in increasing order of authority.</strong> (1) <code>ANTHROPIC_DEFAULT_MODEL</code> sets the model new sessions start on without locking anyone out of <code>/model</code>. (2) <code>modelPicker</code> (v2.1.243) curates the picker itself &mdash; an ordered, labeled list accepting Vertex and Bedrock id spellings. (3) <strong>Enterprise model entitlements</strong> (1 Jul, beta) control which models and effort levels users can access at the account level. <strong>Use the third for policy and the first two for ergonomics.</strong></div>
 
       <ul class="changelog">
         <li><span class="tag major">model</span> <strong>Current lineup:</strong> <code>claude-fable-5</code>, <code>claude-opus-5</code>, <code>claude-sonnet-5</code>, <code>claude-haiku-4-5-20251001</code>.</li>
-        <li><span class="tag feat">feat</span> <strong><code>modelPricing</code> (v2.1.243)</strong> makes per-model cost figures reflect our contracted rates and discount multiplier rather than list price &mdash; the setting that makes cross-model cost comparison meaningful for us specifically.</li>
-        <li><span class="tag feat">feat</span> <strong><code>/tasks</code> shows the model and effort level each subagent ran on</strong> (v2.1.243), so subagent spend can be attributed to a model choice.</li>
-        <li><span class="tag feat">feat</span> <strong><code>/model</code>, <code>/fast</code> and <code>/effort</code> now run immediately</strong> rather than queueing until the turn ends on Bedrock, Vertex and Foundry (v2.1.243).</li>
+        <li><span class="tag feat">feat</span> <strong>Sub-agent model fallback (v2.1.247)</strong> &mdash; a subagent hitting a 404 on its first call now falls back through the session's model chain instead of dying, and reports error type, status, request id and model to the parent.</li>
+        <li><span class="tag feat">feat</span> <strong><code>/claude-api cost-optimize</code> (v2.1.247)</strong> &mdash; profiles a project's Claude API spend and works through caching, token hygiene, batch, effort and model choice one measured change at a time.</li>
+        <li><span class="tag feat">feat</span> <strong><code>/tasks</code> shows the model and effort level each subagent ran on</strong> (v2.1.243), so subagent spend attributes to a model choice.</li>
       </ul>
     </div>
   </div>
@@ -243,43 +182,30 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge">four new items today</span>
+      <span class="badge">three new items today</span>
     </div>
 
     <div class="card">
       <h3>This week's actionable items</h3>
 
-      <div class="headline-feature"><strong>1. New &mdash; rotate any LLM gateway API key. v2.1.246.</strong> &ldquo;Fixed telemetry and metrics requests to Anthropic carrying the API key configured for a third-party gateway (<code>ANTHROPIC_BASE_URL</code>); a credential is now only sent to its own host.&rdquo; <strong>A credential minted for our gateway was being transmitted to a host that is not our gateway.</strong> That is a disclosure regardless of how trustworthy the receiving host is, and the correct response to a disclosed credential is rotation, not just an upgrade. <strong>Action: upgrade, then rotate every key configured via <code>ANTHROPIC_BASE_URL</code> that was in use before v2.1.246.</strong> Note this is the second credential-scoping fix in four days &mdash; v2.1.243 addressed <code>ANTHROPIC_AUTH_TOKEN</code> telemetry attribution &mdash; so it is worth checking the whole gateway configuration rather than just this one path.</div>
+      <div class="headline-feature"><strong>1. New &mdash; review write access to any plugin marketplace we run. v2.1.247.</strong> Marketplace-supplied text in <code>/plugin</code> and <code>claude plugin</code> output is now escape-safe, and plugin names containing control or invisible characters are rejected. <strong>Before this, a marketplace could put terminal control sequences into a developer's terminal, and could name a plugin so it visually impersonated another.</strong> The trust boundary for a GitHub-backed private marketplace is whoever can push to that repo. <strong>Action: enumerate the marketplaces configured across the team, confirm branch protection and write access on the repos behind them, and take <code>@next</code> on any machine that consumes a marketplace we do not exclusively control.</strong></div>
 
-      <div class="headline-feature"><strong>2. New &mdash; audit Bash allow rules with a wildcard before the subcommand. v2.1.246.</strong> A rule such as <code>Bash(git * main)</code> <strong>also matches options inserted before the subcommand</strong>, which is a materially wider grant than the author intended &mdash; <code>git -c ...</code> and <code>git --exec-path=...</code> change what the command does. v2.1.246 adds a startup warning but <strong>does not narrow the rules for you</strong>. Action: upgrade, collect the warnings, rewrite the flagged rules. <strong>Do this in the same pass as item 3 and v2.1.243's hook <code>if</code>-condition fix &mdash; all three are Bash-pattern matching defects in gating mechanisms, and the rule set should be reviewed once, properly.</strong></div>
+      <div class="headline-feature"><strong>2. New &mdash; terminal hyperlinks to network paths are now inert. v2.1.247.</strong> Rendered markdown link targets that point at a network or automounter path, contain a control character, or lead with an invisible character now render as plain text. <strong>A terminal hyperlink hides its target; a UNC path in that position turns one click into an outbound connection to a host chosen by whoever authored the text</strong> &mdash; and on Windows that is the standard credential-leak shape. Since Claude renders both model output and file contents, the author is not necessarily anyone we trust. <strong>Same class as item 1: untrusted content reaching the terminal with more authority than text should have.</strong></div>
 
-      <div class="headline-feature"><strong>3. New &mdash; malformed Bash commands now fail closed. v2.1.246.</strong> &ldquo;Fixed Bash permission checks to always require approval for malformed commands with a dangling <code>&amp;&amp;</code> or <code>||</code> operator.&rdquo; A command the permission parser cannot decompose previously did not necessarily require approval. <strong>Fail-closed on unparseable input is the correct behaviour and this is a genuine gap being closed</strong>, not a cosmetic change.</div>
+      <div class="headline-feature"><strong>3. New &mdash; organization sign-in enforcement now fails closed. v2.1.247.</strong> When the administrator's managed settings cannot be read, Claude Code exits at start rather than continuing under host-supplied or per-user Windows registry settings. <strong>An enforcement mechanism with a fallback to less-privileged-source settings is not an enforcement mechanism.</strong> Alongside it, analytics now stay off from startup rather than only after login when managed settings force gateway sign-in or custom OAuth &mdash; closing a startup window where telemetry left the machine before policy applied. <strong>Both matter only if we rely on managed settings for policy; if we do, they matter a lot.</strong></div>
 
-      <div class="headline-feature"><strong>4. New &mdash; sandbox filesystem config was ignoring <code>--setting-sources</code>. v2.1.246.</strong> Where we use <code>--setting-sources</code> to make a specific settings set authoritative &mdash; typically CI and managed environments that deliberately exclude user or project settings &mdash; <strong>the command sandbox's filesystem rules were not derived from that same set</strong>. Anywhere the flag is load-bearing, the sandbox was not honouring it. Related in the same release: the <code>Notification</code> hook now fires while the sandbox network-approval prompt is waiting, so an unattended run no longer stalls at a prompt in silence.</div>
+      <div class="headline-feature"><strong>4. Carried &mdash; rotate every LLM gateway API key. v2.1.246, on <code>latest</code>.</strong> Telemetry to Anthropic was carrying the key configured for a third-party gateway via <code>ANTHROPIC_BASE_URL</code>. <strong>Upgrade is not sufficient; the credential was disclosed and needs rotating.</strong> Second credential-scoping fix in four days after v2.1.243's <code>ANTHROPIC_AUTH_TOKEN</code> attribution fix, so audit the whole gateway configuration rather than this one path.</div>
 
-      <div class="headline-feature"><strong>5. New &mdash; data loss under <code>.claude/worktrees/</code>. v2.1.246.</strong> The background retention sweep removed <strong>git worktrees created by the user</strong>, not by Claude Code, when a stale background-session record pointed at them. Not a confidentiality issue but an integrity and availability one. <strong>If anyone has unexplained missing work in that directory, this is why.</strong></div>
+      <div class="headline-feature"><strong>5. Carried &mdash; one careful pass over Bash allow rules and hook conditions. v2.1.243 and v2.1.246.</strong> Three defects in a week in Bash-pattern matching inside gating mechanisms: wildcards before a subcommand matching injected options, malformed commands not failing closed, and hook <code>if</code> conditions firing on unrelated commands containing <code>$()</code> or backticks. <strong>Review the rule set once, properly, rather than three times reactively.</strong></div>
 
-      <div class="headline-feature"><strong>6. Carried forward &mdash; hook <code>if</code> conditions matched the wrong commands. v2.1.243.</strong> Conditions like <code>Bash(cat *)</code> fired on unrelated Bash commands containing <code>$()</code> or backtick substitution followed by more arguments. <strong>By symmetry, the intended pattern may also have failed to match where we assumed it did</strong> &mdash; so both false positives and false negatives are in scope for the audit.</div>
-
-      <div class="headline-feature"><strong>7. Carried forward &mdash; cost integrity on Bedrock behind a proxy. v2.1.239, plus <code>modelPricing</code> in v2.1.243.</strong> Streaming behind a proxy that strips the response <code>Content-Type</code> caused <strong>every turn to be re-run non-streaming, doubling billed API calls with no error surfaced</strong>. Upgrade, then reconcile Bedrock spend against turn counts for the affected window.</div>
-
-      <div class="headline-feature"><strong>8. Worsening &mdash; the <code>stable</code> dist-tag is now fourteen releases behind and has not moved in a week.</strong> It sits at v2.1.231 (13 Aug) while <code>latest</code> is v2.1.246. <strong>Anything pinned to <code>stable</code> lacks:</strong> today's gateway credential fix, both Bash permission fixes, the sandbox <code>--setting-sources</code> fix, the worktree data-loss fix, v2.1.243's hook-matching fix and <code>modelPricing</code>, v2.1.239's Bedrock double-billing fix, v2.1.236's sandbox read-deny precedence fix, and v2.1.234/235's credential-disclosure and permission-grant fixes. <strong>Pinning to <code>stable</code> is now a materially worse security posture than tracking <code>latest</code>, which is the opposite of the intent.</strong></div>
-
-      <div class="headline-feature"><strong>9. Carried forward &mdash; MCP <code>headersHelper</code> under <code>claude -p</code>. v2.1.238.</strong> A <code>headersHelper</code> is a command specified <em>by the repository</em> that Claude Code executes to mint auth headers. Until v2.1.238 a project-scoped one <strong>inherited whatever credentials were in the environment</strong> and could run without an explicit trust gate. Relevant to any unattended run over a repository we do not fully control.</div>
+      <div class="headline-feature"><strong>6. Carried &mdash; data loss under <code>.claude/worktrees/</code>. v2.1.246.</strong> The background retention sweep removed git worktrees created by the user when a stale background-session record pointed at them. Integrity and availability rather than confidentiality, but the failure mode is unexplained missing work.</div>
     </div>
 
     <div class="card">
       <h3>Sandboxing and isolation notes</h3>
-      <ul class="changelog">
-        <li><span class="tag sec">sec</span> <strong>Sandbox filesystem config vs <code>--setting-sources</code> (v2.1.246):</strong> the sandbox was not deriving its filesystem rules from the settings sources the flag made authoritative.</li>
-        <li><span class="tag sec">sec</span> <strong><code>Notification</code> hook during sandbox network prompts (v2.1.246):</strong> the hook did not fire while the &ldquo;Network request outside of sandbox&rdquo; prompt was waiting &mdash; an unattended run stalled with nothing notified.</li>
-        <li><span class="tag sec">sec</span> <strong>Sandbox network-violation reporting (v2.1.243):</strong> violation details were dropped when the blocked command still exited 0 (<code>curl</code> printing the proxy's 403 page). Enforcement worked; visibility did not.</li>
-        <li><span class="tag sec">sec</span> <strong>Sandboxed Bash prompt no longer lists allowed network hosts (v2.1.243):</strong> Claude now attempts requests and surfaces an approval prompt rather than assuming an unlisted host is blocked. A deliberate shift from implicit-deny-by-omission toward an explicit approval path.</li>
-        <li><span class="tag sec">sec</span> <strong>Rootless containers and user namespaces (v2.1.243):</strong> the v2.1.232 socket-directory hardening silently disabled cross-session messaging in exactly those environments. A hardening change with an unintended availability cost, now corrected.</li>
-        <li><span class="tag sec">sec</span> <strong>macOS computer use (v2.1.243):</strong> clicking the desktop, Dock or a Finder window now requires granting Finder through the access dialog, like any other app. A tightening.</li>
-        <li><span class="tag sec">sec</span> <strong>macOS sandbox read-deny precedence (v2.1.236):</strong> wildcard deny rules such as <code>**/.env</code> now take precedence inside allowed read regions, cover matched directories' contents, and cannot be bypassed by renaming the denied file. All three clauses describe prior gaps.</li>
-        <li><span class="tag feat">feat</span> <strong>Enterprise skill and plugin security scanning</strong> (6 Aug) automatically checks third-party skills and plugins for malicious content on upload or edit. Worth enabling before we widen who can publish to an internal marketplace.</li>
-      </ul>
+      <div class="headline-feature"><strong>New &mdash; the sandbox's after-command cleanup was deleting dotfile-managed <code>settings.json</code> symlinks (v2.1.247).</strong> Where <code>~/.claude/settings.json</code> is a symlink managed by nix/home-manager or stow and repointed outside the sandbox's writable area, cleanup removed it. <strong>The developer silently drops to default settings &mdash; including permission defaults &mdash; with no error explaining why.</strong> Ask the team whether anyone has had settings apparently reset themselves this week.</div>
+      <div class="headline-feature"><strong>New &mdash; hook and background-task output can no longer wedge or balloon a session (v2.1.247).</strong> Megabytes of error output from a hook or background agent could overflow the conversation and lock the session on &ldquo;Prompt is too long&rdquo;; separately, memory grew without bound when a hook's output file could not be written. <strong>Both are unattended-automation failure modes</strong> &mdash; CI runners and scheduled tasks, where nobody sees the output.</div>
+      <div class="headline-feature"><strong>Carried &mdash; sandbox filesystem config was ignoring <code>--setting-sources</code> (v2.1.246).</strong> Where we use that flag to make a specific settings set authoritative &mdash; typically CI and managed environments deliberately excluding user or project settings &mdash; the sandbox's filesystem rules were not derived from the same set.</div>
     </div>
   </div>
 
@@ -292,17 +218,17 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a> (<strong>new entry dated 25 Aug &mdash; the first since 6 Aug</strong>), <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Wed 26 Aug 2026.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">support.claude.com release notes</a> (newest entry <strong>25 Aug</strong> &mdash; unchanged since yesterday), <a href="https://docs.claude.com/en/release-notes/overview">platform release notes</a>, <a href="https://support.claude.com/en/collections/16163169-claude-desktop">Claude Desktop help</a>. Checked Thu 27 Aug 2026.</p>
 
-      <div class="headline-feature"><strong>New &mdash; memory now spans chat and Cowork, and the default differs by plan.</strong> The 25 Aug release note is the first support-side entry in nearly three weeks. Everything Claude remembers is now listed under <strong>Topics</strong> in <strong>Settings &gt; Memory</strong>, where any item can be edited or deleted. <strong>Memory is on by default for Free, Pro and Max, and off by default for Team and Enterprise organizations.</strong> That default split is the part that matters for us: on a Team or Enterprise plan nothing is being retained unless somebody turned it on, so this is a decision to make deliberately rather than a change that has already happened to us. See <a href="https://support.claude.com/en/articles/11817273">Use Claude's chat search and memory</a>.</div>
+      <div class="headline-feature"><strong>New today &mdash; the desktop app was being told a session was ready before it was.</strong> v2.1.247: &ldquo;Fixed self-hosted runner sessions reporting <code>running</code> before Claude Code had started, which could trigger a premature &lsquo;Claude is waiting for your input&rsquo; notification from the Claude desktop app.&rdquo; <strong>A notification that fires before there is anything to respond to trains people to ignore the notification</strong> &mdash; worth having if anyone here runs self-hosted runners alongside the desktop app.</div>
 
-      <div class="headline-feature"><strong>New &mdash; sensitive topics are excluded unless explicitly opted in.</strong> Categories such as health and beliefs stay out of memory unless <strong>Include sensitive topics in memory</strong> is turned on. Worth knowing the toggle exists and that it is per-user, before anyone asks what memory is allowed to hold.</div>
+      <div class="headline-feature"><strong>Memory now spans chat and Cowork, and the default differs by plan (25 Aug).</strong> Everything Claude remembers is listed under <strong>Topics</strong> in <strong>Settings &gt; Memory</strong>, where any item can be edited or deleted. <strong>Memory is on by default for Free, Pro and Max, and off by default for Team and Enterprise organizations.</strong> On a Team or Enterprise plan nothing is retained unless somebody turned it on &mdash; so this is a decision to make deliberately, not a change that has already happened to us. See <a href="https://support.claude.com/en/articles/11817273">Use Claude's chat search and memory</a>.</div>
 
-      <div class="headline-feature"><strong>Carried forward &mdash; MCP sign-in from the desktop app was failing on a whole class of server.</strong> v2.1.243 fixed <strong>&ldquo;Invalid redirect URI&rdquo; on servers that support client ID metadata documents</strong>, with Linear named as an example. If anyone tried to connect an MCP server from Desktop recently and hit that error, retry after updating.</div>
+      <div class="headline-feature"><strong>Sensitive topics are excluded unless explicitly opted in.</strong> Categories such as health and beliefs stay out of memory unless <strong>Include sensitive topics in memory</strong> is turned on. It is a per-user toggle &mdash; worth knowing it exists before anyone asks what memory is allowed to hold.</div>
 
-      <div class="headline-feature"><strong>Carried forward &mdash; Claude in Chrome lost its Claude Code connection whenever an auto-update ran.</strong> The native host was pinned to a specific version directory that auto-update then cleaned up; it now launches via the stable <code>claude</code> launcher. An auto-update quietly breaking an integration is a bad pairing.</div>
+      <div class="headline-feature"><strong>Carried forward &mdash; MCP sign-in from the desktop app was failing on a whole class of server.</strong> v2.1.243 fixed &ldquo;Invalid redirect URI&rdquo; on servers supporting client ID metadata documents, with Linear named as an example. If anyone tried to connect an MCP server from Desktop recently and hit that, retry after updating.</div>
 
-      <div class="headline-feature"><strong>Standing context &mdash; the Customize panel, plugin governance and Cowork GA.</strong> Claude Cowork is <strong>generally available on macOS and Windows through the Claude Desktop app, with Linux in beta</strong>, on all paid plans. A <strong>Customize section groups skills, plugins and connectors in one place</strong>. Also live: the monthly recap at Settings &gt; Reflect, break reminders and quiet hours at Settings &gt; Time and focus, and a <code>managed</code> marker in <code>/mcp</code> and <code>/plugins</code> showing which connector credentials are the organization's rather than the user's.</div>
+      <div class="headline-feature"><strong>Standing context &mdash; the Customize panel, plugin governance and Cowork GA.</strong> Claude Cowork is <strong>generally available on macOS and Windows through the Claude Desktop app, with Linux in beta</strong>, on all paid plans, and available on web and mobile since 7 Jul. A <strong>Customize section groups skills, plugins and connectors in one place</strong>. Also live: the monthly recap at Settings &gt; Reflect, break reminders and quiet hours at Settings &gt; Time and focus, and a <code>managed</code> marker in <code>/mcp</code> and <code>/plugins</code> showing which connector credentials are the organization's rather than the user's.</div>
     </div>
   </div>
 
@@ -315,21 +241,21 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">Release notes &mdash; 25 Aug entry</a>, <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>, <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13364135-use-claude-cowork-safely">Use Claude Cowork safely</a>.</p>
+      <p class="meta">Sources: <a href="https://support.claude.com/en/articles/12138966-release-notes">Release notes &mdash; 25 Aug entry</a>, <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>, <a href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork">Get started with Claude Cowork</a>, <a href="https://support.claude.com/en/articles/13364135-use-claude-cowork-safely">Use Claude Cowork safely</a>. Checked Thu 27 Aug 2026.</p>
 
-      <div class="headline-feature"><strong>New &mdash; memory now works across chat and Cowork in the cloud (25 Aug).</strong> Previously memory was a chat-side concept; it now spans both surfaces for cloud sessions. <strong>The governance-relevant detail: memory is off by default for Team and Enterprise organizations and on by default for Free, Pro and Max.</strong> Cowork sessions touch files, connectors and internal systems, so a memory store spanning them is a different proposition to one spanning chat alone &mdash; worth an explicit decision and a note in whatever we tell people about acceptable use, rather than leaving it to individual toggles. Everything retained is inspectable and deletable under <strong>Settings &gt; Memory &gt; Topics</strong>.</div>
+      <div class="headline-feature"><strong>New today &mdash; a cloud session whose container restarts mid-turn no longer goes silent (v2.1.247).</strong> &ldquo;Fixed cloud sessions going silent when the session's container restarts between turns while a background agent, shell, or monitor is still running &mdash; the resumed session now reports the lost work.&rdquo; <strong>This is the single most relevant line in today's release for scheduled tasks.</strong> A container restart during a long unattended run previously produced a session that simply stopped, with the work it had in flight unaccounted for. Now the resumption tells you what was lost, which is the difference between a run you can trust and one you have to re-do blind. Related: a background session that showed &ldquo;opening&hellip;&rdquo; forever in <code>claude agents</code> after its terminal host died now fails within seconds with a reason.</div>
+
+      <div class="headline-feature"><strong>New today &mdash; MCP failures no longer look like missing tools.</strong> On Bedrock, Vertex, Foundry and any session with telemetry disabled, Claude is now told when a configured MCP server failed to connect rather than concluding its tools do not exist. <strong>For a scheduled Cowork task this is the difference between a run that fails and a run that quietly produces a worse answer.</strong> A task that depends on a connector which was briefly unreachable would previously have completed, without the connector, looking entirely normal.</div>
+
+      <div class="headline-feature"><strong>New today &mdash; a marketplace plugin's live cache can no longer be pulled out from under a running session.</strong> A version-less marketplace plugin's live cache directory was deleted and recreated on a second-scope install, which could disrupt a session already using it. <strong>Relevant if we install the same plugin at both user and project scope</strong>, which is easy to do accidentally.</div>
+
+      <div class="headline-feature"><strong>Memory now works across chat and Cowork in the cloud (25 Aug).</strong> Memory was previously a chat-side concept; it now spans both surfaces for cloud sessions. <strong>The governance-relevant detail: off by default for Team and Enterprise, on by default for Free, Pro and Max.</strong> Cowork sessions touch files, connectors and internal systems, so a memory store spanning them is a materially different proposition to one spanning chat alone &mdash; worth an explicit decision rather than leaving it to individual toggles. Everything retained is inspectable and deletable under <strong>Settings &gt; Memory &gt; Topics</strong>.</div>
 
       <div class="headline-feature"><strong>The operational rule that keeps catching people: scheduled tasks run with no device online.</strong> They execute on Anthropic's servers rather than a laptop, so they no longer need the machine awake or the app open. <strong>The corollary is the trap: a scheduled task cannot reach local files unless the desktop app happens to be open on that machine.</strong> Anything that must touch local state needs to be designed around that, not assumed.</div>
 
-      <div class="headline-feature"><strong>New &mdash; two v2.1.246 fixes land squarely on unattended runs.</strong> (1) <strong>Non-interactive sessions now automatically continue a response cut off mid-stream</strong> by a server error, connection loss or stall, instead of ending with an error &mdash; a scheduled task that died to a transient network blip now recovers itself. (2) <strong>MCP tool calls interrupted in headless/remote sessions were reported to the model as &ldquo;completed with no output&rdquo;</strong> rather than as an interruption, so the run continued believing a step had succeeded emptily. Both are exactly the failure shapes that make a scheduled task quietly produce a worse result rather than fail loudly.</div>
+      <div class="headline-feature"><strong>Carried forward &mdash; two v2.1.246 fixes aimed squarely at unattended runs.</strong> Non-interactive sessions now automatically continue a response cut off mid-stream by a server error, connection loss or stall; and MCP tool calls interrupted in headless/remote sessions are reported as interrupted rather than &ldquo;completed with no output&rdquo;. Together with today's container-restart fix, <strong>three of the four ways a scheduled task could silently degrade have now been closed in two releases.</strong></div>
 
-      <div class="headline-feature"><strong>New &mdash; the <code>Notification</code> hook now fires while a sandbox network-approval prompt is waiting (v2.1.246).</strong> An unattended Cowork run that hit an unapproved host previously sat at a prompt with nothing notified. If we rely on <code>Notification</code> hooks to know a scheduled run needs attention, this was a blind spot.</div>
-
-      <div class="headline-feature"><strong>Carried forward &mdash; per-loop token accounting (v2.1.243).</strong> The Loops breakdown in <code>/usage</code> gives per-loop run count, total tokens, tokens per run and last run. <strong>Unattended recurring work is exactly where token spend goes unnoticed</strong>, so per-loop attribution is the missing piece for anyone running scheduled tasks. Pairs with v2.1.246's cap of three <code>/goal</code> check-ins per idle period.</div>
-
-      <div class="headline-feature"><strong>Carried forward &mdash; the v2.1.238 <code>headersHelper</code> change is worth re-reading in this context.</strong> A scheduled Cowork task runs <strong>unattended, non-interactively, in a working directory it did not choose, with credentials in scope</strong>. That is precisely the shape the fix addresses. Anyone running scheduled tasks over repositories we do not fully control should read it as applying to them.</div>
-
-      <div class="headline-feature"><strong>Standing context &mdash; plugin and skill governance for Team and Enterprise.</strong> (1) <strong>Org-wide skill management</strong> &mdash; a skill uploaded through organization settings appears for everyone under Customize &gt; Skills. (2) <strong>Admins can create private plugin marketplaces</strong>, including from a GitHub repository. (3) <strong>Enterprise skill and plugin security scanning</strong> checks third-party skills and plugins for malicious content on upload or edit. (4) v2.1.246 makes plugin OpenTelemetry usable for governance: <code>enabled_via</code> is now <code>admin-install</code> for admin-installed plugins, so &ldquo;what did we push versus what did people add themselves&rdquo; is answerable from telemetry.</div>
+      <div class="headline-feature"><strong>Standing context &mdash; plugin and skill governance for Team and Enterprise.</strong> (1) <strong>Org-wide skill management</strong> &mdash; a skill uploaded through organization settings appears for everyone under Customize &gt; Skills. (2) <strong>Admins can create private plugin marketplaces</strong>, including from a GitHub repository &mdash; <strong>see today's marketplace hardening item; that repo's write access is the trust boundary.</strong> (3) <strong>Enterprise skill and plugin security scanning</strong> (6 Aug, beta) checks third-party skills and plugins for malicious content on upload or edit. (4) Plugin OpenTelemetry now distinguishes <code>admin-install</code>, so &ldquo;what did we push versus what did people add themselves&rdquo; is answerable from telemetry.</div>
     </div>
   </div>
 
@@ -342,79 +268,31 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="grid-2">
       <div class="card">
         <h3>Official posts</h3>
-        <p class="meta">Newsroom and support release notes checked Wed 26 Aug 2026. <strong>New since yesterday: the 25 Aug support release note on memory in Cowork</strong> &mdash; the first support-side entry since 6 Aug. The newsroom's most recent items remain the 10 Aug Sonnet 5 pricing confirmation and the 7 Aug Fable 5 biology safeguards post. Today's other fresh primary sources are the v2.1.246 changelog and release tag and the npm publishes.</p>
+        <p class="meta">Newsroom and support release notes checked Thu 27 Aug 2026. <strong>Nothing new on the support or newsroom side since yesterday</strong> &mdash; the most recent support entry remains 25 Aug (memory in Cowork) and the newest newsroom items remain the 10 Aug Sonnet 5 pricing confirmation and the 7 Aug Fable 5 biology safeguards post. <strong>Today's fresh primary sources are the v2.1.247 changelog entry, its GitHub release tag and the npm publish.</strong></p>
         <ul class="linklist">
           <li>
-            <a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes &mdash; memory in Cowork, editable topics, sensitive-topics setting</a>
-            <span class="src">support.claude.com &middot; 25 Aug &middot; new</span>
+            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; v2.1.247 (33 entries)</a>
+            <span class="src">github.com &middot; today</span>
           </li>
           <li>
-            <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG &mdash; v2.1.246 documented, 61 entries</a>
-            <span class="src">github.com &middot; today &middot; new</span>
+            <a href="https://github.com/anthropics/claude-code/releases">Claude Code releases &mdash; v2.1.247 tag</a>
+            <span class="src">github.com &middot; today</span>
           </li>
           <li>
-            <a href="https://github.com/anthropics/claude-code/releases">Claude Code GitHub releases &mdash; newest tag v2.1.246</a>
-            <span class="src">github.com &middot; today &middot; new</span>
+            <a href="https://support.claude.com/en/articles/12138966-release-notes">Release notes &mdash; memory in Claude Cowork, editable topics, sensitive topics setting</a>
+            <span class="src">support.claude.com &middot; 25 Aug</span>
           </li>
           <li>
-            <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">npm dist-tags &mdash; <code>latest</code> and <code>next</code> v2.1.246, <code>stable</code> v2.1.231</a>
-            <span class="src">npmjs.com &middot; checked today</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/11817273">Use Claude's chat search and memory to build on previous context</a>
-            <span class="src">support.claude.com &middot; updated 25 Aug</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>
-            <span class="src">support.claude.com &middot; per-surface matrix</span>
-          </li>
-          <li>
-            <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code release notes</a>
-            <span class="src">docs.claude.com</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/14479288-claude-cowork-architecture-overview">Claude Cowork architecture overview &mdash; cloud vs local session isolation</a>
-            <span class="src">support.claude.com</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks in Claude Cowork</a>
-            <span class="src">support.claude.com</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/13119606-provision-and-manage-skills-for-your-organization">Provision and manage skills for your organization</a>
-            <span class="src">support.claude.com &middot; Team / Enterprise</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/13837433-manage-plugins-for-your-organization">Manage plugins for your organization</a>
-            <span class="src">support.claude.com &middot; private marketplaces</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/15927065">Get started with skill and plugin scanning</a>
-            <span class="src">support.claude.com &middot; 06 Aug</span>
-          </li>
-          <li>
-            <a href="https://support.claude.com/en/articles/15694740">Manage model access for your organization &mdash; Enterprise model entitlements</a>
-            <span class="src">support.claude.com &middot; 01 Jul</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/finance-agents">Agents for financial services &mdash; ten Cowork plugin templates</a>
-            <span class="src">anthropic.com</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously">Enabling Claude Code to work more autonomously</a>
-            <span class="src">anthropic.com &middot; background on auto mode</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards">Improving Fable 5's biology safeguards</a>
-            <span class="src">anthropic.com &middot; 07 Aug</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">Investigating three real-world incidents in our cybersecurity evaluations</a>
-            <span class="src">anthropic.com &middot; 30 Jul</span>
-          </li>
-          <li>
-            <a href="https://www.anthropic.com/news/claude-opus-5">Introducing Claude Opus 5</a>
+            <a href="https://www.anthropic.com/news/claude-opus-5">Claude Opus 5</a>
             <span class="src">anthropic.com &middot; 24 Jul</span>
+          </li>
+          <li>
+            <a href="https://www.anthropic.com/news/claude-sonnet-5">Introducing Claude Sonnet 5</a>
+            <span class="src">anthropic.com &middot; 30 Jun</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude">Use plugins in Claude</a>
+            <span class="src">support.claude.com</span>
           </li>
           <li>
             <a href="https://support.claude.com/en/articles/13364135-use-claude-cowork-safely">Use Claude Cowork safely</a>
@@ -425,7 +303,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
       <div class="card">
         <h3>Community videos</h3>
-        <p class="meta">No video specific to v2.1.246 exists yet &mdash; it published this morning. These are the current best general guides.</p>
+        <p class="meta">No video specific to v2.1.247 exists yet &mdash; it published four hours ago and is not on <code>latest</code>. These are the current best general guides.</p>
         <ul class="linklist">
           <li>
             <a href="https://www.youtube.com/watch?v=wBO6XzMIklA">How To Use Claude Opus 5 In Claude Code: Agentic AI Coding &amp; Workflow Guide</a>
@@ -440,8 +318,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
             <span class="src">YouTube &middot; Code &middot; 01 Apr</span>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=tEAzu4szcwQ">Claude Code FREE Setup &mdash; Use Sonnet &amp; Opus Without Paying</a>
-            <span class="src">YouTube &middot; Code &middot; ~3 weeks</span>
+            <a href="https://www.youtube.com/watch?v=-6D5pjeHULg">How I Plan New Projects with Claude Code Opus</a>
+            <span class="src">YouTube &middot; Code</span>
           </li>
           <li>
             <a href="https://www.youtube.com/watch?v=UR0gac-ccjg">How to Use Claude Cowork: Full Beginners Tutorial 2026</a>
