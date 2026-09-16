@@ -66,10 +66,10 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.273</span>
-      <span class="pill"><code>latest</code> dist-tag, changelog &amp; GitHub release: v2.1.273</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.267 &mdash; 6 behind</span>
-      <span class="pill neutral">Updated: Wed 16 Sep 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.274</span>
+      <span class="pill warn"><code>latest</code> dist-tag, changelog &amp; GitHub release: v2.1.273 &mdash; v2.1.274 is <code>next</code> only</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.267 &mdash; 7 behind</span>
+      <span class="pill neutral">Updated: Thu 17 Sep 2026</span>
     </div>
   </div>
 
@@ -86,10 +86,10 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.273 on <code>latest</code> and <code>next</code></span>
+      <span class="badge">CLI &middot; v2.1.274 on <code>next</code> &middot; v2.1.273 on <code>latest</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.273.</strong> The newest build on npm, the <code>latest</code> dist-tag, the <code>next</code> dist-tag, the changelog top entry and the newest GitHub release all say <strong>v2.1.273</strong>, published <strong>2026-09-15 18:06 UTC (Wed 16 Sep 04:06 local)</strong>. <strong><code>claude update</code> installs it.</strong> Six releases have shipped since this page last refreshed on Thu 10 Sep (v2.1.268 through v2.1.273); two of them (v2.1.270 and v2.1.272) are one-line reliability releases. <strong>This is the version to roll out.</strong></div>
+    <div class="banner"><strong>Sources diverge today: npm newest v2.1.274, <code>latest</code> dist-tag v2.1.273, changelog top v2.1.273, newest GitHub release v2.1.273.</strong> v2.1.274 was published to npm at <strong>2026-09-16 22:36 UTC (Thu 17 Sep 08:36 local)</strong> &mdash; about an hour before this refresh &mdash; and sits on the <code>next</code> dist-tag only. <strong><code>claude update</code> installs v2.1.274</strong> (it follows the newest published build, not the dist-tag). <strong>v2.1.274 has no changelog entry and no GitHub release yet</strong>, so we do not know what is in it; the pattern for the last two weeks is that the entry lands within a day. Everything documented below is v2.1.273 and earlier. <strong>Roll-out advice unchanged: standardise on v2.1.273</strong> until v2.1.274 is documented and promoted to <code>latest</code>.</div>
 
     <div class="banner"><strong>v2.1.273 is a 64-entry release with two items this team should read first.</strong> (1) <strong>Managed MCP controls were being silently ignored</strong>: <code>allowManagedMcpServersOnly</code>, <code>deniedMcpServers</code> and <code>disableClaudeAiConnectors</code> set via MDM or <code>managed-settings.json</code> did nothing whenever server-managed settings were also present. Fixed. (2) <strong>Two more permission gaps closed</strong>: Bash commands the checker cannot fully analyse were skipping the prompt under <code>permissions.blockReadsOutsideWorkingDirectories</code>, and a subshell could hide a dangerous <code>rm</code> in bypass mode. Also: auto mode on Bedrock, Vertex and Foundry now uses the <em>local</em> safety classifier by default (<code>CLAUDE_CODE_AUTO_MODE_SERVER=1</code> restores the server-side one), and the v2.1.268 &ldquo;deny on <code>eval</code>/<code>env -C</code>&rdquo; change was reverted after it broke commands like <code>time -p make build</code>.</div>
 
@@ -98,13 +98,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm</span> <strong>v2.1.273</strong> &mdash; published 2026-09-15 18:06 UTC (<strong>Wed 16 Sep 04:06 local</strong>). Dist-tags <code>latest</code> and <code>next</code>. <strong>Changelog top</strong> and <strong>GitHub release top</strong> both v2.1.273. <strong><code>claude update</code> installs this.</strong> 64 entries: 3 added, 19 fixed, 12 improved, 4 changed, 1 reverted, 2 VS Code, 6 Claude Code on the web, 10 Claude Tag, 6 Code Review, 1 Windows.</li>
+        <li><span class="tag major">newest on npm</span> <strong>v2.1.274</strong> &mdash; published 2026-09-16 22:36 UTC (<strong>Thu 17 Sep 08:36 local</strong>). Dist-tag <code>next</code> only. <strong>Not in the changelog and no GitHub release yet</strong> &mdash; contents unknown. <strong><code>claude update</code> installs this.</strong> Expect the changelog entry later today; the last two undocumented builds (v2.1.270, v2.1.272) turned out to be one-line reliability releases, but v2.1.271 and v2.1.273 were 96- and 64-entry releases that also arrived undocumented for a few hours, so do not assume.</li>
+        <li><span class="tag major">dist-tag <code>latest</code></span> <strong>v2.1.273</strong> &mdash; published 2026-09-15 18:06 UTC (<strong>Wed 16 Sep 04:06 local</strong>). <strong>Changelog top</strong> and <strong>GitHub release top</strong> both v2.1.273. <strong>The newest documented and released build; the roll-out target.</strong> 64 entries: 3 added, 19 fixed, 12 improved, 4 changed, 1 reverted, 2 VS Code, 6 Claude Code on the web, 10 Claude Tag, 6 Code Review, 1 Windows.</li>
         <li><span class="tag fix">previous</span> <strong>v2.1.272</strong> &mdash; Tue 15 Sep 09:34 local. &ldquo;Bug fixes and reliability improvements&rdquo; only. Superseded within 19 hours.</li>
         <li><span class="tag major">previous</span> <strong>v2.1.271</strong> &mdash; Tue 15 Sep 05:45 local, 96 entries. Per-command <code>allowed_domains</code>, <code>omitClaudeMd</code>, <code>--accept-command</code>, pricing <code>multiplier</code>, fast mode in Remote sessions, three Bash permission-checker fixes, MCP OAuth registration fixes, <code>/resume</code> file-read tracking fix.</li>
         <li><span class="tag fix">previous</span> <strong>v2.1.270</strong> &mdash; Sun 13 Sep 04:52 local. One entry: read-only git commands in Bash were unexpectedly asking for permission after a session had been running a while (regression in v2.1.269).</li>
         <li><span class="tag major">previous</span> <strong>v2.1.269</strong> &mdash; Sat 12 Sep 04:12 local, 98 entries. <code>claude plugin eval</code>, <code>/output-style</code>, <code>bashEditDiffEnabled</code>, <code>OTEL_METRICS_INCLUDE_REPOSITORY</code>, <code>CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS</code>, <code>!</code>-rule scoping fix, <code>tee</code> deny-rule fix, plugin archive permission fix.</li>
         <li><span class="tag major">previous</span> <strong>v2.1.268</strong> &mdash; Fri 11 Sep 04:41 local, 96 entries. Gateway <code>pricing:</code> pushed to clients, <code>gatewayInternalNetworks</code>, <code>allow_cidrs</code> empty warning, <code>--json</code> on <code>claude plugin</code> commands, symlinked-directory deny rules, secrets in <code>/mcp</code> and plugin error output, WIF <code>jti reused</code> fix, WebFetch 300s deadline.</li>
-        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.267</strong> &mdash; promoted since last refresh (was v2.1.236, 23 behind). Now <strong>6 releases behind</strong>. Anything pinned to <code>stable</code> has last Thursday's fail-closed managed settings and effort cap, but none of this week's managed-MCP, symlink, <code>tee</code> or Bash-checker fixes.</li>
+        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.267</strong> &mdash; unchanged since Tue 15 Sep. Now <strong>7 releases behind</strong> the newest npm build. Anything pinned to <code>stable</code> has last Thursday's fail-closed managed settings and effort cap, but none of this week's managed-MCP, symlink, <code>tee</code> or Bash-checker fixes.</li>
       </ul>
     </div>
 
@@ -133,7 +134,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.271, v2.1.269 and v2.1.268 &mdash; the other releases since last refresh <span class="badge">this week</span></h3>
+      <h3>v2.1.271, v2.1.269 and v2.1.268 &mdash; the other documented releases this week <span class="badge">this week</span></h3>
 
       <div class="headline-feature"><strong>v2.1.271 (Tue 15 Sep, 96 entries):</strong> <strong>per-command <code>allowed_domains</code></strong> for Bash, PowerShell and Monitor in auto mode with sandboxing &mdash; the hosts a command needs are reviewed with it and opened for it alone; <code>omitClaudeMd</code> in agent frontmatter so custom and plugin subagents run without user, project and local CLAUDE.md (managed policy files still load); <code>--accept-command &lt;sha256&gt;</code> on <code>claude plugin install</code>/<code>update</code> to accept exactly the command a prior <code>--json</code> run displayed; <code>modelPricing</code> <code>multiplier</code> up to 10 for marked-up chargeback; fast mode in Remote sessions where the org allows it. <strong>Fail-closed:</strong> an unreadable enterprise <code>managed-mcp.json</code> now keeps exclusive MCP control and warns instead of being ignored. <strong>Permission checker:</strong> files after unrecognised options (<code>fmt</code>, <code>column</code>), wildcards inside a pattern or option value (<code>grep -v dir/* file</code>), and shell variable declaration flags misrepresenting the command &mdash; all fixed. A cached org policy was reused after switching accounts or API keys; <code>/resume</code> and <code>/teleport</code> kept the previous conversation's file-read tracking so Claude could edit files it had never read. Auto mode: a skill's inline <code>!</code> shell commands follow default-mode permission rules instead of the classifier; a subagent hands back via a dedicated classifier-reviewed call; Monitor watches always have a deadline (30 min max). Gateway, Bedrock, Vertex and Foundry sessions no longer refresh a leftover claude.ai login. Claude Code on the web: <strong>Custom network access</strong> option in the Cloud environments admin editor. Windows: PowerShell &ldquo;Exit code 1&rdquo; when the temp path hit 260 characters.</div>
 
@@ -175,7 +176,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="card">
       <h3>This week's actionable items</h3>
       <ul>
-        <li><span class="tag sec">roll out</span> <strong>Standardise on v2.1.273.</strong> All sources aligned, documented (64 entries), on <code>latest</code> and <code>next</code>, released on GitHub. <code>claude update</code> gives you v2.1.273. Skip v2.1.268&ndash;v2.1.272 as intermediate targets: 268 hard-denied <code>eval</code>/<code>env -C</code> lines, 269 made read-only git commands prompt, and both are fixed by 273.</li>
+        <li><span class="tag sec">roll out</span> <strong>Standardise on v2.1.273 for now.</strong> Documented (64 entries), on <code>latest</code>, released on GitHub. <strong>Note <code>claude update</code> now gives you v2.1.274</strong>, which is on <code>next</code> only and has no changelog entry yet &mdash; fine for developers on the daily channel, but pin fleet/CI installs to <code>@anthropic-ai/claude-code@2.1.273</code> until v2.1.274 is documented. Skip v2.1.268&ndash;v2.1.272 as intermediate targets: 268 hard-denied <code>eval</code>/<code>env -C</code> lines, 269 made read-only git commands prompt, and both are fixed by 273.</li>
         <li><span class="tag sec">verify</span> <strong>Device-managed MCP restrictions were being ignored</strong> (fixed v2.1.273). If <code>allowManagedMcpServersOnly</code>, <code>deniedMcpServers</code> or <code>disableClaudeAiConnectors</code> live in MDM or <code>managed-settings.json</code> and the org also pushes server-managed settings, they had no effect until today. After upgrade, confirm on a laptop that a denied server does not appear in <code>/mcp</code>.</li>
         <li><span class="tag sec">decide</span> <strong>Auto mode on Bedrock now uses the local classifier by default</strong> (v2.1.273). Set <code>CLAUDE_CODE_AUTO_MODE_SERVER=1</code> in managed settings if we want the server-side classifier for the Bedrock fleet. Decide once, apply everywhere &mdash; mixed behaviour will generate confusing &ldquo;it asked me on my machine but not yours&rdquo; reports.</li>
         <li><span class="tag sec">enable</span> <strong>Per-command <code>allowed_domains</code> in auto mode with sandboxing</strong> (v2.1.271). Network egress for a Bash command is now reviewed with the command and opened only for it. This is the sandboxing control we were missing for package installs and API calls from within a session.</li>
@@ -186,7 +187,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag sec">plugins</span> <strong>Plugin archives were world-readable and kept world-writable bits</strong> (v2.1.269) on shared machines. Fixed. Pair with <code>--accept-command &lt;sha256&gt;</code> (v2.1.271) for plugin install in CI: pin the exact install command rather than <code>-y</code>.</li>
         <li><span class="tag sec">gateway</span> <strong><code>access_control.allow_cidrs</code> empty now warns at startup</strong> and on the first request from a public address (v2.1.268). If our gateway has an empty allow list, expect the warning; set <code>gatewayInternalNetworks</code> for our public block so <code>/login</code> to the gateway works from the office.</li>
         <li><span class="tag sec">memory</span> <strong>A repository's settings could choose the memory directory under <code>blockReadsOutsideWorkingDirectories</code></strong> (fixed v2.1.273). A cloned repo could point memory extraction at an arbitrary path. Now excluded from the prompt, recall and indexing.</li>
-        <li><span class="tag sec">unpin</span> <strong><code>stable</code> moved to v2.1.267</strong> &mdash; 31 releases forward from v2.1.236 in one step. Still 6 behind <code>latest</code> and missing every item above. Prefer <code>latest</code> with a one-day lag rule.</li>
+        <li><span class="tag sec">unpin</span> <strong><code>stable</code> is still v2.1.267</strong> &mdash; 6 behind <code>latest</code>, 7 behind the newest npm build, and missing every item above. Prefer <code>latest</code> with a one-day lag rule.</li>
       </ul>
     </div>
 
@@ -209,6 +210,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="card">
       <h3>What's new</h3>
 
+      <div class="headline-feature"><strong>Chat and Cowork are becoming one conversation &mdash; support article updated today.</strong> Anthropic is rolling out a merged experience where there is no &ldquo;Chat&rdquo; vs &ldquo;Cowork&rdquo; choice in the message box: you ask, and Claude decides whether to answer or run an agentic task (files, code, browser, connectors). Rolling out gradually to <strong>Pro and Max first</strong> on web, desktop and mobile; <strong>Enterprise admins get at least 30 days' notice</strong> before anything changes. Once an account moves over it cannot switch back. Things that move: Cowork <strong>Global instructions</strong> become <strong>Instructions for Claude</strong> in Settings &gt; General (check them), the web-search toggle disappears, Research is <code>/deep-research</code>, and a per-conversation <strong>Auto / Manual</strong> permission setting replaces the mode picker. Known gaps at launch: no Add from GitHub, no branching, incognito chats can't create files, Dispatch closed to new users.</div>
+
       <div class="headline-feature"><strong>Salesforce in Claude (beta) &mdash; 15 Sep.</strong> A plugin that brings a seller's accounts, opportunities and pipeline into Claude with 37 pre-built sales skills: prep a call, review a deal, build a pipeline dashboard, send a forecast. Available in beta on all paid plans for organisations Salesforce approves through its beta sign-up. The newest support-centre release-note entry and the first vertical plugin since the Financial Services set.</div>
 
       <div class="headline-feature"><strong>Smart reports (beta) &mdash; 10 Sep, Enterprise plans.</strong> Analyses how a team uses Claude and reports on the work getting done, what it costs, where sessions run into friction, and which repeated patterns are worth packaging as shared skills. For us this is the first product-side view of &ldquo;what should be a skill&rdquo;, complementing <code>/skill-doctor</code> on the CLI side.</div>
@@ -230,6 +233,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
+
+      <div class="headline-feature"><strong>&ldquo;What happened to Claude Cowork?&rdquo; &mdash; in the new merged experience, everything Cowork does is available from any conversation.</strong> Existing Cowork tasks, projects, connectors, skills, artifacts and files carry over; tasks show up in Recents alongside chats; the Code tab and model picker stay put. Local-only features (trusted folders, built-in browser, computer use) still need Claude Desktop open; long tasks otherwise run in the cloud. <strong>For our Team plan nothing changes yet</strong> &mdash; rollout is Pro/Max first &mdash; but our scheduled tasks, skills and plugins are exactly the things that carry over, and the Global instructions move is the one setting worth re-checking when it lands. See <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>.</div>
 
       <div class="headline-feature"><strong>Salesforce in Claude (beta, 15 Sep) is a Cowork plugin</strong> &mdash; 37 skills covering call prep, deal review, pipeline dashboards and forecast submission, on all paid plans once Salesforce approves the org for the beta. It follows the Financial Services and Legal plugin sets and is the clearest signal yet that vertical plugins are the distribution model for Cowork.</div>
 
@@ -257,8 +262,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <h3>Official posts</h3>
         <ul class="linklist">
           <li>
-            <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code changelog &mdash; v2.1.273 top, all sources aligned</a>
+            <a href="https://docs.claude.com/en/release-notes/claude-code">Claude Code changelog &mdash; v2.1.273 top; v2.1.274 not yet documented</a>
             <span class="src">docs.claude.com &middot; the canonical source for everything above</span>
+          </li>
+          <li>
+            <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>
+            <span class="src">support.claude.com &middot; updated 17 Sep; merged Chat + Cowork experience, Pro/Max rollout, what moves where</span>
           </li>
           <li>
             <a href="https://claude.com/blog/salesforce-in-claude">Bringing Salesforce into Claude</a>
