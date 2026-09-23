@@ -58,19 +58,20 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 .tag.sec { background:#fcebeb; color:#791f1f; }
 .tag.fix { background:#f1efe8; color:#444441; }
 .tag.major { background:#fac775; color:#633806; }
-</style></head><body>
+</style>
+</head><body>
 <div class="wrap">  <div class="headerbar">
     <div>
       <div class="eyebrow">Cloud Engineers &middot; Daily digest</div>
       <h1>What's New with Claude?</h1>
-      <p class="subtitle">The latest across Claude Code, Claude Desktop, Claude Cowork, and new Claude models. Refreshed weekday mornings at 8am.</p>
+      <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.280</span>
-      <span class="pill">All sources aligned on v2.1.280 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
-      <span class="pill neutral">New model: Claude Opus 5.5</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.267 &mdash; 12 behind</span>
-      <span class="pill neutral">Updated: Wed 23 Sep 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.281</span>
+      <span class="pill">All sources aligned on v2.1.281 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
+      <span class="pill neutral">Default Opus: Claude Opus 5.5</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.273 &mdash; moved up from v2.1.267</span>
+      <span class="pill neutral">Updated: Thu 24 Sep 2026</span>
     </div>
   </div>
 
@@ -87,47 +88,44 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.280 on <code>latest</code> and <code>next</code></span>
+      <span class="badge">CLI &middot; v2.1.281 on <code>latest</code> and <code>next</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.280.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.280</strong>, published <strong>2026-09-22 15:44 UTC (Wed 23 Sep 01:44 local)</strong>. There is no v2.1.279 on npm &mdash; the version number was skipped. <strong><code>claude update</code> installs v2.1.280.</strong> It is the Opus 5.5 launch build: 114 changelog entries, and Opus 5.5 becomes the default Opus model.</div>
+    <div class="banner"><strong>All sources aligned on v2.1.281.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.281</strong>. npm publish <strong>2026-09-23 17:01 UTC (Thu 24 Sep 03:01 local)</strong>; GitHub release 19:19 UTC. <strong><code>claude update</code> installs v2.1.281.</strong> The <code>stable</code> dist-tag moved to <strong>v2.1.273</strong> (was v2.1.267) &mdash; still without Opus 5.5.</div>
 
-    <div class="banner"><strong>Hold fleet pins at v2.1.278 for a day.</strong> v2.1.280 is only hours old and large. The lag rule stands: pin a number, wait a day, test one gateway session. v2.1.280 does carry a fix directly relevant to us &mdash; the <code>advisor_20260301</code> 400 behind a proxy or gateway now retries without the advisor tag &mdash; so gateway behaviour is the thing to check tomorrow before promoting. Watch for a v2.1.281 follow-up.</div>
-
-    <div class="banner"><strong>Default model changes.</strong> Opus 5.5 (<code>claude-opus-5-5</code>) is now the default Opus model, and <strong>Pro and Team Standard plans now default to Opus instead of Sonnet</strong>. An effort level saved before <code>/effort</code> became per-model no longer applies to Opus 5.5; it starts at its default until someone picks a level. If we pin models in managed settings or gateway config, Opus 5.5 needs to be added deliberately.</div>
+    <div class="banner"><strong>Big hardening release.</strong> v2.1.281 is ~110 bullets, mostly fixes: session resume and prompt-cache correctness, proxy/gateway stream handling, several permission and sandbox tightenings, and new Claude apps gateway controls for Bedrock (<code>assume_role</code>, guardrails) and Claude Desktop policy.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.280</strong> &mdash; published 2026-09-22 15:44 UTC (<strong>Wed 23 Sep 01:44 local</strong>). Changelog top and GitHub release top (16:38 UTC). <strong><code>claude update</code> installs this.</strong> 114 entries: Opus 5.5 default, Opus default on Pro/Team Standard, symlinked-write permission fix, auto-mode retry loops fixed, marketplace name-squatting refused, gateway advisor-tag retry.</li>
-        <li><span class="tag major">previous &middot; fleet pin</span> <strong>v2.1.278</strong> &mdash; Sat 19 Sep. Server-side auto-mode classifier by default (no charge) for API, Enterprise, Bedrock, Vertex, Foundry and gateways; <code>Auto mode server</code> row in <code>/status</code>.</li>
-        <li><span class="tag major">previous</span> <strong>v2.1.277</strong> &mdash; Sat 19 Sep, 87 entries. AGENTS.md support, gateway egress-boundary mode and upstream <code>headers:</code>, subagent output framing, invisible Unicode stripped, <code>sandbox.excludedCommands</code> compound-command fix, marketplace-policy fail-open fix, TaskOutput removed.</li>
-        <li><span class="tag sec">previous</span> <strong>v2.1.276</strong> &mdash; Fri 18 Sep. Fixed the v2.1.275 <code>advisor_20260301</code> 400 regression behind proxies. <strong>Do not pin v2.1.275.</strong></li>
-        <li><span class="tag fix">skipped</span> <strong>v2.1.279</strong> &mdash; never published to npm or the changelog.</li>
-        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.267</strong> &mdash; unchanged since Tue 15 Sep, now <strong>12 releases behind</strong> and without Opus 5.5.</li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.281</strong> &mdash; published 2026-09-23 17:01 UTC (<strong>Thu 24 Sep 03:01 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
+        <li><span class="tag major">previous</span> <strong>v2.1.280</strong> &mdash; Tue 22 Sep. Opus 5.5 becomes the default Opus; Pro and Team Standard default to Opus; symlinked-write permission fix; reserved-name marketplaces refused.</li>
+        <li><span class="tag major">previous &middot; fleet pin</span> <strong>v2.1.278</strong> &mdash; Sat 19 Sep. Server-side auto mode classifier by default on API, Enterprise, Bedrock, Vertex, Foundry and gateways; <code>Auto mode server</code> row in <code>/status</code>.</li>
+        <li><span class="tag major">previous</span> <strong>v2.1.277</strong> &mdash; Fri 18 Sep. AGENTS.md support, gateway <code>headers:</code>, subagent output framing, <code>sandbox.excludedCommands</code> compound-command fix, TaskOutput removed.</li>
+        <li><span class="tag fix">skipped</span> <strong>v2.1.279</strong> &mdash; never published.</li>
+        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.273</strong> &mdash; moved from v2.1.267; now 7 releases behind.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.280 &mdash; Opus 5.5 and a permission fix <span class="badge major">newest &middot; aligned &middot; hours old</span></h3>
+      <h3>v2.1.281 &mdash; gateway controls and a hardening sweep <span class="badge major">newest &middot; aligned &middot; hours old</span></h3>
 
-      <div class="headline-feature"><strong>Added Claude Opus 5.5 (<code>claude-opus-5-5</code>), now the default Opus model &mdash; 1M context, $4/$20 per Mtok with $0.20/Mtok cache reads.</strong> That is 20% below Opus 5 on input/output and 60% cheaper on cache reads. Alongside: <strong>Pro and Team Standard plans now default to Opus rather than Sonnet</strong>, matching Max, Team Premium and Enterprise. Effort levels saved before <code>/effort</code> went per-model no longer carry over to newly released models, and Opus 4.7, Opus 4.8 and Fable 5 no longer hold their launch-default effort over explicitly configured levels in <code>-p</code>, the SDK, project, managed or <code>--settings</code> <code>effortLevel</code>.</div>
+      <div class="headline-feature"><strong>Claude apps gateway on Bedrock.</strong> New <code>assume_role</code> on Bedrock upstreams: the gateway calls Bedrock as an IAM role via STS, cross-account if needed, optionally one session per developer. New <code>guardrail: {id, version}</code> applies an Amazon Bedrock guardrail to every request (set it on all Bedrock upstreams or none). <code>telemetry.resource_attributes</code> adds fixed labels to Desktop and <code>/login</code> telemetry.</div>
 
-      <div class="headline-feature"><strong>Security: writes through a symlinked path were judged by their in-tree spelling.</strong> <code>acceptEdits</code>, allow rules and auto mode could approve a write that actually landed outside the project via a symlink. The prompt now names where the write lands and those modes no longer approve an out-of-tree landing. Related containment: plugin marketplaces whose name imitates a reserved marketplace are now refused when added, and stop loading if already added; agent-type <code>PermissionRequest</code> hooks now error instead of silently doing nothing; self-hosted runner lifecycle-hook git ignores hook folders named in shared git files, and local-path / <code>git://</code> remotes there need <code>GIT_ALLOW_PROTOCOL</code>.</div>
+      <div class="headline-feature"><strong>Desktop policy through the gateway.</strong> <code>desktop</code> policy blocks now accept newer Claude Desktop keys, including <code>blockReadsOutsideWorkingDirectories</code> and <code>disableBypassPermissionsMode</code>.</div>
 
-      <div class="headline-feature"><strong>Auto mode stops hammering.</strong> Auto mode no longer retries an action over and over when a safety check declines to review it (denied once, noting retry won't help), and when a safety check gives no answer, retries back off and the turn stops after ten in a row. Both were loops that burned tokens and time in unattended runs.</div>
+      <div class="headline-feature"><strong>Permissions and sandbox tightened.</strong> A recursive <code>rm</code> whose target is only command-substitution output (e.g. <code>rm -rf "$(pwd)"</code>) no longer runs unprompted in auto or <code>--dangerously-skip-permissions</code> mode, even with a Bash allow rule. A permission rule containing a NUL byte no longer expands into a wildcard. <code>claude --bg</code> now asks for workspace trust before running project hooks. <code>--setting-sources</code> / SDK <code>settingSources</code> now carry to spawned sessions (teammates, <code>/bg</code>, <code>--worktree --tmux</code>).</div>
 
-      <div class="headline-feature"><strong>Gateway and proxy.</strong> Conversations with the advisor on no longer fail every turn with <code>400 "Input tag 'advisor_20260301'"</code> behind a proxy or gateway that doesn't support it &mdash; the request now retries without it. Cloud and self-hosted runner sessions no longer fail with &ldquo;Authentication failed&rdquo; after a long overload rotated the access token. A model switch from a host app (Desktop, VS Code, SDK) mid-turn no longer causes a prompt-cache miss.</div>
+      <div class="headline-feature"><strong>Proxy and gateway resilience.</strong> Streams cut short by a proxy are no longer shown as complete; tool calls no longer run twice on duplicated stream events; "Content block not found" keeps the partial response; <code>CLAUDE_CODE_RETRY_WATCHDOG</code> no longer fails after runs of 429/529; HTML error pages from proxies no longer dump raw markup.</div>
 
-      <div class="headline-feature"><strong>Ops and telemetry.</strong> New <code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code> changes the 2,048-character cap on MCP tool descriptions and server instructions. The <code>hook_execution_complete</code> OpenTelemetry event now carries hook output sizes and the number of oversized outputs saved to a file. Background subagents can use the LSP tool; background shell tasks no longer report benign non-zero exits (e.g. <code>grep</code> with no matches) as failures; private-repo marketplaces now honour git credential helpers during auto-update.</div>
+      <div class="headline-feature"><strong>Resume and prompt cache.</strong> Resumed sessions no longer re-send earlier turns in a changed form, very large sessions resume fully, and the cache survives an MCP server disconnect when tool search is off (common behind gateways).</div>
 
-      <div class="headline-feature"><strong>Behaviour change worth announcing:</strong> a stray <code>y</code> no longer confirms and a stray <code>n</code> no longer closes dialogs &mdash; Enter and Esc accept and cancel (bind <code>confirm:yes</code>/<code>confirm:no</code> in <code>keybindings.json</code> to restore). Ctrl+C/Ctrl+D pressed twice in most dialogs now closes the dialog instead of quitting. <code>ctrl+l</code>/<code>cmd+k</code> in fullscreen revert to redrawing the screen.</div>
+      <div class="headline-feature"><strong>Worth announcing.</strong> <code>"attribution": false</code> in <code>settings.json</code> hides all commit and PR attribution (older CLIs skip a settings file that holds it &mdash; keep the object form in shared files). <code>claude plugin validate</code> now checks MCP entries that would be silently dropped and insecure URLs. <code>/insights</code> estimates how many prompts auto mode could have handled.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.278 and v2.1.277 &mdash; the current fleet pin <span class="badge">Sat 19 Sep</span></h3>
-      <div class="headline-feature"><strong>v2.1.278</strong> moved the auto-mode classifier server-side by default and stopped billing it on API, Enterprise, Bedrock, Vertex, Foundry and gateways (<code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> opts out). Check <code>/status</code> &rarr; <code>Auto mode server: Enabled</code> on a gateway session; <code>Disabled</code> means the gateway is stripping <code>safeguards</code> or <code>safeguard_results</code>. See the <a href="https://code.claude.com/docs/en/auto-mode-classifier-billing">billing doc</a>.</div>
-      <div class="headline-feature"><strong>v2.1.277</strong> (87 entries): AGENTS.md read when no CLAUDE.md exists; subagent results framed so they cannot pass as instructions; invisible Unicode stripped from prompts; <code>sandbox.excludedCommands</code> now requires every part of a compound command to match; a malformed marketplace-policy entry no longer disables the whole policy; <code>claude -p</code> hangs now exit 1; TaskOutput tool and its settings removed.</div>
+      <h3>v2.1.280 &mdash; Opus 5.5 <span class="badge">Tue 22 Sep</span></h3>
+      <div class="headline-feature"><strong>Opus 5.5 (<code>claude-opus-5-5</code>) is the default Opus model</strong> &mdash; 1M context, $4 / $20 per Mtok, $0.20/Mtok cache reads. <strong>Pro and Team Standard plans now default to Opus instead of Sonnet.</strong> Effort levels saved before <code>/effort</code> became per-model no longer apply to newly released models. New <code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code>; hook output sizes added to <code>hook_execution_complete</code> telemetry; marketplaces imitating a reserved name are refused.</div>
     </div>
   </div>
 
@@ -135,20 +133,20 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="opus5">
     <div class="product-header">
       <h2>Models</h2>
-      <span class="badge major">new: Claude Opus 5.5</span>
+      <span class="badge major">Opus 5.5 &middot; day 2</span>
     </div>
 
-    <div class="banner"><strong>Claude Opus 5.5 launched 22 Sep</strong> &mdash; the first model in the Claude 5.5 family. Anthropic says it performs at the level of Fable 5.1 on most work and costs 40% less to run than Opus 5 on typical workloads. <strong>$4 / $20 per Mtok, $0.20/Mtok cache reads, 1M context.</strong> It is the first Opus to launch with Fable-5.1-class safeguards on cybersecurity, biology and distillation, which fall back to another model transparently. Available on Pro, Max, Team and Enterprise, the Claude Platform, and on AWS (Bedrock), Google Cloud and Microsoft Foundry.</div>
+    <div class="banner"><strong>Claude Opus 5.5 launched 22 Sep</strong> &mdash; first model in the 5.5 family. Anthropic says it performs at Fable 5.1 level on most work and costs 40% less than Opus 5. <strong>$4 / $20 per Mtok, $0.20/Mtok cache reads, 1M context.</strong></div>
 
     <div class="card section-versions">
       <h3>Current lineup</h3>
       <ul>
-        <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; announced 22 Sep; default Opus model in Claude Code since v2.1.280. 1M context. Default on Pro and Team Standard (v2.1.280). <strong>Action:</strong> check Bedrock model access and any gateway model allow-lists before developers start selecting it.</li>
-        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; announced 1 Sep; default Fable model. Always listed in <code>/model</code> on the API since v2.1.277.</li>
-        <li><span class="tag feat">Opus 5</span> <code>claude-opus-5</code> &mdash; announced 24 Jul; superseded as default Opus by 5.5.</li>
-        <li><span class="tag feat">Sonnet 5</span> <code>claude-sonnet-5</code> &mdash; announced 30 Jun. The floor for auto mode on Bedrock, Vertex, Foundry and gateways.</li>
+        <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus in Claude Code since v2.1.280. <strong>Action:</strong> decide whether Enterprise model entitlements should allow it everywhere, and watch spend now Pro/Team Standard default to Opus.</li>
+        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; announced 1 Sep; always listed in <code>/model</code> on the API since v2.1.277.</li>
+        <li><span class="tag feat">Opus 5</span> <code>claude-opus-5</code> &mdash; announced 24 Jul; superseded as default Opus.</li>
+        <li><span class="tag feat">Sonnet 5</span> <code>claude-sonnet-5</code> &mdash; announced 30 Jun.</li>
         <li><span class="tag fix">Haiku 4.5</span> <code>claude-haiku-4-5-20251001</code> &mdash; cheap fast tier, unchanged.</li>
-        <li><span class="tag feat">spend controls</span> <code>maxEffortLevel</code> (v2.1.267), <code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code> (v2.1.257), <code>modelPricing.multiplier</code> (v2.1.271), gateway <code>pricing:</code> (v2.1.268); auto-mode classifier overhead zero where server-side (v2.1.278); <code>/cost</code> now names thinking-mode changes as cache-miss causes (v2.1.280).</li>
+        <li><span class="tag feat">spend controls</span> <code>maxEffortLevel</code> (v2.1.267), <code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code> (v2.1.257), <code>modelPricing.multiplier</code> (v2.1.271), gateway <code>pricing:</code> (v2.1.268); server-side auto-mode classifier (v2.1.278); Bedrock guardrails on gateway upstreams (v2.1.281).</li>
       </ul>
     </div>
   </div>
@@ -157,28 +155,28 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">new build &middot; hold one day</span>
+      <span class="badge major">new build &middot; permission fixes</span>
     </div>
 
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">pin</span> <strong>Keep fleet and CI on <code>@anthropic-ai/claude-code@2.1.278</code> today; evaluate v2.1.280 tomorrow.</strong> Test one gateway session on v2.1.280 first and confirm <code>/status</code> still shows <code>Auto mode server: Enabled</code>.</li>
-        <li><span class="tag sec">symlinks</span> <strong>Symlinked writes could be auto-approved outside the project</strong> (fixed v2.1.280). Any repo with symlinks pointing outside the tree, combined with <code>acceptEdits</code>, allow rules or auto mode, was exposed. Another reason to move to v2.1.280 once it has soaked.</li>
-        <li><span class="tag sec">models</span> <strong>Decide on Opus 5.5 access.</strong> It is the new default Opus and the default on Pro/Team Standard. If we restrict models via Enterprise model entitlements, gateway config or Bedrock model access, add or block it explicitly.</li>
-        <li><span class="tag sec">marketplaces</span> <strong>Marketplaces imitating a reserved name are now refused and stop loading</strong> (v2.1.280). If a developer reports a marketplace suddenly vanishing after the upgrade, that is the reason &mdash; and worth a look.</li>
-        <li><span class="tag sec">hooks</span> <strong>Agent-type <code>PermissionRequest</code> hooks now error</strong> (v2.1.280) &mdash; they never could allow or deny. Move any to command or http hooks.</li>
-        <li><span class="tag sec">runners</span> <strong>Self-hosted runners:</strong> local-path and <code>git://</code> remotes in lifecycle hooks now need <code>GIT_ALLOW_PROTOCOL</code> (v2.1.280).</li>
-        <li><span class="tag sec">carried</span> Verify gateway passes <code>safeguards</code>/<code>safeguard_results</code> (v2.1.278); review <code>sandbox.excludedCommands</code> patterns and validate marketplace policy keys (v2.1.277); cover AGENTS.md in repo reviews; remove <code>taskOutputMaxChars</code> and <code>TASK_MAX_OUTPUT_LENGTH</code>.</li>
-        <li><span class="tag sec">unpin</span> <strong><code>stable</code> is still v2.1.267</strong> &mdash; 12 behind and without Opus 5.5. Prefer a pinned number with a one-day lag rule.</li>
+        <li><span class="tag sec">pin</span> <strong>Suggested: move fleet and CI from v2.1.278 to v2.1.280 today; evaluate v2.1.281 tomorrow.</strong> v2.1.280 has had a day without a follow-up regression fix; v2.1.281 is hours old and large. Test one gateway session and confirm <code>/status</code> still shows <code>Auto mode server: Enabled</code>.</li>
+        <li><span class="tag sec">rm</span> <strong><code>rm -rf "$(...)"</code> could run unprompted</strong> in auto and <code>--dangerously-skip-permissions</code> mode (fixed in v2.1.281). Relevant to any unattended CI or agent runs.</li>
+        <li><span class="tag sec">rules</span> <strong>NUL-byte permission rules matched everything</strong> (fixed in v2.1.281; such rules now match nothing). Audit managed <code>permissions</code> generated by tooling.</li>
+        <li><span class="tag sec">trust</span> <strong><code>claude --bg</code> ran project hooks before workspace trust</strong> (fixed in v2.1.281); non-interactive runs now exit instead.</li>
+        <li><span class="tag sec">settings</span> <strong><code>--setting-sources</code> was not forwarded</strong> to teammates, <code>/bg</code>, <code>claude agents</code> and <code>--worktree --tmux</code> sessions (fixed in v2.1.281).</li>
+        <li><span class="tag sec">macOS</span> Permission dialogs read <code>/.vol</code>, <code>/.nofollow</code> and <code>/.resolve</code> paths before approval; keychain writes could drop MCP OAuth tokens when locked (both fixed in v2.1.281).</li>
+        <li><span class="tag sec">AWS</span> <strong>New gateway levers:</strong> Bedrock <code>assume_role</code> (per-developer STS sessions, cross-account) and <code>guardrail</code> on upstreams; Desktop <code>disableBypassPermissionsMode</code> and <code>blockReadsOutsideWorkingDirectories</code> via gateway policy.</li>
+        <li><span class="tag sec">carried</span> Verify gateway passes <code>safeguards</code>/<code>safeguard_results</code> (v2.1.278); review <code>sandbox.excludedCommands</code> (v2.1.277 and v2.1.281 matching fixes); reserved-name marketplaces refused (v2.1.280).</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Patterns worth tracking</h3>
-      <div class="headline-feature"><strong>Model launches come with big builds.</strong> v2.1.280 bundles the Opus 5.5 default with 113 other entries, including plan-default changes and keybinding behaviour. Launch-day builds are exactly where the lag rule matters most.</div>
-      <div class="headline-feature"><strong>Permission paths keep getting tightened.</strong> Symlinked writes (280), compound-command sandbox exclusions (277), <code>Write(path)</code> rules never matching (275), device-managed MCP keys (273). Treat every managed control as unverified until you have watched it deny something.</div>
-      <div class="headline-feature"><strong>Unattended loops are being bounded.</strong> Auto mode now backs off and stops after ten consecutive unanswered safety checks, and stops retrying declined reviews. Useful for CI and scheduled runs that previously spun silently.</div>
+      <div class="headline-feature"><strong>Model launches are followed by large hardening builds.</strong> v2.1.280 shipped Opus 5.5; v2.1.281 a day later is almost entirely fixes.</div>
+      <div class="headline-feature"><strong>Permission paths keep getting tightened.</strong> Command-substitution <code>rm</code> and NUL-byte rules (2.1.281), symlinked writes (280), compound-command sandbox exclusions (277).</div>
+      <div class="headline-feature"><strong>The gateway is becoming the control plane.</strong> Desktop policy keys, Bedrock IAM roles and guardrails, telemetry labels &mdash; all in the gateway config now.</div>
     </div>
   </div>
 
@@ -191,9 +189,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Opus 5.5 in the model picker.</strong> The support-centre release notes list the Opus 5.5 launch on 22 Sep for Pro, Max, Team and Enterprise. Where it isn't showing yet, a Desktop restart picks up the new bundled CLI (v2.1.280) and model list.</div>
-      <div class="headline-feature"><strong>Model switches from Desktop mid-turn no longer break prompt caching</strong> (v2.1.280). Switching model from a host app while Claude was working caused a cache miss on the next prompt. The Claude app also shows correct context usage for Remote Control and cloud sessions after <code>/compact</code> or <code>/clear</code>, and its diff view no longer drops committed files when there are also uncommitted changes.</div>
-      <div class="headline-feature"><strong>Standing context.</strong> The merged Chat-and-Cowork experience is still rolling out Pro/Max first; nothing changes yet for Team. Salesforce in Claude (beta, 15 Sep), smart reports (beta, 10 Sep, Enterprise), memory across chat and Cowork (25 Aug, off by default for Team/Enterprise).</div>
+      <div class="headline-feature"><strong>Admin policy via the Claude apps gateway.</strong> Claude Code v2.1.281 lets gateway <code>desktop</code> policy blocks set newer Desktop keys, including <code>blockReadsOutsideWorkingDirectories</code> and <code>disableBypassPermissionsMode</code>; <code>telemetry.resource_attributes</code> labels Desktop telemetry.</div>
+      <div class="headline-feature"><strong>Code sessions from Desktop.</strong> Faster resume of long compacted sessions opened in Desktop; the Artifact tool is back in Remote Control sessions opened from Desktop, claude.ai or mobile; sign-in and usage-limit errors now point at the app rather than terminal commands.</div>
+      <div class="headline-feature"><strong>Opus 5.5 in the model picker</strong> since 22 Sep. Standing context: artifacts created on or after 19 Aug are shareable and open on web and Desktop.</div>
     </div>
   </div>
 
@@ -201,15 +199,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="cowork">
     <div class="product-header">
       <h2>Claude Cowork</h2>
-      <span class="badge">GA &middot; macOS &amp; Windows &middot; Linux beta</span>
+      <span class="badge">GA &middot; macOS &amp; Windows &middot; Linux beta &middot; web &amp; mobile</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Opus 5.5 available in Cowork</strong> on paid plans from 22 Sep. At 40% below Opus 5's typical running cost it is the obvious default for long-running scheduled tasks.</div>
-      <div class="headline-feature"><strong>Memory write conflicts in Cowork fixed</strong> (v2.1.280). For memory files over ~10,800 characters, Claude only saw the start and end on a conflict, so the retried write dropped the middle. Worth checking any large memory files for missing content.</div>
-      <div class="headline-feature"><strong>Artifacts and routines.</strong> The Artifact tool no longer silently disappears when org policy can't load (e.g. behind a web proxy) &mdash; Claude says what's blocking it; artifact republishes that would reset stored database access rules or drop viewer profile scope are now refused; Claude now tells you when it cannot read an artifact link. Claude Tag threads get Slack's native Working indicator and Stop button, and scheduled routines no longer silently fail in workspaces connected before joining an Enterprise Grid.</div>
-      <div class="headline-feature"><strong>Standing context.</strong> Merged Chat-and-Cowork experience (Pro/Max first; see <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>); Enterprise skill and plugin security scanning (6 Aug); account skills and plugins sync to terminal sessions (v2.1.275).</div>
+      <div class="headline-feature"><strong>Opus 5.5 available in Cowork</strong> since 22 Sep.</div>
+      <div class="headline-feature"><strong>Scheduled tasks and routines more reliable.</strong> Claude Code v2.1.281 stops failed scheduled-task and <code>/loop</code> wakeups being re-fired every second, and remote scheduled turns now get turn-start notices (tools, MCP changes, date) before the first tool call.</div>
+      <div class="headline-feature"><strong>Standing context.</strong> Salesforce in Claude plugin (beta, 15 Sep); smart reports for Enterprise (beta, 10 Sep); memory across chat and Cowork (25 Aug); Enterprise skill and plugin security scanning (6 Aug); merged Chat-and-Cowork experience (see <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>).</div>
     </div>
   </div>
 
@@ -224,12 +221,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Official posts</h3>
         <ul class="linklist">
+          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.281 top</a><span class="src">code.claude.com &middot; canonical source for everything above</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.281">Claude Code v2.1.281 GitHub release</a><span class="src">github.com &middot; published 2026-09-23 19:19 UTC</span></li>
           <li><a href="https://www.anthropic.com/claude-opus-5-5">Introducing Claude Opus 5.5</a><span class="src">anthropic.com &middot; 22 Sep; launch post, pricing and availability</span></li>
-          <li><a href="https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5">What's new in Claude Opus 5.5</a><span class="src">platform.claude.com &middot; API-level changes for the new model</span></li>
-          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.280 top</a><span class="src">code.claude.com &middot; canonical source for everything above</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.280">Claude Code v2.1.280 GitHub release</a><span class="src">github.com &middot; published 2026-09-22 16:38 UTC</span></li>
-          <li><a href="https://code.claude.com/docs/en/auto-mode-classifier-billing">Auto mode classifier request charges</a><span class="src">code.claude.com &middot; the v2.1.278 doc; gateway pass-through requirements</span></li>
           <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude release notes &mdash; apps, Desktop and Cowork</a><span class="src">support.claude.com &middot; newest entry Opus 5.5 (22 Sep)</span></li>
+          <li><a href="https://code.claude.com/docs/en/auto-mode-classifier-billing">Auto mode classifier request charges</a><span class="src">code.claude.com &middot; the v2.1.278 doc; gateway pass-through requirements</span></li>
           <li><a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a><span class="src">support.claude.com &middot; merged experience rollout</span></li>
         </ul>
       </div>
