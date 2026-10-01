@@ -67,11 +67,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.286</span>
-      <span class="pill">All sources aligned on v2.1.286 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
-      <span class="pill neutral">New: retry budget capped at 14 requests per model call</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.285 &mdash; moved up from v2.1.280</span>
-      <span class="pill neutral">Updated: Thu 01 Oct 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.287</span>
+      <span class="pill">All sources aligned on v2.1.287 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
+      <span class="pill neutral">New: Claude Mods &amp; the "You should know" side agent</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.285 (unchanged)</span>
+      <span class="pill neutral">Updated: Fri 02 Oct 2026</span>
     </div>
   </div>
 
@@ -88,46 +88,46 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.286 on <code>latest</code> and <code>next</code></span>
+      <span class="badge">CLI &middot; v2.1.287 on <code>latest</code> and <code>next</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.286.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.286</strong>. npm publish <strong>2026-09-30 17:14 UTC (Thu 1 Oct 03:14 local)</strong>; GitHub release 2026-09-30 19:10 UTC. <code>stable</code> moved from v2.1.280 to <strong>v2.1.285</strong>.</div>
+    <div class="banner"><strong>All sources aligned on v2.1.287.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.287</strong>. npm publish <strong>2026-10-01 16:59 UTC (Fri 2 Oct 02:59 local)</strong>; GitHub release 2026-10-01 18:00 UTC. <code>stable</code> stays on <strong>v2.1.285</strong>.</div>
 
-    <div class="banner"><strong>Reliability and hardening release.</strong> v2.1.286 (~88 bullets) is mostly fixes: a single retry budget per model call (max 14 requests by default), automatic same-tier model fallback when the API refuses your default, a leaner <code>--bare</code> mode for scripts, stricter plugin install sources, and an MCP error path that could print a credential value.</div>
+    <div class="banner"><strong>Extensibility plus a big fix sweep.</strong> v2.1.287 (~110 bullets) introduces Claude Mods (plugins that change deeper behaviour) and a built-in "You should know" watcher, makes 1M context the default for Opus 4.7+/Fable on Bedrock, Vertex and Foundry, adds MCP URL elicitation, and closes a dangerous-<code>rm</code> safeguard bypass.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.286</strong> &mdash; published 2026-09-30 17:14 UTC (<strong>Thu 1 Oct 03:14 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.287</strong> &mdash; published 2026-10-01 16:59 UTC (<strong>Fri 2 Oct 02:59 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
+        <li><span class="tag major">previous</span> <strong>v2.1.286</strong> &mdash; Thu 1 Oct. Single retry budget per call (max 14 requests), same-tier model fallback, truly bare <code>--bare</code>, stricter plugin sources.</li>
         <li><span class="tag major">previous</span> <strong>v2.1.285</strong> &mdash; Wed 30 Sep. <code>allowedProviders</code> managed setting; <code>claude --desktop</code>; headless plugin configuration.</li>
         <li><span class="tag major">previous</span> <strong>v2.1.284</strong> &mdash; Tue 29 Sep. Claude Sonnet 5.5 default Sonnet; auto mode default on every plan.</li>
-        <li><span class="tag major">previous</span> <strong>v2.1.283</strong> &mdash; Sat 26 Sep. <code>deniedModels</code>, <code>availableModelsMatch: "exact"</code>, <code>/doctor prompt-audit</code>.</li>
-        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.285</strong> &mdash; promoted from v2.1.280; now just one release behind <code>latest</code>. Fleets pinned to <code>stable</code> now get <code>allowedProviders</code>.</li>
+        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.285</strong> &mdash; unchanged since yesterday; now two releases behind <code>latest</code>.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.286 &mdash; retries, fallbacks, scripting and plugin hardening <span class="badge major">newest &middot; aligned</span></h3>
+      <h3>v2.1.287 &mdash; Claude Mods, 1M context on clouds, MCP elicitation <span class="badge major">newest &middot; aligned</span></h3>
 
-      <div class="headline-feature"><span class="tag feat">reliability</span> <strong>One retry budget per model call.</strong> Failed API requests now share a single limit across the whole call, so with default settings a failing call sends at most <strong>14 requests</strong>. Predictable load on gateways and Bedrock/Vertex quotas during outages.</div>
+      <div class="headline-feature"><span class="tag feat">extensibility</span> <strong>Claude Mods.</strong> Plugins can now modify deeper Claude Code behaviour. First built-in mod: <strong>"You should know"</strong>, a side agent that watches the session and flags things you or Claude might miss. Enable with <code>/plugin enable cc-plugin-you-should-know@builtin</code> (first-party sessions with telemetry on).</div>
 
-      <div class="headline-feature"><span class="tag fix">models</span> <strong>Same-tier fallback on refusal.</strong> If the Anthropic API refuses the model your default or alias resolves to, Claude Code retries once on the previous model of the same tier instead of failing every turn. The fallback notice now says when context dropped from 1M to 200K.</div>
+      <div class="headline-feature"><span class="tag major">models</span> <strong>1M context by default on Bedrock, Vertex, Foundry and the Claude apps gateway.</strong> Opus 4.7+ and Fable no longer need the <code>[1m]</code> suffix. Set <code>CLAUDE_CODE_DISABLE_1M_CONTEXT=1</code> to keep 200K &mdash; worth checking against cloud spend budgets.</div>
 
-      <div class="headline-feature"><span class="tag feat">automation</span> <strong><code>--bare</code> is now truly bare.</strong> Connects only the MCP servers named on the command line, sends no system reminders, starts no background tasks, and stops (rather than backgrounds) shell commands that hit their timeout. Worth adopting in CI/headless runs.</div>
+      <div class="headline-feature"><span class="tag feat">MCP</span> <strong>URL prompts (elicitation) from MCP servers on the 2025-11-25 protocol</strong>, e.g. for sign-in. If a server stops connecting after updating, add <code>"bareElicitationCapability": true</code> to its MCP config entry. Also: <code>alwaysLoad: false</code> now defers all of a server's tools behind tool search.</div>
 
-      <div class="headline-feature"><span class="tag sec">plugins</span> <strong>Stricter plugin sources.</strong> Plugin installs now refuse npm sources that are git repos or folders, and install dependencies only from registry packages. Check any internal plugins that point npm at a git URL.</div>
+      <div class="headline-feature"><span class="tag feat">observability</span> <strong>OpenTelemetry <code>user_prompt</code> event gains <code>prompt_text</code></strong> (a copy of <code>prompt</code>). If you drop or mask <code>prompt</code> in your OTel pipeline, do the same for <code>prompt_text</code>.</div>
 
-      <div class="headline-feature"><span class="tag fix">fleet</span> <strong>Fixes worth knowing.</strong> Multiple processes/IDE extensions no longer each open a login browser when <code>gcpAuthRefresh</code> / <code>awsAuthRefresh</code> credentials expire; <code>--resume</code> / <code>--continue</code> no longer lose turns after parallel tool calls in a crashed session; Claude apps gateway spend meter now prices 1-hour cache writes correctly; permission prompts show "2 of 5" when requests stack.</div>
+      <div class="headline-feature"><span class="tag fix">fleet</span> <strong>Fixes worth knowing.</strong> Bedrock/Vertex startup checks now honour an enforced <code>availableModels</code> list; Bedrock Guardrails blocks mid-response show the guardrail message instead of an API error; <code>claude remote-control</code> registers behind HTTP proxies; Remote Control gives up on a stuck reconnect after 30s; Windows Bash tool is faster; self-hosted runners get a built-in <code>gh api</code> (REST) when the GitHub CLI isn't installed.</div>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.286 &mdash; retries, fallbacks, scripting and plugin hardening <span class="badge">Thu 1 Oct</span></h3>
+      <div class="headline-feature">One retry budget per model call (max 14 requests by default); same-tier fallback when the API refuses your default model; <code>--bare</code> connects only named MCP servers; plugin installs refuse git/folder npm sources; MCP error path that could print a credential value fixed.</div>
     </div>
 
     <div class="card section-versions">
       <h3>v2.1.285 &mdash; provider lockdown, Desktop handoff, headless plugins <span class="badge">Wed 30 Sep &middot; now <code>stable</code></span></h3>
       <div class="headline-feature"><code>allowedProviders</code> managed setting pins which API providers a machine may use; <code>claude --desktop</code> hands a session to the Desktop app; <code>claude plugin configure</code> / <code>install --config</code> for scripted plugin setup; <code>ANTHROPIC_AUTH_TOKEN</code> sessions now load org policy.</div>
-    </div>
-
-    <div class="card section-versions">
-      <h3>v2.1.284 &mdash; Sonnet 5.5 lands, auto mode everywhere <span class="badge">Tue 29 Sep</span></h3>
-      <div class="headline-feature">Claude Sonnet 5.5 (<code>claude-sonnet-5-5</code>) default Sonnet on the Anthropic API ($2 / $10 per Mtok, 1M context); auto mode default on every plan and provider; <code>/mcp reconnect all</code>; marketplace/npm plugins can no longer pre-approve their own tools under <code>allowManagedPermissionRulesOnly</code>.</div>
     </div>
   </div>
 
@@ -143,9 +143,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <ul>
         <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet in Claude Code since v2.1.284. $2 / $10 per Mtok, 1M context.</li>
         <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus since v2.1.280 (22 Sep).</li>
-        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; announced 1 Sep; top tier.</li>
+        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; announced 1 Sep; top tier. v2.1.287: picking Fable in <code>/model</code> on a claude.ai login now follows the newest Fable like Opus and Sonnet.</li>
         <li><span class="tag fix">Haiku 4.5</span> <code>claude-haiku-4-5-20251001</code> &mdash; still the fast tier.</li>
-        <li><span class="tag feat">behaviour</span> v2.1.286: a refused default model now falls back once to the previous same-tier model; <code>--fallback-model</code> retries run at standard speed when the fallback can't run fast.</li>
+        <li><span class="tag feat">behaviour</span> v2.1.287: 1M context is now default for Opus 4.7+ and Fable on Bedrock, Vertex, Foundry and the apps gateway; automatic model switches after a flagged message keep your current effort level; <code>/advisor</code> now lets Sonnet 5.5 advise Opus 4.7 and 4.8.</li>
       </ul>
     </div>
   </div>
@@ -154,26 +154,27 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">credential leak fix &middot; plugin source hardening</span>
+      <span class="badge major">rm safeguard bypass fixed &middot; scanning default changes today</span>
     </div>
 
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">credentials</span> MCP error messages could show a credential's value when "Bearer" or "Basic" came before its key name (fixed in 2.1.286). If you ship MCP error logs anywhere central, consider rotating tokens that may have appeared.</li>
-        <li><span class="tag sec">plugins</span> Plugin installs now refuse npm sources that are git repositories or folders; dependencies come only from registry packages. Supply-chain win &mdash; check internal plugins still install.</li>
-        <li><span class="tag sec">policy</span> Remote Control sessions (incl. <code>claude remote-control</code>) now disconnect when org policy turns Remote Control off; previously they stayed connected.</li>
-        <li><span class="tag sec">cloud</span> Clearing an org environment's setup script in admin settings no longer leaves new cloud sessions running the old script.</li>
-        <li><span class="tag sec">pin</span> <code>stable</code> moved to v2.1.285 (includes <code>allowedProviders</code> and the <code>ANTHROPIC_AUTH_TOKEN</code> policy-loading fix). Suggested canary: v2.1.286.</li>
-        <li><span class="tag sec">deadline</span> Enterprise skill/plugin scanning defaults to "Requires review" <strong>tomorrow, Fri 2 Oct</strong>, if no setting is chosen.</li>
+        <li><span class="tag sec">permissions</span> A dangerous <code>rm</code> (e.g. on <code>/</code> or home) could lose its always-ask safeguard when the same command also redirected output to a <code>~</code> or wildcard path. Fixed in 2.1.287 &mdash; good reason to move canaries forward.</li>
+        <li><span class="tag sec">permissions</span> Whole-tool <code>Bash</code> allow rules and allowing hooks now <em>prompt</em> (not run) shell writes to files the file tools refuse outright, such as the host credentials file. Shell writes through repo-committed symlinks to sensitive files or out of tree now name the destination and wait for a person.</li>
+        <li><span class="tag sec">policy</span> Org per-tool permission ceilings were silently dropped for an MCP tool named <code>__proto__</code> &mdash; fixed.</li>
+        <li><span class="tag sec">sandbox</span> Sandboxed Bash on Linux no longer inherits an open handle on the Claude Code executable.</li>
+        <li><span class="tag sec">telemetry</span> New OTel field <code>prompt_text</code> duplicates <code>prompt</code> &mdash; update masking/redaction rules before rolling 2.1.287 to the fleet.</li>
+        <li><span class="tag sec">privacy</span> <code>/feedback</code> and <code>/bug</code> no longer pre-fill recent error messages into the public GitHub issue.</li>
+        <li><span class="tag sec">deadline</span> Enterprise skill/plugin scanning defaults to "Requires review" <strong>today, Fri 2 Oct</strong>, if no setting is chosen.</li>
         <li><span class="tag sec">deadline</span> Cowork on Pro/Max goes cloud-by-default on <strong>Tue 6 Oct</strong>.</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Patterns worth tracking</h3>
-      <div class="headline-feature"><strong>Fleet governance keeps expanding.</strong> 283 (<code>deniedModels</code>) &rarr; 285 (<code>allowedProviders</code>) &rarr; 286 (policy now actively kills Remote Control sessions). Admin intent is enforced on live sessions, not just new ones.</div>
-      <div class="headline-feature"><strong>Bounded failure.</strong> 286 caps retries per call and adds deterministic model fallback &mdash; outages now degrade predictably instead of hammering providers.</div>
+      <div class="headline-feature"><strong>Fleet governance keeps expanding.</strong> 283 (<code>deniedModels</code>) &rarr; 285 (<code>allowedProviders</code>) &rarr; 286 (policy kills live Remote Control sessions) &rarr; 287 (enforced <code>availableModels</code> honoured in Bedrock/Vertex startup checks).</div>
+      <div class="headline-feature"><strong>Plugins are getting more power.</strong> Claude Mods let plugins change deeper behaviour, right as plugin scanning defaults tighten for Enterprise. Review what your org allows before enabling mods broadly.</div>
     </div>
   </div>
 
@@ -187,7 +188,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
     <div class="card">
       <h3>What's new</h3>
       <div class="headline-feature"><strong>No new Desktop release notes since 28 Sep.</strong> The latest app entry is still Claude Sonnet 5.5 in the model picker alongside Opus 5.5.</div>
-      <div class="headline-feature"><strong><code>claude --desktop</code></strong> (Claude Code v2.1.285, now on <code>stable</code>) opens the Desktop app on the current directory, or continues/resumes a CLI session there.</div>
+      <div class="headline-feature"><strong><code>claude --desktop</code> / <code>/desktop</code></strong> hands a CLI session to the Desktop app (v2.1.285+). v2.1.287 makes <code>/desktop</code> name the cause when opening the app times out.</div>
       <div class="headline-feature"><strong>Standing context.</strong> Claude Design, Slides and Docs in any conversation since 16 Sep (off by default on Enterprise until an owner enables them).</div>
     </div>
   </div>
@@ -201,9 +202,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Tomorrow (Fri 2 Oct): skill and plugin scanning default changes.</strong> Enterprise plans that haven't chosen a setting switch to "Requires review". See <a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">Get started with skill and plugin scanning</a>.</div>
+      <div class="headline-feature"><strong>Today (Fri 2 Oct): skill and plugin scanning default changes.</strong> Enterprise plans that haven't chosen a setting switch to "Requires review". See <a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">Get started with skill and plugin scanning</a>.</div>
       <div class="headline-feature"><strong>Tue 6 Oct: cloud by default.</strong> New Cowork tasks on Pro and Max will run in the cloud, and "Only on your computer" in Settings &gt; General is being removed. See <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>.</div>
-      <div class="headline-feature"><strong>Recent.</strong> Sonnet 5.5 (28 Sep); plugin developer portal (25 Sep, <a href="https://claude.com/blog/build-plugins-for-claude">Build plugins for Claude</a>); Cowork in every conversation (16 Sep, <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>); Salesforce in Claude plugin (beta, 15 Sep).</div>
+      <div class="headline-feature"><strong>Recent.</strong> Sonnet 5.5 (28 Sep); plugin developer portal (25 Sep, <a href="https://claude.com/blog/build-plugins-for-claude">Build plugins for Claude</a>); Cowork in every conversation (16 Sep, <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>); Salesforce in Claude plugin (beta, 15 Sep). Claude Code 2.1.287 also fixes cloud sessions losing earlier conversation when restarted mid-compaction and SessionStart hooks from synced plugins not running.</div>
     </div>
   </div>
 
@@ -218,11 +219,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Official posts</h3>
         <ul class="linklist">
-          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.286 top</a><span class="src">code.claude.com</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.286">Claude Code v2.1.286 GitHub release</a><span class="src">github.com &middot; 2026-09-30 19:10 UTC</span></li>
+          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.287 top</a><span class="src">code.claude.com</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.287">Claude Code v2.1.287 GitHub release</a><span class="src">github.com &middot; 2026-10-01 18:00 UTC</span></li>
           <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude release notes &mdash; apps, Desktop and Cowork</a><span class="src">support.claude.com &middot; newest: Sonnet 5.5 (28 Sep)</span></li>
-          <li><a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">Get started with skill and plugin scanning</a><span class="src">support.claude.com &middot; default changes 2 Oct</span></li>
+          <li><a href="https://www.anthropic.com/engineering/claude-code-best-practices">Best practices for Claude Code</a><span class="src">anthropic.com</span></li>
+          <li><a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">Get started with skill and plugin scanning</a><span class="src">support.claude.com &middot; default changes today</span></li>
           <li><a href="https://www.anthropic.com/claude-sonnet-5-5">Introducing Claude Sonnet 5.5</a><span class="src">anthropic.com &middot; 28 Sep</span></li>
         </ul>
       </div>
@@ -230,11 +231,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Community videos</h3>
         <ul class="linklist">
-          <li><a href="https://www.youtube.com/watch?v=QvQQbaBNZ4c">Claude Opus 5.5: get the most out of it in 5 minutes</a><span class="src">YouTube &middot; Opus 5.5</span></li>
           <li><a href="https://www.youtube.com/watch?v=DP7mgLUKN_U">Build beautiful sites with Claude Code and Opus 5.5</a><span class="src">YouTube &middot; Opus 5.5</span></li>
           <li><a href="https://www.youtube.com/watch?v=UQMYct4zv6c">Build an iOS app with Claude Code in 2026</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/shorts/EU2bf_jCNtU">Claude Code sub-agents: parallel tasks with Opus + Sonnet</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=wLXVujuwWC8">How to use Claude Cowork on mobile, web and Windows</a><span class="src">YouTube &middot; Cowork</span></li>
           <li><a href="https://www.youtube.com/watch?v=rtWEzqblcVM">Claude Cowork full tutorial 2026 (step-by-step)</a><span class="src">YouTube &middot; Cowork</span></li>
-          <li><a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The only Claude Cowork tutorial you'll ever need in 2026</a><span class="src">YouTube &middot; Cowork</span></li>
         </ul>
       </div>
     </div>
