@@ -67,11 +67,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.289</span>
-      <span class="pill">All sources aligned on v2.1.289 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
-      <span class="pill neutral">Permission-rule hardening &middot; Desktop v2.19675.0</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.290</span>
+      <span class="pill">All sources aligned on v2.1.290 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
+      <span class="pill neutral">Big security &amp; admin-policy sweep &middot; Desktop v2.19675.1</span>
       <span class="pill warn"><code>stable</code> dist-tag: v2.1.285 (unchanged)</span>
-      <span class="pill neutral">Updated: Mon 05 Oct 2026</span>
+      <span class="pill neutral">Updated: Tue 06 Oct 2026</span>
     </div>
   </div>
 
@@ -88,47 +88,46 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.289 on <code>latest</code> and <code>next</code></span>
+      <span class="badge">CLI &middot; v2.1.290 on <code>latest</code> and <code>next</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.289.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.289</strong>. npm publish <strong>2026-10-03 20:12 UTC (Sun 4 Oct 07:12 local)</strong>; GitHub release 2026-10-03 23:07 UTC. <code>stable</code> stays on <strong>v2.1.285</strong>, now four releases behind.</div>
+    <div class="banner"><strong>All sources aligned on v2.1.290.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.290</strong>. npm publish <strong>2026-10-05 18:12 UTC (Tue 6 Oct 05:12 local)</strong>; GitHub release 2026-10-05 23:33 UTC. <code>stable</code> stays on <strong>v2.1.285</strong>, now five releases behind.</div>
 
-    <div class="banner"><strong>Two releases since Friday.</strong> v2.1.288 (~89 bullets, Fri 2 Oct UTC) closes a dangerous-<code>rm</code>-in-<code>bash -c</code> bypass, adds OAuth scope step-up for MCP servers and <code>/code-review --max-findings</code>. v2.1.289 (27 bullets, Sat 3 Oct UTC) is a permission-rule hardening and plugin/mod stability patch.</div>
+    <div class="banner"><strong>v2.1.290 is a large release (~130 bullets).</strong> Mostly permission/policy hardening: plan-mode auto-approval of connector tools, Bash read-only auto-approvals with wildcards, <code>allowedMcpServers</code> gaps in <code>.mcp.json</code>, and PreToolUse hook rewrites skipping checks. Plus new managed-settings warnings and <code>claude attach</code>/<code>claude logs</code>.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.289</strong> &mdash; published 2026-10-03 20:12 UTC (<strong>Sun 4 Oct 07:12 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
-        <li><span class="tag major">previous</span> <strong>v2.1.288</strong> &mdash; GitHub release 2026-10-02 20:19 UTC. Large fix sweep: rm bypass, MCP OAuth step-up, Ctrl+C draft recovery, <code>claude purge</code>.</li>
-        <li><span class="tag major">previous</span> <strong>v2.1.287</strong> &mdash; Thu 1 Oct UTC. Claude Mods, "You should know" side agent, 1M context default on clouds, MCP URL elicitation.</li>
-        <li><span class="tag major">previous</span> <strong>v2.1.286</strong> &mdash; Wed 30 Sep UTC. Single retry budget, same-tier model fallback, truly bare <code>--bare</code>.</li>
-        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.285</strong> &mdash; unchanged; <code>allowedProviders</code>, <code>claude --desktop</code>.</li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.290</strong> &mdash; published 2026-10-05 18:12 UTC (<strong>Tue 6 Oct 05:12 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
+        <li><span class="tag major">previous</span> <strong>v2.1.289</strong> &mdash; Sat 3 Oct UTC. Deny/ask rules hold under sandbox auto-allow and through IDE symlinks; reverted VS Code sign-out regression.</li>
+        <li><span class="tag major">previous</span> <strong>v2.1.288</strong> &mdash; Fri 2 Oct UTC. <code>rm</code> in <code>bash -c</code> bypass, MCP OAuth step-up, Ctrl+C draft recovery, <code>/code-review --max-findings</code>.</li>
+        <li><span class="tag major">previous</span> <strong>v2.1.287</strong> &mdash; Thu 1 Oct UTC. Claude Mods, "You should know" side agent, MCP URL elicitation.</li>
+        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.285</strong> &mdash; unchanged.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.289 &mdash; deny/ask rules hold in more places <span class="badge major">newest &middot; aligned</span></h3>
+      <h3>v2.1.290 &mdash; permission &amp; policy hardening <span class="badge major">newest &middot; aligned</span></h3>
 
-      <div class="headline-feature"><span class="tag sec">permissions</span> <strong>Bash deny/ask rules no longer slip under sandbox auto-allow</strong> when the command has an env-var prefix with an expanded value (e.g. <code>TZ="$HOME" rm -rf build</code>) or a bare variable assignment before it. A deny/ask rule on a nested part of a compound command now also holds over a user-installed mod's approval on managed machines.</div>
+      <div class="headline-feature"><span class="tag sec">permissions</span> <strong>Plan mode could let the auto mode classifier approve non-read-only connector tools</strong> that carry a server-pushed ask policy &mdash; fixed. Bash checks no longer auto-approve "read-only" commands (<code>rg</code>, <code>git grep</code>) whose args the shell expands as wildcards, or commands whose variable names zsh reads differently from bash; these now prompt. Permission rules now also apply after a PreToolUse hook rewrites a tool's input.</div>
 
-      <div class="headline-feature"><span class="tag sec">permissions</span> <strong><code>Read</code> deny rules now apply through symlinks</strong> for files @-mentioned, changed or selected in the IDE. A user-installed plugin can no longer rewrite the descriptions of an org-managed MCP server's sign-in tools.</div>
+      <div class="headline-feature"><span class="tag sec">managed policy</span> <strong><code>disableClaudeAiConnectors</code> and <code>allowedMcpServers</code> URL rules weren't applied to some MCP entries in <code>.mcp.json</code>, plugins or agents</strong> &mdash; fixed. A user-installed mod could make an org guard skip its check or get an org plugin unloaded &mdash; now the mod is unloaded. New warnings when a managed settings file is a symlink outside the managed folder, and in <code>/status</code>/doctor when managed settings ignore user sandbox <code>allowRead</code> paths or allowed domains.</div>
 
-      <div class="headline-feature"><span class="tag feat">mods</span> <strong>Plugin/mod APIs:</strong> <code>agent.spawn</code> for teammates, one agent id across plugin hook events, idle/waiting states in <code>$.agent.list()</code>. Many stability fixes: mods not loading in the first session after upgrade, freezes from unknown Box border styles, supervised/background sessions ending on async plugin errors.</div>
+      <div class="headline-feature"><span class="tag sec">data boundaries</span> Image reads and <code>@</code>-mentions could escape approved paths via a link swapped mid-read; symlinked <code>CLAUDE.md</code>/<code>AGENTS.md</code> loaded despite <code>blockReadsOutsideWorkingDirectories</code>; background workers honoured <code>--allow-dangerously-skip-permissions</code> without the disclaimer; background/daemon processes sent telemetry to Anthropic behind a Claude apps gateway; <code>--restricted</code> opened the cross-session socket. All fixed.</div>
 
-      <div class="headline-feature"><span class="tag fix">VS Code</span> <strong>Reverted the 2.1.288 <code>claude auth status</code> change</strong> that may have made sign-outs more frequent &mdash; if your team saw extra sign-outs on 2.1.288, update.</div>
+      <div class="headline-feature"><span class="tag feat">workflow</span> <code>claude attach &lt;name&gt;</code> / <code>claude logs &lt;name&gt;</code> accept part of a session name; <code>/claude-api managed-agents-onboard</code> scaffolds Managed Agents as <code>ant apply</code> files; WebFetch now reports truncation past 100k chars and takes an <code>offset</code>; Deny button on the apps gateway sign-in approval page.</div>
+
+      <div class="headline-feature"><span class="tag fix">reliability</span> Requests through proxies/gateways that reject a beta header with a non-400 status now work; scheduled tasks and <code>/loop</code> survive compaction and background hand-offs; long image-heavy sessions no longer stick on "unprocessable" errors; Cowork cloud replies no longer hang on container restart; slow startup under SDK hosts (VS Code, WSL) since 2.1.285 fixed.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.288 &mdash; rm bypass, MCP OAuth step-up, quality-of-life <span class="badge">Fri 2 Oct UTC</span></h3>
-      <div class="headline-feature"><span class="tag sec">permissions</span> <strong>A dangerous <code>rm</code> (on <code>/</code> or home) inside <code>bash -c</code>/<code>sh -c</code> could run without a prompt</strong> in bypassPermissions mode or under a shell allow rule &mdash; fixed (anthropics/claude-code#96300). Also: <code>BASHPID</code> arithmetic assignment now prompts; <code>sandbox.credentials.files</code> on git config now honoured with <code>blockReadsOutsideWorkingDirectories</code>.</div>
-      <div class="headline-feature"><span class="tag sec">auth</span> <strong><code>/login</code> no longer reports success when credentials couldn't be saved</strong> to secure storage; <code>/login</code> in <code>--bare</code> no longer overwrites your saved login. Re-authenticate prompt when an MCP server asks for more OAuth scope mid-call.</div>
-      <div class="headline-feature"><span class="tag feat">workflow</span> <code>/code-review --max-findings &lt;n&gt;|all</code>; Up on an empty prompt restores a draft cleared with Ctrl+C; background command time limit now applies only to unattended sessions (<code>-p</code>, SDK, CI, cloud); <code>claude project purge</code> &rarr; <code>claude purge</code>; auto mode compacts instead of failing when the conversation outgrows the safety classifier.</div>
-      <div class="headline-feature"><span class="tag fix">telemetry</span> Unanswered permission asks (in <code>-p</code> or interrupted turns) now emit a <code>tool_decision</code> event &mdash; expect slightly more events in OTel pipelines.</div>
+      <h3>v2.1.289 &mdash; deny/ask rules hold in more places <span class="badge">Sat 3 Oct UTC</span></h3>
+      <div class="headline-feature">Bash deny/ask rules no longer slip under sandbox auto-allow with env-var prefixes; <code>Read</code> deny rules apply through IDE symlinks; user plugins can't rewrite org-managed MCP sign-in tool descriptions; VS Code <code>claude auth status</code> sign-out regression reverted.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.287 &mdash; Claude Mods, 1M context on clouds, MCP elicitation <span class="badge">Thu 1 Oct UTC</span></h3>
-      <div class="headline-feature">Claude Mods + built-in "You should know" side agent; 1M context default for Opus 4.7+/Fable on Bedrock, Vertex, Foundry (<code>CLAUDE_CODE_DISABLE_1M_CONTEXT=1</code> to opt out); MCP URL elicitation; OTel <code>prompt_text</code> field duplicates <code>prompt</code>.</div>
+      <h3>v2.1.288 &mdash; rm bypass, MCP OAuth step-up <span class="badge">Fri 2 Oct UTC</span></h3>
+      <div class="headline-feature">Dangerous <code>rm</code> in <code>bash -c</code> no longer runs unprompted; MCP OAuth scope step-up; mid-response API timeouts continue from partial output; <code>CLAUDE_CODE_DISABLE_STRUCTURED_OUTPUTS</code> for gateways that reject structured outputs; Ctrl+C draft recovery.</div>
     </div>
   </div>
 
@@ -144,9 +143,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <ul>
         <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet in Claude Code since v2.1.284.</li>
         <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus since v2.1.280.</li>
-        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; top tier.</li>
+        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; top tier; <code>/model</code> saved default now follows the newest Fable (2.1.287).</li>
         <li><span class="tag fix">Haiku 4.5</span> <code>claude-haiku-4-5-20251001</code> &mdash; fast tier.</li>
-        <li><span class="tag feat">behaviour</span> v2.1.288: the client-side auto mode classifier ignores an <code>ANTHROPIC_DEFAULT_SONNET_MODEL</code> pin naming Sonnet 5.5 or Opus 5.5 and uses Claude Sonnet 5 instead. Desktop v2.19675.0: 1M context is now the default for Opus 4.7+, Sonnet 5+ and Fable 5+ behind a gateway or custom base URL.</li>
+        <li><span class="tag feat">behaviour</span> v2.1.290: a retry on a fallback model no longer changes your effort level; output-filter stops during thinking are retried once before erroring.</li>
       </ul>
     </div>
   </div>
@@ -155,25 +154,25 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">permission-rule bypasses fixed in 2.1.288 &amp; 2.1.289</span>
+      <span class="badge major">third consecutive permission-hardening release</span>
     </div>
 
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">permissions</span> Move canaries to <strong>2.1.289</strong>: closes Bash deny/ask bypasses via env-var prefixes and bare assignments under sandbox auto-allow, and <code>Read</code> deny bypass via IDE symlinks.</li>
-        <li><span class="tag sec">permissions</span> 2.1.288 fixed dangerous <code>rm</code> inside <code>bash -c</code> running unprompted in bypassPermissions or under a shell allow rule.</li>
-        <li><span class="tag sec">supply chain</span> User-installed plugins could rewrite descriptions of org-managed MCP sign-in tools &mdash; fixed in 2.1.289. Worth reviewing alongside the Enterprise plugin scanning default that changed on 2 Oct.</li>
-        <li><span class="tag sec">auth</span> <code>/login</code> false-success and <code>--bare</code> login overwrite fixed in 2.1.288.</li>
-        <li><span class="tag sec">desktop</span> Desktop v2.19675.0 drops computer use on macOS 13 and earlier; fixes sandbox proxy loss after a PAC download failure (VPN switch).</li>
-        <li><span class="tag sec">deadline</span> Cowork on Pro/Max goes cloud-by-default <strong>tomorrow, Tue 6 Oct</strong>.</li>
+        <li><span class="tag sec">permissions</span> Move canaries to <strong>2.1.290</strong>: closes plan-mode auto-approval of non-read-only connector tools, wildcard-expanding "read-only" Bash commands, zsh variable parsing gaps, and PreToolUse-rewrite bypasses.</li>
+        <li><span class="tag sec">MCP policy</span> If you enforce <code>allowedMcpServers</code> or <code>disableClaudeAiConnectors</code>, older clients didn't apply them to some <code>.mcp.json</code>/plugin/agent entries. Upgrade before relying on them.</li>
+        <li><span class="tag sec">managed settings</span> Run <code>/status</code> or doctor on a managed machine after upgrading &mdash; new warnings flag symlinked managed settings files and ignored user sandbox paths/domains.</li>
+        <li><span class="tag sec">gateway / telemetry</span> Behind a Claude apps gateway without forced gateway login, background commands and daemon workers were sending telemetry and a feature-flag request to Anthropic &mdash; fixed in 2.1.290.</li>
+        <li><span class="tag sec">supply chain</span> User-installed mods can no longer make an org guard skip its check or unload an org plugin.</li>
+        <li><span class="tag sec">today</span> Cowork on Pro/Max is cloud-by-default from <strong>today, Tue 6 Oct</strong>.</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Patterns worth tracking</h3>
-      <div class="headline-feature"><strong>Sandbox auto-allow is a recurring edge.</strong> 2.1.288 and 2.1.289 both close cases where deny/ask rules were skipped under sandbox auto-allow. If you rely on deny rules as a guardrail, keep the fleet current.</div>
-      <div class="headline-feature"><strong>Mods are maturing fast.</strong> Two releases of mod API additions and stability fixes since Claude Mods landed in 2.1.287, plus the first managed-machine precedence fix (deny rules beat mod approvals).</div>
+      <div class="headline-feature"><strong>Permission edges keep closing.</strong> 2.1.288, 2.1.289 and 2.1.290 all fix cases where deny/ask rules or approval gates were skipped. Treat older clients as having weaker guardrails and keep the fleet current.</div>
+      <div class="headline-feature"><strong>Org-vs-user precedence for mods.</strong> 2.1.289 and 2.1.290 both tighten how user-installed mods interact with organization plugins and guards &mdash; expect more of this as Claude Mods matures.</div>
     </div>
   </div>
 
@@ -181,14 +180,13 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="desktop">
     <div class="product-header">
       <h2>Claude Desktop</h2>
-      <span class="badge">v2.19675.0 &middot; 1 Oct &middot; bundles Claude Code 2.1.286</span>
+      <span class="badge">v2.19675.1 &middot; 5 Oct &middot; bundles Claude Code 2.1.288</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Line comments in the Files pane (Code tab).</strong> Click + beside a line or select text and choose Add comment; comments go with your next message.</div>
-      <div class="headline-feature"><strong>Reliability.</strong> Failed sends now offer Retry instead of looking sent; conversations no longer break after a connector returns an oddly shaped result; Claude can run commands in the Terminal panel on Windows again; Windows app starts when Google/Chrome folders under <code>LocalAppData</code> are junctions.</div>
-      <div class="headline-feature"><strong>Admin/3P.</strong> Computer use now requires macOS 14+; 1M context default behind gateways/custom base URLs; Linux spellcheck dictionary added to Egress Requirements (skipped with <code>disableNonessentialServices</code>).</div>
+      <div class="headline-feature"><strong>v2.19675.1 (5 Oct) &mdash; 3P fixes.</strong> Read-only access in Chat to folders added to a project after this update (re-add older folders and start a new chat). Skills uploaded as <code>.zip</code>/<code>.skill</code> now keep all their files, not just <code>SKILL.md</code>; skills with non-Latin or punctuated names are now found by Cowork and Code sessions. Bundled Claude Code bumped to 2.1.288.</div>
+      <div class="headline-feature"><strong>v2.19675.0 (1 Oct).</strong> Line comments in the Files pane; failed sends offer Retry; Windows Terminal panel commands work again; computer use now requires macOS 14+.</div>
     </div>
   </div>
 
@@ -201,9 +199,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Tomorrow (Tue 6 Oct): cloud by default.</strong> New Cowork tasks on Pro and Max will run in the cloud, and "Only on your computer" in Settings &gt; General is being removed. See <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>.</div>
-      <div class="headline-feature"><strong>Scheduled tasks Claude creates now default to "Automatically approve"</strong> where the org allows it (Desktop v2.19675.0) &mdash; runs use tools without asking and pause only when something looks unsafe. Review org policy if you want scheduled runs gated.</div>
-      <div class="headline-feature"><strong>Fixes.</strong> Corporate proxies set by a one-word host name now work; background clicking in apps like Slack is more accurate; expired sign-in requests no longer leave replies "waiting on you". Claude Code 2.1.288 also fixes cloud sessions stuck waiting after an unanswered WebFetch prompt and adds a built-in <code>gh api</code> to cloud images without the GitHub CLI.</div>
+      <div class="headline-feature"><strong>Today (Tue 6 Oct): cloud by default.</strong> New Cowork tasks on Pro and Max now run in the cloud, and "Only on your computer" in Settings &gt; General is being removed. See <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>.</div>
+      <div class="headline-feature"><strong>Cloud session reliability (Claude Code 2.1.290).</strong> Replies no longer hang when a container restarts just after a message or file; lost <code>/loop</code> wakeups and scheduled tasks are now reported so Claude can reschedule; plans written in plan mode survive a container restart.</div>
+      <div class="headline-feature"><strong>Skills.</strong> Desktop v2.19675.1 fixes uploaded skill archives losing files and skills with non-English names not being found in Cowork sessions.</div>
     </div>
   </div>
 
@@ -218,23 +216,23 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Official posts</h3>
         <ul class="linklist">
-          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.289 top</a><span class="src">code.claude.com</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.289">Claude Code v2.1.289 GitHub release</a><span class="src">github.com &middot; 2026-10-03 23:07 UTC</span></li>
-          <li><a href="https://claude.com/docs/cowork/claude-desktop-changelog">Claude Desktop changelog &mdash; v2.19675.0</a><span class="src">claude.com &middot; 1 Oct</span></li>
+          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.290 top</a><span class="src">code.claude.com</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.290">Claude Code v2.1.290 GitHub release</a><span class="src">github.com &middot; 2026-10-05 23:33 UTC</span></li>
+          <li><a href="https://claude.com/docs/cowork/claude-desktop-changelog">Claude Desktop changelog &mdash; v2.19675.1</a><span class="src">claude.com &middot; 5 Oct</span></li>
           <li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a><span class="src">support.claude.com &middot; cloud default 6 Oct</span></li>
-          <li><a href="https://claude.com/blog/cowork-built-in-browser">Claude Cowork gets a built-in browser</a><span class="src">claude.com</span></li>
-          <li><a href="https://www.anthropic.com/claude-sonnet-5-5">Introducing Claude Sonnet 5.5</a><span class="src">anthropic.com &middot; 28 Sep</span></li>
+          <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude release notes</a><span class="src">support.claude.com</span></li>
+          <li><a href="https://claude.com/blog/cowork-plugins-across-enterprise">Cowork and plugins for teams across the enterprise</a><span class="src">claude.com</span></li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Community videos</h3>
         <ul class="linklist">
-          <li><a href="https://www.youtube.com/watch?v=afuKhenJldY">How to make a Roblox game with AI (Claude Opus 5.5 full tutorial)</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=DP7mgLUKN_U">Build beautiful sites with Claude Code and Opus 5.5</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=KIe7LM8NAOA">100 hours of vibe coding lessons with Claude Opus 5.5</a><span class="src">YouTube &middot; Opus 5.5</span></li>
-          <li><a href="https://www.youtube.com/watch?v=wLXVujuwWC8">How to use Claude Cowork on mobile, web and Windows</a><span class="src">YouTube &middot; Cowork</span></li>
-          <li><a href="https://www.youtube.com/watch?v=rtWEzqblcVM">Claude Cowork full tutorial 2026 (step-by-step)</a><span class="src">YouTube &middot; Cowork</span></li>
+          <li><a href="https://www.youtube.com/watch?v=UQMYct4zv6c">Build an iOS app with Claude Code in 2026 (Opus 5)</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=-6D5pjeHULg">How I plan new projects with Claude Code Opus</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=2FhJR3ZP57o">Complete Claude Code tutorial for beginners in 2026</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The only Claude Cowork tutorial you'll ever need in 2026</a><span class="src">YouTube &middot; Cowork</span></li>
+          <li><a href="https://www.youtube.com/watch?v=9-59mxtbqJk">Claude Cowork for finance tutorial 2026</a><span class="src">YouTube &middot; Cowork</span></li>
         </ul>
       </div>
     </div>
