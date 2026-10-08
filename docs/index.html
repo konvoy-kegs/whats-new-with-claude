@@ -67,11 +67,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.293</span>
-      <span class="pill">All sources aligned on v2.1.293 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
-      <span class="pill neutral">New model: Claude Haiku 5.5 &middot; Desktop v2.26454.2 (7 Oct)</span>
-      <span class="pill warn"><code>stable</code> dist-tag: v2.1.285 (unchanged, 8 behind)</span>
-      <span class="pill neutral">Updated: Thu 08 Oct 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.295</span>
+      <span class="pill">All sources aligned on v2.1.295 &mdash; npm, <code>latest</code>, <code>next</code>, changelog &amp; GitHub release</span>
+      <span class="pill neutral">Desktop v2.26454.2 (7 Oct, no new release)</span>
+      <span class="pill warn"><code>stable</code> dist-tag: v2.1.286 (moved up from 2.1.285; 9 behind)</span>
+      <span class="pill neutral">Updated: Fri 09 Oct 2026</span>
     </div>
   </div>
 
@@ -88,52 +88,56 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.293 on <code>latest</code> and <code>next</code></span>
+      <span class="badge">CLI &middot; v2.1.295 on <code>latest</code> and <code>next</code></span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.293.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.293</strong>. npm publish <strong>2026-10-07 17:18 UTC (Thu 8 Oct 04:18 AEDT)</strong>; GitHub release 2026-10-07 18:10 UTC. One release since yesterday's digest. <code>stable</code> stays on <strong>v2.1.285</strong>, now eight releases behind.</div>
+    <div class="banner"><strong>All sources aligned on v2.1.295.</strong> npm newest, the <code>latest</code> and <code>next</code> dist-tags, the changelog top and the newest GitHub release all read <strong>v2.1.295</strong>. npm publish <strong>2026-10-08 18:22 UTC (Fri 9 Oct 05:22 AEDT)</strong>; GitHub release 2026-10-08 19:48 UTC. Two releases since yesterday's digest (2.1.294 and 2.1.295). <code>stable</code> moved from 2.1.285 to <strong>v2.1.286</strong>, still nine releases behind.</div>
 
-    <div class="banner"><strong>v2.1.293 headline: Claude Haiku 5.5 (<code>claude-haiku-5-5</code>)</strong> is now the default Haiku model on the Anthropic API &mdash; 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K). Auto mode with Haiku 5.5 on Bedrock, Google Cloud and Foundry requires 2.1.293 or later. Plus a compaction fix, an HTTP MCP memory leak fix, and two reverts.</div>
+    <div class="banner"><strong>v2.1.295 headline: fail-closed hooks.</strong> Command and HTTP hooks can now set <code>onFailure: "block"</code> &mdash; a hook that can't start, times out, or exits unexpectedly blocks the action instead of letting it through. Paired with 2.1.294's fix for instruction-style <code>prompt</code>/<code>agent</code> hooks that allowed what they should block, this is a good day to review your guard hooks. Also: a large batch of Claude apps gateway features for Bedrock/Vertex/Foundry, MCP reliability fixes, and ~140 changelog lines overall.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.293</strong> &mdash; published 2026-10-07 17:18 UTC (<strong>Thu 8 Oct 04:18 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
-        <li><span class="tag major">previous</span> <strong>v2.1.292</strong> &mdash; Tue 6 Oct UTC. Security sweep (UNC-path reads, sandbox read-deny, tampered managed-settings cache), <code>claude plugin install --marketplace</code>, Agent tool <code>effort</code>, stdio MCP protocol <code>2026-07-28</code> by default.</li>
-        <li><span class="tag fix">previous</span> <strong>v2.1.291</strong> &mdash; Mon 6 Oct UTC. Two regression fixes only.</li>
-        <li><span class="tag major">previous</span> <strong>v2.1.290</strong> &mdash; Mon 5 Oct UTC. Large permission &amp; policy hardening release; <code>claude attach</code>/<code>claude logs</code>; WebSearch budget refills hourly.</li>
-        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.285</strong> &mdash; unchanged since 29 Sep.</li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code></span> <strong>v2.1.295</strong> &mdash; published 2026-10-08 18:22 UTC (<strong>Fri 9 Oct 05:22 local</strong>). Changelog top and GitHub release top. <strong><code>claude update</code> installs this.</strong></li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.294</strong> &mdash; 2026-10-08 03:42 UTC. Two hook fixes: instruction-style <code>prompt</code>/<code>agent</code> hooks could allow what they should block.</li>
+        <li><span class="tag major">previous</span> <strong>v2.1.293</strong> &mdash; 7 Oct UTC. Claude Haiku 5.5, compaction fix, HTTP MCP memory leak fix.</li>
+        <li><span class="tag major">previous</span> <strong>v2.1.292</strong> &mdash; 6 Oct UTC. Security sweep (UNC-path reads, sandbox read-deny, tampered managed-settings cache), <code>claude plugin install --marketplace</code>, Agent tool <code>effort</code>.</li>
+        <li><span class="tag feat">dist-tag <code>stable</code></span> <strong>v2.1.286</strong> &mdash; moved up one release from 2.1.285.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.293 &mdash; Claude Haiku 5.5, compaction &amp; MCP fixes <span class="badge major">newest &middot; aligned</span></h3>
+      <h3>v2.1.295 &mdash; fail-closed hooks, gateway controls, MCP reliability <span class="badge major">newest &middot; aligned</span></h3>
 
-      <div class="headline-feature"><span class="tag major">model</span> <strong>Added Claude Haiku 5.5 (<code>claude-haiku-5-5</code>)</strong>, now the default Haiku model on the Anthropic API &mdash; 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K). Per the permission-modes docs, Haiku 5.5 qualifies for auto mode, and on Bedrock, Google Cloud and Foundry that needs Claude Code 2.1.293+.</div>
+      <div class="headline-feature"><span class="tag sec">hooks &amp; guards</span> <strong>Added <code>onFailure: "block"</code> for command and HTTP hooks</strong> (fail closed instead of open). Fixed <code>--tools</code> and <code>--restricted</code> not applying to built-in tools that register after launch. Fixed a mod's hook receiving deeply nested tool input cut short with no error (a guard could pass content it never saw), and calls made during a mod reload slipping past another mod's guard hook. Fixed a tampered server-managed-settings cache making a personal plugin count as org-managed. Fixed Bash permission checks for for-loops over glob patterns. Fixed Claude in Chrome not applying a <code>host:80</code> deny rule to plain <code>http://</code> pages.</div>
 
-      <div class="headline-feature"><span class="tag fix">reliability</span> <strong>Fixed Claude sometimes treating its own last actions before a context compaction as done after it</strong>, and retracting or redoing finished work. Fixed a <strong>memory leak where an HTTP MCP connection kept every request it had sent</strong> until it closed. Path-scoped rules and nested CLAUDE.md files now load when Claude views a file via <code>cat</code>/<code>head</code>/<code>tail</code>/<code>sed -n</code>/<code>grep</code> in Bash. <code>/model</code> effort no longer wraps past High/Low (which could save Low as a default). Windows: stopping a status line, hook or shell command no longer risks terminating an unrelated process that reused the PID.</div>
+      <div class="headline-feature"><span class="tag feat">Claude apps gateway</span> Optional per-upstream <code>models</code> list (wildcards allowed; honoured on failover); <code>timeouts.upstream_ttfb_ms</code> now applies to Bedrock, Vertex, Foundry and other cloud upstreams; <code>upstream_request_id</code> in the <code>inference</code> audit event and a <code>request-id</code> response header that matches Claude Code telemetry; <code>forceLoginMethod: "gateway"</code> in user settings on unmanaged machines. On <strong>Amazon Bedrock</strong>, token counts now use AWS's CountTokens API &mdash; <strong>grant <code>bedrock:CountTokens</code></strong>. Background requests now use Haiku 4.5 where the gateway serves it. Unknown <code>desktop</code> policy keys now start with a warning instead of failing.</div>
 
-      <div class="headline-feature"><span class="tag sec">permissions &amp; auth</span> <code>claude agents</code> now asks for bypass-permissions consent first when it was only saved in <code>.claude/settings.local.json</code> or a <code>--settings</code> file (background sessions were ignoring it). Subagents are no longer told to use <code>SendMessage</code> when a host, permission rule or <code>--tools</code> list removed it. <code>claude logs</code>/<code>stop</code>/<code>kill</code>/<code>rm</code> and <code>claude daemon</code> commands no longer sign you out when your login is near expiry.</div>
+      <div class="headline-feature"><span class="tag fix">MCP &amp; reliability</span> Fixed every request failing on a <code>[1m]</code> model when a gateway, Bedrock, Vertex or Foundry refuses the context-1m beta (now resent without it). Remote MCP servers in headless/SDK sessions now reconnect after long outages, with backoff up to 30 s. Fixed MCP pagination loops, CSS/JS/XML MCP results saved as <code>.bin</code>, and a terminal freeze on very long responses. <code>claude -p</code> no longer drops earlier responses when background work starts another turn.</div>
 
-      <div class="headline-feature"><span class="tag feat">reverts &amp; changes</span> <strong>Reverted</strong> the 2.1.281 auto-mode denial message change, and the 2.1.290 fix that told Claude when a cloud container restart lost a pending <code>/loop</code> wakeup (sessions now stay asleep). Team/Enterprise startup fetches policy and managed settings earlier, retrying after 3 s. claude.ai skill sync now checks every ~40 min (was 10) while idle. OpenTelemetry <code>claude_code.at_mention</code> capped at 100 agent + 100 MCP-resource events per prompt. New <code>agentType</code> in the <code>subagentStatusLine</code> payload; <code>isDeferred</code> on <code>$.tool.register</code> for mods.</div>
+      <div class="headline-feature"><span class="tag feat">changes</span> claude.ai connectors now negotiate MCP protocol <code>2026-07-28</code> by default (<code>MCP_PROTOCOL_NEGOTIATION=legacy</code> opts out). MCP tool descriptions loaded through tool search are cut at 16,384 chars (was 2,048). Subagents preload at most 32 skills. WebSocket MCP messages over 16 MiB close the connection. New: Program Status Protocol (OSC 7501) terminal status, <code>CLAUDE_CODE_RETRY_WATCHDOG_MAX_WAIT_MS</code>, <code>$.ui.notify</code> for mods.</div>
 
-      <div class="headline-feature"><span class="tag feat">Claude Tag &middot; Code Review</span> Claude in Slack no longer stops mid-task when an admin changes a channel's connectors/plugins/skills/rules (applies after it finishes); fixed Enterprise Grid shared-channel "not set up" errors; channel rules limit raised from 20 to 50. Code Review's Add a repository dialog now lists each repo that couldn't be added and why.</div>
+      <div class="headline-feature"><span class="tag feat">IDE, cloud &amp; Slack</span> VS Code: a chat row for files Claude sends you; fixed project-scope plugins not loading on Windows due to drive-letter casing. Cloud sessions: fixed some older routines starting without their saved prompt. Claude Tag (Slack): settings confirmation cards stay open 30 min; fixed other bots' @Claude going unanswered in busy channels. Code Review: re-reviews now report how many earlier findings remain open.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.292 &mdash; security sweep, plugin install shortcut, MCP protocol bump <span class="badge">Tue 6 Oct UTC</span></h3>
-      <div class="headline-feature"><span class="tag sec">permissions</span> PreToolUse hook approvals and auto mode could bypass the permission prompt for <strong>UNC-path file reads</strong>; a tampered on-disk managed-settings cache could unseat the built-in policy plugin; sandboxed commands could read staged <code>/ultrareview</code> uploads; managed read-deny paths appearing mid-session didn't drop grants; Windows 8.3 short-name <code>rm -rf</code> of home/drive wasn't treated as destructive &mdash; all fixed.</div>
-      <div class="headline-feature"><span class="tag feat">workflow</span> <code>claude plugin install --marketplace &lt;source&gt;</code>; Agent tool <code>effort</code> parameter; <code>CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS</code>; <code>NO_PROXY</code> honoured for Claude Code's own requests; stdio MCP servers negotiate protocol <code>2026-07-28</code> by default (<code>MCP_PROTOCOL_NEGOTIATION=legacy</code> opts out).</div>
+      <h3>v2.1.294 &mdash; hook judgement fixes <span class="badge">Thu 8 Oct UTC</span></h3>
+      <div class="headline-feature"><span class="tag sec">hooks</span> Fixed <code>prompt</code> and <code>agent</code> hooks written as instructions (such as "Block commands that...") allowing what they should block. Improved how <code>prompt</code> hooks on Stop and SubagentStop written as instructions are judged, so Claude is less likely to stop early.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.291 &mdash; two regression fixes <span class="badge">Mon 6 Oct UTC</span></h3>
+      <h3>v2.1.293 &mdash; Claude Haiku 5.5, compaction &amp; MCP fixes <span class="badge">Wed 7 Oct UTC</span></h3>
+      <div class="headline-feature"><span class="tag major">model</span> <strong>Added Claude Haiku 5.5 (<code>claude-haiku-5-5</code>)</strong>, now the default Haiku on the Anthropic API &mdash; 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 over 100K). Fixed post-compaction retracting/redoing finished work, and an HTTP MCP connection memory leak.</div>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.292 &mdash; security sweep, plugin install shortcut <span class="badge">Tue 6 Oct UTC</span></h3>
+      <div class="headline-feature"><span class="tag sec">permissions</span> PreToolUse hook approvals and auto mode could bypass the prompt for <strong>UNC-path file reads</strong>; tampered managed-settings cache could unseat the policy plugin; sandboxed commands could read staged <code>/ultrareview</code> uploads &mdash; all fixed. Plus <code>claude plugin install --marketplace</code>, Agent tool <code>effort</code>, <code>NO_PROXY</code> honoured.</div>
+    </div>
+
+    <div class="card section-versions">
+      <h3>v2.1.291 &mdash; two regression fixes <span class="badge">Tue 6 Oct UTC</span></h3>
       <div class="headline-feature"><span class="tag fix">regressions</span> Cloud sessions could drop answers to permission prompts (from 2.1.290); the last messages of a session could be lost when quitting (from 2.1.288).</div>
-    </div>
-
-    <div class="card section-versions">
-      <h3>v2.1.290 &mdash; permission &amp; policy hardening <span class="badge">Mon 5 Oct UTC</span></h3>
-      <div class="headline-feature"><span class="tag sec">permissions</span> Bash checks stop auto-approving wildcard-expanding "read-only" commands; rules apply after a PreToolUse hook rewrites input; background workers no longer honour <code>--allow-dangerously-skip-permissions</code> without the disclaimer. <code>claude attach</code>/<code>claude logs &lt;name&gt;</code>, managed-settings doctor warnings, WebSearch refills at 100 calls/hour.</div>
     </div>
   </div>
 
@@ -141,17 +145,17 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="opus5">
     <div class="product-header">
       <h2>Models</h2>
-      <span class="badge major">new: Claude Haiku 5.5 (Claude Code 2.1.293)</span>
+      <span class="badge">no new models today &middot; Haiku 5.5 landed 7 Oct</span>
     </div>
 
     <div class="card section-versions">
       <h3>Current lineup</h3>
       <ul>
-        <li><span class="tag major">Haiku 5.5 &middot; new</span> <code>claude-haiku-5-5</code> (Bedrock: <code>anthropic.claude-haiku-5-5</code>) &mdash; default Haiku on the Anthropic API; 1M context; $0.10/$0.50 per Mtok ($0.50/$2.50 over 100K). Medium effort is the default; Anthropic's prompting guide warns it can report a change as done without running a check at low/medium effort.</li>
+        <li><span class="tag major">Haiku 5.5</span> <code>claude-haiku-5-5</code> &mdash; default Haiku on the Anthropic API since 2.1.293; 1M context; $0.10/$0.50 per Mtok ($0.50/$2.50 over 100K).</li>
         <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet in Claude Code since v2.1.284.</li>
         <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus since v2.1.280.</li>
-        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; top tier.</li>
-        <li><span class="tag fix">Haiku 4.5</span> <code>claude-haiku-4-5-20251001</code> &mdash; superseded as default Haiku; see the <a href="https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide">Haiku 5.5 migration guide</a>.</li>
+        <li><span class="tag major">Fable 5.1</span> <code>claude-fable-5-1</code> &mdash; top tier. 2.1.295 fixes Fable models in <code>availableModels</code> not appearing in <code>/model</code> for gateway sessions.</li>
+        <li><span class="tag fix">Haiku 4.5</span> <code>claude-haiku-4-5-20251001</code> &mdash; superseded as default Haiku, but 2.1.295 routes gateway background requests to it where available. See the <a href="https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide">Haiku 5.5 migration guide</a>.</li>
       </ul>
     </div>
   </div>
@@ -160,24 +164,24 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">quieter day &middot; 2.1.292 remains the key security upgrade</span>
+      <span class="badge major">hook guardrails: review today</span>
     </div>
 
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">fleet</span> Move to <strong>2.1.293</strong>. It carries all of 2.1.292's security fixes (UNC-path reads, tampered managed-settings cache, sandbox read-deny, Windows 8.3 <code>rm -rf</code>) plus the HTTP MCP memory leak fix.</li>
-        <li><span class="tag sec">background agents</span> If you rely on bypass-permissions for <code>claude agents</code> via <code>.claude/settings.local.json</code> or <code>--settings</code>, expect a consent prompt now &mdash; previously background sessions silently ignored it.</li>
-        <li><span class="tag feat">3P clouds</span> Teams wanting Haiku 5.5 in auto mode on Bedrock / Google Cloud / Foundry need 2.1.293+. Check model allow-lists and gateway routing for <code>claude-haiku-5-5</code>.</li>
-        <li><span class="tag feat">MCP protocol</span> stdio MCP servers negotiate <code>2026-07-28</code> by default since 2.1.292; smoke-test internal servers. <code>MCP_PROTOCOL_NEGOTIATION=legacy</code> is the escape hatch.</li>
-        <li><span class="tag sec">Desktop admin</span> The 7 Oct deadline for deprecated managed-config key spellings (incl. <code>inferenceGatewayAuthScheme: "sso"</code>) has passed. Confirm managed configs use the current keys.</li>
+        <li><span class="tag sec">fleet</span> Move to <strong>2.1.295</strong>. It carries 2.1.292's security fixes, 2.1.294's hook fixes, and today's <code>--tools</code>/<code>--restricted</code> and guard-hook bypass fixes.</li>
+        <li><span class="tag sec">hooks</span> Add <code>onFailure: "block"</code> to command/HTTP hooks that act as security guards, so a crashed or slow hook fails closed. Re-test any <code>prompt</code>/<code>agent</code> hooks phrased as instructions ("Block commands that&hellip;") &mdash; before 2.1.294 they could allow what they should block.</li>
+        <li><span class="tag feat">AWS / gateway</span> If you run the Claude apps gateway on Bedrock, grant <code>bedrock:CountTokens</code> to its role. Consider per-upstream <code>models</code> lists and <code>timeouts.upstream_ttfb_ms</code> for failover.</li>
+        <li><span class="tag feat">MCP protocol</span> claude.ai connectors now join stdio servers in negotiating <code>2026-07-28</code> by default. <code>MCP_PROTOCOL_NEGOTIATION=legacy</code> is the escape hatch.</li>
+        <li><span class="tag sec">Enterprise</span> Skill and plugin security scanning is on by default for Enterprise orgs that hadn't set it, since 2 Oct (doesn't cover MCP servers or hooks). See <a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">skill and plugin scanning</a>.</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Patterns worth tracking</h3>
-      <div class="headline-feature"><strong>Reverts are back.</strong> 2.1.293 reverts two earlier changes (2.1.281 auto-mode denial wording; 2.1.290 cloud <code>/loop</code> wakeup notice). If you depended on either behaviour, re-test.</div>
-      <div class="headline-feature"><strong><code>stable</code> keeps falling behind.</strong> Eight releases now separate <code>stable</code> (2.1.285) from <code>latest</code>, including four permission-hardening releases. Pin to <code>latest</code>-track versions on managed machines.</div>
+      <div class="headline-feature"><strong>Guardrails are getting stricter defaults.</strong> Three releases in a row (2.1.292&ndash;2.1.295) close gaps where hooks, auto mode or tool lists could be bypassed. Treat hooks as part of your security boundary and test them on each upgrade.</div>
+      <div class="headline-feature"><strong><code>stable</code> still lags.</strong> It moved to 2.1.286 but remains nine releases behind <code>latest</code>, missing four permission-hardening releases. Pin to <code>latest</code>-track versions on managed machines.</div>
     </div>
   </div>
 
@@ -190,9 +194,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>v2.26454.2 (7 Oct) &mdash; bundle bump.</strong> Updates the bundled Claude Code to 2.1.293 (so Haiku 5.5 and the 2.1.292 security fixes reach the Code tab). No user-facing changes listed for General, Code, Cowork or 3P.</div>
-      <div class="headline-feature"><strong>v2.26454.0 (6 Oct) &mdash; stability &amp; admin.</strong> Claude Desktop for Debian/Ubuntu (x64 &amp; arm64, <code>.deb</code>) with root-owned <code>/etc/claude-desktop/managed-settings.json</code>; Desktop Extensions no longer load unless <code>isDesktopExtensionEnabled</code> is true in managed config; a failing reply/tool step no longer takes the whole chat down; <code>claudeAiImport.allowedOrganizationUuids</code> and <code>microsoftAuthDefaultAccount</code> admin keys.</div>
-      <div class="headline-feature"><strong>Deadline passed.</strong> Older managed-config key spellings were accepted only until 7 Oct 2026, 12:00 PT. Desktop versions before 1.15200.0 don't enforce plugin tool locks given in array form &mdash; update the fleet before deploying exported configs.</div>
+      <div class="headline-feature"><strong>No new Desktop release since 7 Oct.</strong> v2.26454.2 still bundles Claude Code 2.1.293, so today's 2.1.295 fixes reach the Code tab on the next Desktop bundle bump.</div>
+      <div class="headline-feature"><strong>Desktop-relevant fixes in Claude Code 2.1.295.</strong> Desktop and SDK sessions now switch back to auto mode without a restart after <code>disableAutoMode</code> is removed; status for a session waiting on a permission prompt names the MCP tool by server and readable name; macOS sessions started in the home folder no longer trigger the "access data from other apps" prompt. The gateway now serves unknown <code>desktop</code> policy keys with a warning, so new Desktop settings need no gateway upgrade.</div>
+      <div class="headline-feature"><strong>Recent (6 Oct, v2.26454.0).</strong> Claude Desktop for Debian/Ubuntu (<code>.deb</code>, x64 &amp; arm64); a failing reply or tool step no longer takes down the whole chat; fixed installed plugins disappearing. Older managed-config key spellings stopped being accepted on 7 Oct &mdash; confirm managed configs use current keys.</div>
     </div>
   </div>
 
@@ -205,9 +209,9 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><strong>Cloud by default (since 6 Oct) on Pro and Max.</strong> New tasks run in the cloud on every surface; "Only on your computer" was removed and local-only users are moved to the cloud on next launch. See <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a>.</div>
-      <div class="headline-feature"><strong>Cloud sessions &amp; routines (Claude Code 2.1.292&ndash;2.1.293).</strong> Scheduled and Run-now routines publish a private artifact without an approval prompt; routine runs no longer sit "running" for hours. Note: 2.1.293 reverts the notice telling Claude a container restart lost a pending <code>/loop</code> wakeup &mdash; such sessions now stay asleep, so check long-running scheduled loops.</div>
-      <div class="headline-feature"><strong>Plugins.</strong> <code>claude plugin install --marketplace &lt;source&gt;</code> (2.1.292) adds and installs in one step under org policy checks. Plugin developer portal for the Claude directory open since 25 Sep; Cowork and chat merged into one Claude experience since 16 Sep.</div>
+      <div class="headline-feature"><strong>Routines and scheduled tasks (Claude Code 2.1.295).</strong> Fixed some older routines starting without their saved prompt (they now run it again); fixed a message after unarchiving a cloud session getting no reply; a background <code>/loop</code> whose wakeup came due while the process was down now says so; scheduled tasks survive rewind and compaction correctly. Scheduled and Run-now routines in telemetry-disabled installs now publish private artifacts without asking.</div>
+      <div class="headline-feature"><strong>Plugins &amp; marketplaces.</strong> Marketplaces in repos with large git submodules now add and refresh (only plugin submodules are fetched); <code>claude plugin marketplace add</code> refuses a marketplace name nothing can install under; <code>/plugin</code>'s Errors tab now asks before removing a failed marketplace. Enterprise skill/plugin scanning on by default since 2 Oct.</div>
+      <div class="headline-feature"><strong>Cloud by default (since 6 Oct) on Pro and Max.</strong> New tasks run in the cloud; "Only on your computer" was removed. Local folder access still needs the desktop app open. See <a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a> and <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>.</div>
     </div>
   </div>
 
@@ -222,23 +226,23 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Official posts</h3>
         <ul class="linklist">
-          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.293 top</a><span class="src">code.claude.com</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.293">Claude Code v2.1.293 GitHub release</a><span class="src">github.com &middot; 2026-10-07 18:10 UTC</span></li>
-          <li><a href="https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide">Claude Haiku 5.5 migration guide</a><span class="src">platform.claude.com</span></li>
-          <li><a href="https://code.claude.com/docs/en/permission-modes">Choose a permission mode (Haiku 5.5 auto mode, 2.1.293+ on 3P)</a><span class="src">code.claude.com</span></li>
+          <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog &mdash; v2.1.295 top</a><span class="src">code.claude.com</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.295">Claude Code v2.1.295 GitHub release</a><span class="src">github.com &middot; 2026-10-08 19:48 UTC</span></li>
           <li><a href="https://claude.com/docs/cowork/claude-desktop-changelog">Claude Desktop changelog &mdash; v2.26454.2</a><span class="src">claude.com &middot; 7 Oct</span></li>
+          <li><a href="https://support.claude.com/en/articles/15927065-get-started-with-skill-and-plugin-scanning">Get started with skill and plugin scanning</a><span class="src">support.claude.com</span></li>
           <li><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile">Use Claude Cowork on web, desktop, and mobile</a><span class="src">support.claude.com</span></li>
+          <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes</a><span class="src">support.claude.com</span></li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Community videos</h3>
         <ul class="linklist">
+          <li><a href="https://www.youtube.com/watch?v=Rbe5tPsxKlQ">Claude Opus 5.5 is the new king &mdash; master it in 53 minutes</a><span class="src">YouTube &middot; Claude Code</span></li>
           <li><a href="https://www.youtube.com/watch?v=UQMYct4zv6c">Build an iOS app with Claude Code in 2026 (Opus 5)</a><span class="src">YouTube &middot; Claude Code</span></li>
           <li><a href="https://www.youtube.com/watch?v=-6D5pjeHULg">How I plan new projects with Claude Code Opus</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=2FhJR3ZP57o">Complete Claude Code tutorial for beginners in 2026</a><span class="src">YouTube &middot; Claude Code</span></li>
           <li><a href="https://www.youtube.com/watch?v=mR7R0J3OCmU">Claude Cowork tutorial for beginners (2026) &mdash; full course</a><span class="src">YouTube &middot; Cowork</span></li>
-          <li><a href="https://www.youtube.com/watch?v=wLXVujuwWC8">How to use Claude Cowork on mobile, web &amp; Windows</a><span class="src">YouTube &middot; Cowork</span></li>
+          <li><a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The only Claude Cowork tutorial you'll ever need in 2026</a><span class="src">YouTube &middot; Cowork</span></li>
         </ul>
       </div>
     </div>
