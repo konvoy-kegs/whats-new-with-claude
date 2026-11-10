@@ -67,13 +67,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.321</span>
-      <span class="pill">All sources aligned on v2.1.321 &mdash; npm newest, <code>latest</code>, <code>next</code>, the changelog top (118 bullets) and the GitHub release all agree</span>
-      <span class="pill warn">Claude Fable 5.2 launched 9 Nov &mdash; now the default Fable model; needs Claude Code 2.1.321+; $8/$40 per Mtok (down from $10/$50)</span>
-      <span class="pill warn">v2.1.321 security fixes: MCP OAuth leaking refresh tokens on redirect, a read-only Bash command running outside the sandbox, <code>cp</code>/<code>mv</code> into a directory skipping deny rules &mdash; move the pin</span>
-      <span class="pill warn"><code>stable</code> still on v2.1.311 &mdash; eight npm versions behind <code>latest</code></span>
-      <span class="pill">Unified Claude switches on today (Tue 10 Nov, 12:00 PM PT = Wed 11 Nov 07:00 AEDT) for Desktop policies with no <code>desktopHome</code></span>
-      <span class="pill neutral">Updated: Tue 10 Nov 2026</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.322</span>
+      <span class="pill">All sources aligned on v2.1.322 &mdash; npm newest, <code>latest</code>, <code>next</code>, the changelog top and the GitHub release all agree</span>
+      <span class="pill warn">v2.1.322 is a one-line release: fast mode on Vertex (global, us, eu). The security fixes that matter landed in v2.1.321 &mdash; anything below that should move</span>
+      <span class="pill warn"><code>stable</code> still on v2.1.311 &mdash; nine npm versions behind <code>latest</code></span>
+      <span class="pill">Unified Claude switched on this morning (Tue 10 Nov 12:00 PM PT = Wed 11 Nov 07:00 AEDT) for Desktop policies with no <code>desktopHome</code></span>
+      <span class="pill neutral">Updated: Wed 11 Nov 2026</span>
     </div>
   </div>
 
@@ -90,43 +89,42 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.321 on npm <code>latest</code> and <code>next</code> &middot; <code>stable</code> on v2.1.311 &middot; v2.1.320 skipped</span>
+      <span class="badge">CLI &middot; v2.1.322 on npm <code>latest</code> and <code>next</code> &middot; <code>stable</code> on v2.1.311</span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.321.</strong> The newest version on npm is <strong>v2.1.321</strong>, published 2026-11-09 19:02 UTC (Tue 10 Nov 06:02 AEDT); <code>latest</code> and <code>next</code> both point at it, the changelog's top entry is v2.1.321 (118 bullets) and the GitHub release is v2.1.321 (19:22 UTC, twenty minutes after the npm publish). <code>claude update</code> on the default channel pulls <strong>2.1.321</strong>. There is no v2.1.320 on npm. <code>stable</code> remains v2.1.311.</div>
+    <div class="banner"><strong>All sources aligned on v2.1.322.</strong> The newest version on npm is <strong>v2.1.322</strong>, published 2026-11-10 01:58 UTC (Tue 10 Nov 12:58 AEDT); <code>latest</code> and <code>next</code> both point at it, the changelog's top entry is v2.1.322 (1 bullet) and the GitHub release is v2.1.322 (02:29 UTC). <code>claude update</code> pulls this version.</div>
 
-    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) Fable 5.2 is here, and it needs 2.1.321.</strong> Anthropic launched Claude Fable 5.2 (and Mythos 5.2, the same model with fewer cyber/bio safeguards, for verified orgs) on 9 Nov. In Claude Code it becomes the default Fable model; saved Fable 5.1 picks move to <code>fable</code> (immediately on Pro/Max, once the org allows it on Team/Enterprise &mdash; Enterprise has Fable 5.2 off until an admin enables it). Price drops to $8/$40 per Mtok, with an optional fast mode at $16/$80. <strong>(2) Move the pin to 2.1.321.</strong> Four security-relevant fixes: MCP OAuth requests sending secrets such as refresh tokens to another host on redirect; a read-only Bash command running outside the sandbox without a prompt; Bash permission checks judging a write from the wrong folder; deny rules and protected-file prompts missing the file a <code>cp</code>/<code>mv</code> into a directory writes. <strong>(3) Mods now turn on without asking in auto and bypass modes</strong>, and their own tool calls raise no permission prompt (deny rules and org policy still apply) &mdash; review if you rely on ask rules as a control. <strong>(4) Unified Claude flips today</strong> at 12:00 PM PT for Desktop policies with no <code>desktopHome</code>.</div>
+    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) A quiet release.</strong> v2.1.322 adds a single feature: fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it. If you route Claude Code through Vertex, you can now use fast mode there. <strong>(2) The upgrade that matters is still 2.1.321.</strong> It carries Fable 5.2 support and the MCP OAuth refresh-token leak, sandbox and <code>cp</code>/<code>mv</code> deny-rule fixes. Pinning 2.1.322 gets you all of it. <strong>(3) Unified Claude is live</strong> as of 07:00 AEDT today for Desktop policies with no <code>desktopHome</code>.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code> &middot; changelog top &middot; GitHub release</span> <strong>v2.1.321</strong> &mdash; 2026-11-09 19:02 UTC (Tue 10 Nov 06:02 AEDT). 118 bullets: 2 Added, 71 Fixed, 12 Improved, 20 Changed, 3 Updated. Fable 5.2, MCP OAuth secret-leak fix, sandbox and deny-rule fixes, <code>--settings</code> for <code>claude remote-control</code>.</li>
-        <li><span class="tag sec">previous</span> <strong>v2.1.319</strong> &mdash; 2026-11-06 00:58 UTC (Fri 06 Nov 11:58 AEDT). 146 bullets; Bash permission bypass, worktree sandbox escape and <code>sed</code> permission fixes; auto mode without the classifier fallback behind gateways; <code>permissions.denyInsteadOfPrompting</code>; MCP tasks in the terminal.</li>
-        <li><span class="tag sec">previous</span> <strong>v2.1.318</strong> &mdash; 2026-11-03 21:55 UTC. 84 bullets; <code>--continue</code> regression fix, <code>spawn ENOENT</code> fix for runners, <code>loginExpiresAt</code>/<code>credential_expires_at</code>.</li>
-        <li><span class="tag feat">previous</span> <strong>v2.1.317</strong> &mdash; 2026-11-02 23:57 UTC. 87 bullets; account-email exfiltration check, <code>onFailure: "block"</code> for SDK hooks, gateway cost report.</li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code> &middot; changelog top &middot; GitHub release</span> <strong>v2.1.322</strong> &mdash; 2026-11-10 01:58 UTC (Tue 10 Nov 12:58 AEDT). 1 bullet: fast mode on Vertex.</li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.321</strong> &mdash; 2026-11-09 19:02 UTC (Tue 10 Nov 06:02 AEDT). 118 bullets; Fable 5.2, MCP OAuth secret-leak fix, sandbox and deny-rule fixes, <code>--settings</code> for <code>claude remote-control</code>.</li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.319</strong> &mdash; 2026-11-06 00:58 UTC. 146 bullets; Bash permission bypass, worktree sandbox escape and <code>sed</code> permission fixes; <code>permissions.denyInsteadOfPrompting</code>; MCP tasks in the terminal.</li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.318</strong> &mdash; 2026-11-03 21:55 UTC. 84 bullets; <code>loginExpiresAt</code>/<code>credential_expires_at</code>, stray-keystroke permission-prompt fix.</li>
         <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.311</strong> &mdash; 2026-10-26 UTC. Predates every permission and sandbox fix listed on this page; not suitable for runners.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.321 &mdash; Fable 5.2, MCP OAuth secret-leak fix, sandbox and deny-rule fixes, mods without prompts <span class="badge major">Tue 10 Nov AEDT &middot; 118 bullets &middot; <code>latest</code></span></h3>
+      <h3>v2.1.322 &mdash; fast mode on Vertex <span class="badge major">Tue 10 Nov AEDT &middot; 1 bullet &middot; <code>latest</code></span></h3>
+      <div class="headline-feature"><span class="tag feat">Vertex</span> <strong>Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it.</strong> If you run Claude Code through Google Vertex, fast mode (including Fable 5.2 fast mode) now works there; requests degrade to standard speed instead of failing when Vertex declines.</div>
+    </div>
 
-      <div class="headline-feature"><span class="tag major">model</span> <strong>Added Claude Fable 5.2 (<code>claude-fable-5-2</code>), now the default Fable model &mdash; 1M context, $8/$40 per Mtok with $0.20/Mtok cache reads.</strong> Changed saved Fable 5.1 model picks to move to <code>fable</code>: on Pro and Max at once, on Team and Enterprise once your organization allows it; <code>/model claude-fable-5-1</code> switches back. Fast-mode labels in <code>/fast</code>, <code>/config</code> and <code>/model</code> now name your current model when it supports fast mode. The <code>/model</code> picker's "More models" row is now unnumbered below every other. Fixed the "Draws from usage credits" note showing after a switch to Fable on Enterprise seats whose plan includes Fable.</div>
-
-      <div class="headline-feature"><span class="tag sec">security fixes</span> <strong>Fixed MCP OAuth requests sending secrets such as refresh tokens to another host when a server redirected them.</strong> <strong>Fixed a case where a read-only Bash command ran outside the sandbox without a permission prompt.</strong> Fixed Bash permission checks judging a file write from the wrong folder and not prompting. Fixed deny rules and protected-file prompts not applying to the file that a <code>cp</code> or <code>mv</code> into a directory writes; <code>cp</code>/<code>mv</code> spelled by path (<code>/bin/cp</code>) now get the same checks. Fixed sign-in, token refresh and logout hanging when something on the network accepts the connection but never answers the TLS handshake. Gateway error messages no longer show a user name or password in the gateway's address.</div>
-
-      <div class="headline-feature"><span class="tag sec">permission model changes</span> <strong>Changed mods Claude writes to turn on without asking in auto and bypass modes</strong>, even with managed <code>allowUnsandboxedCommands: false</code> or <code>allowManagedDomainsOnly</code>, and not to load in <code>dontAsk</code> mode. <strong>Changed mods' own tool calls (<code>$.tool.call</code>, <code>$.mcp.call</code>) to raise no permission prompt</strong>, even under your own ask rules or in <code>dontAsk</code> and <code>-p</code> runs &mdash; deny rules and organization policy still apply. Remote Control sessions now keep the folder they were started in. Claude in Chrome tools provided by an app (e.g. Desktop's Code tab) now follow the org's Claude in Chrome policy. The account-email check now refuses only a shell command that holds your email <em>and</em> names a User-Agent, so scheduled runs no longer stop at its prompt. Fixed <code>/config</code> showing Manual as default when sessions start in auto mode.</div>
-
-      <div class="headline-feature"><span class="tag feat">Remote Control, gateway, plugins</span> <strong>Added <code>--settings &lt;file&gt;</code> to <code>claude remote-control</code></strong>, applying a settings file to every session it starts. Gateway: <code>policy_mode: layered</code> now adds managed MCP servers across every matching policy (a gateway already on it serves more after upgrade); Bedrock/Vertex/Foundry upstreams ignore <code>ANTHROPIC_*_BASE_URL</code> env vars &mdash; set <code>base_url</code> on the upstream; spend-limit resets shown in local time; fixed the gateway refusing to start on newer <code>desktop</code> fields. Managed <code>extraKnownMarketplaces</code>: a declared name can't be added from another source and is reinstalled from the declared one. Self-hosted runners refused as unneeded now exit 0.</div>
-
-      <div class="headline-feature"><span class="tag fix">cloud sessions, Desktop Code tab, Windows</span> [Cowork cloud] A PostToolUse hook can no longer replace the answer to AskUserQuestion or the plan in ExitPlanMode's result. Fixed <code>pkill</code>/<code>pgrep</code> in cloud sessions matching the session's own parents; restarted cloud sessions dropping large-image messages or subagent messages; background agents reported as user-stopped after a service interruption. Desktop Code tab: a project MCP server no longer disconnects after the first message when Desktop has a same-named server; cross-session message limit raised from 10 to 20. Windows: faster startup and PATH lookup; skips relative and UNC PATH entries. Edit/NotebookEdit fixes on network paths (UNC, WSL, <code>/net</code>).</div>
+    <div class="card section-versions">
+      <h3>v2.1.321 &mdash; Fable 5.2, MCP OAuth secret-leak fix, sandbox and deny-rule fixes <span class="badge">Tue 10 Nov AEDT &middot; 118 bullets</span></h3>
+      <div class="headline-feature"><span class="tag major">model</span> <strong>Added Claude Fable 5.2 (<code>claude-fable-5-2</code>), now the default Fable model &mdash; 1M context, $8/$40 per Mtok with $0.20/Mtok cache reads.</strong> Saved Fable 5.1 picks move to <code>fable</code>: on Pro and Max at once, on Team and Enterprise once your organization allows it.</div>
+      <div class="headline-feature"><span class="tag sec">security fixes</span> <strong>Fixed MCP OAuth requests sending secrets such as refresh tokens to another host when a server redirected them.</strong> <strong>Fixed a case where a read-only Bash command ran outside the sandbox without a permission prompt.</strong> Fixed Bash permission checks judging a file write from the wrong folder and not prompting; fixed deny rules and protected-file prompts not applying to the file a <code>cp</code> or <code>mv</code> into a directory writes.</div>
+      <div class="headline-feature"><span class="tag feat">Remote Control</span> <strong>Added <code>--settings &lt;file&gt;</code> to <code>claude remote-control</code></strong>, applying a settings file to every session it starts; if the file changes, no new session starts until you restart <code>claude remote-control</code>.</div>
+      <div class="headline-feature"><span class="tag fix">reliability</span> Fixed sign-in, token refresh and logout hanging when a middlebox accepts the connection but never completes the TLS handshake; fixed <code>/config</code> showing Manual as default when sessions start in auto mode; fixed <code>claude agents</code> ignoring flags typed before <code>agents</code>; fixed Remote Control showing a false "login expired" in the desktop app.</div>
     </div>
 
     <div class="card section-versions">
       <h3>v2.1.319 and v2.1.318 &mdash; previous releases <span class="badge">Wed 04 &ndash; Fri 06 Nov AEDT &middot; 230 bullets between them</span></h3>
-      <div class="headline-feature"><span class="tag sec">2.1.319 &middot; permission bypass, sandbox escape, auto mode</span> Fixed a Bash permission bypass via a crafted environment prefix, a sandbox escape when creating a worktree, <code>sed</code> skipping the permission check in accept-edits and auto mode, <code>/rewind</code> through directory symlinks. Auto mode behind LLM gateways or with telemetry off: unchecked calls are asked about or denied, no classifier fallback (<code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> for old behaviour). Added <code>permissions.denyInsteadOfPrompting</code>, MCP tasks in the terminal, <code>CLAUDE_CODE_DISABLE_FEATURE_FLAGS</code>, gateway <code>/usage</code> spend and JSON logs.</div>
-      <div class="headline-feature"><span class="tag sec">2.1.318 &middot; regressions, runners, credentials</span> Fixed <code>--continue</code> losing earlier conversation (regression in 2.1.314); runners and the daemon failing with <code>spawn ENOENT</code> after an update; permission prompts answered by stray keystrokes. <code>loginExpiresAt</code> in <code>claude auth status</code>, <code>credential_expires_at</code> in <code>claude -p</code> JSON, a 10-day expiry warning. Gateway <code>assume_role</code> on <code>mantle</code> upstreams.</div>
-      <div class="headline-feature"><span class="tag fix">2.1.317 and earlier</span> 2.1.317: email-exfiltration check, <code>/schedule</code> connector warning, fail-closed SDK hooks, gateway cost report, OTel plan/seat attributes. 2.1.316: Opus 4.8 fast mode deprecated (removed 30 Nov). 2.1.314: <code>blockWritesOutsideWorkingDirectories</code>. 2.1.311 = <code>stable</code>.</div>
+      <div class="headline-feature"><span class="tag sec">2.1.319 &middot; permission bypass, sandbox escape, auto mode</span> Fixed a Bash permission bypass via a crafted environment prefix, a sandbox escape when creating a worktree, <code>sed</code> skipping the permission check in accept-edits and auto mode. Auto mode behind LLM gateways or with telemetry off no longer falls back to the built-in classifier (<code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> keeps it). Added <code>permissions.denyInsteadOfPrompting</code>, MCP tasks in the terminal, <code>CLAUDE_CODE_DISABLE_FEATURE_FLAGS</code>.</div>
+      <div class="headline-feature"><span class="tag sec">2.1.318 &middot; credentials, subagents</span> <code>loginExpiresAt</code> in <code>claude auth status</code>, <code>credential_expires_at</code> in <code>claude -p</code> JSON and a stderr warning 10 days before a stored sign-in ends; <code>assume_role</code> on gateway <code>mantle</code> upstreams; Claude Code no longer installs the IDE extension from an IDE terminal.</div>
+      <div class="headline-feature"><span class="tag fix">2.1.317 and earlier</span> 2.1.317: email-exfiltration check, fail-closed SDK hooks, gateway cost report. 2.1.316: Opus 4.8 fast mode deprecated (removed 30 Nov). 2.1.314: <code>blockWritesOutsideWorkingDirectories</code>. 2.1.311 = <code>stable</code>.</div>
     </div>
   </div>
 
@@ -134,20 +132,19 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="opus5">
     <div class="product-header">
       <h2>Models</h2>
-      <span class="badge major">Claude Fable 5.2 and Mythos 5.2 launched 9 Nov &middot; Opus 4.8 fast mode removed 30 Nov (20 days; no fallback)</span>
+      <span class="badge major">Fable 5.2 fast mode now on Vertex (2.1.322) &middot; Opus 4.8 fast mode removed 30 Nov (19 days; no fallback)</span>
     </div>
 
     <div class="card section-versions">
       <h3>Current lineup and what changed</h3>
       <ul>
-        <li><span class="tag major">Fable 5.2 &middot; new</span> <code>claude-fable-5-2</code> &mdash; launched 9 Nov; default Fable model in Claude Code 2.1.321+. 1M context; <strong>$8/$40 per Mtok</strong> (Fable 5.1 was $10/$50), $0.20/Mtok cache reads; optional fast mode up to 2.5&times; faster at $16/$80. Anthropic reports outputs up to 30% faster than Fable 5.1, fewer tokens at Medium effort (the Claude Code default), and about 55% fewer cyber/bio safeguard blocks. Available on all paid plans and on AWS, Google Cloud and Azure; on Enterprise it stays off until an admin enables it. Blocked cyber queries fall back to Opus 4.8, bio to Opus 5. Anthropic still recommends Opus 5.5 as the daily driver, with Fable for the hardest work or as an Advisor/Orchestrator.</li>
-        <li><span class="tag sec">Mythos 5.2</span> Same underlying model as Fable 5.2 with fewer cyber/bio safeguards; access via the Cyber or Life Sciences Verification Programs. Powers Claude Security for Enterprise customers.</li>
-        <li><span class="tag feat">launch offer</span> Pro plans and standard Team seats get Fable models included in weekly limits from 9 Nov through 16 Nov 11:59 pm PT, plus one to three Fable resets depending on tenure.</li>
-        <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus (22 Sep) and the recommended daily driver.</li>
-        <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet (28 Sep).</li>
-        <li><span class="tag major">Haiku 5.5</span> <code>claude-haiku-5-5</code> &mdash; default Haiku (7 Oct); 1M context.</li>
-        <li><span class="tag sec">Opus 4.8 fast mode &middot; removed 30 Nov</span> Fast-mode requests on Opus 4.8 return an error after 30 Nov with no fallback &mdash; migrate to Opus 5.5 (or Fable 5.2 fast mode).</li>
-        <li><span class="tag feat">API &middot; preserved thinking for all accounts</span> Announced with Fable 5.2: preserved thinking now applies to all API accounts; check integrations that edit prior assistant context.</li>
+        <li><span class="tag major">Fable 5.2</span> <code>claude-fable-5-2</code> &mdash; launched 9 Nov; default Fable model in Claude Code 2.1.321+. 1M context; <strong>$8/$40 per Mtok</strong> (Fable 5.1 was $10/$50), $0.20/Mtok cache reads; optional fast mode, now also on Vertex from 2.1.322.</li>
+        <li><span class="tag sec">Mythos 5.2</span> Same underlying model as Fable 5.2 with fewer cyber/bio safeguards; access via Anthropic's verification programs.</li>
+        <li><span class="tag feat">launch offer &middot; ends 16 Nov</span> Pro plans and standard Team seats get Fable models included in weekly limits through 16 Nov 11:59 pm PT.</li>
+        <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus and the recommended daily driver.</li>
+        <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet.</li>
+        <li><span class="tag major">Haiku 5.5</span> <code>claude-haiku-5-5</code> &mdash; default Haiku; 1M context.</li>
+        <li><span class="tag sec">Opus 4.8 fast mode &middot; removed 30 Nov</span> Fast-mode requests on Opus 4.8 return an error after 30 Nov with no fallback &mdash; migrate to Opus 5.5 or Fable 5.2 fast mode.</li>
       </ul>
     </div>
   </div>
@@ -156,18 +153,17 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">v2.1.321: MCP OAuth refresh-token leak on redirect, read-only Bash outside sandbox, <code>cp</code>/<code>mv</code> deny-rule gap &mdash; pin moves to 2.1.321</span>
+      <span class="badge major">No new security fixes in 2.1.322 &middot; the 2.1.321 fixes still drive the pin</span>
     </div>
 
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">upgrade &middot; pin v2.1.321</span> <strong>Move runners, auto-mode pipelines and headless <code>claude -p</code> jobs from 2.1.319 to <code>2.1.321</code>.</strong> Documented, released on GitHub, on <code>latest</code> and <code>next</code>. Also required to use Fable 5.2.</li>
-        <li><span class="tag sec">MCP OAuth secrets</span> <strong>MCP OAuth requests could send refresh tokens and other secrets to another host when a server redirected them.</strong> If you use OAuth-authenticated MCP servers you don't fully control, consider rotating those tokens after upgrading.</li>
-        <li><span class="tag sec">sandbox and deny rules</span> A read-only Bash command could run outside the sandbox without a prompt; Bash checks could judge a write from the wrong folder; <code>cp</code>/<code>mv</code> into a directory bypassed deny rules and protected-file prompts. All fixed in 2.1.321.</li>
-        <li><span class="tag sec">mods and prompts</span> Mods Claude writes now turn on without asking in auto and bypass modes, and their own tool calls skip permission prompts (ask rules included). Only deny rules and org policy constrain them &mdash; if ask rules are part of your control model, convert critical ones to deny.</li>
-        <li><span class="tag sec">Enterprise &middot; Fable 5.2 enablement</span> Fable 5.2 is off on Enterprise until an admin enables it; saved Fable 5.1 picks migrate to <code>fable</code> once the org allows it. Decide before users ask.</li>
-        <li><span class="tag sec">dates</span> <strong>Today, Tue 10 Nov, 12:00 PM PT</strong> (Wed 07:00 AEDT): Unified Claude for Desktop policies with no <code>desktopHome</code>, even where <code>coworkTabEnabled</code> is <code>false</code>. <strong>16 Nov</strong>: Enterprise unified default; Fable launch offer ends. <strong>17 Nov</strong>: deprecated Desktop keys start warning. <strong>30 Nov</strong>: Opus 4.8 fast mode removed; Enterprise Plugins page; Skills-off blocks plugins in Desktop.</li>
+        <li><span class="tag sec">upgrade &middot; pin v2.1.322</span> <strong>Move runners, auto-mode pipelines and headless <code>claude -p</code> jobs to <code>2.1.322</code></strong> (or at minimum 2.1.321). 2.1.322 adds nothing security-relevant on top of 2.1.321, so a fleet already on 2.1.321 only needs it for Vertex fast mode.</li>
+        <li><span class="tag sec">MCP OAuth secrets</span> Before 2.1.321, MCP OAuth requests could send refresh tokens to another host on redirect. If you use OAuth-authenticated MCP servers you don't fully control, consider rotating those tokens after upgrading.</li>
+        <li><span class="tag sec">sandbox and deny rules</span> Read-only Bash outside the sandbox, writes judged from the wrong folder, and <code>cp</code>/<code>mv</code> deny-rule gaps are all fixed in 2.1.321+.</li>
+        <li><span class="tag sec">Unified Claude is live</span> Since 07:00 AEDT today, Desktop policies with no <code>desktopHome</code> open Unified Claude with Cowork on, even where <code>coworkTabEnabled</code> is <code>false</code>. Set <code>desktopHome</code> explicitly if you need the old behaviour.</li>
+        <li><span class="tag sec">dates</span> <strong>16 Nov</strong>: Enterprise unified default on; Fable launch offer ends. <strong>17 Nov</strong>: deprecated Desktop keys start warning. <strong>30 Nov</strong>: Opus 4.8 fast mode removed; Plugins page reaches Enterprise, and orgs with Skills off also block plugins in Desktop.</li>
       </ul>
     </div>
   </div>
@@ -176,16 +172,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="desktop">
     <div class="product-header">
       <h2>Claude Desktop</h2>
-      <span class="badge">Unified Claude switches on today &middot; Fable 5.2 in the model picker</span>
+      <span class="badge">Unified Claude live this morning &middot; Plugins page &middot; Fable 5.2 in the picker</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag major">Fable 5.2 &middot; 9 Nov</span> Fable 5.2 is available in Claude apps on all paid plans (Enterprise: admin-enabled). Medium effort is the default; the launch offer includes Fable in Pro and standard Team weekly limits through 16 Nov.</div>
-      <div class="headline-feature"><span class="tag sec">Unified Claude &middot; today, Tue 10 Nov 12:00 PM PT</span> Per <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>: a Desktop policy with no <code>desktopHome</code> opens Unified Claude with Cowork on, even where <code>coworkTabEnabled</code> is <code>false</code>. A Claude apps gateway on 2.1.319+ warns at start-up about exactly those policies. Team and Enterprise follow the "Chat and Cowork unified" admin setting until the 16 Nov Enterprise default.</div>
-      <div class="headline-feature"><span class="tag feat">Plugins page &middot; GA since 9 Nov</span> <a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page">One Plugins page</a> replaces Customize and the separate Skills, Connectors and Plugins tabs (Free/Pro/Max/Ultra/Team now; Enterprise 30 Nov). From 30 Nov, orgs with Skills off also have plugins blocked in Desktop.</div>
-      <div class="headline-feature"><span class="tag fix">Code tab fixes in CLI 2.1.321</span> A project's MCP server no longer disconnects after the first message when Desktop has a same-named server or extension; cross-session message limit raised to 20; spend-limit warnings now show behind gateways with no <code>code:</code> rules; Remote Control no longer shows a false "login expired". These reach the Code tab once a Desktop build bundles 2.1.321.</div>
-      <div class="headline-feature"><span class="tag sec">Desktop build &middot; not re-checked today</span> The Desktop changelog could not be fetched in this run, so the bundled CLI version was not verified. Last confirmed: v4.23118.0 (5 Nov), bundling 2.1.317 &mdash; if unchanged, the Code tab and local Cowork are now three documented releases behind.</div>
+      <div class="headline-feature"><span class="tag sec">Unified Claude &middot; live since Wed 11 Nov 07:00 AEDT</span> Per <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>: a Desktop policy with no <code>desktopHome</code> now opens Unified Claude with Cowork on. Enterprise organizations get it by default from 16 Nov (<a href="https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization">admin guide</a>).</div>
+      <div class="headline-feature"><span class="tag feat">Plugins page</span> <a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page">One Plugins page</a> replaces Customize and the separate Skills, Connectors and Plugins tabs (Free/Pro/Max/Ultra/Team now; Enterprise 30 Nov). From 30 Nov, orgs with Skills off also block plugins in Desktop.</div>
+      <div class="headline-feature"><span class="tag major">Fable 5.2</span> Available in Claude apps on all paid plans (Enterprise: admin-enabled). Launch offer includes Fable in Pro and standard Team weekly limits through 16 Nov.</div>
     </div>
   </div>
 
@@ -193,14 +187,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="cowork">
     <div class="product-header">
       <h2>Claude Cowork</h2>
-      <span class="badge">Unified with chat today &middot; Fable 5.2 available</span>
+      <span class="badge">Now part of every conversation for unified users</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag major">Cowork in every conversation &middot; today</span> Unified Claude turns on for Desktop policies with no <code>desktopHome</code>; for those users Cowork becomes part of every conversation rather than a separate tab.</div>
-      <div class="headline-feature"><span class="tag sec">from Claude Code v2.1.321 &middot; cloud sessions</span> A PostToolUse hook can no longer replace AskUserQuestion answers or the ExitPlanMode plan in Cowork cloud sessions. The account-email check no longer stops scheduled runs at a prompt unless the command also names a User-Agent. Fixed cloud sessions misreporting allowed hosts as blocked when the proxy couldn't connect, connectors with very long resource names hanging the session, and uploads failing on HTTP 507 (now retried).</div>
-      <div class="headline-feature"><span class="tag feat">carry-over &middot; v2.1.319</span> MCP tasks move to the background so long connector calls don't hold a scheduled task's turn; <code>denyInsteadOfPrompting</code> keeps unattended runs from stalling; scheduled tasks no longer drop a connector named memory.</div>
+      <div class="headline-feature"><span class="tag major">Cowork in every conversation &middot; today</span> For Desktop policies with no <code>desktopHome</code>, Cowork is now part of every conversation rather than a separate tab. Existing skills and plugins carry over.</div>
+      <div class="headline-feature"><span class="tag sec">Enterprise &middot; plugin scanning (beta)</span> Enterprise plans can enable a beta scanner that checks third-party skills and plugins for malicious content on upload or edit (<a href="https://support.claude.com/en/articles/12138966-release-notes">release notes</a>).</div>
+      <div class="headline-feature"><span class="tag feat">carry-over &middot; cloud tasks</span> New Cowork tasks on Pro, Max and Ultra run in the cloud (since 6 Oct); local file access still needs the desktop app open. MCP tasks backgrounding and <code>denyInsteadOfPrompting</code> (2.1.319) keep unattended scheduled runs from stalling.</div>
     </div>
   </div>
 
@@ -218,13 +212,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
           <li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Introducing Claude Fable 5.2 and Claude Mythos 5.2</a><span class="src">anthropic.com &middot; 9 Nov</span></li>
           <li><a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan">Claude Fable models on your plan &mdash; Fable 5.2 requires Claude Code 2.1.321+</a><span class="src">support.claude.com</span></li>
           <li><a href="https://support.claude.com/en/articles/17506494-claude-fable-5-2-launch-offers">Claude Fable 5.2 launch offers (through 16 Nov)</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.321">Claude Code v2.1.321 GitHub release (118 bullets)</a><span class="src">github.com &middot; 9 Nov UTC</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG.md &mdash; v2.1.321 top</a><span class="src">github.com &middot; source of truth</span></li>
-          <li><a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">@anthropic-ai/claude-code on npm &mdash; v2.1.321 on <code>latest</code>/<code>next</code>, v2.1.311 on <code>stable</code></a><span class="src">npmjs.com</span></li>
-          <li><a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a><span class="src">support.claude.com &middot; switches on today</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.322">Claude Code v2.1.322 GitHub release</a><span class="src">github.com &middot; 10 Nov UTC</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG.md &mdash; v2.1.322 top</a><span class="src">github.com &middot; source of truth</span></li>
+          <li><a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">@anthropic-ai/claude-code on npm &mdash; v2.1.322 on <code>latest</code>/<code>next</code>, v2.1.311 on <code>stable</code></a><span class="src">npmjs.com</span></li>
+          <li><a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a><span class="src">support.claude.com</span></li>
           <li><a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page">Manage plugins, skills and connectors from one Plugins page</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes &mdash; 6 Nov project tags still top</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://www.anthropic.com/research/claude-electronics-design">Claude can design electronic prototypes from start to finish</a><span class="src">anthropic.com &middot; research</span></li>
+          <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes &mdash; 6 Nov still top</a><span class="src">support.claude.com</span></li>
         </ul>
       </div>
 
@@ -232,8 +225,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <h3>Community videos</h3>
         <ul class="linklist">
           <li><a href="https://www.youtube.com/watch?v=TnduiS4kyg8">Build a stunning 3D website with Claude Opus 5.5</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=ekrsmU83VSA">How to use Claude Code in 2026 (step-by-step)</a><span class="src">YouTube &middot; Claude Code</span></li>
           <li><a href="https://www.youtube.com/watch?v=86kBIu5_2kM">Animated shorts with Claude Opus 5.5</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=K4e7UBHOgig">Switching models in the Claude Code CLI (older, Opus 4.6 era)</a><span class="src">YouTube &middot; Claude Code</span></li>
           <li><a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The only Claude Cowork tutorial you'll need in 2026</a><span class="src">YouTube &middot; Cowork</span></li>
           <li><a href="https://www.youtube.com/watch?v=Ktx-IRcK25Q">How to build your first workflow in Claude Cowork (2026 guide)</a><span class="src">YouTube &middot; Cowork</span></li>
         </ul>
