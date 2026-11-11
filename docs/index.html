@@ -71,8 +71,8 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <span class="pill">All sources aligned on v2.1.322 &mdash; npm newest, <code>latest</code>, <code>next</code>, the changelog top and the GitHub release all agree</span>
       <span class="pill warn">v2.1.322 is a one-line release: fast mode on Vertex (global, us, eu). The security fixes that matter landed in v2.1.321 &mdash; anything below that should move</span>
       <span class="pill warn"><code>stable</code> still on v2.1.311 &mdash; nine npm versions behind <code>latest</code></span>
-      <span class="pill">Unified Claude switched on this morning (Tue 10 Nov 12:00 PM PT = Wed 11 Nov 07:00 AEDT) for Desktop policies with no <code>desktopHome</code></span>
-      <span class="pill neutral">Updated: Wed 11 Nov 2026</span>
+      <span class="pill">No new Claude Code release since Tue 10 Nov &mdash; v2.1.322 is still newest on npm, the changelog and GitHub</span>
+      <span class="pill neutral">Updated: Thu 12 Nov 2026</span>
     </div>
   </div>
 
@@ -94,7 +94,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="banner"><strong>All sources aligned on v2.1.322.</strong> The newest version on npm is <strong>v2.1.322</strong>, published 2026-11-10 01:58 UTC (Tue 10 Nov 12:58 AEDT); <code>latest</code> and <code>next</code> both point at it, the changelog's top entry is v2.1.322 (1 bullet) and the GitHub release is v2.1.322 (02:29 UTC). <code>claude update</code> pulls this version.</div>
 
-    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) A quiet release.</strong> v2.1.322 adds a single feature: fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it. If you route Claude Code through Vertex, you can now use fast mode there. <strong>(2) The upgrade that matters is still 2.1.321.</strong> It carries Fable 5.2 support and the MCP OAuth refresh-token leak, sandbox and <code>cp</code>/<code>mv</code> deny-rule fixes. Pinning 2.1.322 gets you all of it. <strong>(3) Unified Claude is live</strong> as of 07:00 AEDT today for Desktop policies with no <code>desktopHome</code>.</div>
+    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) A quiet release.</strong> v2.1.322 adds a single feature: fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it. If you route Claude Code through Vertex, you can now use fast mode there. <strong>(2) The upgrade that matters is still 2.1.321.</strong> It carries Fable 5.2 support and the MCP OAuth refresh-token leak, sandbox and <code>cp</code>/<code>mv</code> deny-rule fixes. Pinning 2.1.322 gets you all of it. <strong>(3) No new version overnight.</strong> Nothing has shipped since 2.1.322 (checked npm, changelog and GitHub releases this morning). Unified Claude has been live since Wed 11 Nov 07:00 AEDT for Desktop policies with no <code>desktopHome</code>; Enterprise gets it by default on 16 Nov.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
@@ -132,7 +132,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="opus5">
     <div class="product-header">
       <h2>Models</h2>
-      <span class="badge major">Fable 5.2 fast mode now on Vertex (2.1.322) &middot; Opus 4.8 fast mode removed 30 Nov (19 days; no fallback)</span>
+      <span class="badge major">Fable 5.2 fast mode now on Vertex (2.1.322) &middot; Opus 4.8 fast mode removed 30 Nov (18 days; no fallback)</span>
     </div>
 
     <div class="card section-versions">
@@ -162,7 +162,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
         <li><span class="tag sec">upgrade &middot; pin v2.1.322</span> <strong>Move runners, auto-mode pipelines and headless <code>claude -p</code> jobs to <code>2.1.322</code></strong> (or at minimum 2.1.321). 2.1.322 adds nothing security-relevant on top of 2.1.321, so a fleet already on 2.1.321 only needs it for Vertex fast mode.</li>
         <li><span class="tag sec">MCP OAuth secrets</span> Before 2.1.321, MCP OAuth requests could send refresh tokens to another host on redirect. If you use OAuth-authenticated MCP servers you don't fully control, consider rotating those tokens after upgrading.</li>
         <li><span class="tag sec">sandbox and deny rules</span> Read-only Bash outside the sandbox, writes judged from the wrong folder, and <code>cp</code>/<code>mv</code> deny-rule gaps are all fixed in 2.1.321+.</li>
-        <li><span class="tag sec">Unified Claude is live</span> Since 07:00 AEDT today, Desktop policies with no <code>desktopHome</code> open Unified Claude with Cowork on, even where <code>coworkTabEnabled</code> is <code>false</code>. Set <code>desktopHome</code> explicitly if you need the old behaviour.</li>
+        <li><span class="tag sec">Unified Claude is live</span> Since Wed 11 Nov 07:00 AEDT, Desktop policies with no <code>desktopHome</code> open Unified Claude with Cowork on, even where <code>coworkTabEnabled</code> is <code>false</code>. Set <code>desktopHome</code> explicitly if you need the old behaviour.</li>
         <li><span class="tag sec">dates</span> <strong>16 Nov</strong>: Enterprise unified default on; Fable launch offer ends. <strong>17 Nov</strong>: deprecated Desktop keys start warning. <strong>30 Nov</strong>: Opus 4.8 fast mode removed; Plugins page reaches Enterprise, and orgs with Skills off also block plugins in Desktop.</li>
       </ul>
     </div>
@@ -172,14 +172,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="desktop">
     <div class="product-header">
       <h2>Claude Desktop</h2>
-      <span class="badge">Unified Claude live this morning &middot; Plugins page &middot; Fable 5.2 in the picker</span>
+      <span class="badge">Unified Claude live since Wed &middot; Plugins page &middot; Fable 5.2 in the picker</span>
     </div>
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag sec">Unified Claude &middot; live since Wed 11 Nov 07:00 AEDT</span> Per <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>: a Desktop policy with no <code>desktopHome</code> now opens Unified Claude with Cowork on. Enterprise organizations get it by default from 16 Nov (<a href="https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization">admin guide</a>).</div>
+      <div class="headline-feature"><span class="tag sec">Unified Claude &middot; live since Wed 11 Nov 07:00 AEDT</span> Per <a href="https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude">Claude Cowork and chat are one Claude</a>: a Desktop policy with no <code>desktopHome</code> opens Unified Claude with Cowork on. Enterprise organizations get it by default from 16 Nov (<a href="https://support.claude.com/en/articles/17444462-set-up-and-manage-the-new-unified-claude-experience-for-your-enterprise-organization">admin guide</a>).</div>
       <div class="headline-feature"><span class="tag feat">Plugins page</span> <a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page">One Plugins page</a> replaces Customize and the separate Skills, Connectors and Plugins tabs (Free/Pro/Max/Ultra/Team now; Enterprise 30 Nov). From 30 Nov, orgs with Skills off also block plugins in Desktop.</div>
-      <div class="headline-feature"><span class="tag major">Fable 5.2</span> Available in Claude apps on all paid plans (Enterprise: admin-enabled). Launch offer includes Fable in Pro and standard Team weekly limits through 16 Nov.</div>
+      <div class="headline-feature"><span class="tag major">Fable 5.2</span> Available in Claude apps on all paid plans (Enterprise: admin-enabled). Medium effort is the default; Anthropic reports about 55% fewer safety blocks than Fable 5.1 across claude.ai, Claude Code and Cowork. Launch offer includes Fable in Pro and standard Team weekly limits through 16 Nov.</div>
+      <div class="headline-feature"><span class="tag feat">beta &middot; 5&ndash;6 Nov</span> Personal Finance (US only; Pro, Max, Ultra) lets users link bank, card, loan and investment accounts; Enterprise orgs can tag projects with cost codes (<a href="https://support.claude.com/en/articles/12138966-release-notes">release notes</a>). Neither is Desktop-specific.</div>
     </div>
   </div>
 
@@ -192,7 +193,7 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
 
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag major">Cowork in every conversation &middot; today</span> For Desktop policies with no <code>desktopHome</code>, Cowork is now part of every conversation rather than a separate tab. Existing skills and plugins carry over.</div>
+      <div class="headline-feature"><span class="tag major">Cowork in every conversation &middot; since Wed 11 Nov</span> For Desktop policies with no <code>desktopHome</code>, Cowork is now part of every conversation rather than a separate tab. Existing skills and plugins carry over.</div>
       <div class="headline-feature"><span class="tag sec">Enterprise &middot; plugin scanning (beta)</span> Enterprise plans can enable a beta scanner that checks third-party skills and plugins for malicious content on upload or edit (<a href="https://support.claude.com/en/articles/12138966-release-notes">release notes</a>).</div>
       <div class="headline-feature"><span class="tag feat">carry-over &middot; cloud tasks</span> New Cowork tasks on Pro, Max and Ultra run in the cloud (since 6 Oct); local file access still needs the desktop app open. MCP tasks backgrounding and <code>denyInsteadOfPrompting</code> (2.1.319) keep unattended scheduled runs from stalling.</div>
     </div>
@@ -224,13 +225,13 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Community videos</h3>
         <ul class="linklist">
-          <li><a href="https://www.youtube.com/watch?v=TnduiS4kyg8">Build a stunning 3D website with Claude Opus 5.5</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=ekrsmU83VSA">How to use Claude Code in 2026 (step-by-step)</a><span class="src">YouTube &middot; Claude Code</span></li>
-          <li><a href="https://www.youtube.com/watch?v=86kBIu5_2kM">Animated shorts with Claude Opus 5.5</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=C33hJGt-ySg">Fable 5.2 or Opus? When to use each model in Claude Code</a><span class="src">YouTube &middot; Claude Code</span></li>
+          <li><a href="https://www.youtube.com/watch?v=uF_9khbnQFo">Claude Fable 5.2 is seriously impressive (full breakdown)</a><span class="src">YouTube &middot; Fable 5.2</span></li>
+          <li><a href="https://www.youtube.com/watch?v=nuSvNEV9fRk">Fable 5.2 updated prompting guide</a><span class="src">YouTube &middot; Fable 5.2</span></li>
           <li><a href="https://www.youtube.com/watch?v=PnPsf-hwGtI">The only Claude Cowork tutorial you'll need in 2026</a><span class="src">YouTube &middot; Cowork</span></li>
           <li><a href="https://www.youtube.com/watch?v=Ktx-IRcK25Q">How to build your first workflow in Claude Cowork (2026 guide)</a><span class="src">YouTube &middot; Cowork</span></li>
         </ul>
-        <p class="footnote">Today's Claude Code video search again surfaced several "free unlimited Opus 5.5" videos; they are not listed &mdash; the approaches they describe are outside Anthropic's usage policy. No video yet covers Fable 5.2.</p>
+        <p class="footnote">Today's search surfaced several "free Fable 5.2 API key" videos pointing at third-party sites; they are not listed. Creator videos are opinion &mdash; check pricing and limits against Anthropic's docs.</p>
       </div>
     </div>
   </div>
