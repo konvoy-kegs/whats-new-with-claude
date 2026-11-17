@@ -67,11 +67,11 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <p class="subtitle">Claude Code, Claude Desktop and Claude Cowork &mdash; what shipped, what changed, and what to act on.</p>
     </div>
     <div class="versions">
-      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.326</span>
-      <span class="pill">All sources aligned on v2.1.326 &mdash; npm newest, <code>latest</code>, <code>next</code>, the changelog top and the GitHub release all agree</span>
-      <span class="pill warn">Behaviour change: some tool calls in bypass-permissions mode now ask, or are denied when nobody can answer &mdash; check headless runners</span>
+      <span class="pill"><span>&#9679;</span> Claude Code: v2.1.327</span>
+      <span class="pill">All sources aligned on v2.1.327 &mdash; npm newest, <code>latest</code>, <code>next</code>, the changelog top and the GitHub release all agree</span>
+      <span class="pill warn">Behaviour change: shell start-up files may now run before the first Bash command is approved &mdash; set <code>CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1</code> on locked-down runners</span>
       <span class="pill warn"><code>stable</code> still on v2.1.311 &mdash; predates every permission and sandbox fix on this page</span>
-      <span class="pill neutral">Updated: Tue 17 Nov 2026</span>
+      <span class="pill neutral">Updated: Wed 18 Nov 2026</span>
     </div>
   </div>
 
@@ -88,39 +88,38 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="code">
     <div class="product-header">
       <h2>Claude Code</h2>
-      <span class="badge">CLI &middot; v2.1.326 on npm <code>latest</code> and <code>next</code> &middot; <code>stable</code> on v2.1.311</span>
+      <span class="badge">CLI &middot; v2.1.327 on npm <code>latest</code> and <code>next</code> &middot; <code>stable</code> on v2.1.311</span>
     </div>
 
-    <div class="banner"><strong>All sources aligned on v2.1.326.</strong> The newest version on npm is <strong>v2.1.326</strong>, published 2026-11-16 18:43 UTC (Tue 17 Nov 05:43 AEDT); <code>latest</code> and <code>next</code> both point at it, the changelog's top entry is v2.1.326 (367 bullets) and the GitHub release is v2.1.326 (22:11 UTC). <code>claude update</code> pulls this version. No Claude Desktop build bundling it has been announced yet (Desktop v5.11492.5 bundles 2.1.325).</div>
+    <div class="banner"><strong>All sources aligned on v2.1.327.</strong> The newest version on npm is <strong>v2.1.327</strong>, published 2026-11-17 20:33 UTC (Wed 18 Nov 07:33 AEDT); <code>latest</code> and <code>next</code> both point at it, the changelog's top entry is v2.1.327 (173 bullets) and the GitHub release is v2.1.327 (23:17 UTC). <code>claude update</code> pulls this version.</div>
 
-    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) Bypass mode is no longer a blanket pass.</strong> 2.1.326 makes some tool calls in bypass-permissions mode ask for approval, or be denied where no one can be asked; the PowerShell tool asks about (and sometimes refuses) more commands even in bypass mode; the Bash sandbox now asks before some environment-variable lines when auto-allow is off. Headless runners and <code>claude -p</code> jobs can start refusing work &mdash; test before rolling out and add explicit allow rules. <strong>(2) Credential hardening.</strong> Claude's file tools now refuse writes to Claude Code's sign-in files (e.g. <code>.credentials.json</code>), Bash asks before more commands touch them, and sandboxed commands no longer write to some sensitive home folders (re-allow with <code>sandbox.filesystem.allowWrite</code>). <strong>(3) Ops fixes.</strong> Background sessions that lose their exported LLM gateway now stop before any model request instead of falling back; managed subagent model now applies in Desktop's Code tab; compaction fixed on Bedrock, Vertex and Foundry.</div>
+    <div class="banner"><strong>What matters this morning.</strong> <strong>(1) Data-loss fixes.</strong> Stopping Remote Control in worktree mode could delete a running session's git-ignored files such as <code>.env</code>; self-hosted runners with <code>--use-anthropic-git-proxy</code> could delete the directory named by <code>GIT_CONFIG_GLOBAL</code>; <code>claude mcp add/remove</code> at project scope could strip other keys from <code>.mcp.json</code>. All fixed &mdash; upgrade runners. <strong>(2) Secrets off the command line.</strong> New <code>claude mcp add-json &lt;name&gt; -</code> reads server JSON from stdin, and Claude is now told not to commit files that likely contain secrets. <strong>(3) Behaviour change.</strong> Shell start-up files may run before the first Bash command is approved (even if it's then refused) &mdash; opt out with <code>CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1</code>.</div>
 
     <div class="card">
       <h3>Current release <span class="badge">npm</span></h3>
       <ul>
-        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code> &middot; changelog top &middot; GitHub release</span> <strong>v2.1.326</strong> &mdash; 2026-11-16 18:43 UTC (Tue 17 Nov 05:43 AEDT). 367 bullets: bypass-mode and sandbox tightening, credential-file protection, background-session and managed-settings fixes, Code Mode with agent teams.</li>
-        <li><span class="tag sec">previous</span> <strong>v2.1.325</strong> &mdash; 2026-11-13 20:07 UTC. Sandboxed Bash prompts by default, zstd security fix, ~15 permission and sandbox fixes.</li>
-        <li><span class="tag sec">previous</span> <strong>v2.1.323</strong> &mdash; 2026-11-12 UTC. Experimental Code Mode, plugin <code>engines</code> pinning, ~30 permission and sandbox fixes.</li>
-        <li><span class="tag fix">previous</span> <strong>v2.1.322</strong> &mdash; 2026-11-10 UTC. 1 bullet: fast mode on Vertex (global, us, eu).</li>
+        <li><span class="tag major">newest on npm &middot; <code>latest</code> &middot; <code>next</code> &middot; changelog top &middot; GitHub release</span> <strong>v2.1.327</strong> &mdash; 2026-11-17 20:33 UTC (Wed 18 Nov 07:33 AEDT). 173 bullets: data-loss fixes for runners and Remote Control, <code>mcp add-json</code> from stdin, <code>/status</code> config diagnostics, resume and compaction reliability.</li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.326</strong> &mdash; 2026-11-16 18:43 UTC. Bypass-mode tightening, credential-file protection, background-session fixes.</li>
+        <li><span class="tag sec">previous</span> <strong>v2.1.325</strong> &mdash; 2026-11-13 UTC. Sandboxed Bash prompts by default, zstd security fix.</li>
+        <li><span class="tag feat">previous</span> <strong>v2.1.323</strong> &mdash; 2026-11-12 UTC. Experimental Code Mode, plugin <code>engines</code> pinning.</li>
         <li><span class="tag sec">dist-tag <code>stable</code></span> <strong>v2.1.311</strong> &mdash; 2026-10-26 UTC. Predates every permission and sandbox fix on this page; not suitable for runners.</li>
       </ul>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.326 &mdash; bypass-mode tightening, credential protection, background-session fixes <span class="badge major">Tue 17 Nov AEDT &middot; 367 bullets &middot; <code>latest</code></span></h3>
-      <div class="headline-feature"><span class="tag major">behaviour change &middot; permissions</span> <strong>Some tool calls in bypass-permissions mode now ask for approval, or are denied where no one can be asked.</strong> The PowerShell tool asks before (and sometimes refuses) more commands, even in bypass mode &mdash; unattended runs refuse them unless an allow rule, auto mode or bypass allows them. Bash asks about some commands with very long values it can't finish checking, and the sandbox asks before some env-var lines when auto-allow is off.</div>
-      <div class="headline-feature"><span class="tag sec">security &middot; credentials</span> Claude's file tools now refuse writes to Claude Code's sign-in files such as <code>.credentials.json</code>; Bash asks before more commands reach them. Sandboxed commands on macOS, Linux and WSL no longer write to some sensitive home folders by default (<code>sandbox.filesystem.allowWrite</code> to re-allow); unexpected entries in a repo's <code>.git</code> folder are set aside after sandboxed commands; commands rewritten by a permission hook or SDK host stay sandboxed unless the approver sets <code>dangerouslyDisableSandbox: true</code>.</div>
-      <div class="headline-feature"><span class="tag sec">security &middot; ops</span> Fixed the background service ending other users' processes (e.g. an SSH login) when a reused PID was on its list; fixed <code>claude purge</code> hiding its prompts when stdout is redirected (one unseen Enter could delete a project's data); fixed managed PreToolUse hook refusals leaving no OTel <code>tool_decision</code> event; settings nested past 64 levels are now dropped with a warning instead of crashing.</div>
-      <div class="headline-feature"><span class="tag feat">features</span> Code Mode can now run with agent teams enabled; <code>OTEL_RESOURCE_INCLUDE_HOST</code> adds <code>host.name</code>/<code>host.id</code> to OTel resource attributes; <code>/status</code> shows when a provider or env var such as <code>DISABLE_TELEMETRY</code> turns features off; startup warning for incomplete <code>--allowedTools</code>/<code>--disallowedTools</code> entries; a message explains why MCP servers stop loading when an admin adds <code>managed-mcp.json</code> mid-session.</div>
-      <div class="headline-feature"><span class="tag fix">gateways &amp; providers</span> Background sessions that lose the LLM gateway your shell exported now stop before any model request; compaction fixed on Bedrock, Vertex and Foundry; image-heavy Vertex sessions no longer stick on the 30 MB request limit; requests exceeding a model's <code>max_tokens</code> now retry with the API-reported maximum; Desktop Code tab now retries a one-off 401 and honours the managed subagent model.</div>
-      <div class="headline-feature"><span class="tag fix">quality of life</span> <code>/update-config</code> uses ~13k tokens of context instead of 93k; CPU use improved with 20+ subagents; <code>/model</code> "Default" now names your plan's default model; many <code>/rewind</code>, <code>/login</code> and resume-after-crash fixes.</div>
+      <h3>v2.1.327 &mdash; runner data-loss fixes, secrets hygiene, config diagnostics <span class="badge major">Wed 18 Nov AEDT &middot; 173 bullets &middot; <code>latest</code></span></h3>
+      <div class="headline-feature"><span class="tag sec">security &middot; data loss</span> <strong>Fixed Remote Control in worktree mode deleting a running session's git-ignored files (e.g. <code>.env</code>) on server stop.</strong> Fixed self-hosted runners with <code>--use-anthropic-git-proxy</code> deleting a non-empty <code>GIT_CONFIG_GLOBAL</code> directory at startup (now kept, ignored and warned). Fixed <code>claude mcp add/remove</code> (project scope) deleting other top-level keys from <code>.mcp.json</code>. Fixed an allowed command still running after Stop in cloud and self-hosted runner sessions. <code>/export</code> now asks before overwriting.</div>
+      <div class="headline-feature"><span class="tag sec">security &middot; secrets &amp; permissions</span> <code>claude mcp add-json &lt;name&gt; -</code> reads JSON from stdin so tokens stay out of shell history; Claude is told not to commit files that likely contain secrets; confirmation before <code>/install-github-app</code> changes a repo; WebFetch refuses URLs over 2,000 characters before any prompt; fixed <code>--disallowedTools</code> rules with parentheses and wildcard PowerShell allow rules in auto mode; nested <code>claude</code> processes no longer inherit <code>CLAUDE_CODE_OAUTH_SCOPES</code>.</div>
+      <div class="headline-feature"><span class="tag major">behaviour change</span> Shell start-up files may run before a session's first Bash command is approved, even if it's refused, to speed up the first command. Set <code>CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1</code> where rc files must not run unapproved.</div>
+      <div class="headline-feature"><span class="tag feat">features &amp; admin</span> <code>/status</code> now lists broken agent/skill/command files, keybinding errors, an unavailable sandbox, ignored permission settings and hook matchers that never match; <code>/config</code> notes when other settings override a row; <code>attributionProject</code> names a session's billing group on Claude apps gateways; <code>x-claude-code-managed-settings-checksum</code> gateway hint header; <code>/tui classic</code>.</div>
+      <div class="headline-feature"><span class="tag fix">reliability</span> Remote MCP servers reached over https are retried in the background for ~a day after an outage (e.g. VPN drop); Claude Code starts when <code>HTTPS_PROXY</code> is a bare <code>host:port</code> in the desktop app, SDK and cron; <code>claude -p</code> no longer hangs on a stalled model-settings fetch (10 s timeout); many resume/compaction message-loss fixes; artifact publishes fixed in cloud scheduled tasks for orgs requiring approval.</div>
     </div>
 
     <div class="card section-versions">
-      <h3>v2.1.325 &ndash; v2.1.322 &mdash; previous releases <span class="badge">Tue 10 &ndash; Sat 14 Nov AEDT</span></h3>
-      <div class="headline-feature"><span class="tag sec">2.1.325 &middot; sandbox prompts by default</span> Sandboxed Bash now follows the normal permission flow (<code>sandbox.autoAllowBashIfSandboxed: true</code> to keep auto-allow); zstd response-decoding security fix; compound-Bash and allow-rule fixes; background sessions no longer bill a shell API key on a claude.ai login; <code>pluginDigests</code> deprecated.</div>
-      <div class="headline-feature"><span class="tag feat">2.1.323 &middot; Code Mode, plugin pinning</span> Experimental opt-in <a href="https://code.claude.com/docs/en/code-mode">Code Mode</a> (Claude writes JavaScript to call its tools); <code>engines["claude-code"]</code> in <code>plugin.json</code>; ~30 permission and sandbox fixes.</div>
-      <div class="headline-feature"><span class="tag feat">2.1.322 &middot; Vertex</span> Fast mode on Vertex in global, us and eu regions, falling back to standard speed if Vertex refuses it.</div>
+      <h3>v2.1.326 &ndash; v2.1.323 &mdash; previous releases <span class="badge">Fri 13 &ndash; Tue 17 Nov AEDT</span></h3>
+      <div class="headline-feature"><span class="tag sec">2.1.326 &middot; bypass-mode tightening</span> Some tool calls in bypass-permissions mode now ask or are denied when nobody can answer; PowerShell asks about more commands; file tools refuse writes to <code>.credentials.json</code>; sandboxed commands no longer write to some sensitive home folders (<code>sandbox.filesystem.allowWrite</code>); <code>OTEL_RESOURCE_INCLUDE_HOST</code>.</div>
+      <div class="headline-feature"><span class="tag sec">2.1.325 &middot; sandbox prompts by default</span> Sandboxed Bash follows the normal permission flow (<code>sandbox.autoAllowBashIfSandboxed: true</code> to keep auto-allow); zstd response-decoding security fix; <code>pluginDigests</code> deprecated.</div>
+      <div class="headline-feature"><span class="tag feat">2.1.323 &middot; Code Mode, plugin pinning</span> Experimental opt-in <a href="https://code.claude.com/docs/en/code-mode">Code Mode</a>; <code>engines["claude-code"]</code> in <code>plugin.json</code>; ~30 permission and sandbox fixes.</div>
     </div>
   </div>
 
@@ -128,13 +127,13 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="opus5">
     <div class="product-header">
       <h2>Models</h2>
-      <span class="badge major">No model changes in 2.1.326 &middot; Opus 4.8 fast mode removed 30 Nov (13 days; no fallback)</span>
+      <span class="badge major">No model changes in 2.1.327 &middot; Opus 4.8 fast mode removed 30 Nov (12 days; no fallback)</span>
     </div>
     <div class="card section-versions">
       <h3>Current lineup and what changed</h3>
       <ul>
-        <li><span class="tag major">Fable 5.2</span> <code>claude-fable-5-2</code> &mdash; launched 9 Nov; default Fable model in Claude Code 2.1.321+. 1M context; <strong>$8/$40 per Mtok</strong>, $0.20/Mtok cache reads; fast mode also on Vertex from 2.1.322.</li>
-        <li><span class="tag feat">launch offer &middot; ends today</span> Pro plans and standard Team seats get Fable models included in weekly limits through 16 Nov 11:59 pm PT (today ~18:59 AEDT). After that, Fable use on those plans needs usage credits (<a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan">details</a>).</li>
+        <li><span class="tag major">Fable 5.2</span> <code>claude-fable-5-2</code> &mdash; launched 9 Nov; 1M context; <strong>$8/$40 per Mtok</strong>, $0.20/Mtok cache reads.</li>
+        <li><span class="tag sec">launch offer &middot; ended</span> The Pro / standard Team seat Fable launch offer ended 16 Nov PT; Fable use on those plans now needs usage credits (<a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan">details</a>).</li>
         <li><span class="tag major">Opus 5.5</span> <code>claude-opus-5-5</code> &mdash; default Opus and the recommended daily driver.</li>
         <li><span class="tag major">Sonnet 5.5</span> <code>claude-sonnet-5-5</code> &mdash; default Sonnet.</li>
         <li><span class="tag major">Haiku 5.5</span> <code>claude-haiku-5-5</code> &mdash; default Haiku; 1M context.</li>
@@ -147,16 +146,16 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="security">
     <div class="product-header">
       <h2>Security &amp; evals</h2>
-      <span class="badge major">2.1.326 is the new minimum &mdash; but test bypass-mode runners first</span>
+      <span class="badge major">2.1.327 is the new minimum for self-hosted runners and Remote Control</span>
     </div>
     <div class="card">
       <h3>Today's actionable items</h3>
       <ul>
-        <li><span class="tag sec">upgrade &middot; pin v2.1.326</span> <strong>Move runners, auto-mode pipelines and headless <code>claude -p</code> jobs to <code>2.1.326</code></strong> for the credential-file protection and sandbox hardening &mdash; but run one job first: bypass-permissions mode and the PowerShell tool now ask or refuse some calls, so unattended jobs may fail rather than hang. Add explicit <code>permissions.allow</code> rules for what they need.</li>
-        <li><span class="tag sec">sandbox</span> Carry forward 2.1.325's <code>sandbox.autoAllowBashIfSandboxed: true</code> where needed. If jobs write to home-folder paths (tool caches, config dirs), check for new refusals and add <code>sandbox.filesystem.allowWrite</code> entries.</li>
-        <li><span class="tag sec">observability</span> Set <code>OTEL_RESOURCE_INCLUDE_HOST=1</code> on shared runners if you want per-host attribution in Grafana; managed PreToolUse refusals now emit <code>tool_decision</code> events.</li>
-        <li><span class="tag sec">plugins</span> If managed settings use <code>pluginDigests</code>, it is ignored since 2.1.325. Move org plugins to <code>prependPlugins</code>/<code>appendPlugins</code>.</li>
-        <li><span class="tag sec">dates</span> <strong>Today ~18:59 AEDT</strong>: Fable launch offer ends. <strong>17 Nov</strong>: deprecated Desktop keys start warning. <strong>30 Nov</strong>: Opus 4.8 fast mode removed; Plugins page reaches Enterprise and turning off Skills also blocks plugins in Cowork. <strong>On/after 9 Dec</strong>: Microsoft 365 write-tool confirmation limit lifted.</li>
+        <li><span class="tag sec">upgrade &middot; pin v2.1.327</span> <strong>Move self-hosted runners, Remote Control hosts and headless <code>claude -p</code> jobs to <code>2.1.327</code></strong> &mdash; fixes deletion of git-ignored files (<code>.env</code>) on worktree stop and of the <code>GIT_CONFIG_GLOBAL</code> directory with the git proxy. Still test bypass-mode jobs first (2.1.326 behaviour change).</li>
+        <li><span class="tag sec">runners</span> Decide on <code>CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1</code>: without it, shell rc files can run before the first Bash command is approved.</li>
+        <li><span class="tag sec">MCP secrets</span> Switch onboarding docs from <code>claude mcp add-json '&lt;json-with-token&gt;'</code> to piping JSON via <code>claude mcp add-json &lt;name&gt; -</code> so tokens stay out of shell history. Check any project <code>.mcp.json</code> touched by <code>claude mcp add/remove</code> recently for lost keys.</li>
+        <li><span class="tag sec">config hygiene</span> Run <code>/status</code> on a managed machine &mdash; it now flags ignored permission settings and hook matchers that never match.</li>
+        <li><span class="tag sec">dates</span> <strong>30 Nov</strong>: Opus 4.8 fast mode removed; Plugins page reaches Enterprise and turning off Skills also blocks plugins in Cowork. <strong>On/after 9 Dec</strong>: Microsoft 365 write-tool confirmation limit lifted. <strong>17 Dec 12:00 PT</strong>: remove deprecated Desktop keys <code>coworkTabEnabled</code>, <code>chatTabEnabled</code>, <code>chatAdvancedFileAnalysisEnabled</code>.</li>
       </ul>
     </div>
   </div>
@@ -165,15 +164,14 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="desktop">
     <div class="product-header">
       <h2>Claude Desktop</h2>
-      <span class="badge">v5.11492.5 (13 Nov) bundles Claude Code 2.1.325 &middot; no newer build found this morning</span>
+      <span class="badge">17 Nov build &middot; Stable / Latest release channels</span>
     </div>
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag major">v5.11492.5 &middot; 13 Nov</span> Bundles Claude Code 2.1.325. In Code sessions, sandboxed shell commands on macOS and Linux now ask first in Manual and Accept-edits modes &mdash; routines can stop at a prompt; add <code>"autoAllowBashIfSandboxed": true</code> to undo. Workflows pause at the usage limit and resume after reset if Auto-continue is on. (<a href="https://claude.com/docs/cowork/claude-desktop-changelog">changelog</a>)</div>
-      <div class="headline-feature"><span class="tag feat">Linux &middot; Nov</span> Claude Desktop is now available for Debian and Ubuntu (x64 and arm64) as a <code>.deb</code> package. Escape now closes a side pane in a chat or Cowork task.</div>
-      <div class="headline-feature"><span class="tag feat">v5.11492.0 &middot; 12 Nov</span> Developer &gt; Export Configuration Template exports ADMX and Profile Manifest policy templates. <strong>(breaking)</strong> The built-in browser only sends client certificates to hosts in <code>builtinBrowserClientCertificateHosts</code>. New keys: <code>remoteFileDownloads</code>, <code>autoModeClassifierModel</code>, <code>enforceConsoleSignInOrgList</code>, <code>deploymentLogo</code>.</div>
-      <div class="headline-feature"><span class="tag feat">Claude Meetings &middot; beta &middot; 12 Nov</span> Team and Enterprise can add Claude to a Google Meet call to take notes, answer questions and build docs, whiteboards and slides during the call (<a href="https://support.claude.com/en/articles/12138966-release-notes">release notes</a>).</div>
-      <div class="headline-feature"><span class="tag fix">incident &middot; 16 Nov</span> An incident affecting claude.ai, the API, Claude Code and Cowork was reported resolved on 16 Nov (<a href="https://status.claude.com/">status page</a>).</div>
+      <div class="headline-feature"><span class="tag feat">release channels &middot; 17 Nov</span> Users can now pick a release channel: <strong>Stable</strong> (default, fewer, more-tested updates) or <strong>Latest</strong> (about daily). Worth deciding a fleet policy &mdash; Latest picks up Claude Code fixes sooner (<a href="https://support.claude.com/en/articles/12138966-release-notes">release notes</a>).</div>
+      <div class="headline-feature"><span class="tag sec">admin &middot; 17 Nov</span> Fixed MCP servers and desktop extensions that an admin turned off staying active in already-open Cowork and Code sessions; fixes for scheduled tasks/routines and for session exports missing the transcript (<a href="https://claude.com/docs/cowork/claude-desktop-changelog">changelog</a>).</div>
+      <div class="headline-feature"><span class="tag feat">config &middot; deprecations</span> Unified Claude opens with Cowork on where <code>desktopHome</code> is unset (since 10 Nov). Remove <code>coworkTabEnabled</code>, <code>chatTabEnabled</code> and <code>chatAdvancedFileAnalysisEnabled</code> before 17 Dec (<a href="https://claude.com/docs/third-party/claude-desktop/configuration-changelog">configuration changelog</a>).</div>
+      <div class="headline-feature"><span class="tag feat">Linux &amp; Meetings</span> Desktop on Debian/Ubuntu (x64, arm64) as a <code>.deb</code>; Claude Meetings beta (Google Meet) on Team and Enterprise since 12 Nov.</div>
     </div>
   </div>
 
@@ -181,12 +179,12 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
   <div id="cowork">
     <div class="product-header">
       <h2>Claude Cowork</h2>
-      <span class="badge">No Cowork-specific changelog entry since 3 Nov &middot; Plugins page for Enterprise 30 Nov</span>
+      <span class="badge">Admin-disabled MCP enforcement fix &middot; Plugins page for Enterprise 30 Nov</span>
     </div>
     <div class="card">
       <h3>What's new</h3>
-      <div class="headline-feature"><span class="tag sec">scheduled tasks &middot; 2.1.326</span> Once Desktop bundles 2.1.326, bypass-mode and PowerShell refusals will apply to Cowork scheduled tasks that run Code sessions &mdash; tasks may now refuse rather than wait. Desktop's scheduled-task fixes (one-time schedule no longer deleted on edit, rename from the edit dialog) shipped in the 12&ndash;13 Nov builds.</div>
-      <div class="headline-feature"><span class="tag fix">Desktop v5.11492.0 &middot; 12 Nov</span> Fixed edits to an artifact being lost when leaving chats or Cowork tasks within a few seconds of typing; fixed Code and Cowork losing a Claude.ai sign-in when a company proxy answered token renewal with a JSON error.</div>
+      <div class="headline-feature"><span class="tag sec">admin controls &middot; 17 Nov</span> MCP servers and desktop extensions an admin turns off now stop in open Cowork sessions instead of staying active until restart.</div>
+      <div class="headline-feature"><span class="tag fix">scheduled tasks</span> Desktop's 17 Nov build fixes scheduled tasks and routines; Claude Code 2.1.327 fixes new artifacts being refused in cloud scheduled-task sessions for orgs that require artifact approval. Scheduled tasks now run in the cloud with a six-hour retry window for server errors (<a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">help</a>).</div>
       <div class="headline-feature"><span class="tag feat">upcoming &middot; 30 Nov</span> The <a href="https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page">Plugins page</a> (replacing Customize) reaches Enterprise, and turning off Skills for an organization also blocks plugins in Cowork.</div>
     </div>
   </div>
@@ -201,16 +199,15 @@ code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; back
       <div class="card">
         <h3>Official posts</h3>
         <ul class="linklist">
-          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.326">Claude Code v2.1.326 GitHub release</a><span class="src">github.com &middot; 16 Nov UTC</span></li>
-          <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG.md &mdash; v2.1.326 top</a><span class="src">github.com &middot; source of truth</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.327">Claude Code v2.1.327 GitHub release</a><span class="src">github.com &middot; 17 Nov UTC</span></li>
+          <li><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG.md &mdash; v2.1.327 top</a><span class="src">github.com &middot; source of truth</span></li>
           <li><a href="https://code.claude.com/docs/en/changelog">Claude Code changelog (docs)</a><span class="src">code.claude.com</span></li>
-          <li><a href="https://code.claude.com/docs/en/whats-new">What's new in Claude Code</a><span class="src">code.claude.com</span></li>
           <li><a href="https://claude.com/docs/cowork/claude-desktop-changelog">Claude Desktop changelog</a><span class="src">claude.com</span></li>
+          <li><a href="https://claude.com/docs/cowork/changelog">Claude Cowork changelog</a><span class="src">claude.com</span></li>
           <li><a href="https://claude.com/docs/third-party/claude-desktop/configuration-changelog">Claude Desktop configuration changelog</a><span class="src">claude.com</span></li>
-          <li><a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">@anthropic-ai/claude-code on npm &mdash; v2.1.326 on <code>latest</code>/<code>next</code>, v2.1.311 on <code>stable</code></a><span class="src">npmjs.com</span></li>
           <li><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude apps release notes</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://support.claude.com/en/articles/15424964-claude-fable-models-on-your-plan">Claude Fable models on your plan</a><span class="src">support.claude.com</span></li>
-          <li><a href="https://claude.com/resources/webinars/claude-rearview-roadmap-review-november-2026">Claude Rearview: roadmap review, November 2026 (webinar)</a><span class="src">claude.com</span></li>
+          <li><a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork">Schedule recurring tasks in Claude Cowork</a><span class="src">support.claude.com</span></li>
+          <li><a href="https://www.npmjs.com/package/@anthropic-ai/claude-code?activeTab=versions">@anthropic-ai/claude-code on npm &mdash; v2.1.327 on <code>latest</code>/<code>next</code>, v2.1.311 on <code>stable</code></a><span class="src">npmjs.com</span></li>
         </ul>
       </div>
       <div class="card">
